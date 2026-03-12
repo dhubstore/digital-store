@@ -15,6 +15,9 @@
   <div class="logo">Digital Hub Store</div>
 </header>
 
+<!-- Overlay for slide-in menu -->
+<div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
+
 <!-- Left Slide-in Menu -->
 <div id="sideMenu" class="side-menu">
   <span onclick="closeMenu()" class="close-menu">✕</span>
@@ -29,9 +32,6 @@
   </div>
 </div>
 
-<!-- Category bar (optional quick access) -->
-<nav class="category-bar" id="categoryBar"></nav>
-
 <div class="search-box">
   <input type="text" id="searchInput" placeholder="Search products..." onkeyup="searchProducts()" />
 </div>
@@ -40,8 +40,9 @@
   <div class="products" id="products"></div>
 </div>
 
-<!-- Floating Cart Button -->
+<!-- Floating Buttons -->
 <a class="cart-float" onclick="openCart()">🛒</a>
+<a class="whatsapp-float" href="https://wa.me/233509329683" target="_blank">💬</a>
 
 <!-- Cart Panel -->
 <div id="cartPanel" class="cart-panel">
@@ -56,9 +57,6 @@
   </div>
 </div>
 
-<!-- Floating WhatsApp Button -->
-<a class="whatsapp-float" href="https://wa.me/233509329683" target="_blank">💬</a>
-
 <!-- Live Support Panel -->
 <div id="liveSupportPanel" class="live-support-panel">
   <span onclick="closeLiveSupport()" class="close-support">✕</span>
@@ -70,9 +68,9 @@
 <!-- Toast Notifications -->
 <div id="toastContainer"></div>
 
-<!-- Footer / Contact Details -->
+<!-- Footer -->
 <footer class="footer">
-  <p>📧 Email: contact@digitalhubghsupport@gmail.com</p>
+  <p>📧 Email: contact@digitalhubstore.com</p>
   <p>📞 Phone: +233 509 329 683</p>
   <p>📍 Location: Accra, Ghana</p>
 </footer>
