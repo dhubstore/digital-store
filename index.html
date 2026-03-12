@@ -1,24 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Digital Hub Store</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<script src="https://js.paystack.co/v1/inline.js"></script>
-</head>
-<body>
-
-<header>
-  <div class="menu-icon" onclick="openMenu()">☰</div>
-  <div class="logo">Digital Hub Store</div>
-</header>
-
-<!-- Overlay for slide-in menu -->
-<div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
-
-<!-- Left Slide-in Menu -->
+<!-- Slide-in Menu Hidden by Default -->
 <div id="sideMenu" class="side-menu">
   <span onclick="closeMenu()" class="close-menu">✕</span>
   <h3>Choose Option</h3>
@@ -32,49 +12,8 @@
   </div>
 </div>
 
-<div class="search-box">
-  <input type="text" id="searchInput" placeholder="Search products..." onkeyup="searchProducts()" />
-</div>
+<!-- Menu Overlay -->
+<div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
 
-<div class="container">
-  <div class="products" id="products"></div>
-</div>
-
-<!-- Floating Buttons -->
-<a class="cart-float" onclick="openCart()">🛒</a>
-<a class="whatsapp-float" href="https://wa.me/233509329683" target="_blank">💬</a>
-
-<!-- Cart Panel -->
-<div id="cartPanel" class="cart-panel">
-  <div class="cart-header">
-    <h3>Your Cart</h3>
-    <span onclick="closeCart()" style="cursor:pointer;">✕</span>
-  </div>
-  <div id="cartItems"></div>
-  <div class="cart-footer">
-    <div>Total: GH₵<span id="cartTotal">0</span></div>
-    <button onclick="checkoutCart()">Checkout</button>
-  </div>
-</div>
-
-<!-- Live Support Panel -->
-<div id="liveSupportPanel" class="live-support-panel">
-  <span onclick="closeLiveSupport()" class="close-support">✕</span>
-  <h3>Live Support</h3>
-  <p>Chat with our support team here. The live widget will appear once integrated.</p>
-  <div id="tawkWidget"></div>
-</div>
-
-<!-- Toast Notifications -->
-<div id="toastContainer"></div>
-
-<!-- Footer -->
-<footer class="footer">
-  <p>📧 Email: contact@digitalhubstore.com</p>
-  <p>📞 Phone: +233 509 329 683</p>
-  <p>📍 Location: Accra, Ghana</p>
-</footer>
-
-<script src="store.js" defer></script>
-</body>
-</html>
+<!-- Menu Button Floating at Top-Left -->
+<a class="menu-float" onclick="openMenu()">☰</a>
