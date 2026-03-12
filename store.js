@@ -1,128 +1,112 @@
-body {
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:#f4f4f4;
+const productsData = {
+  netflix: [
+    { name: "1 MONTH NETFLIX ACCOUNT", price: 20, image: "images/netflix.png" }
+  ],
+  nordvpn: [
+    { name: "NORD VPN 1 MONTH ACCOUNT", price: 30, image: "images/nord-vpn.png" },
+    { name: "NORD VPN 1 YEAR ACCOUNT", price: 70, image: "images/nord-vpn.png" }
+  ],
+  piavpn: [
+    { name: "PIA VPN 1 MONTH ACCOUNT", price: 40, image: "images/pia-vpn.png" },
+    { name: "PIA VPN 3 MONTHS ACCOUNT", price: 55, image: "images/pia-vpn.png" },
+    { name: "PIA VPN 1 YEAR ACCOUNT", price: 85, image: "images/pia-vpn.png" }
+  ],
+  textvoice: [
+    { name: "TEXTFREE ACCOUNT", price: 20, image: "images/textfree.png" },
+    { name: "TEXTNOW ACCOUNT", price: 30, image: "images/textnow.png" },
+    { name: "GOOGLE VOICE ACCOUNT", price: 35, image: "images/google-voice.png" }
+  ],
+  data: [
+    { name: "1GB MTN DATA BUNDLE", price: 5, image: "images/data-bundle.png" },
+    { name: "2GB MTN DATA BUNDLE", price: 10, image: "images/data-bundle.png" },
+    { name: "3GB MTN DATA BUNDLE", price: 15, image: "images/data-bundle.png" },
+    { name: "4GB MTN DATA BUNDLE", price: 20, image: "images/data-bundle.png" },
+    { name: "5GB MTN DATA BUNDLE", price: 24, image: "images/data-bundle.png" },
+    { name: "6GB MTN DATA BUNDLE", price: 28, image: "images/data-bundle.png" },
+    { name: "8GB MTN DATA BUNDLE", price: 37, image: "images/data-bundle.png" }
+  ]
+};
+
+// DOM elements
+const productsDiv = document.getElementById("products");
+const headerTitle = document.getElementById("header-title");
+
+// Show products by category
+function selectCategory(category) {
+  productsDiv.innerHTML = "";
+  headerTitle.textContent = "Products: " + category.toUpperCase();
+  productsData[category].forEach(product => addProductCard(product));
 }
 
-header {
-  background:#0f172a;
-  color:white;
-  text-align:center;
-  padding:20px;
-  font-size:24px;
-  font-weight:bold;
-}
-
-.cart-btn {
-  background:#22c55e;
-  border:none;
-  padding:8px 15px;
-  color:white;
-  border-radius:5px;
-  cursor:pointer;
-}
-
-.container { padding:15px; }
-
-.products {
-  display:grid;
-  grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
-  gap:25px;
-}
-
-.card {
-  background:white;
-  border-radius:14px;
-  padding:15px;
-  text-align:center;
-  box-shadow:0 6px 15px rgba(0,0,0,0.15);
-}
-
-.card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius:12px;
-}
-
-.card h3 { font-size:22px; margin:10px 0; }
-
-.card .price { font-size:20px; color:#16a34a; font-weight:bold; margin:10px 0; }
-
-.btn {
-  display:block;
-  padding:14px;
-  margin-top:10px;
-  border:none;
-  border-radius:8px;
-  font-size:16px;
-  color:white;
-  cursor:pointer;
-}
-
-.buy { background:#2563eb; }
-
-.whatsapp-float {
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#25D366;
-  color:white;
-  padding:15px 18px;
-  border-radius:50px;
-  font-size:16px;
-  text-decoration:none;
-  box-shadow:0 4px 10px rgba(0,0,0,0.3);
-  z-index:1000;
-}
-
-.support-box {
-  position:fixed;
-  bottom:80px;
-  right:20px;
-  width:300px;
-  background:#0f172a;
-  color:white;
-  border-radius:12px;
-  box-shadow:0 4px 15px rgba(0,0,0,0.3);
-  display:none;
-  z-index:1000;
-  font-family:Arial, sans-serif;
-}
-
-.support-header {
-  padding:10px;
-  font-weight:bold;
-  background:#2563eb;
-  border-top-left-radius:12px;
-  border-top-right-radius:12px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  cursor:pointer;
-}
-
-.support-content { padding:10px; }
-
-.support-content p { margin:5px 0; font-size:14px; }
-
-.support-content textarea {
-  width:100%;
-  height:60px;
-  margin-top:5px;
-  border-radius:8px;
-  border:none;
-  padding:5px;
-}
-
-.support-content button {
-  margin-top:5px;
-  width:100%;
-  padding:8px;
-  background:#16a34a;
-  border:none;
-  border-radius:8px;
-  color:white;
-  font-weight:bold;
-  cursor:pointer;
+// Show all products
+function showAllProducts() {
+  productsDiv.innerHTML = "";
+  headerTitle.textContent = "All Products";
+  for (let category in productsData) {
+    productsData[category].forEach(product => addProductCard(product));
   }
+}
+
+// Add product card
+function addProductCard(product) {
+  const card = document.createElement("div");
+  card.classList.add("card");
+  card.innerHTML = `
+    <img src="${product.image}" alt="${product.name}">
+    <h3>${product.name}</h3>
+    <div class="price">GH₵${product.price}</div>
+    <button class="btn buy" onclick="addToCart('${product.name}', ${product.price})">Add to Cart</button>
+    <button class="btn buy" onclick="payWithPaystack(${product.price})" style="margin-top:5px;background:#ff9900;">Buy Now</button>
+  `;
+  productsDiv.appendChild(card);
+}
+
+// Menu toggle
+function toggleMenu() {
+  document.getElementById("menu").classList.toggle("show");
+}
+
+// Cart functionality
+function addToCart(name, price) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.push({ name, price });
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert(name + " added to cart!");
+}
+
+function openCartPage() {
+  window.location.href = "cart.html";
+}
+
+// Support box
+function goSupport() { document.getElementById("supportBox").style.display = "block"; }
+function closeSupportBox() { document.getElementById("supportBox").style.display = "none"; }
+function sendSupportMessage() {
+  const msg = document.getElementById("supportMessage").value;
+  if(msg.trim()===""){ alert("Please enter a message."); return; }
+  alert("Thank you! Support will contact you soon.\nMessage: " + msg);
+  document.getElementById("supportMessage").value="";
+  closeSupportBox();
+}
+
+// Default: show all products
+window.onload = function() {
+  showAllProducts();
+};
+
+// Paystack Checkout
+function payWithPaystack(amount) {
+  let handler = PaystackPop.setup({
+    key: 'pk_live_76e7df83f71c725b7e10d514b3c935324a97761e',
+    email: "customer@example.com",
+    amount: amount * 100,
+    currency: "GHS",
+    callback: function(response){
+      alert('Payment successful. Transaction ref: ' + response.reference);
+    },
+    onClose: function(){
+      alert('Payment cancelled.');
+    }
+  });
+  handler.openIframe();
+}
