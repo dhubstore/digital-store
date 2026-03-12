@@ -10,7 +10,31 @@
 <h2>Payment Page</h2>
 
 <p>Click below to simulate payment.</p>
+<button onclick="payWithPaystack()">Pay Now</button>
 
+<script src="https://js.paystack.co/v1/inline.js"></script>
+
+<script>
+function payWithPaystack(){
+var handler = PaystackPop.setup({
+key: 'YOUR_PUBLIC_KEY',
+email: 'customer@email.com',
+amount: 500 * 100,
+currency: "GHS",
+
+callback: function(response){
+alert('Payment successful!');
+window.location="delivery.html";
+},
+
+onClose: function(){
+alert('Transaction cancelled');
+}
+});
+
+handler.openIframe();
+}
+</script>
 <button onclick="completePayment()">Pay Now</button>
 
 <p id="paymentMessage"></p>
