@@ -4,14 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Digital Hub Store</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://js.paystack.co/v1/inline.js"></script>
 </head>
 <body>
 
 <header>
   <div class="logo">Digital Hub Store</div>
+  <button class="cart-btn" onclick="openCart()">🛒 Cart</button>
 </header>
 
 <nav class="category-bar">
@@ -36,33 +38,27 @@
   <div class="products" id="products"></div>
 </div>
 
-<!-- Floating Cart Button -->
-<a class="cart-float" onclick="openCart()">🛒</a>
-
-<!-- Cart Panel -->
 <div id="cartPanel" class="cart-panel">
   <div class="cart-header">
     <h3>Your Cart</h3>
     <span onclick="closeCart()" style="cursor:pointer;">✕</span>
   </div>
   <div id="cartItems"></div>
+  <div class="cart-total">
+    Total: GH₵<span id="cartTotal">0</span>
+  </div>
   <div class="cart-footer">
-    <div>Total: GH₵<span id="cartTotal">0</span></div>
     <button onclick="checkoutCart()">Checkout</button>
   </div>
 </div>
 
-<!-- Floating WhatsApp Button -->
-<a class="whatsapp-float" href="https://wa.me/233509329683" target="_blank">💬</a>
-
-<!-- Toast Notification Container -->
-<div id="toastContainer"></div>
+<a class="whatsapp-float" href="https://wa.me/233509329683" target="_blank" rel="noopener noreferrer">💬</a>
 
 <section class="about-section">
-  <h2>About Digital Hub Store</h2>
-  <p>Digital Hub Store is a trusted digital marketplace built to provide fast, reliable, and affordable digital services to customers across Ghana and beyond.</p>
-  <p>We specialize in premium VPN accounts, Netflix accounts, TextNow/TextFree numbers, and affordable MTN data bundles. Every product is delivered instantly after purchase.</p>
-  <p>Our mission is simple — to make digital services accessible, affordable, and secure for everyone.</p>
+<h2>About Digital Hub Store</h2>
+<p>Digital Hub Store is a trusted digital marketplace built to provide fast, reliable, and affordable digital services to customers across Ghana and beyond.</p>
+<p>We specialize in premium VPN accounts, Netflix accounts, TextNow/TextFree numbers, and affordable MTN data bundles. Every product is delivered instantly after purchase.</p>
+<p>Our mission is simple — to make digital services accessible, affordable, and secure for everyone.</p>
 </section>
 
 <script src="store.js" defer></script>
