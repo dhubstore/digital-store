@@ -1,27 +1,36 @@
 const productsData = {
   data:[
     { name:"1GB MTN DATA", price:5, image:"images/data-bundle.png" },
-    { name:"2GB MTN DATA", price:10, image:"images/data-bundle.png" }
+    { name:"2GB MTN DATA", price:10, image:"images/data-bundle.png" },
+    { name:"3GB MTN DATA", price:15, image:"images/data-bundle.png" },
+    { name:"4GB MTN DATA", price:20, image:"images/data-bundle.png" },
+    { name:"5GB MTN DATA", price:25, image:"images/data-bundle.png", bestseller:true }
+  ],
+  nordvpn:[
+    { name:"NORD VPN 1 MONTH", price:25, image:"images/nord-vpn.png" },
+    { name:"NORD VPN 1 YEAR", price:70, image:"images/nord-vpn.png", bestseller:true }
+  ],
+  piavpn:[
+    { name:"PIA VPN 1 MONTH", price:40, image:"images/pia-vpn.png" },
+    { name:"PIA VPN 3 MONTHS", price:55, image:"images/pia-vpn.png" },
+    { name:"PIA VPN 1 YEAR", price:85, image:"images/pia-vpn.png", bestseller:true }
+  ],
+  textvoice:[
+    { name:"TEXTNOW ACCOUNT", price:25, image:"images/textnow.png" },
+    { name:"TEXTFREE ACCOUNT", price:20, image:"images/textfree.png" }
+  ],
+  netflix:[
+    { name:"1 Month Netflix Account", price:20, image:"images/netflix.png" }
   ]
 };
 
 const productsDiv = document.getElementById("products");
 
-// Toast System
-const toastContainer = document.getElementById("toastContainer");
-function showToast(message){
-  const toast = document.createElement("div");
-  toast.className = "toast";
-  toast.innerText = message;
-  toastContainer.appendChild(toast);
-  setTimeout(()=>{ toast.remove(); }, 3000);
-}
-
-// Display Products
 function addProductCard(product){
   const card = document.createElement("div");
   card.classList.add("card");
   card.innerHTML = `
+    ${product.bestseller ? '<div class="badge">BEST SELLER</div>' : ''}
     <img src="${product.image}" alt="${product.name}">
     <h3>${product.name}</h3>
     <div class="price">GH₵${product.price}</div>
@@ -31,63 +40,83 @@ function addProductCard(product){
   productsDiv.appendChild(card);
 }
 
-function showAllProducts(){ productsDiv.innerHTML=""; productsData.data.forEach(addProductCard); }
-window.onload = showAllProducts;
+function showAllProducts(){
+  productsDiv.innerHTML="";
+  for(let category in productsData){
+    productsData[category].forEach(addProductCard);
+  }
+}
 
-// Cart
-function openCart(){ document.getElementById("cartPanel").classList.add("show"); loadCart(); }
-function closeCart(){ document.getElementById("cartPanel").classList.remove("show"); }
+function filterCategory(category){
+  productsDiv.innerHTML="";
+  if(category==='all'){showAllProducts();return;}
+  productsData[category].forEach(addProductCard);
+}
 
+function searchProducts(){
+  let input = document.getElementById("searchInput").value.toLowerCase();
+  productsDiv.innerHTML="";
+  for(let category in productsData){
+    productsData[category].forEach(product=>{
+      if(product.name.toLowerCase().includes(input)){addProductCard(product);}
+    });
+  }
+}
+
+/* CART */
+function openCart(){document.getElementById("cartPanel").classList.add("show"); loadCart();}
+function closeCart(){document.getElementById("cartPanel").classList.remove("show");}
 function addToCart(name,price){
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   cart.push({name,price});
   localStorage.setItem("cart",JSON.stringify(cart));
   loadCart();
-  showToast(name + " added to cart");
+  alert(`${name} added to cart`);
 }
-
 function loadCart(){
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  const cartItems = document.getElementById("cartItems");
-  let total = 0;
-  cartItems.innerHTML = "";
+  let cartItems = document.getElementById("cartItems");
+  let total=0;
+  cartItems.innerHTML="";
   cart.forEach((item,index)=>{
-    total += item.price;
-    cartItems.innerHTML += `
-      <div class="cart-item">
-        <span>${item.name}</span>
-        <span>GH₵${item.price}</span>
-        <button class="remove-btn" onclick="removeItem(${index})">X</button>
-      </div>`;
+    total+=item.price;
+    cartItems.innerHTML+=`<div class="cart-item">
+      <span>${item.name}</span>
+      <span>GH₵${item.price}</span>
+      <button class="remove-btn" onclick="removeItem(${index})">X</button>
+    </div>`;
   });
-  document.getElementById("cartTotal").innerText = total;
+  document.getElementById("cartTotal").innerText=total;
 }
-
 function removeItem(index){
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   cart.splice(index,1);
   localStorage.setItem("cart",JSON.stringify(cart));
   loadCart();
 }
-
 function checkoutCart(){
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  if(cart.length === 0){ showToast("Your cart is empty."); return; }
+  if(cart.length === 0){alert("Your cart is empty."); return;}
   let total = cart.reduce((sum,item)=>sum+item.price,0);
-  showToast(`Total: GH₵${total}. Use Buy Now buttons to pay.`);
+  alert(`Total: GH₵${total}. Use "Buy Now" buttons to pay each product individually.`);
 }
 
-// Paystack
 function payWithPaystack(productName,amount){
   let email = prompt("Enter your email");
   if(!email) return;
   let handler = PaystackPop.setup({
     key:'pk_live_76e7df83f71c725b7e10d514b3c935324a97761e',
-    email: email,
-    amount: amount*100,
-    currency: "GHS",
-    callback: function(){ showToast(`${productName} purchased successfully!`); },
-    onClose: function(){ showToast("Payment cancelled."); }
+    email:email,
+    amount:amount*100,
+    currency:"GHS",
+    callback:function(){
+      alert(`${productName} purchased successfully!`);
+      // Optional: redirect to a confirmation page
+      // window.location.href="customer.html";
+    },
+    onClose:function(){alert("Payment cancelled");}
   });
   handler.openIframe();
 }
+
+window.onload=showAllProducts;
