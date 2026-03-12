@@ -1,52 +1,71 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Digital Hub Store</title>
 
+.<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Digital Hub Store</title>
 
 <style>
 
 body{
-font-family: Arial;
 margin:0;
-background:#f4f4f4;
+font-family:Arial, sans-serif;
+background:#f2f2f2;
 }
 
 header{
 background:#111;
 color:white;
-padding:15px;
+padding:18px;
 text-align:center;
 font-size:22px;
+font-weight:bold;
+}
+
+nav{
+text-align:center;
+background:#222;
+padding:10px;
+}
+
+nav a{
+color:white;
+margin:0 10px;
+text-decoration:none;
+font-size:14px;
 }
 
 .container{
+padding:15px;
+}
+
+.products{
 display:grid;
 grid-template-columns:1fr;
-gap:15px;
-padding:15px;
+gap:20px;
 }
 
 .card{
 background:white;
 border-radius:10px;
-padding:15px;
+padding:20px;
 text-align:center;
-box-shadow:0 3px 8px rgba(0,0,0,0.2);
+box-shadow:0 4px 10px rgba(0,0,0,0.15);
 }
 
 .card img{
-width:80px;
+width:120px;
 margin-bottom:10px;
 }
 
 .card h3{
-margin:5px 0;
+margin:10px 0;
 }
 
 .card p{
-color:#666;
+color:#555;
 font-size:14px;
 }
 
@@ -56,8 +75,8 @@ margin-top:10px;
 padding:10px 18px;
 background:#007bff;
 color:white;
-text-decoration:none;
 border-radius:6px;
+text-decoration:none;
 font-size:14px;
 }
 
@@ -65,19 +84,11 @@ font-size:14px;
 background:#0056b3;
 }
 
-.whatsapp{
-background:#25D366;
-}
-
-.telegram{
-background:#0088cc;
-}
-
 footer{
 text-align:center;
-padding:15px;
+padding:20px;
 font-size:13px;
-color:#777;
+color:#666;
 }
 
 </style>
@@ -85,37 +96,40 @@ color:#777;
 
 <body>
 
-<header>
-Digital Hub Store
-</header>
+<header>Digital Hub Store</header>
+
+<nav>
+<a href="#">Home</a>
+<a href="#">Support</a>
+</nav>
 
 <div class="container">
 
-<div class="card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/NordVPN_logo.svg/512px-NordVPN_logo.svg.png">
-<h3>VPN Accounts</h3>
-<p>Secure premium VPN accounts</p>
+<h2>Main Products</h2>
 
+<div class="products">
+
+<div class="card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/NordVPN_logo.svg">
+<h3>VPN Accounts</h3>
+<p>Secure VPN services</p>
 <a class="btn" href="#">View VPNs</a>
-<a class="btn whatsapp" href="#">Buy on WhatsApp</a>
 </div>
 
 <div class="card">
 <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Netflix_icon.svg">
 <h3>Netflix Accounts</h3>
-<p>Premium Netflix streaming</p>
-
+<p>Premium Netflix access</p>
 <a class="btn" href="#">View Accounts</a>
-<a class="btn telegram" href="#">Buy on Telegram</a>
 </div>
 
 <div class="card">
 <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Spotify_logo_with_text.svg">
-<h3>Spotify Premium</h3>
-<p>Unlimited music streaming</p>
-
+<h3>Spotify Subscriptions</h3>
+<p>Spotify Premium</p>
 <a class="btn" href="#">View Plans</a>
-<a class="btn whatsapp" href="#">Order Now</a>
+</div>
+
 </div>
 
 </div>
