@@ -1,40 +1,6 @@
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-function addToCart(name, price) {
-cart.push({name, price});
-localStorage.setItem("cart", JSON.stringify(cart));
-alert("Added to cart");
-}
-
-function displayCart(){
-
-const container = document.getElementById("cart-items");
-
-if(!container) return;
-
-let total = 0;
-container.innerHTML="";
-
-cart.forEach((item,index)=>{
-
-total += item.price;
-
-container.innerHTML += `
-<p>${item.name} - $${item.price}
-<button onclick="removeItem(${index})">Remove</button>
-</p>
-`;
-
-});
-
-document.getElementById("cart-total").innerText="Total: $"+total;
-
-}
-
-function removeItem(i){
-cart.splice(i,1);
-localStorage.setItem("cart",JSON.stringify(cart));
-displayCart();
-}
-
-displayCart();
+const cartItemsDiv=document.getElementById("cart-items");const cartTotalSpan=document.getElementById("cart-total");let cart=JSON.parse(localStorage.getItem("cart"))||[];
+function displayCart(){cartItemsDiv.innerHTML="";let total=0;if(cart.length===0){cartItemsDiv.innerHTML="<p>Your cart is empty</p>"}cart.forEach((item,index)=>{total+=item.price;const div=document.createElement("div");div.classList.add("cart-item");div.innerHTML=`${item.name} - GH₵${item.price} <button onclick="removeItem(${index})">Remove</button>`;cartItemsDiv.appendChild(div)});cartTotalSpan.textContent=total}
+function removeItem(index){cart.splice(index,1);localStorage.setItem("cart",JSON.stringify(cart));displayCart()}
+function checkout(){if(cart.length===0){alert("Your cart is empty!");return}document.getElementById("paymentModal").style.display="block"}
+function closePaymentModal(){document.getElementById("paymentModal").style.display="none"}
+function payCart(){const name=document.getElementById("customerName").value;const email=document.getElementById("customerEmail").value;const phone=document.getElementById("customerPhone").value;if(!name||!email||!phone){alert("Please fill all details");return}const total=cart.reduce((sum,item)=>sum+item.price,0);const products=cart.map(item=>item.name).join(", ");var handler=PaystackPop.setup({key:'pk_live_76e7df83f71c725b7e10d514b3c935324a97761e',email:email,amount:total*100,currency:"GHS",callback:function(response){alert("Payment successful! Reference: "+response.reference);fetch("send_email.php",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name,email,phone,products,total,reference:response.reference})}).then(res=>alert("Order delivery initiated!")).catch(err=>alert("Error sending order data"));localStorage.removeItem("cart");window.location.href="index.html"},onClose:function(){alert("Transaction cancelled")}});handler.openIframe();}displayCart();
