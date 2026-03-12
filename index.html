@@ -1,61 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Digital Hub Store</title>
 
-<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://js.paystack.co/v1/inline.js"></script>
 </head>
-
 <body>
 
 <header>
-<div class="logo">Digital Hub Store</div>
-<button class="cart-btn" onclick="openCart()">🛒 Cart</button>
+  <div class="logo">Digital Hub Store</div>
+  <button class="cart-btn" onclick="openCart()">🛒 Cart</button>
 </header>
 
 <!-- CATEGORY NAVIGATION -->
 <nav class="category-bar">
-<button onclick="filterCategory('all')">All</button>
-<button onclick="filterCategory('data')">Data Bundles</button>
-<button onclick="filterCategory('nordvpn')">NordVPN</button>
-<button onclick="filterCategory('piavpn')">PIA VPN</button>
-<button onclick="filterCategory('textvoice')">TextNow / TextFree</button>
+  <button onclick="filterCategory('all')">All</button>
+  <button onclick="filterCategory('data')">Data Bundles</button>
+  <button onclick="filterCategory('nordvpn')">NordVPN</button>
+  <button onclick="filterCategory('piavpn')">PIA VPN</button>
+  <button onclick="filterCategory('textvoice')">TextNow / TextFree</button>
+  <button onclick="filterCategory('netflix')">Netflix</button>
 </nav>
 
 <!-- SEARCH BAR -->
 <div class="search-box">
-<input type="text" id="searchInput" placeholder="Search products..." onkeyup="searchProducts()" />
+  <input type="text" id="searchInput" placeholder="Search products..." onkeyup="searchProducts()" />
 </div>
 
 <!-- HERO SECTION -->
 <section class="hero">
-<h1>Welcome to Digital Hub Store</h1>
-<p>Your trusted store for VPN accounts, Netflix accounts, TextNow/TextFree numbers, and data bundles.</p>
+  <h1>Welcome to Digital Hub Store</h1>
+  <p>Your trusted store for VPN accounts, Netflix accounts, TextNow/TextFree numbers, and data bundles.</p>
 </section>
 
 <!-- PRODUCTS CONTAINER -->
 <div class="container">
-<div class="products" id="products"></div>
+  <div class="products" id="products"></div>
 </div>
 
 <!-- CART PANEL -->
 <div id="cartPanel" class="cart-panel">
-<div class="cart-header">
-<h3>Your Cart</h3>
-<span onclick="closeCart()" style="cursor:pointer;">✕</span>
-</div>
-<div id="cartItems"></div>
-<div class="cart-total">
-Total: GH₵<span id="cartTotal">0</span>
-</div>
-<div class="cart-footer">
-<button onclick="checkoutCart()">Checkout</button>
-</div>
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <span onclick="closeCart()" style="cursor:pointer;">✕</span>
+  </div>
+  <div id="cartItems"></div>
+  <div class="cart-total">
+    Total: GH₵<span id="cartTotal">0</span>
+  </div>
+  <div class="cart-footer">
+    <button onclick="checkoutCart()">Checkout</button>
+  </div>
 </div>
 
 <!-- WHATSAPP FLOAT BUTTON -->
@@ -81,8 +80,6 @@ accessible, affordable, and secure for everyone.
 </p>
 </section>
 
-<!-- STORE SCRIPT -->
-<script src="./store.js" defer></script>
-
+<script src="store.js" defer></script>
 </body>
 </html>
