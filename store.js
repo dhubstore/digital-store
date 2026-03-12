@@ -1,190 +1,124 @@
-body{
-margin:0;
-font-family:'Poppins',sans-serif;
-background:#f4f4f4;
+const products = [
+{
+name: "Netflix Account",
+price: 20,
+category: "netflix"
+},
+{
+name: "NordVPN Account",
+price: 15,
+category: "nordvpn"
+},
+{
+name: "PIA VPN Account",
+price: 12,
+category: "piavpn"
+},
+{
+name: "TextNow / TextFree Number",
+price: 10,
+category: "textvoice"
+},
+{
+name: "1GB Data Bundle",
+price: 5,
+category: "data"
+}
+];
+
+let cart = [];
+
+function displayProducts(list) {
+
+const container = document.getElementById("products");
+container.innerHTML = "";
+
+list.forEach((product, index) => {
+
+const item = document.createElement("div");
+item.className = "product";
+
+item.innerHTML = `
+<h3>${product.name}</h3>
+<p>GH₵${product.price}</p>
+<button onclick="addToCart(${index})">Add to Cart</button>
+`;
+
+container.appendChild(item);
+
+});
+
 }
 
-/* HEADER */
-
-header{
-background:#0f172a;
-color:white;
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:18px 20px;
+function showAllProducts(){
+document.getElementById("header-title").innerText = "All Products";
+displayProducts(products);
 }
 
-.cart-btn{
-background:#22c55e;
-border:none;
-padding:8px 15px;
-color:white;
-border-radius:6px;
-cursor:pointer;
+function selectCategory(category){
+
+const filtered = products.filter(p => p.category === category);
+
+document.getElementById("header-title").innerText = category.toUpperCase();
+
+displayProducts(filtered);
+
 }
 
-/* HERO */
+function addToCart(index){
 
-.hero{
-text-align:center;
-padding:20px;
+cart.push(products[index]);
+updateCart();
+
 }
 
-/* PRODUCTS */
+function updateCart(){
 
-.container{
-padding:15px;
+const cartItems = document.getElementById("cartItems");
+const total = document.getElementById("cartTotal");
+
+cartItems.innerHTML = "";
+
+let sum = 0;
+
+cart.forEach(item => {
+
+const div = document.createElement("div");
+div.innerHTML = `${item.name} - GH₵${item.price}`;
+
+cartItems.appendChild(div);
+
+sum += item.price;
+
+});
+
+total.innerText = sum;
+
 }
 
-.products{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
+function openCart(){
+document.getElementById("cartPanel").style.right = "0";
 }
 
-.card{
-background:white;
-border-radius:14px;
-padding:15px;
-text-align:center;
-box-shadow:0 6px 15px rgba(0,0,0,0.1);
-position:relative;
+function closeCart(){
+document.getElementById("cartPanel").style.right = "-400px";
 }
 
-.card img{
-width:100%;
-height:150px;
-object-fit:contain;
-background:#f8fafc;
-padding:10px;
-border-radius:10px;
+function toggleMenu(){
+
+const menu = document.getElementById("menu");
+
+menu.style.display =
+menu.style.display === "block" ? "none" : "block";
+
 }
 
-.price{
-font-size:18px;
-color:#16a34a;
-font-weight:600;
+function goSupport(){
+window.open("https://wa.me/233509329683","_blank");
 }
 
-.btn{
-display:block;
-padding:12px;
-margin-top:8px;
-border:none;
-border-radius:8px;
-font-size:15px;
-color:white;
-cursor:pointer;
+function checkoutCart(){
+alert("Checkout coming soon");
 }
 
-.buy{
-background:#2563eb;
-}
-
-/* BEST SELLER */
-
-.badge{
-position:absolute;
-top:10px;
-left:10px;
-background:#ef4444;
-color:white;
-padding:4px 8px;
-font-size:12px;
-border-radius:6px;
-}
-
-/* WHATSAPP */
-
-.whatsapp-float{
-position:fixed;
-bottom:90px;
-right:20px;
-background:#25D366;
-color:white;
-padding:14px 18px;
-border-radius:50px;
-text-decoration:none;
-box-shadow:0 4px 10px rgba(0,0,0,0.3);
-}
-
-/* CART PANEL */
-
-.cart-panel{
-position:fixed;
-top:0;
-left:-350px;
-width:320px;
-height:100%;
-background:white;
-box-shadow:4px 0 15px rgba(0,0,0,0.2);
-transition:0.3s;
-z-index:2000;
-display:flex;
-flex-direction:column;
-}
-
-.cart-panel.show{
-left:0;
-}
-
-.cart-header{
-background:#0f172a;
-color:white;
-padding:15px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-#cartItems{
-flex:1;
-overflow-y:auto;
-padding:15px;
-}
-
-.cart-item{
-display:flex;
-justify-content:space-between;
-margin-bottom:10px;
-}
-
-.remove-btn{
-background:red;
-color:white;
-border:none;
-padding:4px 8px;
-border-radius:4px;
-cursor:pointer;
-}
-
-.cart-total{
-padding:10px 15px;
-font-weight:bold;
-border-top:1px solid #eee;
-}
-
-.cart-footer{
-padding:15px;
-}
-
-.cart-footer button{
-width:100%;
-padding:12px;
-background:#22c55e;
-border:none;
-color:white;
-border-radius:8px;
-font-size:16px;
-}
-
-/* ABOUT */
-
-.about-section{
-background:white;
-padding:40px 20px;
-margin-top:30px;
-margin-bottom:120px;
-text-align:center;
-}
+window.onload = showAllProducts;
