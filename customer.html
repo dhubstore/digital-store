@@ -44,7 +44,7 @@ document.getElementById("customerForm").addEventListener("submit", function(e){
   const customer = {name,email,phone,receipt};
   localStorage.setItem("customerDetails", JSON.stringify(customer));
 
-  alert("Details saved successfully!\nWe will process your order soon.");
+  alert("Details saved successfully! We will process your order soon.");
   window.location.href = "index.html";
 });
 </script>
