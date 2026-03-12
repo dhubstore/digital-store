@@ -16,17 +16,16 @@ const productsData = {
     { name:"PIA VPN 1 YEAR", price:85, image:"images/pia-vpn.png", bestseller:true }
   ],
   textvoice:[
-    { name:"TEXTNOW ACCOUNT", price:30, image:"images/textnow.png" },
-    { name:"TEXTFREE ACCOUNT", price:35, image:"images/textfree.png" }
+    { name:"TEXTNOW ACCOUNT", price:25, image:"images/textnow.png" },
+    { name:"TEXTFREE ACCOUNT", price:20, image:"images/textfree.png" }
   ],
   netflix:[
-    { name:"NETFLIX ACCOUNT", price:20, image:"images/netflix.png" }
+    { name:"1 Month Netflix Account", price:20, image:"images/netflix.png" }
   ]
 };
 
 const productsDiv = document.getElementById("products");
 
-// Display products
 function addProductCard(product){
   const card = document.createElement("div");
   card.classList.add("card");
@@ -41,7 +40,6 @@ function addProductCard(product){
   productsDiv.appendChild(card);
 }
 
-// Show all products
 function showAllProducts(){
   productsDiv.innerHTML="";
   for(let category in productsData){
@@ -49,14 +47,12 @@ function showAllProducts(){
   }
 }
 
-// FILTER BY CATEGORY
 function filterCategory(category){
   productsDiv.innerHTML="";
   if(category==='all'){showAllProducts();return;}
   productsData[category].forEach(addProductCard);
 }
 
-// SEARCH
 function searchProducts(){
   let input = document.getElementById("searchInput").value.toLowerCase();
   productsDiv.innerHTML="";
@@ -67,7 +63,6 @@ function searchProducts(){
   }
 }
 
-// CART
 function openCart(){document.getElementById("cartPanel").classList.add("show"); loadCart();}
 function closeCart(){document.getElementById("cartPanel").classList.remove("show");}
 function addToCart(name,price){
@@ -99,7 +94,6 @@ function removeItem(index){
   loadCart();
 }
 
-// PAYSTACK WITH RECEIPT
 function payWithPaystack(productName,amount){
   let email = prompt("Enter your email");
   if(!email) return;
@@ -117,6 +111,7 @@ Status: PAID
 Delivery: Instant
 Thank you for buying from Digital Hub Store`;
       alert(receipt);
+      window.location.href="customer.html";
     },
     onClose:function(){alert("Payment cancelled");}
   });
@@ -125,7 +120,6 @@ Thank you for buying from Digital Hub Store`;
 
 window.onload=showAllProducts;
 
-// CHECKOUT BUTTON
 function checkoutCart(){
   alert("Checkout coming soon. You can Buy Now from product cards.");
 }
