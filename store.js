@@ -1,31 +1,31 @@
-// Product data
+// Product data with images
 const productsData = {
   netflix: [
-    { name: "1 MONTH NETFLIX ACCOUNT", price: 20 },
-    { name: "SPOTIFY SUBSCRIPTION", price: 35 }
+    { name: "1 MONTH NETFLIX ACCOUNT", price: 20, image: "https://i.imgur.com/netflix.png" },
+    { name: "SPOTIFY SUBSCRIPTION", price: 35, image: "https://i.imgur.com/spotify.png" }
   ],
   nordvpn: [
-    { name: "NORD VPN 1 MONTH ACCOUNT", price: 30 },
-    { name: "NORD VPN 1 YEAR ACCOUNT", price: 70 }
+    { name: "NORD VPN 1 MONTH ACCOUNT", price: 30, image: "https://i.imgur.com/nord-vpn.jpg" },
+    { name: "NORD VPN 1 YEAR ACCOUNT", price: 70, image: "https://i.imgur.com/nord-vpn.jpg" }
   ],
   piavpn: [
-    { name: "PIA VPN 1 MONTH ACCOUNT", price: 40 },
-    { name: "PIA VPN 3 MONTHS ACCOUNT", price: 55 },
-    { name: "PIA VPN 1 YEAR ACCOUNT", price: 85 }
+    { name: "PIA VPN 1 MONTH ACCOUNT", price: 40, image: "https://i.imgur.com/express-vpn.jpg" },
+    { name: "PIA VPN 3 MONTHS ACCOUNT", price: 55, image: "https://i.imgur.com/express-vpn.jpg" },
+    { name: "PIA VPN 1 YEAR ACCOUNT", price: 85, image: "https://i.imgur.com/express-vpn.jpg" }
   ],
   textvoice: [
-    { name: "TEXTFREE ACCOUNT", price: 20 },
-    { name: "TEXTNOW ACCOUNT", price: 30 },
-    { name: "GOOGLE VOICE ACCOUNT", price: 35 }
+    { name: "TEXTFREE ACCOUNT", price: 20, image: "https://i.imgur.com/default.png" },
+    { name: "TEXTNOW ACCOUNT", price: 30, image: "https://i.imgur.com/default.png" },
+    { name: "GOOGLE VOICE ACCOUNT", price: 35, image: "https://i.imgur.com/default.png" }
   ],
   data: [
-    { name: "1GB MTN DATA BUNDLE", price: 5 },
-    { name: "2GB MTN DATA BUNDLE", price: 10 },
-    { name: "3GB MTN DATA BUNDLE", price: 15 },
-    { name: "4GB MTN DATA BUNDLE", price: 20 },
-    { name: "5GB MTN DATA BUNDLE", price: 24 },
-    { name: "6GB MTN DATA BUNDLE", price: 28 },
-    { name: "8GB MTN DATA BUNDLE", price: 37 }
+    { name: "1GB MTN DATA BUNDLE", price: 5, image: "https://i.imgur.com/data-bundle.png" },
+    { name: "2GB MTN DATA BUNDLE", price: 10, image: "https://i.imgur.com/data-bundle.png" },
+    { name: "3GB MTN DATA BUNDLE", price: 15, image: "https://i.imgur.com/data-bundle.png" },
+    { name: "4GB MTN DATA BUNDLE", price: 20, image: "https://i.imgur.com/data-bundle.png" },
+    { name: "5GB MTN DATA BUNDLE", price: 24, image: "https://i.imgur.com/data-bundle.png" },
+    { name: "6GB MTN DATA BUNDLE", price: 28, image: "https://i.imgur.com/data-bundle.png" },
+    { name: "8GB MTN DATA BUNDLE", price: 37, image: "https://i.imgur.com/data-bundle.png" }
   ]
 };
 
@@ -33,7 +33,7 @@ const productsData = {
 const productsDiv = document.getElementById("products");
 const headerTitle = document.getElementById("header-title");
 
-// Select a category and display products
+// Select category and display products
 function selectCategory(category) {
   productsDiv.innerHTML = "";
   headerTitle.textContent = "Products: " + category.toUpperCase();
@@ -41,8 +41,8 @@ function selectCategory(category) {
   productsData[category].forEach(product => {
     const card = document.createElement("div");
     card.classList.add("card");
-    // Fixed template literal syntax
     card.innerHTML = `
+      <img src="${product.image}" alt="${product.name}" style="width:100%;border-radius:12px;margin-bottom:10px;">
       <h3>${product.name}</h3>
       <div class="price">GH₵${product.price}</div>
       <button class="btn buy" onclick="addToCart('${product.name}', ${product.price})">Add to Cart</button>
@@ -51,7 +51,7 @@ function selectCategory(category) {
   });
 }
 
-// Toggle mobile menu
+// Toggle menu
 function toggleMenu() {
   document.getElementById("menu").classList.toggle("show");
 }
@@ -61,7 +61,7 @@ function openCartPage() {
   window.location.href = "cart.html";
 }
 
-// Add product to cart
+// Add to cart
 function addToCart(name, price) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   cart.push({ name, price });
@@ -69,7 +69,7 @@ function addToCart(name, price) {
   alert(name + " added to cart!");
 }
 
-// Open and close support box
+// Support box
 function goSupport() {
   document.getElementById("supportBox").style.display = "block";
 }
@@ -91,5 +91,5 @@ function sendSupportMessage() {
 
 // Load default category on page load
 window.onload = function() {
-  selectCategory("netflix"); // Default category
+  selectCategory("netflix"); // Default
 };
