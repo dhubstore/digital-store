@@ -4,62 +4,78 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Digital Hub Store</title>
-
-<link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <script src="https://js.paystack.co/v1/inline.js"></script>
 </head>
 <body>
 
 <header>
+  <div class="menu-icon" onclick="openMenu()">☰</div>
   <div class="logo">Digital Hub Store</div>
-  <button class="cart-btn" onclick="openCart()">🛒 Cart</button>
 </header>
 
-<nav class="category-bar">
-  <button onclick="filterCategory('all')">All</button>
-  <button onclick="filterCategory('data')">Data Bundles</button>
-  <button onclick="filterCategory('nordvpn')">NordVPN</button>
-  <button onclick="filterCategory('piavpn')">PIA VPN</button>
-  <button onclick="filterCategory('textvoice')">TextNow / TextFree</button>
-  <button onclick="filterCategory('netflix')">Netflix</button>
-</nav>
+<!-- Left Slide-in Menu -->
+<div id="sideMenu" class="side-menu">
+  <span onclick="closeMenu()" class="close-menu">✕</span>
+  <h3>Choose Option</h3>
+  <div id="menuCategories">
+    <button onclick="filterCategory('data')">Data Bundles</button>
+    <button onclick="filterCategory('nordvpn')">NordVPN</button>
+    <button onclick="filterCategory('piavpn')">PIA VPN</button>
+    <button onclick="filterCategory('textvoice')">TextNow / TextFree</button>
+    <button onclick="filterCategory('netflix')">Netflix</button>
+    <button onclick="openLiveSupport()">Live Support</button>
+  </div>
+</div>
+
+<!-- Category bar (optional quick access) -->
+<nav class="category-bar" id="categoryBar"></nav>
 
 <div class="search-box">
   <input type="text" id="searchInput" placeholder="Search products..." onkeyup="searchProducts()" />
 </div>
 
-<section class="hero">
-  <h1>Welcome to Digital Hub Store</h1>
-  <p>Your trusted store for VPN accounts, Netflix accounts, TextNow/TextFree numbers, and data bundles.</p>
-</section>
-
 <div class="container">
   <div class="products" id="products"></div>
 </div>
 
+<!-- Floating Cart Button -->
+<a class="cart-float" onclick="openCart()">🛒</a>
+
+<!-- Cart Panel -->
 <div id="cartPanel" class="cart-panel">
   <div class="cart-header">
     <h3>Your Cart</h3>
     <span onclick="closeCart()" style="cursor:pointer;">✕</span>
   </div>
   <div id="cartItems"></div>
-  <div class="cart-total">
-    Total: GH₵<span id="cartTotal">0</span>
-  </div>
   <div class="cart-footer">
+    <div>Total: GH₵<span id="cartTotal">0</span></div>
     <button onclick="checkoutCart()">Checkout</button>
   </div>
 </div>
 
-<a class="whatsapp-float" href="https://wa.me/233509329683" target="_blank" rel="noopener noreferrer">💬</a>
+<!-- Floating WhatsApp Button -->
+<a class="whatsapp-float" href="https://wa.me/233509329683" target="_blank">💬</a>
 
-<section class="about-section">
-<h2>About Digital Hub Store</h2>
-<p>Digital Hub Store is a trusted digital marketplace built to provide fast, reliable, and affordable digital services to customers across Ghana and beyond.</p>
-<p>We specialize in premium VPN accounts, Netflix accounts, TextNow/TextFree numbers, and affordable MTN data bundles. Every product is delivered instantly after purchase.</p>
-<p>Our mission is simple — to make digital services accessible, affordable, and secure for everyone.</p>
-</section>
+<!-- Live Support Panel -->
+<div id="liveSupportPanel" class="live-support-panel">
+  <span onclick="closeLiveSupport()" class="close-support">✕</span>
+  <h3>Live Support</h3>
+  <p>Chat with our support team here. The live widget will appear once integrated.</p>
+  <div id="tawkWidget"></div>
+</div>
+
+<!-- Toast Notifications -->
+<div id="toastContainer"></div>
+
+<!-- Footer / Contact Details -->
+<footer class="footer">
+  <p>📧 Email: contact@digitalhubstoregh.com</p>
+  <p>📞 Phone: +233 509 329 683</p>
+  <p>📍 Location: Accra, Ghana</p>
+</footer>
 
 <script src="store.js" defer></script>
 </body>
