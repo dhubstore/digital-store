@@ -11,12 +11,12 @@ const products = [
 {name:"PIA VPN 1 YEAR", price:100, stock:10, image:"images/pia-vpn.png"},
 
 /* HMA VPN */
-{name:"HMA PRO VPN 1 MONTH", price:35, stock:10, image:"images/hma-vpn.png"},
-{name:"HMA PRO VPN 1 YEAR", price:60, stock:10, image:"images/hma-vpn.png"},
+{name:"HMA PRO VPN 1 MONTH", price:35, stock:10, image:"images/hma-vpn.jpg"},
+{name:"HMA PRO VPN 1 YEAR", price:60, stock:10, image:"images/hma-vpn.jpg"},
 
 /* IPVANISH */
-{name:"IPVANISH VPN 6 MONTHS", price:55, stock:10, image:"images/ipvanish-vpn.png"},
-{name:"IPVANISH VPN 1 YEAR", price:85, stock:10, image:"images/ipvanish-vpn.png"},
+{name:"IPVANISH VPN 6 MONTHS", price:55, stock:10, image:"images/ipvanish-vpn.jpg"},
+{name:"IPVANISH VPN 1 YEAR", price:85, stock:10, image:"images/ipvanish-vpn.jpg"},
 
 /* NORD VPN */
 {name:"NORD VPN 1 MONTH", price:35, stock:10, image:"images/nord-vpn.png"},
@@ -29,10 +29,16 @@ const products = [
 {name:"CYBER GHOST VPN 2 YEARS", price:90, stock:10, image:"images/cyberghost-vpn.png"},
 
 /* SURFSHARK */
-{name:"SURFSHARK VPN 1 MONTH", price:30, stock:10, image:"images/surfshark-vpn.png"},
+{name:"SURFSHARK VPN 1 MONTH", price:30, stock:10, image:"images/surfshark-vpn.jpg"},
 
 /* GMAIL */
-{name:"GMAIL PHONE VERIFIED ACCOUNT", price:25, stock:10, image:"images/google-voice.png"},
+{name:"GMAIL PHONE VERIFIED ACCOUNT", price:25, stock:10, image:"images/gmail.jpg"},
+
+/* GOOGLE VOICE */
+{name:"GOOGLE VOICE ACCOUNT", price:40, stock:10, image:"images/google-voice.png"},
+
+/* NETFLIX */
+{name:"NETFLIX 1 MONTH", price:25, stock:10, image:"images/netflix.png"},
 
 /* MTN DATA */
 {name:"1GB MTN DATA BUNDLE", price:5, stock:100, image:"images/data-bundle.png"},
@@ -46,44 +52,10 @@ const products = [
 {name:"15GB MTN DATA BUNDLE", price:65, stock:100, image:"images/data-bundle.png"},
 
 /* TELECEL DATA */
-{name:"10GB TELECEL DATA BUNDLE", price:42, stock:100, image:"images/data-bundle.png"},
+{name:"10GB TELECEL DATA BUNDLE", price:42, stock:100, image:"images/telecel.jpg"},
 
 /* MESSAGING APPS */
 {name:"TEXTNOW ACCOUNT", price:25, stock:20, image:"images/textnow.png"},
 {name:"TEXTFREE ACCOUNT", price:20, stock:20, image:"images/textfree.png"}
 
 ];
-
-function renderProducts(){
-
-const container = document.querySelector(".products-list");
-container.innerHTML = "";
-
-products.forEach(p => {
-
-const card = document.createElement("div");
-card.className = "product-card";
-
-card.innerHTML = `
-<div class="product-info">
-<img src="${p.image}" alt="${p.name}">
-<div class="product-details">
-<span>${p.name}</span>
-<a href="#">View details</a>
-</div>
-</div>
-
-<div class="product-price-stock">
-<span class="price">${p.price}GHC</span>
-<span class="stock">${p.stock} pcs</span>
-<button class="purchase-btn" onclick="buyNow('${p.name}',${p.price})">Purchase</button>
-</div>
-`;
-
-container.appendChild(card);
-
-});
-
-}
-
-document.addEventListener("DOMContentLoaded", renderProducts);
