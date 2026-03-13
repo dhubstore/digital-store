@@ -34,16 +34,32 @@ const products = [
   {name:"TEXTFREE ACCOUNT", price:20, stock:20, image:"images/textfree.png", category:"Messaging"}
 ];
 
-// RENDER PRODUCTS WITH FILTER
+// RENDER PRODUCTS WITH CATEGORY FILTER
 function renderProducts(category="all"){
   const container=document.querySelector(".products-list");
   container.innerHTML="";
   let filtered=products;
   if(category!=="all") filtered=products.filter(p=>p.category===category);
+
   filtered.forEach(p=>{
     const div=document.createElement("div");
     div.className="product-card";
-    div.innerHTML=`<div class="product-info"><img src="${p.image}" alt="${p.name}"><div class="product-details"><span>${p.name}</span><a href="#">View details</a></div></div><div class="product-price-stock"><span class="price">${p.price}GHC</span><span class="stock">${p.stock} pcs</span><div style="display:flex;gap:10px;"><button class="purchase-btn" onclick="buyNow('${p.name}',${p.price})">Buy Now</button><button class="purchase-btn add-cart-btn" onclick="addToCart('${p.name}',${p.price})">Add to Cart</button></div></div>`;
+    div.innerHTML=`
+      <div class="product-info">
+        <img src="${p.image}" alt="${p.name}">
+        <div class="product-details">
+          <span>${p.name}</span>
+          <a href="#">View details</a>
+        </div>
+      </div>
+      <div class="product-price-stock">
+        <span class="price">${p.price}GHC</span>
+        <span class="stock">${p.stock} pcs</span>
+        <div style="display:flex;gap:10px;">
+          <button class="purchase-btn" onclick="buyNow('${p.name}',${p.price})">Buy Now</button>
+          <button class="purchase-btn add-cart-btn" onclick="addToCart('${p.name}',${p.price})">Add to Cart</button>
+        </div>
+      </div>`;
     container.appendChild(div);
   });
 }
@@ -63,6 +79,7 @@ function updateSideCart(){
   const container=document.getElementById('sideCartItems');
   container.innerHTML="";
   let total=0;
+
   cart.forEach((item,index)=>{
     const div=document.createElement('div');
     div.style.display='flex';
@@ -106,14 +123,13 @@ function goToCheckout(){ window.location.href='checkout.html'; }
 
 // FILTER NAV LINKS
 document.addEventListener("DOMContentLoaded",()=>{
-  renderProducts("all"); // Show all initially
+  renderProducts("all");
   updateSideCart();
 
   document.querySelectorAll('nav a').forEach(link=>{
     link.addEventListener('click',e=>{
       e.preventDefault();
-      const cat=link.getAttribute('data-category');
-      renderProducts(cat);
+      renderProducts(link.getAttribute('data-category'));
     });
   });
 
