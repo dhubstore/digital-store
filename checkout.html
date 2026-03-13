@@ -5,119 +5,38 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Checkout - Digital Hub Store</title>
 <link rel="stylesheet" href="style.css">
-<style>
-/* CHECKOUT STYLING */
-.checkout-container{
-  max-width:600px;
-  margin:40px auto;
-  background:#fff;
-  padding:25px;
-  border-radius:12px;
-  box-shadow:0 4px 15px rgba(0,0,0,0.2);
-}
-.checkout-container h2{text-align:center;margin-bottom:20px;color:#ff4b4b;}
-.checkout-container label{display:block;margin-top:15px;font-weight:bold;}
-.checkout-container input, .checkout-container textarea{
-  width:100%;padding:10px;margin-top:5px;border-radius:6px;border:1px solid #ccc;font-size:14px;
-}
-.checkout-container button{
-  margin-top:20px;width:100%;padding:12px;background:#ff4b4b;color:white;border:none;border-radius:8px;font-size:16px;cursor:pointer;
-}
-.checkout-container button:hover{background:#e03e3e;}
-#checkoutItems div{
-  display:flex;
-  justify-content:space-between;
-  padding:5px 0;
-  border-bottom:1px solid #eee;
-  font-size:15px;
-}
-@media(max-width:500px){.checkout-container{padding:15px;margin:20px;}}
-</style>
+<script src="https://js.paystack.co/v1/inline.js"></script>
 </head>
 <body>
 
-<div class="checkout-container">
-<h2>Checkout</h2>
+<header>
+  <div class="logo">Digital Hub Store</div>
+</header>
 
-<form id="checkoutForm">
-<label>Full Name</label>
-<input type="text" id="fname" required>
+<section class="checkout-container">
+  <h2>Checkout</h2>
 
-<label>Email</label>
-<input type="email" id="email" required>
+  <div id="checkoutItems"></div>
+  <div style="font-weight:bold;margin-top:15px;">Total: GHC <span id="checkoutTotal">0</span></div>
 
-<label>Phone Number</label>
-<input type="tel" id="phone" required>
+  <h3>Enter Your Details</h3>
+  <label for="custName">Full Name</label>
+  <input type="text" id="custName" placeholder="Your full name" required>
 
-<label>Address</label>
-<textarea id="address" rows="3" placeholder="Enter your address (optional)"></textarea>
+  <label for="custPhone">WhatsApp Number</label>
+  <input type="text" id="custPhone" placeholder="e.g. 0533209931" required>
 
-<h3>Order Summary</h3>
-<div id="checkoutItems"></div>
-<p><strong>Total: GHC <span id="checkoutTotal">0</span></strong></p>
+  <label for="custEmail">Email</label>
+  <input type="email" id="custEmail" placeholder="you@example.com" required>
 
-<button type="submit">Pay Now</button>
-</form>
-</div>
+  <button id="payBtn">Pay Now</button>
+</section>
 
-<script src="https://js.paystack.co/v1/inline.js"></script>
-<script src="store.js"></script>
-<script>
-// Load cart items into checkout summary
-function loadCheckoutItems(){
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  const container = document.getElementById('checkoutItems');
-  container.innerHTML="";
-  let total = 0;
-  cart.forEach(item=>{
-    const div = document.createElement('div');
-    div.textContent = `${item.item} - GHC ${item.price}`;
-    container.appendChild(div);
-    total += item.price;
-  });
-  document.getElementById('checkoutTotal').textContent = total;
-}
-document.addEventListener("DOMContentLoaded", loadCheckoutItems);
+<footer>
+<p><strong>WhatsApp:</strong> <a href="https://wa.me/0509329683" target="_blank">0509329683</a></p>
+<p><strong>Email:</strong> <a href="mailto:digitalhubghsupport@gmail.com">digitalhubghsupport@gmail.com</a></p>
+</footer>
 
-// Paystack payment
-document.getElementById('checkoutForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  const fname = document.getElementById('fname').value;
-  const email = document.getElementById('email').value;
-  const phone = document.getElementById('phone').value;
-  const address = document.getElementById('address').value;
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  if(cart.length===0){alert("Your cart is empty!"); return;}
-  
-  let totalAmount=0;
-  cart.forEach(i=>totalAmount+=i.price);
-
-  const handler = PaystackPop.setup({
-    key: 'pk_live_76e7df83f71c725b7e10d514b3c935324a97761e', // live key
-    email: email,
-    amount: totalAmount*100,
-    currency: 'GHS',
-    ref: 'DH-'+Math.floor(Math.random()*1000000),
-    metadata: {
-      custom_fields:[
-        {display_name:"Customer Name", value: fname},
-        {display_name:"Phone", value: phone},
-        {display_name:"Address", value: address},
-        {display_name:"Order Details", value: JSON.stringify(cart)}
-      ]
-    },
-    callback: function(response){
-      localStorage.setItem('lastPaymentRef', response.reference);
-      localStorage.setItem('checkoutName', fname);
-      localStorage.setItem('checkoutEmail', email);
-      localStorage.setItem('checkoutPhone', phone);
-      localStorage.setItem('checkoutAddress', address);
-      window.location.href='success.html';
-    },
-    onClose: function(){alert('Payment not completed');}
-  });
-  handler.openIframe();
-});
-</script>
+<script src="checkout.js"></script>
 </body>
 </html>
