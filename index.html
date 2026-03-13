@@ -20,14 +20,19 @@
   <div class="cart-wrapper">
     <img src="https://img.icons8.com/ios-filled/50/ff4b4b/shopping-cart.png" alt="Cart" id="cartIcon">
     <span id="cartCount">0</span>
-    <div id="miniCart">
-      <h4>Cart Items</h4>
-      <div id="miniCartItems"></div>
-      <div style="font-weight:bold;margin-top:10px;">Total: GHC <span id="miniCartTotal">0</span></div>
-      <button onclick="goToCheckout()">Checkout</button>
-    </div>
   </div>
 </header>
+
+<!-- SIDE CART -->
+<div id="sideCart">
+  <div id="sideCartHeader">
+    <h3>Cart Items</h3>
+    <span id="closeSideCart">&times;</span>
+  </div>
+  <div id="sideCartItems"></div>
+  <div style="font-weight:bold;margin-top:10px;">Total: GHC <span id="sideCartTotal">0</span></div>
+  <button onclick="goToCheckout()">Checkout</button>
+</div>
 
 <!-- HERO SECTION -->
 <section class="hero">
