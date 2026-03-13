@@ -28,7 +28,6 @@ nav a:hover{color:#ffd1d1;}
 .hero{text-align:center;background: linear-gradient(135deg, #004aad, #1fb6ff);color:white;padding:80px 20px;border-radius:12px;margin:20px;}
 .hero h1{font-size:32px;font-weight:bold;margin-bottom:15px;}
 .hero p{font-size:18px;line-height:1.5;opacity:0.9;}
-@media(max-width:500px){.hero h1{font-size:26px;}.hero p{font-size:16px;}}
 
 /* PRODUCTS */
 .products-list{max-width:900px;margin:20px auto;padding:0;display:flex;flex-direction:column;gap:15px;}
@@ -45,6 +44,15 @@ nav a:hover{color:#ffd1d1;}
 .purchase-btn{background:#ff4b4b;color:white;border:none;border-radius:8px;padding:10px 18px;font-size:14px;cursor:pointer;transition: background 0.2s;}
 .purchase-btn:hover{background:#e03e3e;}
 
+/* CHECKOUT */
+.checkout-container{max-width:600px;margin:40px auto;background:#fff;padding:25px;border-radius:12px;box-shadow:0 4px 15px rgba(0,0,0,0.2);}
+.checkout-container h2{text-align:center;margin-bottom:20px;color:#ff4b4b;}
+.checkout-container label{display:block;margin-top:15px;font-weight:bold;}
+.checkout-container input, .checkout-container textarea{width:100%;padding:10px;margin-top:5px;border-radius:6px;border:1px solid #ccc;font-size:14px;}
+.checkout-container button{margin-top:20px;width:100%;padding:12px;background:#ff4b4b;color:white;border:none;border-radius:8px;font-size:16px;cursor:pointer;}
+.checkout-container button:hover{background:#e03e3e;}
+#checkoutItems div{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #eee;font-size:15px;}
+
 /* FOOTER */
 footer{background:#333;color:white;padding:20px;margin-top:40px;text-align:center;border-top:4px solid #ff4b4b;}
 footer a{color:#ff4b4b;text-decoration:none;}
@@ -54,4 +62,9 @@ footer a{color:#ff4b4b;text-decoration:none;}
   .product-card{flex-direction:column;align-items:flex-start;}
   .product-price-stock{align-items:flex-start;margin-top:10px;}
   #miniCart{width:90%;right:5%;top:60px;}
+}
+@media(max-width:500px){
+  .checkout-container{padding:15px;margin:20px;}
+  .hero h1{font-size:26px;}
+  .hero p{font-size:16px;}
 }
