@@ -11,12 +11,12 @@ const products = [
 {name:"PIA VPN 1 YEAR", price:100, stock:10, image:"images/pia-vpn.png"},
 
 /* HMA VPN */
-{name:"HMA PRO VPN 1 MONTH", price:35, stock:10, image:"images/hma-vpn.jpg"},
-{name:"HMA PRO VPN 1 YEAR", price:60, stock:10, image:"images/hma-vpn.jpg"},
+{name:"HMA PRO VPN 1 MONTH", price:35, stock:10, image:"images/hma-vpn.png"},
+{name:"HMA PRO VPN 1 YEAR", price:60, stock:10, image:"images/hma-vpn.png"},
 
 /* IPVANISH */
-{name:"IPVANISH VPN 6 MONTHS", price:55, stock:10, image:"images/ipvanish-vpn.jpg"},
-{name:"IPVANISH VPN 1 YEAR", price:85, stock:10, image:"images/ipvanish-vpn.jpg"},
+{name:"IPVANISH VPN 6 MONTHS", price:55, stock:10, image:"images/ipvanish-vpn.png"},
+{name:"IPVANISH VPN 1 YEAR", price:85, stock:10, image:"images/ipvanish-vpn.png"},
 
 /* NORD VPN */
 {name:"NORD VPN 1 MONTH", price:35, stock:10, image:"images/nord-vpn.png"},
@@ -29,10 +29,10 @@ const products = [
 {name:"CYBER GHOST VPN 2 YEARS", price:90, stock:10, image:"images/cyberghost-vpn.png"},
 
 /* SURFSHARK */
-{name:"SURFSHARK VPN 1 MONTH", price:30, stock:10, image:"images/surfshark-vpn.jpg"},
+{name:"SURFSHARK VPN 1 MONTH", price:30, stock:10, image:"images/surfshark-vpn.png"},
 
 /* GMAIL */
-{name:"GMAIL PHONE VERIFIED ACCOUNT", price:25, stock:10, image:"images/gmail.jpg"},
+{name:"GMAIL PHONE VERIFIED ACCOUNT", price:25, stock:10, image:"images/gmail.png"},
 
 /* GOOGLE VOICE */
 {name:"GOOGLE VOICE ACCOUNT", price:40, stock:10, image:"images/google-voice.png"},
@@ -52,7 +52,7 @@ const products = [
 {name:"15GB MTN DATA BUNDLE", price:65, stock:100, image:"images/data-bundle.png"},
 
 /* TELECEL DATA */
-{name:"10GB TELECEL DATA BUNDLE", price:42, stock:100, image:"images/telecel.jpg"},
+{name:"10GB TELECEL DATA BUNDLE", price:42, stock:100, image:"images/telecel.png"},
 
 /* MESSAGING APPS */
 {name:"TEXTNOW ACCOUNT", price:25, stock:20, image:"images/textnow.png"},
