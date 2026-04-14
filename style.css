@@ -82,69 +82,73 @@ body {
 .products-list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    max-width: 900px;
+    gap: 15px;
+    max-width: 1000px;
     margin: 20px auto;
     padding: 0 10px;
 }
 
 /* PRODUCT CARD */
 .product-card {
-    display: flex;
-    align-items: center;
-    gap: 12px;
     background: white;
     border-radius: 12px;
     padding: 12px;
+    display: flex;
+    flex-direction: row; /* horizontal layout */
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
     box-shadow: 0 3px 10px rgba(0,0,0,0.08);
 }
 
-/* IMAGE ON LEFT */
-.product-left img {
+/* PRODUCT IMAGE */
+.product-card img {
     width: 80px;
     height: 80px;
-    border-radius: 8px;
+    border-radius: 12px;
     object-fit: cover;
 }
 
-/* PRODUCT RIGHT */
-.product-right {
+/* PRODUCT DETAILS */
+.product-details {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    flex: 1;
+    flex: 1; /* take remaining space */
 }
 
-/* PRODUCT NAME */
 .product-details span {
     font-weight: bold;
     font-size: 1rem;
+    margin-bottom: 6px;
 }
 
 /* BUTTONS */
 .btns {
     display: flex;
     gap: 6px;
+    margin-bottom: 4px;
 }
 
 .buy-now-btn {
     background: #ff4b4b;
     color: white;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 6px 0;
     flex: 1;
     cursor: pointer;
+    font-size: 0.9rem;
 }
 
 .add-cart-btn {
     background: #007bff;
     color: white;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 6px 0;
     flex: 1;
     cursor: pointer;
+    font-size: 0.9rem;
 }
 
 .buy-now-btn:hover,
@@ -214,16 +218,16 @@ body {
 /* RESPONSIVE */
 @media(max-width:500px){
     .product-card {
-        flex-direction: column;
+        flex-direction: column; /* stack vertically on mobile */
         align-items: flex-start;
     }
-    .product-left img {
+    .product-card img {
         width: 100%;
         height: auto;
     }
     .btns {
         flex-direction: row;
-        width: 100%;
         gap: 6px;
+        margin-bottom: 4px;
     }
-    }
+}
