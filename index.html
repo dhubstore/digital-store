@@ -6,7 +6,7 @@
 <title>Digital Hub Store</title>
 
 <style>
-/* (YOUR ORIGINAL CSS — KEEPED EXACTLY AS YOU WROTE IT) */
+/* YOUR ORIGINAL CSS (UNCHANGED) */
 
 * {
   margin: 0;
@@ -88,7 +88,7 @@
   text-align: center;
 }
 
-/* PRODUCTS FIX STYLE */
+/* PRODUCTS */
 .products-list{
 max-width:900px;
 margin:20px auto;
@@ -146,6 +146,59 @@ cursor:pointer;
 .add-cart-btn{background:#007bff;color:white;}
 .purchase-btn{background:#ff4b4b;color:white;}
 
+/* SIDE CART */
+#sideCart{
+position:fixed;
+top:0;
+right:-100%;
+width:320px;
+height:100%;
+background:white;
+box-shadow:-4px 0 20px rgba(0,0,0,0.2);
+padding:20px;
+transition:0.3s;
+z-index:9999;
+}
+
+#sideCartHeader{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:10px;
+}
+
+#sideCartItems{
+margin-top:10px;
+max-height:60%;
+overflow-y:auto;
+}
+
+.cart-item{
+display:flex;
+justify-content:space-between;
+padding:10px;
+background:#f5f5f5;
+margin-bottom:8px;
+border-radius:8px;
+}
+
+#sideCart input{
+width:100%;
+padding:10px;
+margin-top:10px;
+border-radius:8px;
+border:1px solid #ddd;
+}
+
+#sideCart button{
+width:100%;
+margin-top:10px;
+padding:12px;
+background:linear-gradient(90deg,#5e2be1,#9b64f0);
+color:white;
+border:none;
+border-radius:8px;
+}
 </style>
 </head>
 
@@ -171,10 +224,31 @@ cursor:pointer;
   <p>Your trusted store for VPN, Netflix, Data bundles & more.</p>
 </section>
 
-<!-- 🔥 PRODUCTS FIX (THIS WAS MISSING) -->
+<!-- PRODUCTS -->
 <div class="products-list"></div>
 
-<!-- JS LINK -->
+<!-- SIDE CART (FIX ADDED) -->
+<div id="sideCart">
+
+  <div id="sideCartHeader">
+    <h3>Your Cart</h3>
+    <span id="closeSideCart" style="cursor:pointer;font-size:22px;">✖</span>
+  </div>
+
+  <div id="sideCartItems"></div>
+
+  <div style="font-size:18px;font-weight:bold;margin-top:10px;">
+    Total: GHC <span id="sideCartTotal">0</span>
+  </div>
+
+  <input id="customerEmail" type="text" placeholder="Email">
+  <input id="customerPhone" type="text" placeholder="Phone">
+
+  <button onclick="sendToWhatsApp()">Checkout</button>
+
+</div>
+
+<!-- JS -->
 <script src="store.js"></script>
 
 </body>
