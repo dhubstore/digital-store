@@ -45,7 +45,15 @@ const products = [
 {name:"$5 ITUNES E-CODE", price:70, image:"images/itunes-5.png", category:"Giftcards"},
 {name:"$10 ITUNES E-CODE", price:120, image:"images/itunes-10.png", category:"Giftcards"},
 {name:"$15 ITUNES E-CODE", price:215, image:"images/itunes-15.png", category:"Giftcards"},
-{name:"$20 ITUNES E-CODE", price:275, image:"images/itunes-20.png", category:"Giftcards"}
+{name:"$20 ITUNES E-CODE", price:275, image:"images/itunes-20.png", category:"Giftcards"},
+
+// PROXIES
+{name:"10 PROXIES", price:25, image:"images/proxy.jpg", category:"Services"},
+{name:"25 PROXIES", price:65, image:"images/proxy.jpg", category:"Services"},
+{name:"50 PROXIES", price:100, image:"images/proxy.jpg", category:"Services"},
+{name:"100 PROXIES", price:200, image:"images/proxy.jpg", category:"Services"},
+{name:"150 PROXIES", price:325, image:"images/proxy.jpg", category:"Services"},
+{name:"200 PROXIES", price:400, image:"images/proxy.jpg", category:"Services"}
 
 ];
 
