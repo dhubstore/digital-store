@@ -1,244 +1,190 @@
-/* GENERAL STYLES */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    background: #f5f5f5;
+// ----------------------------
+// PRODUCTS
+// ----------------------------
+
+const DATA_IMAGE = "images/data-bundle.png";
+
+const products = [
+{name:"EXPRESS VPN 1 MONTH", price:45, image:"images/express-vpn.jpg", category:"VPN"},
+{name:"EXPRESS VPN 3 MONTHS", price:60, image:"images/express-vpn.jpg", category:"VPN"},
+{name:"EXPRESS VPN 1 YEAR", price:90, image:"images/express-vpn.jpg", category:"VPN"},
+
+{name:"PIA VPN 1 MONTH", price:45, image:"images/pia-vpn.png", category:"VPN"},
+{name:"PIA VPN 3 MONTHS", price:65, image:"images/pia-vpn.png", category:"VPN"},
+{name:"PIA VPN 1 YEAR", price:90, image:"images/pia-vpn.png", category:"VPN"},
+
+{name:"HMA PRO VPN 1 MONTH", price:45, image:"images/hma-vpn.jpg", category:"VPN"},
+{name:"HMA PRO VPN 1 YEAR", price:90, image:"images/hma-vpn.jpg", category:"VPN"},
+
+{name:"IPVANISH VPN 6 MONTHS", price:55, image:"images/ipvanish-vpn.jpg", category:"VPN"},
+{name:"IPVANISH VPN 1 YEAR", price:90, image:"images/ipvanish-vpn.jpg", category:"VPN"},
+
+{name:"NORD VPN 1 MONTH", price:45, image:"images/nord-vpn.png", category:"VPN"},
+{name:"NORD VPN 1 YEAR", price:90, image:"images/nord-vpn.png", category:"VPN"},
+{name:"NORD VPN 2 YEARS", price:120, image:"images/nord-vpn.png", category:"VPN"},
+
+{name:"CYBER GHOST VPN 1 MONTH", price:45, image:"images/cyberghost-vpn.jpg", category:"VPN"},
+{name:"CYBER GHOST VPN 6 MONTHS", price:50, image:"images/cyberghost-vpn.jpg", category:"VPN"},
+{name:"CYBER GHOST VPN 2 YEARS", price:90, image:"images/cyberghost-vpn.jpg", category:"VPN"},
+
+{name:"GMAIL PHONE VERIFIED ACCOUNT", price:25, image:"images/gmail.jpg", category:"Accounts"},
+{name:"USA FACEBOOK ACCOUNT", price:50, image:"images/facebook.png", category:"Accounts"},
+
+{name:"NETFLIX SHARED 1 MONTH", price:35, image:"images/netflix.png", category:"Accounts"},
+{name:"NETFLIX PERSONAL 1 MONTH", price:70, image:"images/netflix.png", category:"Accounts"},
+
+{name:"SPOTIFY PREMIUM 1 MONTH", price:40, image:"images/spotify.png", category:"Accounts"},
+
+{name:"TEXTNOW ACCOUNT", price:25, image:"images/textnow.png", category:"Messaging"},
+{name:"TEXTFREE ACCOUNT", price:20, image:"images/textfree.png", category:"Messaging"},
+
+{name:"$2 ITUNES E-CODE", price:32, image:"images/itunes-2.png", category:"Giftcards"},
+{name:"$3 ITUNES E-CODE", price:43, image:"images/itunes-3.png", category:"Giftcards"},
+{name:"$4 ITUNES E-CODE", price:57, image:"images/itunes-4.png", category:"Giftcards"},
+{name:"$5 ITUNES E-CODE", price:70, image:"images/itunes-5.png", category:"Giftcards"},
+{name:"$10 ITUNES E-CODE", price:120, image:"images/itunes-10.png", category:"Giftcards"},
+{name:"$15 ITUNES E-CODE", price:215, image:"images/itunes-15.png", category:"Giftcards"},
+{name:"$20 ITUNES E-CODE", price:275, image:"images/itunes-20.png", category:"Giftcards"},
+
+{name:"10 PROXIES", price:25, image:"images/proxy.jpg", category:"Services"},
+{name:"25 PROXIES", price:65, image:"images/proxy.jpg", category:"Services"},
+{name:"50 PROXIES", price:100, image:"images/proxy.jpg", category:"Services"},
+{name:"100 PROXIES", price:200, image:"images/proxy.jpg", category:"Services"},
+{name:"150 PROXIES", price:325, image:"images/proxy.jpg", category:"Services"},
+{name:"200 PROXIES", price:400, image:"images/proxy.jpg", category:"Services"},
+
+{name:"1GB MTN DATA", price:6, image:DATA_IMAGE, category:"Data"},
+{name:"2GB MTN DATA", price:10, image:DATA_IMAGE, category:"Data"},
+{name:"3GB MTN DATA", price:15.50, image:DATA_IMAGE, category:"Data"},
+{name:"4GB MTN DATA", price:21.50, image:DATA_IMAGE, category:"Data"},
+{name:"5GB MTN DATA", price:25, image:DATA_IMAGE, category:"Data"},
+{name:"6GB MTN DATA", price:30, image:DATA_IMAGE, category:"Data"},
+{name:"8GB MTN DATA", price:40, image:DATA_IMAGE, category:"Data"},
+{name:"10GB MTN DATA", price:50, image:DATA_IMAGE, category:"Data"}
+];
+
+// ------------------ RENDER PRODUCTS ------------------
+function renderProducts(category="all", search=""){
+const container = document.querySelector(".products-list");
+container.innerHTML = "";
+
+let filtered = products;
+
+if(category !== "all"){
+filtered = filtered.filter(p => p.category === category);
 }
 
-/* HEADER */
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 16px;
-    background: linear-gradient(90deg, #6a11cb, #2575fc);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+if(search && search.trim() !== ""){
+filtered = filtered.filter(p =>
+p.name.toLowerCase().includes(search.toLowerCase()) ||
+p.category.toLowerCase().includes(search.toLowerCase())
+);
 }
 
-.logo {
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
+filtered.forEach(p=>{
+container.innerHTML +=    <div class="product-card">   <div class="product-left">   <img src="${p.image}" class="product-image" alt="${p.name}" />   </div>   <div class="product-right">   <div class="product-details">   <span>${p.name}</span>   </div>   <div class="btns">   <button class="buy-now-btn" onclick="buyNow('${p.name}',${p.price})">Buy Now</button>   <button class="add-cart-btn" onclick="addToCart('${p.name}',${p.price})">Add to Cart</button>   </div>   <div class="price-stock">   <div class="price">GHC ${p.price}</div>   </div>   </div>   </div>;
+});
 }
 
-.search-box {
-    flex: 1;
-    margin: 0 12px;
+// ------------------ SEARCH ------------------
+function searchProducts(){
+let value = document.getElementById("searchBar").value;
+let activeCategory = window.currentCategory || "all";
+renderProducts(activeCategory, value);
 }
 
-.search-box input {
-    width: 100%;
-    padding: 10px 40px 10px 15px;
-    border-radius: 25px;
-    border: none;
-    outline: none;
+// ------------------ CART ------------------
+function addToCart(name,price){
+let cart = JSON.parse(localStorage.getItem("cart"))||[];
+cart.push({item:name,price:Number(price)});
+localStorage.setItem("cart",JSON.stringify(cart));
+updateCart();
 }
 
-.cart {
-    position: relative;
-    font-size: 22px;
-    color: white;
-    cursor: pointer;
+function buyNow(name,price){
+localStorage.setItem("cart",JSON.stringify([{item:name,price:Number(price)}]));
+updateCart();
+openCart();
 }
 
-.cart span {
-    position: absolute;
-    top: -6px;
-    right: -8px;
-    background: red;
-    color: white;
-    font-size: 12px;
-    padding: 2px 6px;
-    border-radius: 50%;
+function updateCart(){
+let cart = JSON.parse(localStorage.getItem("cart"))||[];
+document.getElementById("cartCount").textContent = cart.length;
+
+let total = 0;
+const container = document.getElementById("sideCartItems");
+container.innerHTML = "";
+
+cart.forEach((item,i)=>{
+total += item.price;
+container.innerHTML +=    <div class="cart-item">   <span>${item.item}</span>   <span>GHC ${item.price}</span>   <button onclick="removeItem(${i})">×</button>   </div>;
+});
+
+document.getElementById("sideCartTotal").textContent = total;
 }
 
-/* HERO / WELCOME */
-.hero.welcome-container {
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
-    color: white;
-    text-align: center;
-    padding: 50px 20px;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    max-width: 800px;
-    margin: 20px auto;
+function removeItem(i){
+let cart = JSON.parse(localStorage.getItem("cart"));
+cart.splice(i,1);
+localStorage.setItem("cart",JSON.stringify(cart));
+updateCart();
 }
 
-.hero.welcome-container h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    font-weight: bold;
+// ------------------ WHATSAPP CHECKOUT ------------------
+function sendToWhatsApp(){
+let email = document.getElementById("customerEmail").value;
+let phone = document.getElementById("customerPhone").value;
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+if(cart.length === 0){ alert("Cart is empty"); return; }
+if(!email || !phone){ alert("Enter email and phone"); return; }
+
+let message = "🛒 NEW ORDER %0A%0A";
+let total = 0;
+
+cart.forEach((item, i) => {
+message += ${i+1}. ${item.item} - GHC ${item.price}%0A;
+total += item.price;
+});
+
+message += %0A💰 Total: GHC ${total}%0A;
+message += 📧 Email: ${email}%0A;
+message += 📱 Phone: ${phone}%0A;
+message += %0A✅ Paid to MoMo (MUDA);
+
+let url = https://wa.me/233509329683?text=${message};
+window.open(url, "_blank");
+
+localStorage.removeItem("cart");
+updateCart();
 }
 
-.hero.welcome-container p {
-    font-size: 1.2rem;
-    opacity: 0.9;
+// ------------------ UI CONTROL ------------------
+function openCart(){
+sideCart.style.display = "block";
+sideCart.style.right = "0";
 }
 
-/* PRODUCTS LIST */
-.products-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 0 10px;
+function closeCart(){
+sideCart.style.right = "-100%";
 }
 
-/* PRODUCT CARD */
-.product-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #fff;
-    padding: 12px;
-    border-radius: 12px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-    flex-wrap: wrap;
-}
+// ------------------ INIT ------------------
+document.addEventListener("DOMContentLoaded",()=>{
+window.currentCategory = "all";
 
-/* LEFT IMAGE */
-.product-left img {
-    width: 60px;
-    height: 60px;
-    border-radius: 8px;
-    object-fit: cover;
-}
+renderProducts();
+updateCart();
 
-/* RIGHT INFO */
-.product-right {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    margin-left: 12px;
-}
+cartIcon.onclick = openCart;
+closeSideCart.onclick = closeCart;
 
-.product-right .product-details span {
-    font-weight: bold;
-    font-size: 1rem;
-}
-
-.product-right .btns {
-    display: flex;
-    gap: 6px;
-    margin-top: 4px;
-}
-
-.buy-now-btn {
-    background: #ff4b4b;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 6px 0;
-    flex: 1;
-    font-size: 0.9rem;
-    cursor: pointer;
-}
-
-.add-cart-btn {
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 6px 0;
-    flex: 1;
-    font-size: 0.9rem;
-    cursor: pointer;
-}
-
-.buy-now-btn:hover,
-.add-cart-btn:hover {
-    opacity: 0.9;
-}
-
-/* PRICE */
-.price-stock {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    margin-top: 4px;
-}
-
-.price-stock .price {
-    font-weight: bold;
-}
-
-/* SIDE CART */
-#sideCart {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 320px;
-    height: 100%;
-    background: white;
-    box-shadow: -4px 0 20px rgba(0,0,0,0.2);
-    padding: 20px;
-    transition: 0.3s;
-    z-index: 9999;
-}
-
-#sideCartHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-#sideCartItems {
-    margin-top: 10px;
-    max-height: 60%;
-    overflow-y: auto;
-}
-
-.cart-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    background: #f5f5f5;
-    margin-bottom: 8px;
-    border-radius: 8px;
-}
-
-#sideCart input {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-}
-
-#sideCart button {
-    width: 100%;
-    margin-top: 10px;
-    padding: 12px;
-    background: linear-gradient(90deg,#5e2be1,#9b64f0);
-    color: white;
-    border: none;
-    border-radius: 8px;
-}
-
-/* RESPONSIVE */
-@media(max-width:500px){
-    .product-card {
-        flex-direction: row;
-        align-items: center;
-    }
-
-    .product-right {
-        margin-left: 8px;
-        flex: 1;
-    }
-
-    .btns {
-        flex-direction: column;
-        gap: 4px;
-    }
-
-    .price-stock {
-        align-items: flex-start;
-        margin-top: 6px;
-    }
-    }
+document.querySelectorAll("nav a").forEach(link=>{
+link.onclick = (e)=>{
+e.preventDefault();
+window.currentCategory = link.dataset.category;
+document.getElementById("searchBar").value = "";
+renderProducts(window.currentCategory);
+};
+});
+});
