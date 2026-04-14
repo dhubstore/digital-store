@@ -2,7 +2,6 @@
 // PRODUCTS
 // ----------------------------
 
-// Shared image for all data bundles
 const DATA_IMAGE = "images/data-bundle.png";
 
 const products = [
@@ -71,12 +70,26 @@ const products = [
 
 ];
 
+
 // ------------------ RENDER ------------------
-function renderProducts(category="all"){
+function renderProducts(category="all", search=""){
 const container=document.querySelector(".products-list");
 container.innerHTML="";
 
-let filtered = category==="all" ? products : products.filter(p=>p.category===category);
+let filtered = products;
+
+// category filter
+if(category !== "all"){
+filtered = filtered.filter(p=>p.category===category);
+}
+
+// search filter
+if(search && search.trim() !== ""){
+filtered = filtered.filter(p =>
+p.name.toLowerCase().includes(search.toLowerCase()) ||
+p.category.toLowerCase().includes(search.toLowerCase())
+);
+}
 
 filtered.forEach(p=>{
 container.innerHTML+=`
@@ -99,6 +112,15 @@ container.innerHTML+=`
 </div>`;
 });
 }
+
+
+// ------------------ SEARCH ------------------
+function searchProducts(){
+let value = document.getElementById("searchBar").value;
+let activeCategory = window.currentCategory || "all";
+renderProducts(activeCategory, value);
+}
+
 
 // ------------------ CART ------------------
 function addToCart(name,price){
@@ -143,42 +165,44 @@ localStorage.setItem("cart",JSON.stringify(cart));
 updateCart();
 }
 
+
 // ------------------ WHATSAPP CHECKOUT ------------------
 function sendToWhatsApp(){
-  let email = document.getElementById("customerEmail").value;
-  let phone = document.getElementById("customerPhone").value;
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let email = document.getElementById("customerEmail").value;
+let phone = document.getElementById("customerPhone").value;
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  if(cart.length === 0){
-    alert("Cart is empty");
-    return;
-  }
-
-  if(!email || !phone){
-    alert("Enter email and phone");
-    return;
-  }
-
-  let message = "🛒 *NEW ORDER* %0A%0A";
-  let total = 0;
-
-  cart.forEach((item, i) => {
-    message += `${i+1}. ${item.item} - GHC ${item.price}%0A`;
-    total += item.price;
-  });
-
-  message += `%0A💰 Total: GHC ${total}%0A`;
-  message += `📧 Email: ${email}%0A`;
-  message += `📱 Phone: ${phone}%0A`;
-  message += `%0A✅ Paid to MoMo (MUDA)`;
-
-  let url = `https://wa.me/233509329683?text=${message}`;
-
-  window.open(url, "_blank");
-
-  localStorage.removeItem("cart");
-  updateCart();
+if(cart.length === 0){
+alert("Cart is empty");
+return;
 }
+
+if(!email || !phone){
+alert("Enter email and phone");
+return;
+}
+
+let message = "🛒 *NEW ORDER* %0A%0A";
+let total = 0;
+
+cart.forEach((item, i) => {
+message += `${i+1}. ${item.item} - GHC ${item.price}%0A`;
+total += item.price;
+});
+
+message += `%0A💰 Total: GHC ${total}%0A`;
+message += `📧 Email: ${email}%0A`;
+message += `📱 Phone: ${phone}%0A`;
+message += `%0A✅ Paid to MoMo (MUDA)`;
+
+let url = `https://wa.me/233509329683?text=${message}`;
+
+window.open(url, "_blank");
+
+localStorage.removeItem("cart");
+updateCart();
+}
+
 
 // ------------------ UI CONTROL ------------------
 function openCart(){
@@ -190,18 +214,26 @@ function closeCart(){
 sideCart.style.right="-100%";
 }
 
+
 // ------------------ INIT ------------------
 document.addEventListener("DOMContentLoaded",()=>{
+window.currentCategory = "all";
+
 renderProducts();
 updateCart();
 
 cartIcon.onclick=openCart;
 closeSideCart.onclick=closeCart;
 
+
+// category filter
 document.querySelectorAll("nav a").forEach(link=>{
 link.onclick=(e)=>{
 e.preventDefault();
-renderProducts(link.dataset.category);
+window.currentCategory = link.dataset.category;
+document.getElementById("searchBar").value = "";
+renderProducts(window.currentCategory);
 };
 });
+
 });
