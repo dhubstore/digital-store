@@ -93,37 +93,39 @@ body {
     background: white;
     border-radius: 12px;
     padding: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     display: flex;
     flex-direction: column;
     gap: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 /* PRODUCT INFO */
 .product-info {
     display: flex;
-    align-items: center;
     gap: 12px;
+    align-items: flex-start;
 }
 
 .product-icon {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .product-icon.express { background: #ff5722; }
 .product-icon.pia { background: #4caf50; }
+.product-icon.proxy { background: #007bff; }
 
 .product-details {
     display: flex;
     flex-direction: column;
+    gap: 4px;
 }
 
 .product-details span {
@@ -132,24 +134,21 @@ body {
 }
 
 .details-link {
-    font-size: 0.85rem;
     color: #007bff;
+    font-size: 0.85rem;
     text-decoration: none;
-    margin-top: 2px;
 }
 
 /* PRICE + STOCK */
-.product-price-stock {
+.price-stock {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    margin-top: 8px;
+    gap: 2px;
+    margin-top: 4px;
 }
 
 .price {
     font-weight: bold;
-    font-size: 1rem;
 }
 
 .stock {
@@ -157,21 +156,11 @@ body {
     font-size: 0.9rem;
 }
 
-/* BUTTONS AT BOTTOM */
+/* BUTTONS */
 .btns {
     display: flex;
     gap: 10px;
     margin-top: 10px;
-}
-
-.add-cart-btn {
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 12px;
-    cursor: pointer;
-    flex: 1;
 }
 
 .buy-now-btn {
@@ -179,13 +168,23 @@ body {
     color: white;
     border: none;
     border-radius: 8px;
-    padding: 10px 12px;
-    cursor: pointer;
+    padding: 10px 0;
     flex: 1;
+    cursor: pointer;
 }
 
-.add-cart-btn:hover,
-.buy-now-btn:hover {
+.add-cart-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 0;
+    flex: 1;
+    cursor: pointer;
+}
+
+.buy-now-btn:hover,
+.add-cart-btn:hover {
     opacity: 0.9;
 }
 
@@ -245,9 +244,6 @@ body {
 
 /* RESPONSIVE */
 @media(max-width:500px){
-    .product-card {
-        flex-direction: column;
-    }
     .btns {
         flex-direction: column;
     }
