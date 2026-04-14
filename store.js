@@ -30,7 +30,7 @@ const products = [
 
 // NETFLIX
 {name:"NETFLIX SHARED 1 MONTH", price:35, image:"images/netflix.png", category:"Accounts"},
-{name:"NETFLIX PERSONAL 1 MONTH", price:35, image:"images/netflix.png", category:"Accounts"},
+{name:"NETFLIX PERSONAL 1 MONTH", price:70, image:"images/netflix.png", category:"Accounts"},
 
 {name:"SPOTIFY PREMIUM 1 MONTH", price:40, image:"images/spotify.png", category:"Accounts"},
 
@@ -53,7 +53,17 @@ const products = [
 {name:"50 PROXIES", price:100, image:"images/proxy.jpg", category:"Services"},
 {name:"100 PROXIES", price:200, image:"images/proxy.jpg", category:"Services"},
 {name:"150 PROXIES", price:325, image:"images/proxy.jpg", category:"Services"},
-{name:"200 PROXIES", price:400, image:"images/proxy.jpg", category:"Services"}
+{name:"200 PROXIES", price:400, image:"images/proxy.jpg", category:"Services"},
+
+// MTN DATA BUNDLES
+{name:"1GB MTN DATA", price:6, image:"images/mtn.jpg", category:"Data"},
+{name:"2GB MTN DATA", price:10, image:"images/mtn.jpg", category:"Data"},
+{name:"3GB MTN DATA", price:15.50, image:"images/mtn.jpg", category:"Data"},
+{name:"4GB MTN DATA", price:21.50, image:"images/mtn.jpg", category:"Data"},
+{name:"5GB MTN DATA", price:25, image:"images/mtn.jpg", category:"Data"},
+{name:"6GB MTN DATA", price:30, image:"images/mtn.jpg", category:"Data"},
+{name:"8GB MTN DATA", price:40, image:"images/mtn.jpg", category:"Data"},
+{name:"10GB MTN DATA", price:50, image:"images/mtn.jpg", category:"Data"}
 
 ];
 
