@@ -1,128 +1,131 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Digital Hub Store</title>
-
-<link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-<!-- HEADER -->
-<header class="header">
-
-  <div class="logo">Digital Hub</div>
-
-  <div class="search-box">
-    <input type="text" placeholder="Search Netflix, VPN, Data..." />
-  </div>
-
-  <div class="cart-wrapper">
-    🛒
-    <div id="cartCount">0</div>
-  </div>
-
-</header>
-
-<!-- HERO -->
-<section class="hero">
-  <h1>Welcome to Digital Hub Store</h1>
-  <p>Your trusted store for VPN accounts, Netflix accounts, TextNow numbers & data bundles.</p>
-</section>
-
-<!-- PRODUCTS -->
-<div class="products-list">
-
-  <div class="product-card">
-    <div class="product-info">
-      <img src="https://via.placeholder.com/60" alt="">
-      <div class="product-details">
-        <span>Netflix Account</span>
-      </div>
-    </div>
-
-    <div class="product-price-stock">
-      <div class="price">$5</div>
-      <div class="btns">
-        <button class="purchase-btn">Buy</button>
-        <button class="add-cart-btn">Add</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="product-card">
-    <div class="product-info">
-      <img src="https://via.placeholder.com/60" alt="">
-      <div class="product-details">
-        <span>VPN Premium</span>
-      </div>
-    </div>
-
-    <div class="product-price-stock">
-      <div class="price">$3</div>
-      <div class="btns">
-        <button class="purchase-btn">Buy</button>
-        <button class="add-cart-btn">Add</button>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<!-- SIDE CART -->
-<div id="sideCart">
-
-  <div id="sideCartHeader">
-    <h3>Your Cart</h3>
-    <span id="closeSideCart">✖</span>
-  </div>
-
-  <div class="cart-item">
-    <span>Example Item</span>
-    <button>Remove</button>
-  </div>
-
-  <div id="sideCartTotal">Total: $0</div>
-
-  <input type="text" placeholder="Your Name">
-  <input type="text" placeholder="WhatsApp Number">
-
-  <button>Checkout</button>
-
-</div>
-
-<!-- FLOATING BUTTONS -->
-<button id="whatsappBtn">
-  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
-</button>
-
-<button id="supportBtn">
-  <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png">
-</button>
-
-<button id="requestBtn">Request Product</button>
-
-<!-- MODAL -->
-<div class="modal" id="requestModal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-
-    <h3>Request a Product</h3>
-
-    <form id="requestForm">
-      <input type="text" placeholder="Product Name">
-      <textarea placeholder="Details"></textarea>
-      <button type="submit">Send Request</button>
-    </form>
-
-  </div>
-</div>
-
-<footer>
-  <p>© 2026 Digital Hub Store</p>
-</footer>
-
-</body>
-</html>
+<!DOCTYPE html>  <html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>Digital Hub Store</title>  <style>  
+* {  
+  margin: 0;  
+  padding: 0;  
+  box-sizing: border-box;  
+  font-family: Arial, sans-serif;  
+}  
+  
+/* HEADER */  
+.header {  
+  display: flex;  
+  align-items: center;  
+  justify-content: space-between;  
+  padding: 12px 16px;  
+  background: linear-gradient(90deg, #6a11cb, #2575fc);  
+  position: sticky;  
+  top: 0;  
+  z-index: 1000;  
+}  
+  
+/* LOGO */  
+.logo {  
+  color: white;  
+  font-size: 20px;  
+  font-weight: bold;  
+}  
+  
+/* SEARCH BAR */  
+.search-box {  
+  flex: 1;  
+  margin: 0 12px;  
+  position: relative;  
+}  
+  
+.search-box input {  
+  width: 100%;  
+  padding: 10px 40px 10px 15px;  
+  border-radius: 25px;  
+  border: none;  
+  outline: none;  
+  font-size: 14px;  
+}  
+  
+/* SEARCH ICON */  
+.search-box::after {  
+  content: "🔍";  
+  position: absolute;  
+  right: 12px;  
+  top: 50%;  
+  transform: translateY(-50%);  
+  font-size: 14px;  
+}  
+  
+/* CART */  
+.cart {  
+  position: relative;  
+  font-size: 22px;  
+  color: white;  
+  cursor: pointer;  
+}  
+  
+/* CART BADGE */  
+.cart span {  
+  position: absolute;  
+  top: -6px;  
+  right: -8px;  
+  background: red;  
+  color: white;  
+  font-size: 12px;  
+  padding: 2px 6px;  
+  border-radius: 50%;  
+}  
+  
+/* HERO SECTION */  
+.hero {  
+  margin: 20px;  
+  padding: 30px 20px;  
+  border-radius: 20px;  
+  background: linear-gradient(135deg, #0072ff, #00c6ff);  
+  color: white;  
+  text-align: center;  
+}  
+  
+.hero h1 {  
+  font-size: 24px;  
+  margin-bottom: 10px;  
+}  
+  
+.hero p {  
+  font-size: 15px;  
+  line-height: 1.5;  
+}  
+  
+/* MOBILE IMPROVEMENTS */  
+@media (max-width: 600px) {  
+  .logo {  
+    font-size: 16px;  
+  }  
+  
+  .search-box input {  
+    font-size: 12px;  
+    padding: 8px 35px 8px 12px;  
+  }  
+  
+  .hero h1 {  
+    font-size: 20px;  
+  }  
+  
+  .hero p {  
+    font-size: 13px;  
+  }  
+}  
+</style>  </head>  <body>  <!-- HEADER -->  <header class="header">  
+  <div class="logo">Digital Hub</div>    <div class="search-box">  
+    <input type="text" placeholder="Search Netflix, VPN, Data..." />  
+  </div>    <div class="cart">  
+    🛒  
+    <span>0</span>  
+  </div>  
+</header>  <!-- HERO -->  <section class="hero">  
+  <h1>Welcome to Digital Hub Store</h1>  
+  <p>  
+    Your trusted store for VPN accounts, Netflix accounts,  
+    TextNow/TextFree numbers, and data bundles.  
+  </p>  
+</section>  </body>  
+</html>  
