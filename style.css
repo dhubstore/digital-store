@@ -1,399 +1,254 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Digital Hub Store</title>
-<style>
 /* GENERAL STYLES */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: #f5f5f5;
 }
 
 /* HEADER */
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 16px;
-  background: linear-gradient(90deg, #6a11cb, #2575fc);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .logo {
-  color: white;
-  font-size: 20px;
-  font-weight: bold;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .search-box {
-  flex: 1;
-  margin: 0 12px;
-  position: relative;
+    flex: 1;
+    margin: 0 12px;
 }
 
 .search-box input {
-  width: 100%;
-  padding: 10px 40px 10px 15px;
-  border-radius: 25px;
-  border: none;
-  outline: none;
+    width: 100%;
+    padding: 10px 40px 10px 15px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
 }
 
 .cart {
-  position: relative;
-  font-size: 22px;
-  color: white;
-  cursor: pointer;
+    position: relative;
+    font-size: 22px;
+    color: white;
+    cursor: pointer;
 }
 
 .cart span {
-  position: absolute;
-  top: -6px;
-  right: -8px;
-  background: red;
-  color: white;
-  font-size: 12px;
-  padding: 2px 6px;
-  border-radius: 50%;
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    background: red;
+    color: white;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 50%;
 }
 
 /* HERO / WELCOME */
 .hero.welcome-container {
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
-  color: white;
-  text-align: center;
-  padding: 50px 20px;
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-  max-width: 800px;
-  margin: 20px auto;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    max-width: 800px;
+    margin: 20px auto;
 }
 
 .hero.welcome-container h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-  font-weight: bold;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: bold;
 }
 
 .hero.welcome-container p {
-  font-size: 1.2rem;
-  opacity: 0.9;
+    font-size: 1.2rem;
+    opacity: 0.9;
 }
 
 /* PRODUCTS LIST */
 .products-list {
-  max-width: 600px;
-  margin: 20px auto;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  padding: 0 10px;
+    max-width: 600px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 0 10px;
 }
 
 /* PRODUCT CARD */
 .product-card {
-  background: white;
-  border-radius: 12px;
-  padding: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
+/* PRODUCT INFO */
 .product-info {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .product-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
 }
 
 .product-icon.express { background: #ff5722; }
 .product-icon.pia { background: #4caf50; }
 
 .product-details {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .product-details span {
-  font-weight: bold;
-  font-size: 1rem;
+    font-weight: bold;
+    font-size: 1rem;
 }
 
 .details-link {
-  font-size: 0.85rem;
-  color: #007bff;
-  text-decoration: none;
-  margin-top: 2px;
+    font-size: 0.85rem;
+    color: #007bff;
+    text-decoration: none;
+    margin-top: 2px;
 }
 
 /* PRICE + STOCK */
 .product-price-stock {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-  margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 8px;
 }
 
 .price {
-  font-weight: bold;
-  font-size: 1rem;
+    font-weight: bold;
+    font-size: 1rem;
 }
 
 .stock {
-  color: green;
-  font-size: 0.9rem;
+    color: green;
+    font-size: 0.9rem;
 }
 
-/* BUTTONS */
+/* BUTTONS AT BOTTOM */
 .btns {
-  display: flex;
-  gap: 10px;
-  margin-top: 8px;
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
 }
 
 .add-cart-btn {
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 12px;
-  cursor: pointer;
-  flex: 1;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 12px;
+    cursor: pointer;
+    flex: 1;
 }
 
 .buy-now-btn {
-  background: #ff4b4b;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 12px;
-  cursor: pointer;
-  flex: 1;
+    background: #ff4b4b;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 12px;
+    cursor: pointer;
+    flex: 1;
 }
 
 .add-cart-btn:hover,
 .buy-now-btn:hover {
-  opacity: 0.9;
+    opacity: 0.9;
 }
 
 /* SIDE CART */
 #sideCart {
-  position: fixed;
-  top: 0;
-  right: -100%;
-  width: 320px;
-  height: 100%;
-  background: white;
-  box-shadow: -4px 0 20px rgba(0,0,0,0.2);
-  padding: 20px;
-  transition: 0.3s;
-  z-index: 9999;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 320px;
+    height: 100%;
+    background: white;
+    box-shadow: -4px 0 20px rgba(0,0,0,0.2);
+    padding: 20px;
+    transition: 0.3s;
+    z-index: 9999;
 }
 
 #sideCartHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
 #sideCartItems {
-  margin-top: 10px;
-  max-height: 60%;
-  overflow-y: auto;
+    margin-top: 10px;
+    max-height: 60%;
+    overflow-y: auto;
 }
 
 .cart-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  background: #f5f5f5;
-  margin-bottom: 8px;
-  border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background: #f5f5f5;
+    margin-bottom: 8px;
+    border-radius: 8px;
 }
 
 #sideCart input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
 }
 
 #sideCart button {
-  width: 100%;
-  margin-top: 10px;
-  padding: 12px;
-  background: linear-gradient(90deg,#5e2be1,#9b64f0);
-  color: white;
-  border: none;
-  border-radius: 8px;
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px;
+    background: linear-gradient(90deg,#5e2be1,#9b64f0);
+    color: white;
+    border: none;
+    border-radius: 8px;
 }
 
 /* RESPONSIVE */
 @media(max-width:500px){
-  .product-card {
-    flex-direction: column;
-  }
-  .btns {
-    flex-direction: column;
-  }
+    .product-card {
+        flex-direction: column;
+    }
+    .btns {
+        flex-direction: column;
+    }
 }
-</style>
-</head>
-<body>
-
-<!-- HEADER -->
-<header class="header">
-  <div class="logo">Digital Hub</div>
-  <div class="search-box">
-    <input id="searchBar" type="text" placeholder="Search..." onkeyup="searchProducts()">
-  </div>
-  <div class="cart" onclick="openCart()">
-    🛒 <span id="cartCount">0</span>
-  </div>
-</header>
-
-<!-- HERO -->
-<section class="hero welcome-container">
-  <h1>Welcome to Digital Hub Store</h1>
-  <p>Your one-stop shop for digital services and subscriptions</p>
-</section>
-
-<!-- PRODUCTS -->
-<div class="products-list">
-
-  <!-- EXPRESS VPN 1 MONTH -->
-  <div class="product-card">
-    <div class="product-info">
-      <div class="product-icon express">E</div>
-      <div class="product-details">
-        <span>EXPRESS VPN 1 MONTH</span>
-        <a href="#" class="details-link">View details</a>
-      </div>
-    </div>
-    <div class="product-price-stock">
-      <div class="price">GHC 45</div>
-      <div class="stock">In Stock</div>
-      <div class="btns">
-        <button class="add-cart-btn">Add to Cart</button>
-        <button class="buy-now-btn">Buy Now</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- EXPRESS VPN 3 MONTHS -->
-  <div class="product-card">
-    <div class="product-info">
-      <div class="product-icon express">E</div>
-      <div class="product-details">
-        <span>EXPRESS VPN 3 MONTHS</span>
-        <a href="#" class="details-link">View details</a>
-      </div>
-    </div>
-    <div class="product-price-stock">
-      <div class="price">GHC 60</div>
-      <div class="stock">In Stock</div>
-      <div class="btns">
-        <button class="add-cart-btn">Add to Cart</button>
-        <button class="buy-now-btn">Buy Now</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- EXPRESS VPN 1 YEAR -->
-  <div class="product-card">
-    <div class="product-info">
-      <div class="product-icon express">E</div>
-      <div class="product-details">
-        <span>EXPRESS VPN 1 YEAR</span>
-        <a href="#" class="details-link">View details</a>
-      </div>
-    </div>
-    <div class="product-price-stock">
-      <div class="price">GHC 90</div>
-      <div class="stock">In Stock</div>
-      <div class="btns">
-        <button class="add-cart-btn">Add to Cart</button>
-        <button class="buy-now-btn">Buy Now</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- PIA VPN 1 MONTH -->
-  <div class="product-card">
-    <div class="product-info">
-      <div class="product-icon pia">P</div>
-      <div class="product-details">
-        <span>PIA VPN 1 MONTH</span>
-        <a href="#" class="details-link">View details</a>
-      </div>
-    </div>
-    <div class="product-price-stock">
-      <div class="price">GHC 45</div>
-      <div class="stock">In Stock</div>
-      <div class="btns">
-        <button class="add-cart-btn">Add to Cart</button>
-        <button class="buy-now-btn">Buy Now</button>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<!-- SIDE CART -->
-<div id="sideCart">
-  <div id="sideCartHeader">
-    <h3>Your Cart</h3>
-    <span id="closeSideCart" style="cursor:pointer;font-size:22px;">✖</span>
-  </div>
-  <div id="sideCartItems"></div>
-  <div style="font-size:18px;font-weight:bold;margin-top:10px;">
-    Total: GHC <span id="sideCartTotal">0</span>
-  </div>
-  <input id="customerEmail" placeholder="Email">
-  <input id="customerPhone" placeholder="Phone">
-  <button onclick="sendToWhatsApp()">Checkout</button>
-</div>
-
-<script src="store.js"></script>
-
-<script>
-// OPEN CART
-function openCart(){
-  document.getElementById("sideCart").style.right = "0";
-}
-
-// CLOSE CART
-function closeCart(){
-  document.getElementById("sideCart").style.right = "-100%";
-}
-
-// FIX CLOSE BUTTON
-document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("closeSideCart").onclick = closeCart;
-});
-</script>
-
-</body>
-</html>
