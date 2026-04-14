@@ -84,9 +84,13 @@ function renderProducts(category="all", search=""){
   filtered.forEach(p=>{
     container.innerHTML += `
     <div class="product-card">
-      <img src="${p.image}" class="product-image" alt="${p.name}" />
-      <div class="product-details">
-        <span>${p.name}</span>
+      <div class="product-left">
+        <img src="${p.image}" class="product-image" alt="${p.name}" />
+      </div>
+      <div class="product-right">
+        <div class="product-details">
+          <span>${p.name}</span>
+        </div>
         <div class="btns">
           <button class="buy-now-btn" onclick="buyNow('${p.name}',${p.price})">Buy Now</button>
           <button class="add-cart-btn" onclick="addToCart('${p.name}',${p.price})">Add to Cart</button>
