@@ -70,12 +70,10 @@ function renderProducts(category="all", search=""){
 
   let filtered = products;
 
-  // category filter
   if(category !== "all"){
     filtered = filtered.filter(p => p.category === category);
   }
 
-  // search filter
   if(search && search.trim() !== ""){
     filtered = filtered.filter(p =>
       p.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -83,7 +81,6 @@ function renderProducts(category="all", search=""){
     );
   }
 
-  // render each product
   filtered.forEach(p=>{
     container.innerHTML += `
     <div class="product-card">
@@ -200,7 +197,6 @@ document.addEventListener("DOMContentLoaded",()=>{
   cartIcon.onclick = openCart;
   closeSideCart.onclick = closeCart;
 
-  // category filter (if any nav exists)
   document.querySelectorAll("nav a").forEach(link=>{
     link.onclick = (e)=>{
       e.preventDefault();
