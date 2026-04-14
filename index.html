@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -6,24 +6,44 @@
 <title>Digital Hub Store</title>
 <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<!-- HEADER -->
-<header>
-  <div class="logo">Digital Hub Store</div>
+<!-- HEADER (REPLACED WITH MODERN VERSION) -->
+<header class="site-header">
 
+  <!-- LOGO -->
+  <div class="logo" onclick="renderProducts('all')" style="cursor:pointer;">
+    Digital Hub Store
+  </div>
+
+  <!-- NAVIGATION -->
   <nav>
     <a href="#" data-category="VPN">VPN</a>
     <a href="#" data-category="Data">Data</a>
     <a href="#" data-category="Accounts">Accounts</a>
     <a href="#" data-category="Messaging">Messaging</a>
     <a href="#" data-category="Proxies">Proxies</a>
+    <a href="#" data-category="Giftcards">Giftcards</a>
   </nav>
 
-  <div class="cart-wrapper" id="cartIcon">
-    <img src="https://img.icons8.com/ios-filled/50/ff4b4b/shopping-cart.png" alt="Cart">
-    <span id="cartCount">0</span>
+  <!-- SEARCH + CART -->
+  <div class="header-right">
+
+    <input 
+      type="text" 
+      id="searchBar" 
+      placeholder="Search Netflix, VPN, Data..."
+      onkeyup="searchProducts()"
+    >
+
+    <div class="cart-wrapper" id="cartIcon">
+      <img src="https://img.icons8.com/ios-filled/50/ff4b4b/shopping-cart.png" alt="Cart">
+      <span id="cartCount">0</span>
+    </div>
+
   </div>
+
 </header>
 
 <!-- SIDE CART -->
@@ -39,7 +59,6 @@
     Total: GHC <span id="sideCartTotal">0</span>
   </div>
 
-  <!-- CUSTOMER DETAILS -->
   <input 
     type="email" 
     id="customerEmail" 
@@ -56,7 +75,6 @@
     style="width:100%;padding:10px;margin-top:8px;border-radius:6px;border:1px solid #ccc;"
   >
 
-  <!-- MOMO PAYMENT -->
   <div style="margin-top:12px;text-align:center;">
     <p><strong>Pay with Mobile Money</strong></p>
     <p>Number: <strong>0241923407</strong></p>
@@ -110,35 +128,28 @@ digitalhubghsupport@gmail.com
 <img src="https://img.icons8.com/ios-filled/50/ffffff/topic.png" alt="Support">
 </a>
 
-<!-- 🔥 NEW: REQUEST PRODUCT BUTTON -->
 <button id="requestBtn">💬 Request Product</button>
 
-<!-- 🔥 NEW: REQUEST PRODUCT MODAL -->
 <div id="requestModal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
-    
+
     <h2>Request a Product</h2>
-    <p style="font-size:14px;color:gray;">Can’t find what you need? Send us a request.</p>
 
     <form id="requestForm">
       <input type="text" placeholder="Your Name" required>
       <input type="text" placeholder="Email or WhatsApp" required>
       <input type="text" placeholder="Product Name" required>
       <textarea placeholder="Describe the product..." required></textarea>
-      
-      <button type="submit" id="submitBtn">Send Request</button>
+
+      <button type="submit">Send Request</button>
     </form>
   </div>
 </div>
 
-<!-- YOUR STORE JS -->
 <script src="store.js"></script>
-
-<!-- 🔥 NEW: REQUEST FEATURE SCRIPT -->
 <script src="request.js"></script>
 
-<!-- TAWK CHAT -->
 <script>
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
