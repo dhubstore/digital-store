@@ -6,8 +6,6 @@
 <title>Digital Hub Store</title>
 
 <style>
-/* YOUR ORIGINAL CSS (UNCHANGED) */
-
 * {
   margin: 0;
   padding: 0;
@@ -34,7 +32,7 @@
   font-weight: bold;
 }
 
-/* SEARCH BAR */
+/* SEARCH */
 .search-box {
   flex: 1;
   margin: 0 12px;
@@ -47,16 +45,6 @@
   border-radius: 25px;
   border: none;
   outline: none;
-  font-size: 14px;
-}
-
-.search-box::after {
-  content: "🔍";
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 14px;
 }
 
 /* CART */
@@ -209,25 +197,23 @@ border-radius:8px;
   <div class="logo">Digital Hub</div>
 
   <div class="search-box">
-    <input id="searchBar" type="text" placeholder="Search Netflix, VPN, Data..." onkeyup="searchProducts()" />
+    <input id="searchBar" type="text" placeholder="Search..." onkeyup="searchProducts()">
   </div>
 
   <div class="cart" onclick="openCart()">
-    🛒
-    <span id="cartCount">0</span>
+    🛒 <span id="cartCount">0</span>
   </div>
 </header>
 
 <!-- HERO -->
 <section class="hero">
   <h1>Welcome to Digital Hub Store</h1>
-  <p>Your trusted store for VPN, Netflix, Data bundles & more.</p>
 </section>
 
 <!-- PRODUCTS -->
 <div class="products-list"></div>
 
-<!-- SIDE CART (FIX ADDED) -->
+<!-- SIDE CART -->
 <div id="sideCart">
 
   <div id="sideCartHeader">
@@ -241,15 +227,31 @@ border-radius:8px;
     Total: GHC <span id="sideCartTotal">0</span>
   </div>
 
-  <input id="customerEmail" type="text" placeholder="Email">
-  <input id="customerPhone" type="text" placeholder="Phone">
+  <input id="customerEmail" placeholder="Email">
+  <input id="customerPhone" placeholder="Phone">
 
   <button onclick="sendToWhatsApp()">Checkout</button>
 
 </div>
 
-<!-- JS -->
 <script src="store.js"></script>
+
+<script>
+// OPEN CART
+function openCart(){
+document.getElementById("sideCart").style.right = "0";
+}
+
+// CLOSE CART
+function closeCart(){
+document.getElementById("sideCart").style.right = "-100%";
+}
+
+// FIX CLOSE BUTTON
+document.addEventListener("DOMContentLoaded", () => {
+document.getElementById("closeSideCart").onclick = closeCart;
+});
+</script>
 
 </body>
 </html>
