@@ -55,7 +55,7 @@ body {
     border-radius: 50%;
 }
 
-/* HERO / WELCOME */
+/* HERO */
 .hero.welcome-container {
     background: linear-gradient(135deg, #6a11cb, #2575fc);
     color: white;
@@ -80,154 +80,99 @@ body {
 
 /* PRODUCTS LIST */
 .products-list {
+    max-width: 900px;
+    margin: 20px auto;
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    max-width: 1000px;
-    margin: 20px auto;
+    gap: 12px;
     padding: 0 10px;
 }
 
 /* PRODUCT CARD */
 .product-card {
-    background: white;
-    border-radius: 12px;
-    padding: 12px;
     display: flex;
-    flex-direction: row; /* horizontal layout */
     align-items: center;
-    justify-content: flex-start;
-    gap: 12px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    justify-content: space-between;
+    background: #fff;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    flex-wrap: wrap;
 }
 
 /* PRODUCT IMAGE */
 .product-card img {
-    width: 80px;
-    height: 80px;
-    border-radius: 12px;
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
     object-fit: cover;
 }
 
-/* PRODUCT DETAILS */
-.product-details {
+/* PRODUCT INFO */
+.product-info {
     display: flex;
     flex-direction: column;
-    flex: 1; /* take remaining space */
+    flex: 1;
+    margin-left: 12px;
 }
 
-.product-details span {
+.product-info span {
     font-weight: bold;
     font-size: 1rem;
-    margin-bottom: 6px;
 }
 
-/* BUTTONS */
-.btns {
+.product-info a {
+    font-size: 0.85rem;
+    color: #007bff;
+    text-decoration: none;
+}
+
+/* PRICE + STOCK */
+.price-stock {
     display: flex;
-    gap: 6px;
-    margin-bottom: 4px;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
 }
 
-.buy-now-btn {
-    background: #ff4b4b;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 6px 0;
-    flex: 1;
-    cursor: pointer;
-    font-size: 0.9rem;
-}
-
-.add-cart-btn {
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 6px 0;
-    flex: 1;
-    cursor: pointer;
-    font-size: 0.9rem;
-}
-
-.buy-now-btn:hover,
-.add-cart-btn:hover {
-    opacity: 0.9;
-}
-
-/* PRICE */
 .price-stock .price {
     font-weight: bold;
 }
 
-/* SIDE CART */
-#sideCart {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 320px;
-    height: 100%;
-    background: white;
-    box-shadow: -4px 0 20px rgba(0,0,0,0.2);
-    padding: 20px;
-    transition: 0.3s;
-    z-index: 9999;
+.price-stock .stock {
+    color: green;
+    font-size: 0.85rem;
 }
 
-#sideCartHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-#sideCartItems {
-    margin-top: 10px;
-    max-height: 60%;
-    overflow-y: auto;
-}
-
-.cart-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    background: #f5f5f5;
-    margin-bottom: 8px;
-    border-radius: 8px;
-}
-
-#sideCart input {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-}
-
-#sideCart button {
-    width: 100%;
-    margin-top: 10px;
-    padding: 12px;
-    background: linear-gradient(90deg,#5e2be1,#9b64f0);
-    color: white;
+/* PURCHASE BUTTON */
+.purchase-btn {
+    background: #ff3399;
+    color: #fff;
     border: none;
     border-radius: 8px;
+    padding: 10px;
+    margin-top: 8px;
+    width: 100%;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.purchase-btn:hover {
+    opacity: 0.9;
 }
 
 /* RESPONSIVE */
 @media(max-width:500px){
     .product-card {
-        flex-direction: column; /* stack vertically on mobile */
+        flex-direction: column;
         align-items: flex-start;
     }
-    .product-card img {
-        width: 100%;
-        height: auto;
+    .price-stock {
+        align-items: flex-start;
+        margin-top: 6px;
     }
-    .btns {
-        flex-direction: row;
-        gap: 6px;
-        margin-bottom: 4px;
+    .product-info {
+        margin-left: 0;
+        margin-top: 6px;
     }
 }
