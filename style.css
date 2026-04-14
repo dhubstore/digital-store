@@ -88,7 +88,7 @@ body {
     padding: 0 10px;
 }
 
-/* PRODUCT CARD HORIZONTAL */
+/* PRODUCT CARD */
 .product-card {
     display: flex;
     align-items: center;
@@ -99,7 +99,7 @@ body {
     gap: 12px;
 }
 
-/* IMAGE LEFT */
+/* PRODUCT INFO: IMAGE LEFT */
 .product-info {
     display: flex;
     align-items: center;
@@ -115,7 +115,7 @@ body {
     object-fit: cover;
 }
 
-/* PRODUCT DETAILS */
+/* PRODUCT DETAILS: NAME + BUTTONS */
 .product-details {
     display: flex;
     flex-direction: column;
@@ -128,10 +128,10 @@ body {
     font-size: 0.95rem;
 }
 
-/* BUTTONS STACKED BELOW DETAILS */
+/* BUTTONS STACKED */
 .btns {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* vertical stack */
     gap: 4px;
     margin-top: 4px;
 }
@@ -224,10 +224,12 @@ body {
 /* RESPONSIVE */
 @media(max-width:500px){
     .product-card {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row; /* keep horizontal on phones */
+        align-items: center;
+        gap: 10px;
     }
     .btns {
         width: 100%;
+        flex-direction: column;
     }
-    }
+}
