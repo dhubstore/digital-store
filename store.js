@@ -82,7 +82,25 @@ p.category.toLowerCase().includes(search.toLowerCase())
 }
 
 filtered.forEach(p=>{
-container.innerHTML +=    <div class="product-card">   <div class="product-left">   <img src="${p.image}" class="product-image" alt="${p.name}" />   </div>   <div class="product-right">   <div class="product-details">   <span>${p.name}</span>   </div>   <div class="btns">   <button class="buy-now-btn" onclick="buyNow('${p.name}',${p.price})">Buy Now</button>   <button class="add-cart-btn" onclick="addToCart('${p.name}',${p.price})">Add to Cart</button>   </div>   <div class="price-stock">   <div class="price">GHC ${p.price}</div>   </div>   </div>   </div>;
+container.innerHTML += `
+<div class="product-card">
+  <div class="product-left">
+    <img src="${p.image}" class="product-image" alt="${p.name}" />
+  </div>
+  <div class="product-right">
+    <div class="product-details">
+      <span>${p.name}</span>
+    </div>
+    <div class="btns">
+      <button class="buy-now-btn" onclick="buyNow('${p.name}',${p.price})">Buy Now</button>
+      <button class="add-cart-btn" onclick="addToCart('${p.name}',${p.price})">Add to Cart</button>
+    </div>
+    <div class="price-stock">
+      <div class="price">GHC ${p.price}</div>
+    </div>
+  </div>
+</div>
+`;
 });
 }
 
@@ -117,7 +135,13 @@ container.innerHTML = "";
 
 cart.forEach((item,i)=>{
 total += item.price;
-container.innerHTML +=    <div class="cart-item">   <span>${item.item}</span>   <span>GHC ${item.price}</span>   <button onclick="removeItem(${i})">×</button>   </div>;
+container.innerHTML += `
+<div class="cart-item">
+  <span>${item.item}</span>
+  <span>GHC ${item.price}</span>
+  <button onclick="removeItem(${i})">×</button>
+</div>
+`;
 });
 
 document.getElementById("sideCartTotal").textContent = total;
@@ -143,16 +167,16 @@ let message = "🛒 NEW ORDER %0A%0A";
 let total = 0;
 
 cart.forEach((item, i) => {
-message += ${i+1}. ${item.item} - GHC ${item.price}%0A;
+message += `${i+1}. ${item.item} - GHC ${item.price}%0A`;
 total += item.price;
 });
 
-message += %0A💰 Total: GHC ${total}%0A;
-message += 📧 Email: ${email}%0A;
-message += 📱 Phone: ${phone}%0A;
-message += %0A✅ Paid to MoMo (MUDA);
+message += `%0A💰 Total: GHC ${total}%0A`;
+message += `📧 Email: ${email}%0A`;
+message += `📱 Phone: ${phone}%0A`;
+message += `%0A✅ Paid to MoMo (MUDA)`;
 
-let url = https://wa.me/233509329683?text=${message};
+let url = `https://wa.me/233509329683?text=${message}`;
 window.open(url, "_blank");
 
 localStorage.removeItem("cart");
