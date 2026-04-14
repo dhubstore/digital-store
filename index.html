@@ -66,69 +66,82 @@
   border-radius: 50%;
 }
 
-/* HERO */
-.hero {
-  margin: 20px;
-  padding: 30px 20px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #0072ff, #00c6ff);
+/* HERO / WELCOME */
+.hero.welcome-container {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
   color: white;
   text-align: center;
+  padding: 50px 20px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.hero.welcome-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.hero.welcome-container p {
+  font-size: 1.2rem;
+  opacity: 0.9;
 }
 
 /* PRODUCTS */
 .products-list{
-max-width:900px;
-margin:20px auto;
-display:flex;
-flex-direction:column;
-gap:12px;
-padding:0 10px;
+  max-width:900px;
+  margin:20px auto;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  padding:0 10px;
 }
 
 .product-card{
-display:flex;
-justify-content:space-between;
-align-items:center;
-background:white;
-padding:12px;
-border-radius:10px;
-box-shadow:0 3px 8px rgba(0,0,0,0.1);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:white;
+  padding:12px;
+  border-radius:10px;
+  box-shadow:0 3px 8px rgba(0,0,0,0.1);
 }
 
 .product-info{
-display:flex;
-align-items:center;
-gap:10px;
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
 .product-info img{
-width:60px;
-height:60px;
-border-radius:8px;
+  width:60px;
+  height:60px;
+  border-radius:8px;
 }
 
 .product-details span{
-font-weight:bold;
+  font-weight:bold;
 }
 
 .product-price-stock{
-display:flex;
-flex-direction:column;
-align-items:flex-end;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
 }
 
 .price{
-font-weight:bold;
-margin-bottom:5px;
+  font-weight:bold;
+  margin-bottom:5px;
 }
 
 .btns button{
-margin-left:5px;
-padding:8px 10px;
-border:none;
-border-radius:8px;
-cursor:pointer;
+  margin-left:5px;
+  padding:8px 10px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
 }
 
 .add-cart-btn{background:#007bff;color:white;}
@@ -136,56 +149,56 @@ cursor:pointer;
 
 /* SIDE CART */
 #sideCart{
-position:fixed;
-top:0;
-right:-100%;
-width:320px;
-height:100%;
-background:white;
-box-shadow:-4px 0 20px rgba(0,0,0,0.2);
-padding:20px;
-transition:0.3s;
-z-index:9999;
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:320px;
+  height:100%;
+  background:white;
+  box-shadow:-4px 0 20px rgba(0,0,0,0.2);
+  padding:20px;
+  transition:0.3s;
+  z-index:9999;
 }
 
 #sideCartHeader{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
 }
 
 #sideCartItems{
-margin-top:10px;
-max-height:60%;
-overflow-y:auto;
+  margin-top:10px;
+  max-height:60%;
+  overflow-y:auto;
 }
 
 .cart-item{
-display:flex;
-justify-content:space-between;
-padding:10px;
-background:#f5f5f5;
-margin-bottom:8px;
-border-radius:8px;
+  display:flex;
+  justify-content:space-between;
+  padding:10px;
+  background:#f5f5f5;
+  margin-bottom:8px;
+  border-radius:8px;
 }
 
 #sideCart input{
-width:100%;
-padding:10px;
-margin-top:10px;
-border-radius:8px;
-border:1px solid #ddd;
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+  border-radius:8px;
+  border:1px solid #ddd;
 }
 
 #sideCart button{
-width:100%;
-margin-top:10px;
-padding:12px;
-background:linear-gradient(90deg,#5e2be1,#9b64f0);
-color:white;
-border:none;
-border-radius:8px;
+  width:100%;
+  margin-top:10px;
+  padding:12px;
+  background:linear-gradient(90deg,#5e2be1,#9b64f0);
+  color:white;
+  border:none;
+  border-radius:8px;
 }
 </style>
 </head>
@@ -206,8 +219,9 @@ border-radius:8px;
 </header>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero welcome-container">
   <h1>Welcome to Digital Hub Store</h1>
+  <p>Your one-stop shop for digital services and subscriptions</p>
 </section>
 
 <!-- PRODUCTS -->
@@ -239,17 +253,17 @@ border-radius:8px;
 <script>
 // OPEN CART
 function openCart(){
-document.getElementById("sideCart").style.right = "0";
+  document.getElementById("sideCart").style.right = "0";
 }
 
 // CLOSE CART
 function closeCart(){
-document.getElementById("sideCart").style.right = "-100%";
+  document.getElementById("sideCart").style.right = "-100%";
 }
 
 // FIX CLOSE BUTTON
 document.addEventListener("DOMContentLoaded", () => {
-document.getElementById("closeSideCart").onclick = closeCart;
+  document.getElementById("closeSideCart").onclick = closeCart;
 });
 </script>
 
