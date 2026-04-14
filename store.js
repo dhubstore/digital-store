@@ -1,6 +1,10 @@
 // ----------------------------
 // PRODUCTS
 // ----------------------------
+
+// Shared image for all data bundles
+const DATA_IMAGE = "images/data-bundle.png";
+
 const products = [
 
 {name:"EXPRESS VPN 1 MONTH", price:45, image:"images/express-vpn.jpg", category:"VPN"},
@@ -56,14 +60,14 @@ const products = [
 {name:"200 PROXIES", price:400, image:"images/proxy.jpg", category:"Services"},
 
 // MTN DATA BUNDLES
-{name:"1GB MTN DATA", price:6, image:"images/mtn.jpg", category:"Data"},
-{name:"2GB MTN DATA", price:10, image:"images/mtn.jpg", category:"Data"},
-{name:"3GB MTN DATA", price:15.50, image:"images/mtn.jpg", category:"Data"},
-{name:"4GB MTN DATA", price:21.50, image:"images/mtn.jpg", category:"Data"},
-{name:"5GB MTN DATA", price:25, image:"images/mtn.jpg", category:"Data"},
-{name:"6GB MTN DATA", price:30, image:"images/mtn.jpg", category:"Data"},
-{name:"8GB MTN DATA", price:40, image:"images/mtn.jpg", category:"Data"},
-{name:"10GB MTN DATA", price:50, image:"images/mtn.jpg", category:"Data"}
+{name:"1GB MTN DATA", price:6, image:DATA_IMAGE, category:"Data"},
+{name:"2GB MTN DATA", price:10, image:DATA_IMAGE, category:"Data"},
+{name:"3GB MTN DATA", price:15.50, image:DATA_IMAGE, category:"Data"},
+{name:"4GB MTN DATA", price:21.50, image:DATA_IMAGE, category:"Data"},
+{name:"5GB MTN DATA", price:25, image:DATA_IMAGE, category:"Data"},
+{name:"6GB MTN DATA", price:30, image:DATA_IMAGE, category:"Data"},
+{name:"8GB MTN DATA", price:40, image:DATA_IMAGE, category:"Data"},
+{name:"10GB MTN DATA", price:50, image:DATA_IMAGE, category:"Data"}
 
 ];
 
