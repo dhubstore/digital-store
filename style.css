@@ -92,67 +92,58 @@ body {
 .product-card {
     display: flex;
     align-items: center;
+    gap: 12px;
     background: white;
     border-radius: 12px;
     padding: 12px;
     box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-    gap: 12px;
 }
 
-/* PRODUCT INFO: IMAGE LEFT */
-.product-info {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex: 1;
-}
-
-/* PRODUCT IMAGE */
-.product-info img {
-    width: 60px;
-    height: 60px;
+/* IMAGE ON LEFT */
+.product-left img {
+    width: 80px;
+    height: 80px;
     border-radius: 8px;
     object-fit: cover;
 }
 
-/* PRODUCT DETAILS: NAME + BUTTONS */
-.product-details {
+/* PRODUCT RIGHT */
+.product-right {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
+    flex: 1;
 }
 
 /* PRODUCT NAME */
 .product-details span {
     font-weight: bold;
-    font-size: 0.95rem;
+    font-size: 1rem;
 }
 
-/* BUTTONS STACKED */
+/* BUTTONS */
 .btns {
     display: flex;
-    flex-direction: column; /* vertical stack */
-    gap: 4px;
-    margin-top: 4px;
-}
-
-.add-cart-btn {
-    background: #007bff; /* blue first */
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 6px 0;
-    font-size: 0.9rem;
-    cursor: pointer;
+    gap: 6px;
 }
 
 .buy-now-btn {
-    background: #ff4b4b; /* red second */
+    background: #ff4b4b;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
     padding: 6px 0;
-    font-size: 0.9rem;
+    flex: 1;
+    cursor: pointer;
+}
+
+.add-cart-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 0;
+    flex: 1;
     cursor: pointer;
 }
 
@@ -161,10 +152,9 @@ body {
     opacity: 0.9;
 }
 
-/* PRICE BELOW BUTTONS */
-.price-stock {
+/* PRICE */
+.price-stock .price {
     font-weight: bold;
-    margin-top: 4px;
 }
 
 /* SIDE CART */
@@ -224,12 +214,16 @@ body {
 /* RESPONSIVE */
 @media(max-width:500px){
     .product-card {
-        flex-direction: row; /* keep horizontal on phones */
-        align-items: center;
-        gap: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .product-left img {
+        width: 100%;
+        height: auto;
     }
     .btns {
+        flex-direction: row;
         width: 100%;
-        flex-direction: column;
+        gap: 6px;
     }
-}
+    }
