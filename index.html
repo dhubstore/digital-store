@@ -1,10 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Digital Hub Store</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Hub Store</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* LOGO */
+.logo {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* SEARCH */
+.search-box {
+  flex: 1;
+  margin: 0 12px;
+  position: relative;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 10px 40px 10px 15px;
+  border-radius: 25px;
+  border: none;
+  outline: none;
+}
+
+/* CART */
+.cart {
+  position: relative;
+  font-size: 22px;
+  color: white;
+  cursor: pointer;
+}
+
+.cart span {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+/* HERO */
+.hero {
+  margin: 20px;
+  padding: 30px 20px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #0072ff, #00c6ff);
+  color: white;
+  text-align: center;
+}
+
+/* PRODUCTS */
+.products-list{
+max-width:900px;
+margin:20px auto;
+display:flex;
+flex-direction:column;
+gap:12px;
+padding:0 10px;
+}
+
+.product-card{
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:white;
+padding:12px;
+border-radius:10px;
+box-shadow:0 3px 8px rgba(0,0,0,0.1);
+}
+
+.product-info{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.product-info img{
+width:60px;
+height:60px;
+border-radius:8px;
+}
+
+.product-details span{
+font-weight:bold;
+}
+
+.product-price-stock{
+display:flex;
+flex-direction:column;
+align-items:flex-end;
+}
+
+.price{
+font-weight:bold;
+margin-bottom:5px;
+}
+
+.btns button{
+margin-left:5px;
+padding:8px 10px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+.add-cart-btn{background:#007bff;color:white;}
+.purchase-btn{background:#ff4b4b;color:white;}
+
+/* SIDE CART */
+#sideCart{
+position:fixed;
+top:0;
+right:-100%;
+width:320px;
+height:100%;
+background:white;
+box-shadow:-4px 0 20px rgba(0,0,0,0.2);
+padding:20px;
+transition:0.3s;
+z-index:9999;
+}
+
+#sideCartHeader{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:10px;
+}
+
+#sideCartItems{
+margin-top:10px;
+max-height:60%;
+overflow-y:auto;
+}
+
+.cart-item{
+display:flex;
+justify-content:space-between;
+padding:10px;
+background:#f5f5f5;
+margin-bottom:8px;
+border-radius:8px;
+}
+
+#sideCart input{
+width:100%;
+padding:10px;
+margin-top:10px;
+border-radius:8px;
+border:1px solid #ddd;
+}
+
+#sideCart button{
+width:100%;
+margin-top:10px;
+padding:12px;
+background:linear-gradient(90deg,#5e2be1,#9b64f0);
+color:white;
+border:none;
+border-radius:8px;
+}
+</style>
 </head>
 
 <body>
@@ -17,23 +200,22 @@
     <input id="searchBar" type="text" placeholder="Search..." onkeyup="searchProducts()">
   </div>
 
-  <!-- ✅ FIXED CART -->
-  <div class="cart" id="cartIcon">
+  <div class="cart" onclick="openCart()">
     🛒 <span id="cartCount">0</span>
   </div>
 </header>
 
 <!-- HERO -->
-<section class="hero welcome-container">
+<section class="hero">
   <h1>Welcome to Digital Hub Store</h1>
-  <p>Your one-stop shop for digital services and subscriptions</p>
 </section>
 
-<!-- PRODUCTS LIST -->
+<!-- PRODUCTS -->
 <div class="products-list"></div>
 
 <!-- SIDE CART -->
 <div id="sideCart">
+
   <div id="sideCartHeader">
     <h3>Your Cart</h3>
     <span id="closeSideCart" style="cursor:pointer;font-size:22px;">✖</span>
@@ -49,37 +231,29 @@
   <input id="customerPhone" placeholder="Phone">
 
   <button onclick="sendToWhatsApp()">Checkout</button>
+
 </div>
 
-<!-- MAIN SCRIPT -->
 <script src="store.js"></script>
 
-<!-- SAFE UI CONTROL -->
 <script>
 // OPEN CART
 function openCart(){
-  document.getElementById("sideCart").style.right = "0";
+document.getElementById("sideCart").style.right = "0";
 }
 
 // CLOSE CART
 function closeCart(){
-  document.getElementById("sideCart").style.right = "-100%";
+document.getElementById("sideCart").style.right = "-100%";
 }
 
-// SAFE INIT
+// FIX CLOSE BUTTON
 document.addEventListener("DOMContentLoaded", () => {
-  const cartIcon = document.getElementById("cartIcon");
-  const closeBtn = document.getElementById("closeSideCart");
-
-  if(cartIcon){
-    cartIcon.onclick = openCart;
-  }
-
-  if(closeBtn){
-    closeBtn.onclick = closeCart;
-  }
+document.getElementById("closeSideCart").onclick = closeCart;
 });
 </script>
 
 </body>
 </html>
+
+
