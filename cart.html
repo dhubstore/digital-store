@@ -3,47 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Your Cart</title>
-
 <style>
 body {
     font-family: Arial;
     background: #f5f5f5;
     padding: 20px;
 }
-
 h2 {
     text-align: center;
 }
-
 .cart-item {
     background: white;
     padding: 15px;
     margin: 10px 0;
     border-radius: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
-
 button {
     background: red;
     color: white;
     border: none;
     padding: 8px;
     border-radius: 5px;
-    cursor: pointer;
 }
-
 .checkout {
     background: green;
     width: 100%;
     padding: 15px;
     margin-top: 20px;
-    font-size: 16px;
-    cursor: pointer;
 }
 </style>
-
 </head>
 
 <body>
@@ -55,25 +43,13 @@ button {
 <button class="checkout" onclick="checkout()">Checkout via WhatsApp</button>
 
 <script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// 🔥 Always get latest cart from storage
-function getCart(){
-    return JSON.parse(localStorage.getItem("cart")) || [];
-}
-
-// 🔥 Save cart back to storage
-function saveCart(cart){
-    localStorage.setItem("cart", JSON.stringify(cart));
-}
-
-// ---------------- DISPLAY CART ----------------
-function displayCart(){
-    let cart = getCart();
+function displayCart() {
     let container = document.getElementById("cartItems");
-
     container.innerHTML = "";
 
-    if(cart.length === 0){
+    if (cart.length === 0) {
         container.innerHTML = "<p>Your cart is empty</p>";
         return;
     }
@@ -81,41 +57,25 @@ function displayCart(){
     cart.forEach((item, index) => {
         container.innerHTML += `
         <div class="cart-item">
-            <div>
-                <h3>${item.name}</h3>
-                <p>GHC ${item.price}</p>
-            </div>
+            <h3>${item.name}</h3>
+            <p>Price: ${item.price}</p>
             <button onclick="removeItem(${index})">Remove</button>
         </div>`;
     });
 }
 
-// ---------------- REMOVE ITEM ----------------
-function removeItem(index){
-    let cart = getCart();
+function removeItem(index) {
     cart.splice(index, 1);
-    saveCart(cart);
+    localStorage.setItem("cart", JSON.stringify(cart));
     displayCart();
 }
 
-// ---------------- CHECKOUT ----------------
-function checkout(){
-    let cart = getCart();
-
-    if(cart.length === 0){
-        alert("Your cart is empty!");
-        return;
-    }
-
-    let message = "🛒 Hello, I want to order:\n\n";
-    let total = 0;
+function checkout() {
+    let message = "Hello, I want to order:\n";
 
     cart.forEach(item => {
-        message += `${item.name} - GHC ${item.price}\n`;
-        total += Number(item.price);
+        message += `${item.name} - ${item.price}\n`;
     });
-
-    message += `\nTotal: GHC ${total}`;
 
     let phone = "233509329683";
     let url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
@@ -123,9 +83,7 @@ function checkout(){
     window.open(url, "_blank");
 }
 
-// INIT
 displayCart();
-
 </script>
 
 </body>
