@@ -106,22 +106,48 @@ function searchProducts() {
 }
 
 // ------------------ CART ------------------
-function updateCart(){
+function updateCart() {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
   const count = document.getElementById("cartCount");
-  if(count) count.textContent = cart.length;
+  const cartItems = document.getElementById("sideCartItems");
+  const totalDisplay = document.getElementById("sideCartTotal");
+
+  if (count) count.textContent = cart.length;
+
+  if (cartItems) {
+    cartItems.innerHTML = "";
+    let total = 0;
+
+    cart.forEach(item => {
+      total += item.price;
+
+      cartItems.innerHTML += `
+        <div style="margin-bottom:8px;">
+          ${item.item} - GHC ${item.price}
+        </div>
+      `;
+    });
+
+    if (totalDisplay) totalDisplay.textContent = total;
+  }
 }
 
-function addToCart(name,price){
-  let cart = JSON.parse(localStorage.getItem("cart"))||[];
-  cart.push({item:name,price:Number(price)});
-  localStorage.setItem("cart",JSON.stringify(cart));
+function addToCart(name, price) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  cart.push({ item: name, price: Number(price) });
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
   updateCart();
+
+  alert("Added to cart ✅");
 }
 
-// ------------------ WHATSAPP BUY ------------------
+// ------------------ BUY NOW ------------------
 function buyNow(name, price) {
-  const phoneNumber = "233XXXXXXXXX"; // 🔴 PUT YOUR NUMBER HERE
+  const phoneNumber = "233509329683";
 
   const email = document.getElementById("customerEmail")?.value;
   const phone = document.getElementById("customerPhone")?.value;
@@ -149,9 +175,57 @@ function buyNow(name, price) {
 
 Please process my order.`;
 
-  const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+  window.location.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+}
 
-  window.open(url, "_blank");
+// ------------------ CHECKOUT ------------------
+function sendToWhatsApp() {
+  const phoneNumber = "233509329683";
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  if (cart.length === 0) {
+    alert("Your cart is empty!");
+    return;
+  }
+
+  const email = document.getElementById("customerEmail").value;
+  const phone = document.getElementById("customerPhone").value;
+
+  if (!email || !phone) {
+    alert("Please enter your email and phone number.");
+    return;
+  }
+
+  let total = 0;
+  let itemsList = "";
+
+  cart.forEach((item, index) => {
+    total += item.price;
+    itemsList += `${index + 1}. ${item.item} - GHC ${item.price}\n`;
+  });
+
+  const orderID = generateOrderID();
+  const now = new Date().toLocaleString();
+
+  const message = `🛒 *Digital Hub Order*
+
+🆔 Order ID: ${orderID}
+
+📦 Items:
+${itemsList}
+
+💰 Total: GHC ${total}
+
+👤 Customer Details:
+📧 Email: ${email}
+📱 Phone: ${phone}
+
+🕒 Date: ${now}
+
+Please process my order.`;
+
+  window.location.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 }
 
 // ------------------ INIT ------------------
