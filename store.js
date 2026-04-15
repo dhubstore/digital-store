@@ -51,6 +51,11 @@ const products = [
   {name:"10GB MTN DATA", price:50, image:DATA_IMAGE, category:"Data"}
 ];
 
+// ------------------ ORDER ID ------------------
+function generateOrderID() {
+  return "DH-" + Math.floor(100000 + Math.random() * 900000);
+}
+
 // ------------------ RENDER PRODUCTS ------------------
 function renderProducts(category="all", search="") {
   const container = document.querySelector(".products-list");
@@ -82,8 +87,8 @@ function renderProducts(category="all", search="") {
             <span>${p.name}</span>
           </div>
           <div class="btns">
-            <button class="buy-now-btn" onclick="buyNow('${p.name}',${p.price})">Buy Now</button>
-            <button class="add-cart-btn" onclick="addToCart('${p.name}',${p.price})">Add to Cart</button>
+            <button class="buy-now-btn" onclick="buyNow(${JSON.stringify(p.name)}, ${p.price})">Buy Now</button>
+            <button class="add-cart-btn" onclick="addToCart(${JSON.stringify(p.name)}, ${p.price})">Add to Cart</button>
           </div>
           <div class="price-stock">
             <div class="price">GHC ${p.price}</div>
@@ -114,10 +119,39 @@ function addToCart(name,price){
   updateCart();
 }
 
-function buyNow(name,price){
-  localStorage.setItem("cart",JSON.stringify([{item:name,price:Number(price)}]));
-  updateCart();
-  openCart();
+// ------------------ WHATSAPP BUY ------------------
+function buyNow(name, price) {
+  const phoneNumber = "233XXXXXXXXX"; // 🔴 PUT YOUR NUMBER HERE
+
+  const email = document.getElementById("customerEmail")?.value;
+  const phone = document.getElementById("customerPhone")?.value;
+
+  if (!email || !phone) {
+    alert("Please enter your email and phone number first.");
+    openCart();
+    return;
+  }
+
+  const orderID = generateOrderID();
+  const now = new Date().toLocaleString();
+
+  const message = `🛒 *Digital Hub Order*
+
+🆔 Order ID: ${orderID}
+📦 Product: ${name}
+💰 Price: GHC ${price}
+
+👤 Customer Details:
+📧 Email: ${email}
+📱 Phone: ${phone}
+
+🕒 Date: ${now}
+
+Please process my order.`;
+
+  const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+  window.open(url, "_blank");
 }
 
 // ------------------ INIT ------------------
