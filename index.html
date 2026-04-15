@@ -17,7 +17,6 @@
     <input id="searchBar" type="text" placeholder="Search..." onkeyup="searchProducts()">
   </div>
 
-  <!-- ✅ FIXED CART -->
   <div class="cart" id="cartIcon">
     🛒 <span id="cartCount">0</span>
   </div>
@@ -29,11 +28,12 @@
   <p>Your one-stop shop for digital services and subscriptions</p>
 </section>
 
-<!-- PRODUCTS LIST -->
+<!-- PRODUCTS -->
 <div class="products-list"></div>
 
 <!-- SIDE CART -->
-<div id="sideCart">
+<div id="sideCart" style="position:fixed; top:0; right:-100%; width:300px; height:100%; background:white; transition:0.3s; z-index:1000; padding:15px; overflow:auto;">
+
   <div id="sideCartHeader">
     <h3>Your Cart</h3>
     <span id="closeSideCart" style="cursor:pointer;font-size:22px;">✖</span>
@@ -45,16 +45,18 @@
     Total: GHC <span id="sideCartTotal">0</span>
   </div>
 
-  <input id="customerEmail" placeholder="Email">
-  <input id="customerPhone" placeholder="Phone">
+  <input id="customerEmail" placeholder="Email" style="width:100%;margin-top:10px;">
+  <input id="customerPhone" placeholder="Phone" style="width:100%;margin-top:10px;">
 
-  <button onclick="sendToWhatsApp()">Checkout</button>
+  <button onclick="sendToWhatsApp()" style="margin-top:10px;width:100%;">
+    Checkout
+  </button>
 </div>
 
-<!-- MAIN SCRIPT -->
-<script src="store.js"></script>
+<!-- ✅ FORCE LOAD SCRIPT (IMPORTANT FIX) -->
+<script src="store.js?v=2"></script>
 
-<!-- SAFE UI CONTROL -->
+<!-- UI CONTROL -->
 <script>
 // OPEN CART
 function openCart(){
@@ -66,18 +68,13 @@ function closeCart(){
   document.getElementById("sideCart").style.right = "-100%";
 }
 
-// SAFE INIT
+// INIT
 document.addEventListener("DOMContentLoaded", () => {
   const cartIcon = document.getElementById("cartIcon");
   const closeBtn = document.getElementById("closeSideCart");
 
-  if(cartIcon){
-    cartIcon.onclick = openCart;
-  }
-
-  if(closeBtn){
-    closeBtn.onclick = closeCart;
-  }
+  cartIcon?.addEventListener("click", openCart);
+  closeBtn?.addEventListener("click", closeCart);
 });
 </script>
 
