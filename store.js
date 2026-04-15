@@ -54,16 +54,16 @@ const products = [
 // ------------------ RENDER PRODUCTS ------------------
 function renderProducts(category="all", search="") {
   const container = document.querySelector(".products-list");
-  container.innerHTML = ""; // Clear current products
+  if (!container) return;
+
+  container.innerHTML = "";
 
   let filtered = products;
 
-  // Filter by category
   if (category !== "all") {
     filtered = filtered.filter(p => p.category === category);
   }
 
-  // Filter by search term
   if (search && search.trim() !== "") {
     filtered = filtered.filter(p =>
       p.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -71,7 +71,6 @@ function renderProducts(category="all", search="") {
     );
   }
 
-  // Render filtered products
   filtered.forEach(p => {
     container.innerHTML += `
       <div class="product-card">
@@ -98,31 +97,31 @@ function renderProducts(category="all", search="") {
 // ------------------ SEARCH ------------------
 function searchProducts() {
   let value = document.getElementById("searchBar").value;
-  let activeCategory = window.currentCategory || "all";
-  renderProducts(activeCategory, value); // Render with current category and search query
+  renderProducts("all", value);
 }
 
 // ------------------ CART ------------------
-// (Cart functions as in your existing code)
+function updateCart(){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const count = document.getElementById("cartCount");
+  if(count) count.textContent = cart.length;
+}
 
-...
+function addToCart(name,price){
+  let cart = JSON.parse(localStorage.getItem("cart"))||[];
+  cart.push({item:name,price:Number(price)});
+  localStorage.setItem("cart",JSON.stringify(cart));
+  updateCart();
+}
+
+function buyNow(name,price){
+  localStorage.setItem("cart",JSON.stringify([{item:name,price:Number(price)}]));
+  updateCart();
+  openCart();
+}
 
 // ------------------ INIT ------------------
 document.addEventListener("DOMContentLoaded", () => {
-  window.currentCategory = "all"; // Default category
-
-  renderProducts(); // Initial rendering
+  renderProducts();
   updateCart();
-
-  cartIcon.onclick = openCart;
-  closeSideCart.onclick = closeCart;
-
-  document.querySelectorAll("nav a").forEach(link => {
-    link.onclick = (e) => {
-      e.preventDefault();
-      window.currentCategory = link.dataset.category; // Update category when clicked
-      document.getElementById("searchBar").value = ""; // Clear search input
-      renderProducts(window.currentCategory); // Render products for the selected category
-    };
-  });
 });
