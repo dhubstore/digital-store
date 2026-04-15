@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Digital Hub Store</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Hub Store</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -12,10 +12,13 @@
 <!-- HEADER -->
 <header class="header">
   <div class="logo">Digital Hub</div>
+
   <div class="search-box">
     <input id="searchBar" type="text" placeholder="Search..." onkeyup="searchProducts()">
   </div>
-  <div class="cart" onclick="openCart()">
+
+  <!-- ✅ FIXED CART -->
+  <div class="cart" id="cartIcon">
     🛒 <span id="cartCount">0</span>
   </div>
 </header>
@@ -35,16 +38,23 @@
     <h3>Your Cart</h3>
     <span id="closeSideCart" style="cursor:pointer;font-size:22px;">✖</span>
   </div>
+
   <div id="sideCartItems"></div>
+
   <div style="font-size:18px;font-weight:bold;margin-top:10px;">
     Total: GHC <span id="sideCartTotal">0</span>
   </div>
+
   <input id="customerEmail" placeholder="Email">
   <input id="customerPhone" placeholder="Phone">
+
   <button onclick="sendToWhatsApp()">Checkout</button>
 </div>
 
+<!-- MAIN SCRIPT -->
 <script src="store.js"></script>
+
+<!-- SAFE UI CONTROL -->
 <script>
 // OPEN CART
 function openCart(){
@@ -56,9 +66,18 @@ function closeCart(){
   document.getElementById("sideCart").style.right = "-100%";
 }
 
-// FIX CLOSE BUTTON
+// SAFE INIT
 document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("closeSideCart").onclick = closeCart;
+  const cartIcon = document.getElementById("cartIcon");
+  const closeBtn = document.getElementById("closeSideCart");
+
+  if(cartIcon){
+    cartIcon.onclick = openCart;
+  }
+
+  if(closeBtn){
+    closeBtn.onclick = closeCart;
+  }
 });
 </script>
 
