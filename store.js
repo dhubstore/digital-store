@@ -51,11 +51,6 @@ const products = [
   {name:"10GB MTN DATA", price:50, image:DATA_IMAGE, category:"Data"}
 ];
 
-// ------------------ ORDER ID ------------------
-function generateOrderID() {
-  return "DH-" + Math.floor(100000 + Math.random() * 900000);
-}
-
 // ------------------ RENDER PRODUCTS ------------------
 function renderProducts(category="all", search="") {
   const container = document.querySelector(".products-list");
@@ -87,8 +82,8 @@ function renderProducts(category="all", search="") {
             <span>${p.name}</span>
           </div>
           <div class="btns">
-            <button class="buy-now-btn" onclick="buyNow(${JSON.stringify(p.name)}, ${p.price})">Buy Now</button>
-            <button class="add-cart-btn" onclick="addToCart(${JSON.stringify(p.name)}, ${p.price})">Add to Cart</button>
+            <button class="buy-now-btn" onclick="buyNow('${p.name}',${p.price})">Buy Now</button>
+            <button class="add-cart-btn" onclick="addToCart('${p.name}',${p.price})">Add to Cart</button>
           </div>
           <div class="price-stock">
             <div class="price">GHC ${p.price}</div>
@@ -106,44 +101,30 @@ function searchProducts() {
 }
 
 // ------------------ CART ------------------
-function updateCart() {
+function updateCart(){
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
   const count = document.getElementById("cartCount");
-  const cartItems = document.getElementById("sideCartItems");
-  const totalDisplay = document.getElementById("sideCartTotal");
-
-  if (count) count.textContent = cart.length;
-
-  if (cartItems) {
-    cartItems.innerHTML = "";
-    let total = 0;
-
-    cart.forEach(item => {
-      total += item.price;
-
-      cartItems.innerHTML += `
-        <div style="margin-bottom:8px;">
-          ${item.item} - GHC ${item.price}
-        </div>
-      `;
-    });
-
-    if (totalDisplay) totalDisplay.textContent = total;
-  }
+  if(count) count.textContent = cart.length;
 }
 
-function addToCart(name, price) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-  cart.push({ item: name, price: Number(price) });
-
-  localStorage.setItem("cart", JSON.stringify(cart));
-
+function addToCart(name,price){
+  let cart = JSON.parse(localStorage.getItem("cart"))||[];
+  cart.push({item:name,price:Number(price)});
+  localStorage.setItem("cart",JSON.stringify(cart));
   updateCart();
-
-  alert("Added to cart ✅");
 }
+
+function buyNow(name,price){
+  localStorage.setItem("cart",JSON.stringify([{item:name,price:Number(price)}]));
+  updateCart();
+  openCart();
+}
+
+// ------------------ INIT ------------------
+document.addEventListener("DOMContentLoaded", () => {
+  renderProducts();
+  updateCart();
+});
 
 // ------------------ BUY NOW ------------------
 function buyNow(name, price) {
