@@ -56,12 +56,11 @@ button {
 
 <script>
 
-// 🔥 Always get latest cart from storage
+// ---------------- GET & SAVE CART ----------------
 function getCart(){
     return JSON.parse(localStorage.getItem("cart")) || [];
 }
 
-// 🔥 Save cart back to storage
 function saveCart(cart){
     localStorage.setItem("cart", JSON.stringify(cart));
 }
@@ -82,7 +81,7 @@ function displayCart(){
         container.innerHTML += `
         <div class="cart-item">
             <div>
-                <h3>${item.name}</h3>
+                <h3>${item.item}</h3>
                 <p>GHC ${item.price}</p>
             </div>
             <button onclick="removeItem(${index})">Remove</button>
@@ -107,23 +106,26 @@ function checkout(){
         return;
     }
 
-    let message = "🛒 Hello, I want to order:\n\n";
+    let message = "🛒 *Digital Hub Order*\n\n📦 Items:\n";
     let total = 0;
 
-    cart.forEach(item => {
-        message += `${item.name} - GHC ${item.price}\n`;
+    cart.forEach((item, index) => {
+        message += `${index + 1}. ${item.item} - GHC ${item.price}\n`;
         total += Number(item.price);
     });
 
-    message += `\nTotal: GHC ${total}`;
+    message += `\n💰 Total: GHC ${total}\n\nPlease process my order.`;
 
-    let phone = "233509329683";
+    let phone = "233509329683"; // 🔴 YOUR NUMBER
     let url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
     window.open(url, "_blank");
+
+    // OPTIONAL: clear cart after checkout
+    localStorage.removeItem("cart");
 }
 
-// INIT
+// ---------------- INIT ----------------
 displayCart();
 
 </script>
