@@ -1,82 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Digital Hub Store</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DHub Digital Store</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- HEADER -->
-<header class="header">
-  <div class="logo">Digital Hub</div>
-
-  <div class="search-box">
-    <input id="searchBar" type="text" placeholder="Search..." onkeyup="searchProducts()">
-  </div>
-
-  <div class="cart" id="cartIcon">
-    🛒 <span id="cartCount">0</span>
-  </div>
+<header>
+  <h1>DHub Digital Store</h1>
+  <p>Fast & Reliable Digital Services</p>
 </header>
 
-<!-- HERO -->
-<section class="hero welcome-container">
-  <h1>Welcome to Digital Hub Store</h1>
-  <p>Your one-stop shop for digital services and subscriptions</p>
-</section>
-
-<!-- PRODUCTS -->
-<div class="products-list"></div>
-
-<!-- SIDE CART -->
-<div id="sideCart" style="position:fixed; top:0; right:-100%; width:300px; height:100%; background:white; transition:0.3s; z-index:1000; padding:15px; overflow:auto;">
-
-  <div id="sideCartHeader">
-    <h3>Your Cart</h3>
-    <span id="closeSideCart" style="cursor:pointer;font-size:22px;">✖</span>
-  </div>
-
-  <div id="sideCartItems"></div>
-
-  <div style="font-size:18px;font-weight:bold;margin-top:10px;">
-    Total: GHC <span id="sideCartTotal">0</span>
-  </div>
-
-  <input id="customerEmail" placeholder="Email" style="width:100%;margin-top:10px;">
-  <input id="customerPhone" placeholder="Phone" style="width:100%;margin-top:10px;">
-
-  <button onclick="sendToWhatsApp()" style="margin-top:10px;width:100%;">
-    Checkout
-  </button>
+<div class="cart-icon" onclick="toggleCart()">
+  🛒 <span id="cartCount">0</span>
 </div>
 
-<!-- ✅ FORCE LOAD SCRIPT (IMPORTANT FIX) -->
-<script src="store.js?v=2"></script>
+<nav>
+  <button onclick="filterProducts('all')">All</button>
+  <button onclick="filterProducts('data')">Data</button>
+  <button onclick="filterProducts('subscription')">Subscriptions</button>
+  <button onclick="filterProducts('vpn')">VPN</button>
+</nav>
 
-<!-- UI CONTROL -->
-<script>
-// OPEN CART
-function openCart(){
-  document.getElementById("sideCart").style.right = "0";
-}
+<section class="products" id="productList"></section>
 
-// CLOSE CART
-function closeCart(){
-  document.getElementById("sideCart").style.right = "-100%";
-}
+<!-- CART -->
+<div class="cart-box" id="cartBox">
+  <h2>Your Cart</h2>
+  <div id="cartItems"></div>
+  <h3 id="total"></h3>
+  <button onclick="checkout()">Checkout via WhatsApp</button>
+</div>
 
-// INIT
-document.addEventListener("DOMContentLoaded", () => {
-  const cartIcon = document.getElementById("cartIcon");
-  const closeBtn = document.getElementById("closeSideCart");
-
-  cartIcon?.addEventListener("click", openCart);
-  closeBtn?.addEventListener("click", closeCart);
-});
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
