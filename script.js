@@ -4,9 +4,19 @@ const DATA_IMAGE = "images/data-bundle.png";
 // ================= PRODUCTS =================
 const products = [
   {name:"EXPRESS VPN 1 MONTH", price:45, image:"images/express-vpn.jpg", category:"vpn"},
-  {name:"NETFLIX PERSONAL 1 MONTH", price:70, image:"images/netflix.png", category:"accounts"},
+  {name:"EXPRESS VPN 3 MONTHS", price:60, image:"images/express-vpn.jpg", category:"vpn"},
+  {name:"EXPRESS VPN 1 YEAR", price:90, image:"images/express-vpn.jpg", category:"vpn"},
 
-  // DATA (ALL USE SAME IMAGE)
+  {name:"PIA VPN 1 MONTH", price:45, image:"images/pia-vpn.png", category:"vpn"},
+  {name:"PIA VPN 3 MONTHS", price:65, image:"images/pia-vpn.png", category:"vpn"},
+  {name:"PIA VPN 1 YEAR", price:90, image:"images/pia-vpn.png", category:"vpn"},
+
+  {name:"NORD VPN 1 MONTH", price:45, image:"images/nord-vpn.png", category:"vpn"},
+  {name:"NORD VPN 1 YEAR", price:90, image:"images/nord-vpn.png", category:"vpn"},
+
+  {name:"NETFLIX PERSONAL 1 MONTH", price:70, image:"images/netflix.png", category:"accounts"},
+  {name:"SPOTIFY PREMIUM 1 MONTH", price:40, image:"images/spotify.png", category:"accounts"},
+
   {name:"1GB MTN DATA", price:6, image:DATA_IMAGE, category:"data"},
   {name:"2GB MTN DATA", price:10, image:DATA_IMAGE, category:"data"},
   {name:"5GB MTN DATA", price:25, image:DATA_IMAGE, category:"data"},
@@ -16,6 +26,7 @@ const products = [
 // ================= CART =================
 let cart = [];
 
+// ================= DISPLAY =================
 function displayProducts(list){
   const container = document.getElementById("productList");
   if(!container) return;
@@ -27,7 +38,7 @@ function displayProducts(list){
       <div class="card">
         <img src="${p.image}" onerror="this.src='https://via.placeholder.com/200'">
         <h3>${p.name}</h3>
-        <p>$${p.price}</p>
+        <p>GHC ${p.price}</p>
         <button onclick="addToCart(${i})">Add to Cart</button>
       </div>
     `;
@@ -73,16 +84,24 @@ function updateCart(){
       sum += item.price * item.quantity;
 
       items.innerHTML += `
-        <div class="cart-item">
-          ${item.name} - $${item.price} × ${item.quantity}
-          <button onclick="decreaseQty(${index})">➖</button>
-          <button onclick="increaseQty(${index})">➕</button>
-          <button onclick="removeFromCart(${index})" style="background:red;">❌</button>
+        <div class="cart-item" style="display:flex; justify-content:space-between; align-items:center;">
+          
+          <div>
+            ${item.name}<br>
+            GHC ${item.price} × ${item.quantity}
+          </div>
+
+          <div>
+            <button onclick="decreaseQty(${index})">➖</button>
+            <button onclick="increaseQty(${index})">➕</button>
+            <button onclick="removeFromCart(${index})" style="background:red;color:white;">✖</button>
+          </div>
+
         </div>
       `;
     });
 
-    total.innerText = "Total: $" + sum;
+    total.innerText = "Total: GHC " + sum;
   }
 }
 
@@ -106,7 +125,9 @@ function removeFromCart(index){
 // ================= CART TOGGLE =================
 function toggleCart(){
   const box = document.getElementById("cartBox");
-  box.style.display = box.style.display === "block" ? "none" : "block";
+  if(box){
+    box.style.display = box.style.display === "block" ? "none" : "block";
+  }
 }
 
 // ================= CHECKOUT =================
@@ -136,13 +157,33 @@ function submitOrder(){
     return;
   }
 
-  let message = `NEW ORDER%0A%0A`;
-  message += `Name: ${name}%0APhone: ${phone}%0ALocation: ${location}%0A`;
-  message += `Payment ID: ${proof}%0A%0AItems:%0A`;
+  const orderId = "DH-" + Math.floor(100000 + Math.random() * 900000);
+  const date = new Date().toLocaleString();
 
-  cart.forEach(item=>{
-    message += `${item.name} x${item.quantity} - $${item.price}%0A`;
+  let message = "🛒 *Digital Hub Order*%0A%0A";
+  message += `🆔 Order ID: ${orderId}%0A%0A`;
+
+  message += "📦 Items:%0A";
+
+  let total = 0;
+
+  cart.forEach((item, index)=>{
+    const itemTotal = item.price * item.quantity;
+    total += itemTotal;
+
+    message += `${index + 1}. ${item.name} - GHC ${itemTotal}%0A`;
   });
+
+  message += `%0A💰 Total: GHC ${total}%0A%0A`;
+
+  message += "👤 Customer Details:%0A";
+  message += `📧 Name: ${name}%0A`;
+  message += `📱 Phone: ${phone}%0A`;
+  message += `📍 Location: ${location}%0A`;
+  message += `💳 Payment ID: ${proof}%0A%0A`;
+
+  message += `🕒 Date: ${date}%0A%0A`;
+  message += "Please process my order.";
 
   window.location.href = `https://wa.me/233509329683?text=${message}`;
 }
