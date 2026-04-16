@@ -149,14 +149,8 @@ function addToCart(name, price) {
 function buyNow(name, price) {
   const phoneNumber = "233509329683";
 
-  const email = document.getElementById("customerEmail")?.value;
-  const phone = document.getElementById("customerPhone")?.value;
-
-  if (!email || !phone) {
-    alert("Please enter your email and phone number first.");
-    openCart();
-    return;
-  }
+  const email = document.getElementById("customerEmail")?.value || "Not provided";
+  const phone = document.getElementById("customerPhone")?.value || "Not provided";
 
   const orderID = generateOrderID();
   const now = new Date().toLocaleString();
@@ -166,56 +160,6 @@ function buyNow(name, price) {
 🆔 Order ID: ${orderID}
 📦 Product: ${name}
 💰 Price: GHC ${price}
-
-👤 Customer Details:
-📧 Email: ${email}
-📱 Phone: ${phone}
-
-🕒 Date: ${now}
-
-Please process my order.`;
-
-  window.location.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-}
-
-// ------------------ CHECKOUT ------------------
-function sendToWhatsApp() {
-  const phoneNumber = "233509329683";
-
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-  if (cart.length === 0) {
-    alert("Your cart is empty!");
-    return;
-  }
-
-  const email = document.getElementById("customerEmail").value;
-  const phone = document.getElementById("customerPhone").value;
-
-  if (!email || !phone) {
-    alert("Please enter your email and phone number.");
-    return;
-  }
-
-  let total = 0;
-  let itemsList = "";
-
-  cart.forEach((item, index) => {
-    total += item.price;
-    itemsList += `${index + 1}. ${item.item} - GHC ${item.price}\n`;
-  });
-
-  const orderID = generateOrderID();
-  const now = new Date().toLocaleString();
-
-  const message = `🛒 *Digital Hub Order*
-
-🆔 Order ID: ${orderID}
-
-📦 Items:
-${itemsList}
-
-💰 Total: GHC ${total}
 
 👤 Customer Details:
 📧 Email: ${email}
