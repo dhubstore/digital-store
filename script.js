@@ -1,3 +1,16 @@
+// ================= IMAGE =================
+const DATA_IMAGE = "images/data-bundle.png";
+
+// ================= PRODUCTS =================
+const products = [
+  {name:"EXPRESS VPN 1 MONTH", price:45, image:"images/express-vpn.jpg", category:"vpn"},
+  {name:"NETFLIX PERSONAL 1 MONTH", price:70, image:"images/netflix.png", category:"accounts"},
+  {name:"SPOTIFY PREMIUM 1 MONTH", price:40, image:"images/spotify.png", category:"accounts"},
+
+  {name:"1GB MTN DATA", price:6, image:DATA_IMAGE, category:"data"},
+  {name:"5GB MTN DATA", price:25, image:DATA_IMAGE, category:"data"}
+];
+
 // ================= CART =================
 let cart = [];
 
@@ -94,7 +107,7 @@ function decreaseQty(index){
   updateCart();
 }
 
-// ================= REMOVE ITEM =================
+// ================= REMOVE =================
 function removeFromCart(index){
   cart.splice(index,1);
   updateCart();
@@ -108,7 +121,7 @@ function toggleCart(){
   }
 }
 
-// ================= OPEN CHECKOUT FORM =================
+// ================= CHECKOUT =================
 function checkout(){
   if(cart.length === 0){
     alert("Cart is empty!");
@@ -165,7 +178,6 @@ function submitOrder(){
   message += `🕒 Date: ${date}%0A%0A`;
   message += "Please process my order.";
 
-  // ✅ SEND TO WHATSAPP
   window.location.href = `https://wa.me/233509329683?text=${message}`;
 }
 
