@@ -75,15 +75,19 @@ function renderProducts(category="all", search="") {
     container.innerHTML += `
       <div class="product-card">
         <div class="product-left">
-          <img src="${p.image}" class="product-image" />
+          <img src="${p.image}" class="product-image" alt="${p.name}" />
         </div>
         <div class="product-right">
-          <span>${p.name}</span>
-          <div class="btns">
-            <button onclick="buyNow('${p.name}',${p.price})">Buy Now</button>
-            <button onclick="addToCart('${p.name}',${p.price})">Add to Cart</button>
+          <div class="product-details">
+            <span>${p.name}</span>
           </div>
-          <div class="price">GHC ${p.price}</div>
+          <div class="btns">
+            <button class="buy-now-btn" onclick="buyNow('${p.name}',${p.price})">Buy Now</button>
+            <button class="add-cart-btn" onclick="addToCart('${p.name}',${p.price})">Add to Cart</button>
+          </div>
+          <div class="price-stock">
+            <div class="price">GHC ${p.price}</div>
+          </div>
         </div>
       </div>
     `;
@@ -97,38 +101,27 @@ function searchProducts() {
 }
 
 // ------------------ CART ------------------
-function getCart() {
-  return JSON.parse(localStorage.getItem("cart")) || [];
-}
-
-function saveCart(cart) {
-  localStorage.setItem("cart", JSON.stringify(cart));
-}
-
-function updateCart() {
-  let cart = getCart();
+function updateCart(){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
   const count = document.getElementById("cartCount");
-  if (count) count.textContent = cart.length;
+  if(count) count.textContent = cart.length;
 }
 
-function addToCart(name, price) {
-  let cart = getCart();
-  cart.push({ item: name, price: Number(price) });
-  saveCart(cart);
+function addToCart(name,price){
+  let cart = JSON.parse(localStorage.getItem("cart"))||[];
+  cart.push({item:name,price:Number(price)});
+  localStorage.setItem("cart",JSON.stringify(cart));
   updateCart();
-  alert("Added to cart");
 }
 
-function buyNow(name, price) {
-  let cart = [{ item: name, price: Number(price) }];
-  saveCart(cart);
+function buyNow(name,price){
+  localStorage.setItem("cart",JSON.stringify([{item:name,price:Number(price)}]));
   updateCart();
   openCart();
 }
 
-// ------------------ CHECKOUT (WHATSAPP) ------------------
 function openCart() {
-  let cart = getCart();
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   if (cart.length === 0) {
     alert("Cart is empty");
@@ -139,48 +132,27 @@ function openCart() {
   let total = 0;
 
   cart.forEach((item, index) => {
-    itemsText += `${index + 1}. ${item.item} - GHC ${item.price}\n`;
-    total += item.price;
+    itemsText += (index + 1) + ". " + item.item + " - GHC " + item.price + "%0A";
+    total += Number(item.price);
   });
-
-  const email = prompt("Enter your email:");
-  const phone = prompt("Enter your phone number:");
-
-  if (!email || !phone) {
-    alert("Details required");
-    return;
-  }
 
   const orderId = "DH-" + Math.floor(Math.random() * 1000000);
   const date = new Date().toLocaleString();
 
-  const message = `🛒 *Digital Hub Order*
+  const message =
+    "🛒 *Digital Hub Order*%0A%0A" +
+    "🆔 Order ID: " + orderId + "%0A%0A" +
+    "📦 Items:%0A" +
+    itemsText + "%0A" +
+    "💰 Total: GHC " + total + "%0A%0A" +
+    "🕒 Date: " + date + "%0A%0A" +
+    "Please process my order.";
 
-🆔 Order ID: ${orderId}
+  const whatsappNumber = "233XXXXXXXXX"; // 🔴 PUT YOUR NUMBER HERE
 
-📦 Items:
-${itemsText}
+  const url = "https://wa.me/" + whatsappNumber + "?text=" + message;
 
-💰 Total: GHC ${total}
-
-👤 Customer Details:
-📧 Email: ${email}
-📱 Phone: ${phone}
-
-🕒 Date: ${date}
-
-Please process my order.`;
-
-  const encodedMessage = encodeURIComponent(message);
-
-  const whatsappNumber = "233XXXXXXXXX"; // 🔴 PUT YOUR NUMBER
-
-  const url = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-
-  // clear cart after checkout
-  localStorage.removeItem("cart");
-
-  window.location.href = url;
+  window.open(url, "_blank");
 }
 
 // ------------------ INIT ------------------
