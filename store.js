@@ -75,19 +75,15 @@ function renderProducts(category="all", search="") {
     container.innerHTML += `
       <div class="product-card">
         <div class="product-left">
-          <img src="${p.image}" class="product-image" alt="${p.name}" />
+          <img src="${p.image}" class="product-image" />
         </div>
         <div class="product-right">
-          <div class="product-details">
-            <span>${p.name}</span>
-          </div>
+          <span>${p.name}</span>
           <div class="btns">
-            <button class="buy-now-btn" onclick="buyNow('${p.name}',${p.price})">Buy Now</button>
-            <button class="add-cart-btn" onclick="addToCart('${p.name}',${p.price})">Add to Cart</button>
+            <button onclick="buyNow('${p.name}',${p.price})">Buy Now</button>
+            <button onclick="addToCart('${p.name}',${p.price})">Add to Cart</button>
           </div>
-          <div class="price-stock">
-            <div class="price">GHC ${p.price}</div>
-          </div>
+          <div class="price">GHC ${p.price}</div>
         </div>
       </div>
     `;
@@ -101,103 +97,69 @@ function searchProducts() {
 }
 
 // ------------------ CART ------------------
-function getCart(){
+function getCart() {
   return JSON.parse(localStorage.getItem("cart")) || [];
 }
 
-function saveCart(cart){
+function saveCart(cart) {
   localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-function updateCart(){
+function updateCart() {
   let cart = getCart();
-
   const count = document.getElementById("cartCount");
-  if(count) count.textContent = cart.length;
-
-  renderCart();
+  if (count) count.textContent = cart.length;
 }
 
-function addToCart(name, price){
+function addToCart(name, price) {
   let cart = getCart();
   cart.push({ item: name, price: Number(price) });
   saveCart(cart);
   updateCart();
+  alert("Added to cart");
 }
 
-function buyNow(name, price){
-  saveCart([{ item: name, price: Number(price) }]);
+function buyNow(name, price) {
+  let cart = [{ item: name, price: Number(price) }];
+  saveCart(cart);
   updateCart();
   openCart();
 }
 
-// ------------------ RENDER CART ------------------
-function renderCart(){
+// ------------------ CHECKOUT (WHATSAPP) ------------------
+function openCart() {
   let cart = getCart();
 
-  const container = document.getElementById("sideCartItems");
-  const totalEl = document.getElementById("sideCartTotal");
-
-  if(!container || !totalEl) return;
-
-  container.innerHTML = "";
-
-  if(cart.length === 0){
-    container.innerHTML = "<p>Your cart is empty</p>";
-    totalEl.textContent = "0";
+  if (cart.length === 0) {
+    alert("Cart is empty");
     return;
   }
 
+  let itemsText = "";
   let total = 0;
 
   cart.forEach((item, index) => {
+    itemsText += `${index + 1}. ${item.item} - GHC ${item.price}\n`;
     total += item.price;
-
-    container.innerHTML += `
-      <div style="margin-bottom:10px; border-bottom:1px solid #ddd; padding-bottom:5px;">
-        ${index + 1}. ${item.item} - GHC ${item.price}
-      </div>
-    `;
   });
 
-  totalEl.textContent = total;
-}
+  const email = prompt("Enter your email:");
+  const phone = prompt("Enter your phone number:");
 
-// ------------------ WHATSAPP CHECKOUT ------------------
-function sendToWhatsApp(){
-  let cart = getCart();
-
-  if(cart.length === 0){
-    alert("Your cart is empty");
+  if (!email || !phone) {
+    alert("Details required");
     return;
   }
 
-  let email = document.getElementById("customerEmail").value.trim();
-  let phone = document.getElementById("customerPhone").value.trim();
+  const orderId = "DH-" + Math.floor(Math.random() * 1000000);
+  const date = new Date().toLocaleString();
 
-  if(!email || !phone){
-    alert("Please enter your email and phone");
-    return;
-  }
-
-  // Build items list
-  let items = cart.map((item, index) => {
-    return `${index + 1}. ${item.item} - GHC ${item.price}`;
-  }).join("\n");
-
-  // Calculate total
-  let total = cart.reduce((sum, item) => sum + item.price, 0);
-
-  // Generate Order ID
-  let orderId = "DH-" + Math.floor(Math.random() * 1000000);
-
-  // Build message
-  let message = `🛒 *Digital Hub Order*
+  const message = `🛒 *Digital Hub Order*
 
 🆔 Order ID: ${orderId}
 
 📦 Items:
-${items}
+${itemsText}
 
 💰 Total: GHC ${total}
 
@@ -205,18 +167,24 @@ ${items}
 📧 Email: ${email}
 📱 Phone: ${phone}
 
-🕒 Date: ${new Date().toLocaleString()}
+🕒 Date: ${date}
 
 Please process my order.`;
 
-  // Your WhatsApp number (FIXED)
-  let url = `https://wa.me/233509329683?text=${encodeURIComponent(message)}`;
+  const encodedMessage = encodeURIComponent(message);
 
-  // Redirect
+  const whatsappNumber = "233XXXXXXXXX"; // 🔴 PUT YOUR NUMBER
+
+  const url = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+  // clear cart after checkout
+  localStorage.removeItem("cart");
+
   window.location.href = url;
 }
 
 // ------------------ INIT ------------------
 document.addEventListener("DOMContentLoaded", () => {
+  renderProducts();
   updateCart();
 });
