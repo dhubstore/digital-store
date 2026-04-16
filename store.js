@@ -101,16 +101,79 @@ function searchProducts() {
 }
 
 // ------------------ CART ------------------
+function getCart(){
+  return JSON.parse(localStorage.getItem("cart")) || [];
+}
+
+function saveCart(cart){
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function updateCart(){
+  let cart = getCart();
+
+  const count = document.getElementById("cartCount");
+  if(count) count.textContent = cart.length;
+
+  renderCart();
+}
+
+function addToCart(name, price){
+  let cart = getCart();
+  cart.push({ item: name, price: Number(price) });
+  saveCart(cart);
+  updateCart();
+}
+
+function buyNow(name, price){
+  saveCart([{ item: name, price: Number(price) }]);
+  updateCart();
+  openCart();
+}
+
+// ------------------ RENDER CART ------------------
+function renderCart(){
+  let cart = getCart();
+
+  const container = document.getElementById("sideCartItems");
+  const totalEl = document.getElementById("sideCartTotal");
+
+  if(!container || !totalEl) return;
+
+  container.innerHTML = "";
+
+  if(cart.length === 0){
+    container.innerHTML = "<p>Your cart is empty</p>";
+    totalEl.textContent = "0";
+    return;
+  }
+
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    total += item.price;
+
+    container.innerHTML += `
+      <div style="margin-bottom:10px; border-bottom:1px solid #ddd; padding-bottom:5px;">
+        ${index + 1}. ${item.item} - GHC ${item.price}
+      </div>
+    `;
+  });
+
+  totalEl.textContent = total;
+}
+
+// ------------------ WHATSAPP CHECKOUT ------------------
 function sendToWhatsApp(){
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = getCart();
 
   if(cart.length === 0){
     alert("Your cart is empty");
     return;
   }
 
-  let email = document.getElementById("customerEmail").value;
-  let phone = document.getElementById("customerPhone").value;
+  let email = document.getElementById("customerEmail").value.trim();
+  let phone = document.getElementById("customerPhone").value.trim();
 
   if(!email || !phone){
     alert("Please enter your email and phone");
@@ -146,27 +209,14 @@ ${items}
 
 Please process my order.`;
 
-  // Encode + redirect
-  let url = `https://wa.me/15551234567?text=${encodeURIComponent(message)}`;
+  // Your WhatsApp number (FIXED)
+  let url = `https://wa.me/233509329683?text=${encodeURIComponent(message)}`;
 
+  // Redirect
   window.location.href = url;
-}
-
-function addToCart(name,price){
-  let cart = JSON.parse(localStorage.getItem("cart"))||[];
-  cart.push({item:name,price:Number(price)});
-  localStorage.setItem("cart",JSON.stringify(cart));
-  updateCart();
-}
-
-function buyNow(name,price){
-  localStorage.setItem("cart",JSON.stringify([{item:name,price:Number(price)}]));
-  updateCart();
-  openCart();
 }
 
 // ------------------ INIT ------------------
 document.addEventListener("DOMContentLoaded", () => {
-  renderProducts();
   updateCart();
 });
