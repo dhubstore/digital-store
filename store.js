@@ -101,10 +101,55 @@ function searchProducts() {
 }
 
 // ------------------ CART ------------------
-function updateCart(){
+function sendToWhatsApp(){
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  const count = document.getElementById("cartCount");
-  if(count) count.textContent = cart.length;
+
+  if(cart.length === 0){
+    alert("Your cart is empty");
+    return;
+  }
+
+  let email = document.getElementById("customerEmail").value;
+  let phone = document.getElementById("customerPhone").value;
+
+  if(!email || !phone){
+    alert("Please enter your email and phone");
+    return;
+  }
+
+  // Build items list
+  let items = cart.map((item, index) => {
+    return `${index + 1}. ${item.item} - GHC ${item.price}`;
+  }).join("\n");
+
+  // Calculate total
+  let total = cart.reduce((sum, item) => sum + item.price, 0);
+
+  // Generate Order ID
+  let orderId = "DH-" + Math.floor(Math.random() * 1000000);
+
+  // Build message
+  let message = `🛒 *Digital Hub Order*
+
+🆔 Order ID: ${orderId}
+
+📦 Items:
+${items}
+
+💰 Total: GHC ${total}
+
+👤 Customer Details:
+📧 Email: ${email}
+📱 Phone: ${phone}
+
+🕒 Date: ${new Date().toLocaleString()}
+
+Please process my order.`;
+
+  // Encode + redirect
+  let url = `https://wa.me/15551234567?text=${encodeURIComponent(message)}`;
+
+  window.location.href = url;
 }
 
 function addToCart(name,price){
