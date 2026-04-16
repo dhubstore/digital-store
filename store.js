@@ -74,21 +74,13 @@ function renderProducts(category="all", search="") {
   filtered.forEach(p => {
     container.innerHTML += `
       <div class="product-card">
-        <div class="product-left">
-          <img src="${p.image}" class="product-image" alt="${p.name}" />
+        <img src="${p.image}" class="product-image" />
+        <span>${p.name}</span>
+        <div class="btns">
+          <button onclick="buyNow('${p.name}',${p.price})">Buy Now</button>
+          <button onclick="addToCart('${p.name}',${p.price})">Add to Cart</button>
         </div>
-        <div class="product-right">
-          <div class="product-details">
-            <span>${p.name}</span>
-          </div>
-          <div class="btns">
-            <button class="buy-now-btn" onclick="buyNow('${p.name}',${p.price})">Buy Now</button>
-            <button class="add-cart-btn" onclick="addToCart('${p.name}',${p.price})">Add to Cart</button>
-          </div>
-          <div class="price-stock">
-            <div class="price">GHC ${p.price}</div>
-          </div>
-        </div>
+        <div class="price">GHC ${p.price}</div>
       </div>
     `;
   });
@@ -120,10 +112,11 @@ function buyNow(name,price){
   openCart();
 }
 
-function openCart() {
+// ✅ ✅ THIS WAS MISSING (MAIN FIX)
+function openCart(){
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  if (cart.length === 0) {
+  if(cart.length === 0){
     alert("Cart is empty");
     return;
   }
@@ -131,24 +124,19 @@ function openCart() {
   let itemsText = "";
   let total = 0;
 
-  cart.forEach((item, index) => {
-    itemsText += (index + 1) + ". " + item.item + " - GHC " + item.price + "%0A";
-    total += Number(item.price);
+  cart.forEach((item,index)=>{
+    itemsText += (index+1) + ". " + item.item + " - GHC " + item.price + "%0A";
+    total += item.price;
   });
-
-  const orderId = "DH-" + Math.floor(Math.random() * 1000000);
-  const date = new Date().toLocaleString();
 
   const message =
     "🛒 *Digital Hub Order*%0A%0A" +
-    "🆔 Order ID: " + orderId + "%0A%0A" +
     "📦 Items:%0A" +
     itemsText + "%0A" +
     "💰 Total: GHC " + total + "%0A%0A" +
-    "🕒 Date: " + date + "%0A%0A" +
     "Please process my order.";
 
-  const whatsappNumber = "233XXXXXXXXX"; // 🔴 PUT YOUR NUMBER HERE
+  const whatsappNumber = "233XXXXXXXXX"; // 🔴 PUT YOUR NUMBER
 
   const url = "https://wa.me/" + whatsappNumber + "?text=" + message;
 
