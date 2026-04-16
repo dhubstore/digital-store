@@ -1,32 +1,7 @@
-// ================= IMAGE =================
-const DATA_IMAGE = "images/data-bundle.png";
-
-// ================= PRODUCTS =================
-const products = [
-  {name:"EXPRESS VPN 1 MONTH", price:45, image:"images/express-vpn.jpg", category:"vpn"},
-  {name:"EXPRESS VPN 3 MONTHS", price:60, image:"images/express-vpn.jpg", category:"vpn"},
-  {name:"EXPRESS VPN 1 YEAR", price:90, image:"images/express-vpn.jpg", category:"vpn"},
-
-  {name:"PIA VPN 1 MONTH", price:45, image:"images/pia-vpn.png", category:"vpn"},
-  {name:"PIA VPN 3 MONTHS", price:65, image:"images/pia-vpn.png", category:"vpn"},
-  {name:"PIA VPN 1 YEAR", price:90, image:"images/pia-vpn.png", category:"vpn"},
-
-  {name:"NORD VPN 1 MONTH", price:45, image:"images/nord-vpn.png", category:"vpn"},
-  {name:"NORD VPN 1 YEAR", price:90, image:"images/nord-vpn.png", category:"vpn"},
-
-  {name:"NETFLIX PERSONAL 1 MONTH", price:70, image:"images/netflix.png", category:"accounts"},
-  {name:"SPOTIFY PREMIUM 1 MONTH", price:40, image:"images/spotify.png", category:"accounts"},
-
-  {name:"1GB MTN DATA", price:6, image:DATA_IMAGE, category:"data"},
-  {name:"2GB MTN DATA", price:10, image:DATA_IMAGE, category:"data"},
-  {name:"5GB MTN DATA", price:25, image:DATA_IMAGE, category:"data"},
-  {name:"10GB MTN DATA", price:50, image:DATA_IMAGE, category:"data"}
-];
-
 // ================= CART =================
 let cart = [];
 
-// ================= DISPLAY =================
+// ================= DISPLAY PRODUCTS =================
 function displayProducts(list){
   const container = document.getElementById("productList");
   if(!container) return;
@@ -68,7 +43,7 @@ function addToCart(index){
   updateCart();
 }
 
-// ================= CART DISPLAY =================
+// ================= UPDATE CART =================
 function updateCart(){
   const count = document.getElementById("cartCount");
   const items = document.getElementById("cartItems");
@@ -84,7 +59,7 @@ function updateCart(){
       sum += item.price * item.quantity;
 
       items.innerHTML += `
-        <div class="cart-item" style="display:flex; justify-content:space-between; align-items:center;">
+        <div class="cart-item" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
           
           <div>
             ${item.name}<br>
@@ -113,16 +88,19 @@ function increaseQty(index){
 
 function decreaseQty(index){
   cart[index].quantity--;
-  if(cart[index].quantity <= 0) cart.splice(index,1);
+  if(cart[index].quantity <= 0){
+    cart.splice(index,1);
+  }
   updateCart();
 }
 
+// ================= REMOVE ITEM =================
 function removeFromCart(index){
   cart.splice(index,1);
   updateCart();
 }
 
-// ================= CART TOGGLE =================
+// ================= TOGGLE CART =================
 function toggleCart(){
   const box = document.getElementById("cartBox");
   if(box){
@@ -130,7 +108,7 @@ function toggleCart(){
   }
 }
 
-// ================= CHECKOUT =================
+// ================= OPEN CHECKOUT FORM =================
 function checkout(){
   if(cart.length === 0){
     alert("Cart is empty!");
@@ -149,10 +127,11 @@ function closeForm(){
 function submitOrder(){
   const name = document.getElementById("custName").value;
   const phone = document.getElementById("custPhone").value;
+  const email = document.getElementById("custEmail").value;
   const location = document.getElementById("custLocation").value;
   const proof = document.getElementById("paymentProof").value;
 
-  if(!name || !phone || !location || !proof){
+  if(!name || !phone || !email || !location || !proof){
     alert("Please fill all fields!");
     return;
   }
@@ -177,14 +156,16 @@ function submitOrder(){
   message += `%0A💰 Total: GHC ${total}%0A%0A`;
 
   message += "👤 Customer Details:%0A";
-  message += `📧 Name: ${name}%0A`;
+  message += `👤 Name: ${name}%0A`;
   message += `📱 Phone: ${phone}%0A`;
+  message += `📧 Email: ${email}%0A`;
   message += `📍 Location: ${location}%0A`;
-  message += `💳 Payment ID: ${proof}%0A%0A`;
+  message += `💳 Payment Ref: ${proof}%0A%0A`;
 
   message += `🕒 Date: ${date}%0A%0A`;
   message += "Please process my order.";
 
+  // ✅ SEND TO WHATSAPP
   window.location.href = `https://wa.me/233509329683?text=${message}`;
 }
 
