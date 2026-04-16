@@ -147,6 +147,9 @@ function addToCart(name, price) {
 
 // ------------------ BUY NOW ------------------
 function buyNow(name, price) {
+
+  alert("Buy Now clicked"); // ✅ TEST LINE
+
   const phoneNumber = "233509329683";
 
   const email = document.getElementById("customerEmail")?.value || "Not provided";
@@ -171,9 +174,3 @@ Please process my order.`;
 
   window.location.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 }
-
-// ------------------ INIT ------------------
-document.addEventListener("DOMContentLoaded", () => {
-  renderProducts();
-  updateCart();
-});
