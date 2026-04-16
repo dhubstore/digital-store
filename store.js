@@ -51,98 +51,73 @@ const products = [
   {name:"10GB MTN DATA", price:50, image:DATA_IMAGE, category:"Data"}
 ];
 
-// ------------------ ORDER ID ------------------
-function generateOrderID() {
-  return "DH-" + Math.floor(100000 + Math.random() * 900000);
-}
-
-// ------------------ RENDER ------------------
-function renderProducts() {
+// ------------------ RENDER PRODUCTS ------------------
+function renderProducts(category="all", search="") {
   const container = document.querySelector(".products-list");
+  if (!container) return;
+
   container.innerHTML = "";
 
-  products.forEach(p => {
+  let filtered = products;
+
+  if (category !== "all") {
+    filtered = filtered.filter(p => p.category === category);
+  }
+
+  if (search && search.trim() !== "") {
+    filtered = filtered.filter(p =>
+      p.name.toLowerCase().includes(search.toLowerCase()) ||
+      p.category.toLowerCase().includes(search.toLowerCase())
+    );
+  }
+
+  filtered.forEach(p => {
     container.innerHTML += `
       <div class="product-card">
-        <img src="${p.image}" class="product-image"/>
-        <h4>${p.name}</h4>
-        <p>GHC ${p.price}</p>
-
-        <button onclick="buyNow('${p.name}', ${p.price})">Buy Now</button>
-        <button onclick="addToCart('${p.name}', ${p.price})">Add to Cart</button>
+        <div class="product-left">
+          <img src="${p.image}" class="product-image" alt="${p.name}" />
+        </div>
+        <div class="product-right">
+          <div class="product-details">
+            <span>${p.name}</span>
+          </div>
+          <div class="btns">
+            <button class="buy-now-btn" onclick="buyNow('${p.name}',${p.price})">Buy Now</button>
+            <button class="add-cart-btn" onclick="addToCart('${p.name}',${p.price})">Add to Cart</button>
+          </div>
+          <div class="price-stock">
+            <div class="price">GHC ${p.price}</div>
+          </div>
+        </div>
       </div>
     `;
   });
+}
+
+// ------------------ SEARCH ------------------
+function searchProducts() {
+  let value = document.getElementById("searchBar").value;
+  renderProducts("all", value);
 }
 
 // ------------------ CART ------------------
-function updateCart() {
+function updateCart(){
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-  document.getElementById("cartCount").textContent = cart.length;
-
-  const cartItems = document.getElementById("sideCartItems");
-  const totalDisplay = document.getElementById("sideCartTotal");
-
-  cartItems.innerHTML = "";
-  let total = 0;
-
-  cart.forEach((item, index) => {
-    total += item.price;
-
-    cartItems.innerHTML += `
-      <div style="display:flex; justify-content:space-between;">
-        ${item.item} - GHC ${item.price}
-        <button onclick="removeItem(${index})">❌</button>
-      </div>
-    `;
-  });
-
-  totalDisplay.textContent = total;
+  const count = document.getElementById("cartCount");
+  if(count) count.textContent = cart.length;
 }
 
-function addToCart(name, price) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  cart.push({item:name, price});
-  localStorage.setItem("cart", JSON.stringify(cart));
+function addToCart(name,price){
+  let cart = JSON.parse(localStorage.getItem("cart"))||[];
+  cart.push({item:name,price:Number(price)});
+  localStorage.setItem("cart",JSON.stringify(cart));
   updateCart();
 }
 
-function removeItem(index) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  cart.splice(index, 1);
-  localStorage.setItem("cart", JSON.stringify(cart));
+function buyNow(name,price){
+  localStorage.setItem("cart",JSON.stringify([{item:name,price:Number(price)}]));
   updateCart();
-}
-
-// ------------------ BUY NOW ------------------
-function buyNow(name, price) {
-  const phoneNumber = "233509329683";
-
-  const message = `🛒 *Order*
-📦 ${name}
-💰 GHC ${price}`;
-
-  window.location.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-}
-
-// ------------------ CHECKOUT ------------------
-function sendToWhatsApp() {
-  const phoneNumber = "233509329683";
-
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-  let total = 0;
-  let text = "";
-
-  cart.forEach((item, i) => {
-    total += item.price;
-    text += `${i+1}. ${item.item} - GHC ${item.price}\n`;
-  });
-
-  const message = `🛒 *Cart Order*\n\n${text}\n💰 Total: GHC ${total}`;
-
-  window.location.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+  openCart();
 }
 
 // ------------------ INIT ------------------
@@ -150,9 +125,3 @@ document.addEventListener("DOMContentLoaded", () => {
   renderProducts();
   updateCart();
 });
-
-// 🔥 MAKE BUTTONS WORK
-window.buyNow = buyNow;
-window.addToCart = addToCart;
-window.removeItem = removeItem;
-window.sendToWhatsApp = sendToWhatsApp;
