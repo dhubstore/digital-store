@@ -80,3 +80,11 @@ button {
 .cart-item {
   margin-bottom: 10px;
 }
+
+.products {
+  gap: 20px;
+}
+
+.card {
+  padding: 18px;
+}
