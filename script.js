@@ -181,5 +181,30 @@ function submitOrder(){
   window.location.href = `https://wa.me/233509329683?text=${message}`;
 }
 
+function updatePaymentDetails(){
+  const method = document.getElementById("paymentMethod").value;
+  const box = document.getElementById("paymentDetails");
+
+  if(method === "momo"){
+    box.innerHTML = `
+      <h4>Mobile Money (MoMo)</h4>
+      <p>Number: <b>0509329683</b></p>
+      <p>Name: <b>Your Name</b></p>
+      <p>Use your reference when sending</p>
+    `;
+  } else {
+    box.innerHTML = `
+      <h4>Bank Transfer</h4>
+      <p>Bank payments will be available soon.</p>
+    `;
+  }
+}
+
+document.addEventListener("change", function(e){
+  if(e.target.id === "paymentMethod"){
+    updatePaymentDetails();
+  }
+});
+
 // ================= INIT =================
 displayProducts(products);
