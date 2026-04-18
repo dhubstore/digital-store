@@ -70,6 +70,36 @@
   <button onclick="checkout()">Checkout via WhatsApp</button>
 </div>
 
+<!-- CHECKOUT FORM -->
+<div class="checkout-form" id="checkoutForm">
+
+  <div class="checkout-content">
+
+    <h2>Complete Your Order</h2>
+
+    <p id="orderInfo"></p>
+
+    <input type="text" id="custName" placeholder="Full Name">
+    <input type="text" id="custPhone" placeholder="Phone Number">
+    <input type="email" id="custEmail" placeholder="Email Address">
+
+    <h4>Select Payment Method</h4>
+    <select id="paymentMethod">
+      <option value="momo">Mobile Money (MoMo)</option>
+      <option value="bank">Bank Transfer</option>
+    </select>
+
+    <div class="payment-info" id="paymentDetails"></div>
+
+    <input type="text" id="paymentProof" readonly>
+
+    <button onclick="submitOrder()">Submit Order</button>
+    <button class="close-btn" onclick="closeForm()">Cancel</button>
+
+  </div>
+
+</div>
+  
 <script src="script.js"></script>
 </body>
 </html>
