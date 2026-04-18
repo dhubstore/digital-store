@@ -205,8 +205,13 @@ function submitOrder(){
   message += "Please process my order.";
 
   window.location.href = `https://wa.me/233509329683?text=${message}`;
-}
 
+// CLEAR CART AFTER ORDER
+cart = [];
+updateCart();
+
+// CLOSE CHECKOUT
+document.getElementById("checkoutForm").style.display = "none";
 function updatePaymentDetails(){
   const method = document.getElementById("paymentMethod").value;
   const box = document.getElementById("paymentDetails");
