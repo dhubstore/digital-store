@@ -6,7 +6,6 @@ const products = [
   {name:"EXPRESS VPN 1 MONTH", price:45, image:"images/express-vpn.jpg", category:"vpn"},
   {name:"NETFLIX PERSONAL 1 MONTH", price:70, image:"images/netflix.png", category:"accounts"},
   {name:"SPOTIFY PREMIUM 1 MONTH", price:40, image:"images/spotify.png", category:"accounts"},
-
   {name:"1GB MTN DATA", price:6, image:DATA_IMAGE, category:"data"},
   {name:"5GB MTN DATA", price:25, image:DATA_IMAGE, category:"data"}
 ];
@@ -72,19 +71,16 @@ function updateCart(){
       sum += item.price * item.quantity;
 
       items.innerHTML += `
-        <div class="cart-item" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-          
+        <div class="cart-item" style="display:flex; justify-content:space-between;">
           <div>
             ${item.name}<br>
             GHC ${item.price} × ${item.quantity}
           </div>
-
           <div>
             <button onclick="decreaseQty(${index})">➖</button>
             <button onclick="increaseQty(${index})">➕</button>
-            <button onclick="removeFromCart(${index})" style="background:red;color:white;">✖</button>
+            <button onclick="removeFromCart(${index})">✖</button>
           </div>
-
         </div>
       `;
     });
@@ -93,32 +89,14 @@ function updateCart(){
   }
 }
 
-// ================= QUANTITY =================
-function increaseQty(index){
-  cart[index].quantity++;
-  updateCart();
-}
+// ================= CART FUNCTIONS =================
+function increaseQty(i){ cart[i].quantity++; updateCart(); }
+function decreaseQty(i){ cart[i].quantity--; if(cart[i].quantity<=0) cart.splice(i,1); updateCart(); }
+function removeFromCart(i){ cart.splice(i,1); updateCart(); }
 
-function decreaseQty(index){
-  cart[index].quantity--;
-  if(cart[index].quantity <= 0){
-    cart.splice(index,1);
-  }
-  updateCart();
-}
-
-// ================= REMOVE =================
-function removeFromCart(index){
-  cart.splice(index,1);
-  updateCart();
-}
-
-// ================= TOGGLE CART =================
+// ================= CART TOGGLE =================
 function toggleCart(){
-  const box = document.getElementById("cartBox");
-  if(box){
-    box.classList.toggle("active");
-  }
+  document.getElementById("cartBox").classList.toggle("active");
 }
 
 // ================= CHECKOUT =================
@@ -128,160 +106,49 @@ function checkout(){
     return;
   }
 
-  const orderId = "DH-" + Math.floor(100000 + Math.random() * 900000);
-  const reference = "REF-" + Math.floor(100000 + Math.random() * 900000);
-
-  window.currentOrderId = orderId;
-  window.currentReference = reference;
+  const orderId = "DH-" + Math.floor(100000 + Math.random()*900000);
+  const ref = "REF-" + Math.floor(100000 + Math.random()*900000);
 
   document.getElementById("orderInfo").innerHTML =
-    `🆔 Order ID: <b>${orderId}</b><br>💳 Reference: <b>${reference}</b>`;
+    `🆔 ${orderId}<br>💳 ${ref}`;
 
-  document.getElementById("paymentProof").value = reference;
+  document.getElementById("paymentProof").value = ref;
 
-  // ORDER SUMMARY
-  let summaryHTML = "<h4>Order Summary</h4>";
   let total = 0;
+  let html = "<h4>Order Summary</h4>";
 
-  cart.forEach(item => {
-    total += item.price * item.quantity;
-    summaryHTML += `<p>${item.name} × ${item.quantity}</p>`;
+  cart.forEach(item=>{
+    total += item.price*item.quantity;
+    html += `<p>${item.name} × ${item.quantity}</p>`;
   });
 
-  summaryHTML += `<h4>Total: GHC ${total}</h4>`;
-
-  document.getElementById("orderSummary").innerHTML = summaryHTML;
+  html += `<h4>Total: GHC ${total}</h4>`;
+  document.getElementById("orderSummary").innerHTML = html;
 
   updatePaymentDetails();
-
-  document.getElementById("checkoutForm").style.display = "flex";
+  document.getElementById("checkoutForm").style.display="flex";
 }
 
-// ================= CLOSE FORM =================
-function closeForm(){
-  document.getElementById("checkoutForm").style.display = "none";
-}
-
-  }
-}
-  } else {
-    box.innerHTML = `
-      <h4>Bank Transfer</h4>
-      <p>Bank: <b>Coming Soon</b></p>
-      <p>Account Number: <b>Coming Soon</b></p>
-      <p>Use your reference as narration</p>
-    `;
-  }
-}
-
-document.addEventListener("change", function(e){
-  if(e.target.id === "paymentMethod"){
-    updatePaymentDetails();
-  }
-});
-
-// ================= COPY MOMO NUMBER =================
-function copyNumber(){
-  const number = document.getElementById("momoNumber").innerText;
-  navigator.clipboard.writeText(number);
-  alert("Number copied!");
-}
-
-
-
-
-// ================= SUBMIT ORDER =================
-function submitOrder(){
-  const name = document.getElementById("custName").value;
-  const phone = document.getElementById("custPhone").value;
-  const email = document.getElementById("custEmail").value;
-  const proof = document.getElementById("paymentProof").value;
-
-  if(!name || !phone || !email || !proof){
-    alert("Please fill all fields!");
-    return;
-  }
-
-  const orderId = window.currentOrderId || ("DH-" + Math.floor(100000 + Math.random() * 900000));
-  const date = new Date().toLocaleString();
-
-  let message = "🛒 *Digital Hub Order*%0A%0A";
-  message += `🆔 Order ID: ${orderId}%0A%0A`;
-
-  message += "📦 Items:%0A";
-
-  let total = 0;
-
-  cart.forEach((item, index)=>{
-    const itemTotal = item.price * item.quantity;
-    total += itemTotal;
-
-    message += `${index + 1}. ${item.name} - GHC ${itemTotal}%0A`;
-  });
-
-  message += `%0A💰 Total: GHC ${total}%0A%0A`;
-
-  message += "👤 Customer Details:%0A";
-  message += `👤 Name: ${name}%0A`;
-  message += `📱 Phone: ${phone}%0A`;
-  message += `📧 Email: ${email}%0A`;
-  message += `💳 Payment Ref: ${proof}%0A%0A`;
-
-  message += `🕒 Date: ${date}%0A%0A`;
-  message += "Please process my order.";
-
-  window.location.href = `https://wa.me/233509329683?text=${message}`;
-
-  // CLEAR CART
-  cart = [];
-  updateCart();
-
-  // CLOSE CHECKOUT
-  document.getElementById("checkoutForm").style.display = "none";
-}
-
-// ================= PAYMENT DETAILS =================
+// ================= PAYMENT =================
 function updatePaymentDetails(){
-  const method = document.getElementById("paymentMethod").value;
-  const box = document.getElementById("paymentDetails");
-
-  if(method === "momo"){
-    box.innerHTML = `
-      <h4>Mobile Money (MoMo)</h4>
-      <p>
-        Number: <b id="momoNumber">0241923407</b>
-        <button onclick="copyNumber()">Copy</button>
-      </p>
-      <p style="font-size:12px;">Confirm the recipient before sending</p>
-      <p>Use your reference when sending payment</p>
-    `;
-  } else {
-    box.innerHTML = `
-      <h4>Bank Transfer</h4>
-      <p>Bank: <b>Coming Soon</b></p>
-      <p>Account Number: <b>Coming Soon</b></p>
-      <p>Use your reference as narration</p>
-    `;
-  }
+  document.getElementById("paymentDetails").innerHTML = `
+    <p>MoMo: <b id="momoNumber">0241923407</b>
+    <button onclick="copyNumber()">Copy</button></p>
+  `;
 }
 
-// ================= EVENTS =================
-document.addEventListener("change", function(e){
-  if(e.target.id === "paymentMethod"){
-    updatePaymentDetails();
-  }
-});
+function copyNumber(){
+  navigator.clipboard.writeText("0241923407");
+  alert("Copied!");
+}
 
-document.addEventListener("click", function(e){
-  const cartBox = document.getElementById("cartBox");
-  const cartIcon = document.querySelector(".cart-icon");
-
-  if(cartBox && cartIcon){
-    if(!cartBox.contains(e.target) && !cartIcon.contains(e.target)){
-      cartBox.classList.remove("active");
-    }
-  }
-});
+// ================= SUBMIT =================
+function submitOrder(){
+  alert("Order sent!");
+  cart=[];
+  updateCart();
+  document.getElementById("checkoutForm").style.display="none";
+}
 
 // ================= INIT =================
 displayProducts(products);
