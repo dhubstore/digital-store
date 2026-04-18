@@ -258,6 +258,15 @@ document.addEventListener("change", function(e){
   }
 });
 
+// ================= COPY MOMO NUMBER =================
+function copyNumber(){
+  const number = document.getElementById("momoNumber").innerText;
+  navigator.clipboard.writeText(number);
+  alert("Number copied!");
+}
+
+
+
 // ================= INIT =================
 displayProducts(products);
 document.addEventListener("click", function(e){
