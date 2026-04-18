@@ -162,6 +162,34 @@ function closeForm(){
   document.getElementById("checkoutForm").style.display = "none";
 }
 
+  }
+}
+  } else {
+    box.innerHTML = `
+      <h4>Bank Transfer</h4>
+      <p>Bank: <b>Coming Soon</b></p>
+      <p>Account Number: <b>Coming Soon</b></p>
+      <p>Use your reference as narration</p>
+    `;
+  }
+}
+
+document.addEventListener("change", function(e){
+  if(e.target.id === "paymentMethod"){
+    updatePaymentDetails();
+  }
+});
+
+// ================= COPY MOMO NUMBER =================
+function copyNumber(){
+  const number = document.getElementById("momoNumber").innerText;
+  navigator.clipboard.writeText(number);
+  alert("Number copied!");
+}
+
+
+
+
 // ================= SUBMIT ORDER =================
 function submitOrder(){
   const name = document.getElementById("custName").value;
@@ -211,6 +239,7 @@ function submitOrder(){
   // CLOSE CHECKOUT
   document.getElementById("checkoutForm").style.display = "none";
 }
+
 // ================= PAYMENT DETAILS =================
 function updatePaymentDetails(){
   const method = document.getElementById("paymentMethod").value;
@@ -236,55 +265,20 @@ function updatePaymentDetails(){
   }
 }
 
-  const method = document.getElementById("paymentMethod").value;
-  const box = document.getElementById("paymentDetails");
-
-  if(method === "momo"){
-    box.innerHTML = `
-      <h4>Mobile Money (MoMo)</h4>
-      <p>
-        Number: <b id="momoNumber">0241923407</b>
-        <button onclick="copyNumber()">Copy</button>
-      </p>
-      <p style="font-size:12px;">Confirm the recipient before sending</p>
-      <p>Use your reference when sending payment</p>
-    `;
-  } else {
-    box.innerHTML = `
-      <h4>Bank Transfer</h4>
-      <p>Bank: <b>Coming Soon</b></p>
-      <p>Account Number: <b>Coming Soon</b></p>
-      <p>Use your reference as narration</p>
-    `;
-  }
-}
-  } else {
-    box.innerHTML = `
-      <h4>Bank Transfer</h4>
-      <p>Bank: <b>Coming Soon</b></p>
-      <p>Account Number: <b>Coming Soon</b></p>
-      <p>Use your reference as narration</p>
-    `;
-  }
-}
-
-document.addEventListener("change", function(e){
-  if(e.target.id === "paymentMethod"){
-    updatePaymentDetails();
-  }
-});
-
-// ================= COPY MOMO NUMBER =================
+// ================= COPY MOMO =================
 function copyNumber(){
   const number = document.getElementById("momoNumber").innerText;
   navigator.clipboard.writeText(number);
   alert("Number copied!");
 }
 
+// ================= EVENTS =================
+document.addEventListener("change", function(e){
+  if(e.target.id === "paymentMethod"){
+    updatePaymentDetails();
+  }
+});
 
-
-// ================= INIT =================
-displayProducts(products);
 document.addEventListener("click", function(e){
   const cartBox = document.getElementById("cartBox");
   const cartIcon = document.querySelector(".cart-icon");
@@ -295,3 +289,6 @@ document.addEventListener("click", function(e){
     }
   }
 });
+
+// ================= INIT =================
+displayProducts(products);
