@@ -34,7 +34,7 @@ function displayProducts(list){
 
 // ================= FILTER =================
 function filterProducts(category){
-  if(category === 'all'){
+  if(category === "all"){
     displayProducts(products);
   } else {
     displayProducts(products.filter(p => p.category === category));
@@ -47,7 +47,7 @@ function addToCart(index){
   const existing = cart.find(item => item.name === product.name);
 
   if(existing){
-    existing.quantity += 1;
+    existing.quantity++;
   } else {
     cart.push({...product, quantity:1});
   }
@@ -71,15 +71,16 @@ function updateCart(){
       sum += item.price * item.quantity;
 
       items.innerHTML += `
-        <div class="cart-item" style="display:flex; justify-content:space-between;">
+        <div class="cart-item" style="display:flex; justify-content:space-between; align-items:center;">
           <div>
             ${item.name}<br>
             GHC ${item.price} × ${item.quantity}
           </div>
+
           <div>
             <button onclick="decreaseQty(${index})">➖</button>
             <button onclick="increaseQty(${index})">➕</button>
-            <button onclick="removeFromCart(${index})">✖</button>
+            <button onclick="removeFromCart(${index})" style="background:red;color:white;">✖</button>
           </div>
         </div>
       `;
@@ -89,14 +90,32 @@ function updateCart(){
   }
 }
 
-// ================= CART FUNCTIONS =================
-function increaseQty(i){ cart[i].quantity++; updateCart(); }
-function decreaseQty(i){ cart[i].quantity--; if(cart[i].quantity<=0) cart.splice(i,1); updateCart(); }
-function removeFromCart(i){ cart.splice(i,1); updateCart(); }
+// ================= QUANTITY =================
+function increaseQty(index){
+  cart[index].quantity++;
+  updateCart();
+}
 
-// ================= CART TOGGLE =================
+function decreaseQty(index){
+  cart[index].quantity--;
+  if(cart[index].quantity <= 0){
+    cart.splice(index,1);
+  }
+  updateCart();
+}
+
+// ================= REMOVE =================
+function removeFromCart(index){
+  cart.splice(index,1);
+  updateCart();
+}
+
+// ================= TOGGLE CART =================
 function toggleCart(){
-  document.getElementById("cartBox").classList.toggle("active");
+  const box = document.getElementById("cartBox");
+  if(box){
+    box.classList.toggle("active");
+  }
 }
 
 // ================= CHECKOUT =================
@@ -106,64 +125,143 @@ function checkout(){
     return;
   }
 
-  const orderId = "DH-" + Math.floor(100000 + Math.random()*900000);
-  const ref = "REF-" + Math.floor(100000 + Math.random()*900000);
+  const orderId = "DH-" + Math.floor(100000 + Math.random() * 900000);
+  const reference = "REF-" + Math.floor(100000 + Math.random() * 900000);
+
+  window.currentOrderId = orderId;
 
   document.getElementById("orderInfo").innerHTML =
-    `🆔 ${orderId}<br>💳 ${ref}`;
+    `🆔 Order ID: <b>${orderId}</b><br>💳 Reference: <b>${reference}</b>`;
 
-  document.getElementById("paymentProof").value = ref;
+  document.getElementById("paymentProof").value = reference;
 
-  // RECEIPT STYLE SUMMARY
-let summaryHTML = `
-  <div style="background:#020617; padding:15px; border-radius:10px; margin-bottom:10px;">
-    <h3 style="text-align:center;">🧾 Receipt</h3>
-    <hr>
-`;
+  // RECEIPT
+  let html = `<div style="background:#020617;padding:15px;border-radius:10px;">`;
+  html += `<h3>🧾 Receipt</h3><hr>`;
 
-let total = 0;
+  let total = 0;
 
-cart.forEach(item => {
-  const itemTotal = item.price * item.quantity;
-  total += itemTotal;
+  cart.forEach(item=>{
+    const t = item.price * item.quantity;
+    total += t;
 
-  summaryHTML += `
-    <div style="display:flex; justify-content:space-between;">
-      <span>${item.name} x${item.quantity}</span>
-      <span>GHC ${itemTotal}</span>
-    </div>
-  `;
+    html += `
+      <div style="display:flex; justify-content:space-between;">
+        <span>${item.name} x${item.quantity}</span>
+        <span>GHC ${t}</span>
+      </div>
+    `;
+  });
+
+  html += `<hr><h3>Total: GHC ${total}</h3></div>`;
+
+  document.getElementById("orderSummary").innerHTML = html;
+
+  updatePaymentDetails();
+
+  document.getElementById("checkoutForm").style.display = "flex";
+}
+
+// ================= CLOSE FORM =================
+function closeForm(){
+  document.getElementById("checkoutForm").style.display = "none";
+}
+
+// ================= SUBMIT ORDER =================
+function submitOrder(){
+  const name = document.getElementById("custName").value;
+  const phone = document.getElementById("custPhone").value;
+  const email = document.getElementById("custEmail").value;
+  const proof = document.getElementById("paymentProof").value;
+
+  if(!name || !phone || !email || !proof){
+    alert("Please fill all fields!");
+    return;
+  }
+
+  const orderId = window.currentOrderId;
+  const date = new Date().toLocaleString();
+
+  let message = `🛍️ *DHub Digital Store*\n`;
+  message += `━━━━━━━━━━━━━━━\n`;
+  message += `🆔 Order: ${orderId}\n`;
+  message += `💳 Ref: ${proof}\n\n`;
+
+  message += `📦 *Items*\n`;
+
+  let total = 0;
+
+  cart.forEach((item,i)=>{
+    const t = item.price * item.quantity;
+    total += t;
+
+    message += `${i+1}. ${item.name} x${item.quantity} = GHC ${t}\n`;
+  });
+
+  message += `━━━━━━━━━━━━━━━\n`;
+  message += `💰 Total: GHC ${total}\n\n`;
+
+  message += `👤 Name: ${name}\n📱 Phone: ${phone}\n📧 Email: ${email}\n\n`;
+  message += `🕒 ${date}\n`;
+  message += `✅ Payment Sent`;
+
+  window.location.href =
+    "https://wa.me/233509329683?text=" + encodeURIComponent(message);
+
+  // CLEAR CART
+  cart = [];
+  updateCart();
+
+  closeForm();
+}
+
+// ================= PAYMENT DETAILS =================
+function updatePaymentDetails(){
+  const method = document.getElementById("paymentMethod").value;
+  const box = document.getElementById("paymentDetails");
+
+  if(method === "momo"){
+    box.innerHTML = `
+      <h4>Mobile Money (MoMo)</h4>
+      <p>
+        Number: <b id="momoNumber">0241923407</b>
+        <button onclick="copyNumber()">Copy</button>
+      </p>
+      <p style="font-size:12px;">Confirm the recipient before sending</p>
+      <p>Use your reference when sending payment</p>
+    `;
+  } else {
+    box.innerHTML = `
+      <h4>Bank Transfer</h4>
+      <p>Coming Soon</p>
+    `;
+  }
+}
+
+// ================= COPY NUMBER =================
+function copyNumber(){
+  const number = document.getElementById("momoNumber").innerText;
+  navigator.clipboard.writeText(number);
+  alert("Number copied!");
+}
+
+// ================= EVENTS =================
+document.addEventListener("change", function(e){
+  if(e.target.id === "paymentMethod"){
+    updatePaymentDetails();
+  }
 });
 
-summaryHTML += `
-    <hr>
-    <h3 style="text-align:right;">Total: GHC ${total}</h3>
-  </div>
-`;
+document.addEventListener("click", function(e){
+  const cartBox = document.getElementById("cartBox");
+  const cartIcon = document.querySelector(".cart-icon");
 
-document.getElementById("orderSummary").innerHTML = summaryHTML;
-  
-
-// ================= PAYMENT =================
-function updatePaymentDetails(){
-  document.getElementById("paymentDetails").innerHTML = `
-    <p>MoMo: <b id="momoNumber">0241923407</b>
-    <button onclick="copyNumber()">Copy</button></p>
-  `;
-}
-
-function copyNumber(){
-  navigator.clipboard.writeText("0241923407");
-  alert("Copied!");
-}
-
-// ================= SUBMIT =================
-function submitOrder(){
-  alert("Order sent!");
-  cart=[];
-  updateCart();
-  document.getElementById("checkoutForm").style.display="none";
-}
+  if(cartBox && cartIcon){
+    if(!cartBox.contains(e.target) && !cartIcon.contains(e.target)){
+      cartBox.classList.remove("active");
+    }
+  }
+});
 
 // ================= INIT =================
 displayProducts(products);
