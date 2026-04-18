@@ -117,7 +117,7 @@ function removeFromCart(index){
 function toggleCart(){
   const box = document.getElementById("cartBox");
   if(box){
-    box.style.display = box.style.display === "block" ? "none" : "block";
+    box.classList.toggle("active");
   }
 }
 
