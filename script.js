@@ -214,7 +214,10 @@ function updatePaymentDetails(){
   if(method === "momo"){
     box.innerHTML = `
       <h4>Mobile Money (MoMo)</h4>
-      <p>Number: <b>0241923407</b></p>
+      <p>
+  Number: <b id="momoNumber">0241923407</b>
+  <button onclick="copyNumber()">Copy</button>
+</p>
 <p style="font-size:12px;">Confirm the recipient before sending</p>
 <p>Use your reference when sending payment</p>
     `;
