@@ -252,3 +252,21 @@ button {
 .pay-btn:hover {
   transform: scale(1.02);
   }
+
+.info-section {
+  padding: 20px;
+  margin: 20px;
+  background: #020617;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.info-section a {
+  color: #22c55e;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.info-section a:hover {
+  text-decoration: underline;
+}
