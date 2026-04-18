@@ -188,14 +188,15 @@ function updatePaymentDetails(){
   if(method === "momo"){
     box.innerHTML = `
       <h4>Mobile Money (MoMo)</h4>
-      <p>Number: <b>0509329683</b></p>
-      <p>Name: <b>Your Name</b></p>
-      <p>Use your reference when sending</p>
+      <p>Number: <b>0241923407</b></p>
+      <p>Use your reference when sending payment</p>
     `;
   } else {
     box.innerHTML = `
       <h4>Bank Transfer</h4>
-      <p>Bank payments will be available soon.</p>
+      <p>Bank: <b>Coming Soon</b></p>
+      <p>Account Number: <b>Coming Soon</b></p>
+      <p>Use your reference as narration</p>
     `;
   }
 }
