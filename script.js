@@ -265,13 +265,6 @@ function updatePaymentDetails(){
   }
 }
 
-// ================= COPY MOMO =================
-function copyNumber(){
-  const number = document.getElementById("momoNumber").innerText;
-  navigator.clipboard.writeText(number);
-  alert("Number copied!");
-}
-
 // ================= EVENTS =================
 document.addEventListener("change", function(e){
   if(e.target.id === "paymentMethod"){
