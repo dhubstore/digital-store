@@ -114,20 +114,35 @@ function checkout(){
 
   document.getElementById("paymentProof").value = ref;
 
-  let total = 0;
-  let html = "<h4>Order Summary</h4>";
+  // RECEIPT STYLE SUMMARY
+let summaryHTML = `
+  <div style="background:#020617; padding:15px; border-radius:10px; margin-bottom:10px;">
+    <h3 style="text-align:center;">🧾 Receipt</h3>
+    <hr>
+`;
 
-  cart.forEach(item=>{
-    total += item.price*item.quantity;
-    html += `<p>${item.name} × ${item.quantity}</p>`;
-  });
+let total = 0;
 
-  html += `<h4>Total: GHC ${total}</h4>`;
-  document.getElementById("orderSummary").innerHTML = html;
+cart.forEach(item => {
+  const itemTotal = item.price * item.quantity;
+  total += itemTotal;
 
-  updatePaymentDetails();
-  document.getElementById("checkoutForm").style.display="flex";
-}
+  summaryHTML += `
+    <div style="display:flex; justify-content:space-between;">
+      <span>${item.name} x${item.quantity}</span>
+      <span>GHC ${itemTotal}</span>
+    </div>
+  `;
+});
+
+summaryHTML += `
+    <hr>
+    <h3 style="text-align:right;">Total: GHC ${total}</h3>
+  </div>
+`;
+
+document.getElementById("orderSummary").innerHTML = summaryHTML;
+  
 
 // ================= PAYMENT =================
 function updatePaymentDetails(){
