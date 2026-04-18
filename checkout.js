@@ -102,3 +102,5 @@ function submitOrder(){
   // CLEAR CART
   localStorage.removeItem("cart");
 }
+
+<script src="checkout.js"></script>
