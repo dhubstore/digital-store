@@ -1,115 +1,104 @@
-// Get cart from localStorage
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
+// ================= LOAD CART =================
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// Render cart items
-function renderCart() {
-  const checkoutItems = document.getElementById('checkoutItems');
-  checkoutItems.innerHTML = "";
-  let total = 0;
-
-  cart.forEach((item, index) => {
-    const div = document.createElement('div');
-    div.style.display = 'flex';
-    div.style.justifyContent = 'space-between';
-    div.style.alignItems = 'center';
-    div.style.marginBottom = '10px';
-
-    // Item name
-    const itemName = document.createElement('span');
-    itemName.textContent = item.item;
-
-    // Quantity input
-    const qtyInput = document.createElement('input');
-    qtyInput.type = 'number';
-    qtyInput.min = 1;
-    qtyInput.value = item.quantity || 1;
-    qtyInput.style.width = '50px';
-    qtyInput.style.margin = '0 10px';
-    qtyInput.addEventListener('change', () => {
-      const val = parseInt(qtyInput.value);
-      if(val < 1){ qtyInput.value = 1; return; }
-      item.quantity = val;
-      updateTotal();
-      saveCart();
-    });
-
-    // Price
-    const priceSpan = document.createElement('span');
-    priceSpan.textContent = `GHC ${item.price}`;
-
-    // Remove button
-    const removeBtn = document.createElement('button');
-    removeBtn.textContent = 'Remove';
-    removeBtn.style.padding = '3px 7px';
-    removeBtn.style.fontSize = '12px';
-    removeBtn.addEventListener('click', () => {
-      cart.splice(index, 1);
-      saveCart();
-      renderCart();
-    });
-
-    div.appendChild(itemName);
-    div.appendChild(qtyInput);
-    div.appendChild(priceSpan);
-    div.appendChild(removeBtn);
-
-    checkoutItems.appendChild(div);
-
-    total += item.price * (item.quantity || 1);
-  });
-
-  document.getElementById('checkoutTotal').textContent = total;
+if(cart.length === 0){
+  alert("Cart is empty");
+  window.location.href = "index.html";
 }
 
-function updateTotal() {
-  let total = 0;
-  cart.forEach(item => total += item.price * (item.quantity || 1));
-  document.getElementById('checkoutTotal').textContent = total;
+// ================= ORDER IDS =================
+const orderId = "DH-" + Math.floor(100000 + Math.random() * 900000);
+const reference = "REF-" + Math.floor(100000 + Math.random() * 900000);
+
+document.getElementById("paymentProof").value = reference;
+
+// ================= RECEIPT =================
+let html = `<div style="background:#020617;padding:15px;border-radius:10px;">`;
+html += `<h3>🧾 Receipt</h3><hr>`;
+
+let total = 0;
+
+cart.forEach(item=>{
+  const t = item.price * item.quantity;
+  total += t;
+
+  html += `
+    <div style="display:flex; justify-content:space-between;">
+      <span>${item.name} x${item.quantity}</span>
+      <span>GHC ${t}</span>
+    </div>
+  `;
+});
+
+html += `<hr><h3>Total: GHC ${total}</h3></div>`;
+
+document.getElementById("orderSummary").innerHTML = html;
+
+// ================= PAYMENT =================
+function updatePaymentDetails(){
+  const method = document.getElementById("paymentMethod").value;
+  const box = document.getElementById("paymentDetails");
+
+  if(method === "momo"){
+    box.innerHTML = `
+      <h4>Mobile Money (MoMo)</h4>
+      <p>
+        Number: <b id="momoNumber">0241923407</b>
+        <button onclick="copyNumber()">Copy</button>
+      </p>
+      <p style="font-size:12px;">Confirm recipient before sending</p>
+      <p>Use your reference when sending payment</p>
+    `;
+  } else {
+    box.innerHTML = `
+      <h4>Bank Transfer</h4>
+      <p>Coming Soon</p>
+    `;
+  }
 }
 
-function saveCart() {
-  localStorage.setItem('cart', JSON.stringify(cart));
+// ================= COPY =================
+function copyNumber(){
+  const number = document.getElementById("momoNumber").innerText;
+  navigator.clipboard.writeText(number);
+  alert("Number copied!");
 }
 
-// Paystack integration
-const payBtn = document.getElementById('payBtn');
-payBtn.addEventListener('click', () => {
-  const custName = document.getElementById('custName').value;
-  const custPhone = document.getElementById('custPhone').value;
-  const custEmail = document.getElementById('custEmail').value;
+// ================= EVENTS =================
+document.getElementById("paymentMethod").addEventListener("change", updatePaymentDetails);
+updatePaymentDetails();
 
-  if(!custName || !custPhone || !custEmail){
-    alert('Please fill all fields.');
+// ================= SUBMIT =================
+function submitOrder(){
+  const name = document.getElementById("custName").value;
+  const phone = document.getElementById("custPhone").value;
+  const email = document.getElementById("custEmail").value;
+  const proof = document.getElementById("paymentProof").value;
+
+  if(!name || !phone || !email || !proof){
+    alert("Fill all fields");
     return;
   }
 
-  let totalAmount = 0;
-  cart.forEach(item => totalAmount += item.price * (item.quantity || 1));
+  let message = `🛍️ *DHub Digital Store*\n`;
+  message += `━━━━━━━━━━━━━━━\n`;
+  message += `🆔 ${orderId}\n💳 ${reference}\n\n`;
 
-  let handler = PaystackPop.setup({
-    key: 'pk_live_76e7df83f71c725b7e10d514b3c935324a97761e',
-    email: custEmail,
-    amount: totalAmount * 100,
-    currency: "GHS",
-    metadata: {
-      custom_fields: [
-        {display_name: "Full Name", value: custName},
-        {display_name: "WhatsApp", value: custPhone}
-      ]
-    },
-    callback: function(response){
-      alert('Payment successful! Reference: ' + response.reference);
-      localStorage.removeItem('cart');
-      window.location.href = 'index.html';
-    },
-    onClose: function(){
-      alert('Payment cancelled.');
-    }
+  let total = 0;
+
+  cart.forEach((item,i)=>{
+    const t = item.price * item.quantity;
+    total += t;
+    message += `${i+1}. ${item.name} x${item.quantity} = GHC ${t}\n`;
   });
-  handler.openIframe();
-});
 
-// INITIALIZE
-document.addEventListener("DOMContentLoaded", () => {
-  renderCart();
-});
+  message += `━━━━━━━━━━━━━━━\n`;
+  message += `💰 Total: GHC ${total}\n\n`;
+  message += `👤 ${name}\n📱 ${phone}\n📧 ${email}`;
+
+  window.location.href =
+    "https://wa.me/233509329683?text=" + encodeURIComponent(message);
+
+  // CLEAR CART
+  localStorage.removeItem("cart");
+}
