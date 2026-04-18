@@ -167,15 +167,14 @@ function submitOrder(){
   const name = document.getElementById("custName").value;
   const phone = document.getElementById("custPhone").value;
   const email = document.getElementById("custEmail").value;
-  const location = document.getElementById("custLocation").value;
   const proof = document.getElementById("paymentProof").value;
 
-  if(!name || !phone || !email || !location || !proof){
+  if(!name || !phone || !email || !proof){
     alert("Please fill all fields!");
     return;
   }
 
-  const orderId = "DH-" + Math.floor(100000 + Math.random() * 900000);
+  const orderId = window.currentOrderId || ("DH-" + Math.floor(100000 + Math.random() * 900000));
   const date = new Date().toLocaleString();
 
   let message = "🛒 *Digital Hub Order*%0A%0A";
@@ -198,13 +197,20 @@ function submitOrder(){
   message += `👤 Name: ${name}%0A`;
   message += `📱 Phone: ${phone}%0A`;
   message += `📧 Email: ${email}%0A`;
-  message += `📍 Location: ${location}%0A`;
   message += `💳 Payment Ref: ${proof}%0A%0A`;
 
   message += `🕒 Date: ${date}%0A%0A`;
   message += "Please process my order.";
 
   window.location.href = `https://wa.me/233509329683?text=${message}`;
+
+  // CLEAR CART
+  cart = [];
+  updateCart();
+
+  // CLOSE CHECKOUT
+  document.getElementById("checkoutForm").style.display = "none";
+}
 
 // CLEAR CART AFTER ORDER
 cart = [];
