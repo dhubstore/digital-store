@@ -7,38 +7,36 @@
 <link rel="stylesheet" href="style.css">
 </head>
 
-<body style="padding:20px;">
+<body>
 
-<h2 style="text-align:center;">Checkout</h2>
+<div class="checkout-container">
 
-<!-- RECEIPT -->
-<div id="orderSummary"></div>
+  <h1 class="title">Checkout</h1>
 
-<br>
+  <!-- RECEIPT -->
+  <div id="orderSummary" class="receipt-card"></div>
 
-<!-- CUSTOMER DETAILS -->
-<input type="text" id="custName" placeholder="Full Name"><br><br>
-<input type="text" id="custPhone" placeholder="Phone Number"><br><br>
-<input type="email" id="custEmail" placeholder="Email"><br><br>
+  <!-- FORM -->
+  <div class="form-card">
+    <input type="text" id="custName" placeholder="Full Name">
+    <input type="text" id="custPhone" placeholder="Phone Number">
+    <input type="email" id="custEmail" placeholder="Email">
 
-<!-- PAYMENT -->
-<h3>Payment Method</h3>
-<select id="paymentMethod">
-  <option value="momo">Mobile Money</option>
-  <option value="bank">Bank (Coming Soon)</option>
-</select>
+    <h3>Payment Method</h3>
+    <select id="paymentMethod">
+      <option value="momo">Mobile Money</option>
+      <option value="bank">Bank (Coming Soon)</option>
+    </select>
 
-<div id="paymentDetails"></div>
+    <div id="paymentDetails" class="payment-box"></div>
 
-<br>
+    <input type="text" id="paymentProof" readonly>
 
-<input type="text" id="paymentProof" readonly>
+    <button class="pay-btn" onclick="submitOrder()">Complete Order</button>
+  </div>
 
-<br><br>
+</div>
 
-<button onclick="submitOrder()">Submit Order</button>
-
-<!-- LINK JS FILE -->
 <script src="checkout.js"></script>
 
 </body>
