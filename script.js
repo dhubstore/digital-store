@@ -128,7 +128,33 @@ function checkout(){
     return;
   }
 
-  document.getElementById("checkoutForm").style.display = "block";
+  const orderId = "DH-" + Math.floor(100000 + Math.random() * 900000);
+  const reference = "REF-" + Math.floor(100000 + Math.random() * 900000);
+
+  window.currentOrderId = orderId;
+  window.currentReference = reference;
+
+  document.getElementById("orderInfo").innerHTML =
+    `🆔 Order ID: <b>${orderId}</b><br>💳 Reference: <b>${reference}</b>`;
+
+  document.getElementById("paymentProof").value = reference;
+
+  // ORDER SUMMARY
+  let summaryHTML = "<h4>Order Summary</h4>";
+  let total = 0;
+
+  cart.forEach(item => {
+    total += item.price * item.quantity;
+    summaryHTML += `<p>${item.name} × ${item.quantity}</p>`;
+  });
+
+  summaryHTML += `<h4>Total: GHC ${total}</h4>`;
+
+  document.getElementById("orderSummary").innerHTML = summaryHTML;
+
+  updatePaymentDetails();
+
+  document.getElementById("checkoutForm").style.display = "flex";
 }
 
 // ================= CLOSE FORM =================
