@@ -218,6 +218,11 @@ function updatePaymentDetails(){
   Number: <b id="momoNumber">0241923407</b>
   <button onclick="copyNumber()">Copy</button>
 </p>
+function copyNumber(){
+  const number = document.getElementById("momoNumber").innerText;
+  navigator.clipboard.writeText(number);
+  alert("Number copied!");
+}
 <p style="font-size:12px;">Confirm the recipient before sending</p>
 <p>Use your reference when sending payment</p>
     `;
