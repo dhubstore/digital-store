@@ -244,3 +244,13 @@ document.addEventListener("change", function(e){
 
 // ================= INIT =================
 displayProducts(products);
+document.addEventListener("click", function(e){
+  const cartBox = document.getElementById("cartBox");
+  const cartIcon = document.querySelector(".cart-icon");
+
+  if(cartBox && cartIcon){
+    if(!cartBox.contains(e.target) && !cartIcon.contains(e.target)){
+      cartBox.classList.remove("active");
+    }
+  }
+});
