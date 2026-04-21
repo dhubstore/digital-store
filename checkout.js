@@ -6,7 +6,7 @@ if(cart.length === 0){
   window.location.href = "index.html";
 }
 
-// ================= ORDER IDS =================
+// ================= IDS =================
 const orderId = "DH-" + Math.floor(100000 + Math.random() * 900000);
 const reference = "REF-" + Math.floor(100000 + Math.random() * 900000);
 
@@ -31,7 +31,6 @@ cart.forEach(item=>{
 });
 
 html += `<hr><h3>Total: GHC ${total}</h3></div>`;
-
 document.getElementById("orderSummary").innerHTML = html;
 
 // ================= PAYMENT =================
@@ -61,15 +60,15 @@ function copyNumber(){
   alert("Number copied!");
 }
 
-// ================= EVENTS =================
 document.getElementById("paymentMethod").addEventListener("change", updatePaymentDetails);
 updatePaymentDetails();
 
-// ================= SUBMIT =================
+// ================= SUBMIT ORDER =================
 function submitOrder(){
   const name = document.getElementById("custName").value;
   const phone = document.getElementById("custPhone").value;
   const email = document.getElementById("custEmail").value;
+  const payment = document.getElementById("paymentMethod").value;
   const proof = document.getElementById("paymentProof").value;
 
   if(!name || !phone || !email || !proof){
@@ -82,20 +81,38 @@ function submitOrder(){
   message += `🆔 ${orderId}\n💳 ${reference}\n\n`;
 
   let total = 0;
+  let orderText = "";
 
   cart.forEach((item,i)=>{
     const t = item.price * item.quantity;
     total += t;
+
     message += `${i+1}. ${item.name} x${item.quantity} = GHC ${t}\n`;
+    orderText += `${item.name} x${item.quantity} = GHC ${t}\n`;
   });
 
   message += `━━━━━━━━━━━━━━━\n`;
   message += `💰 Total: GHC ${total}\n\n`;
   message += `👤 ${name}\n📱 ${phone}\n📧 ${email}`;
 
-  window.location.href =
-    "https://wa.me/233509329683?text=" + encodeURIComponent(message);
+  // ================= WHATSAPP =================
+  window.open(
+    "https://wa.me/233509329683?text=" + encodeURIComponent(message),
+    "_blank"
+  );
 
-  // CLEAR CART
+  // ================= EMAILJS =================
+  emailjs.send("service_wcjw9mm", "template_dq6buyi", {
+    name: name,
+    email: email,
+    order: orderText,
+    total: total,
+    payment: payment,
+    order_id: orderId
+  });
+
+  // ================= SUCCESS =================
+  alert("Order sent successfully!");
+
   localStorage.removeItem("cart");
-    }
+}
