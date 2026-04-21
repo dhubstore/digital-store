@@ -28,6 +28,10 @@ const products = [
   {name:"USA FACEBOOK ACCOUNT", price:50, image:"images/facebook.png", category:"accounts"},
   {name:"GMAIL VERIFIED ACCOUNT", price:25, image:"images/gmail.jpg", category:"accounts"},
 
+  // ✅ SNAPCHAT PRODUCTS ADDED
+  {name:"SNAPCHAT PLUS 1 MONTH", price:30, image:"images/snapchat.png", category:"accounts"},
+  {name:"SNAPCHAT PLUS 1 YEAR", price:95, image:"images/snapchat.png", category:"accounts"},
+
   // ================= E-CODES / GIFT CARDS =================
   {name:"$2 ITUNES E-CODE", price:32, image:"images/itunes-2.png", category:"giftcards"},
   {name:"$3 ITUNES E-CODE", price:43, image:"images/itunes-3.png", category:"giftcards"},
@@ -46,7 +50,6 @@ const products = [
 
 ];
 
-  
 // ================= CART =================
 let cart = [];
 
