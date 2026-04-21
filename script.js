@@ -20,19 +20,17 @@ const products = [
   {name:"TEXTNOW ACCOUNT", price:25, image:"images/textnow.png", category:"accounts"},
   {name:"TEXTFREE ACCOUNT", price:20, image:"images/textfree.png", category:"accounts"},
   {name:"TEXTPLUS ACCOUNT", price:25, image:"images/textplus.png", category:"accounts"},
-
-  {name:"NETFLIX SHARED 1 MONTH", price:35, image:"images/netflix.png", category:"accounts"},
-  {name:"NETFLIX PERSONAL 1 MONTH", price:70, image:"images/netflix.png", category:"accounts"},
-
-  {name:"SPOTIFY PREMIUM 1 MONTH", price:40, image:"images/spotify.png", category:"accounts"},
   {name:"USA FACEBOOK ACCOUNT", price:50, image:"images/facebook.png", category:"accounts"},
   {name:"GMAIL VERIFIED ACCOUNT", price:25, image:"images/gmail.jpg", category:"accounts"},
 
-  // ✅ SNAPCHAT PRODUCTS ADDED
-  {name:"SNAPCHAT PLUS 1 MONTH", price:30, image:"images/snapchat.png", category:"accounts"},
-  {name:"SNAPCHAT PLUS 1 YEAR", price:95, image:"images/snapchat.png", category:"accounts"},
+  // ================= SUBSCRIPTIONS =================
+  {name:"NETFLIX SHARED 1 MONTH", price:35, image:"images/netflix.png", category:"subscriptions"},
+  {name:"NETFLIX PERSONAL 1 MONTH", price:70, image:"images/netflix.png", category:"subscriptions"},
+  {name:"SPOTIFY PREMIUM 1 MONTH", price:40, image:"images/spotify.png", category:"subscriptions"},
+  {name:"SNAPCHAT PLUS 1 MONTH", price:30, image:"images/snapchat.png", category:"subscriptions"},
+  {name:"SNAPCHAT PLUS 1 YEAR", price:95, image:"images/snapchat.png", category:"subscriptions"},
 
-  // ================= E-CODES / GIFT CARDS =================
+  // ================= GIFT CARDS =================
   {name:"$2 ITUNES E-CODE", price:32, image:"images/itunes-2.png", category:"giftcards"},
   {name:"$3 ITUNES E-CODE", price:43, image:"images/itunes-3.png", category:"giftcards"},
   {name:"$4 ITUNES E-CODE", price:57, image:"images/itunes-4.png", category:"giftcards"},
@@ -46,7 +44,16 @@ const products = [
   {name:"2GB MTN DATA", price:10, image:DATA_IMAGE, category:"data"},
   {name:"3GB MTN DATA", price:15.50, image:DATA_IMAGE, category:"data"},
   {name:"5GB MTN DATA", price:25, image:DATA_IMAGE, category:"data"},
-  {name:"10GB MTN DATA", price:50, image:DATA_IMAGE, category:"data"}
+  {name:"10GB MTN DATA", price:50, image:DATA_IMAGE, category:"data"},
+
+  // ================= SOCIAL BOOST =================
+  {name:"1K TIKTOK LIKES", price:10, image:"images/tiktok.png", category:"social"},
+  {name:"1K TIKTOK VIEWS", price:5, image:"images/tiktok.png", category:"social"},
+  {name:"500 TIKTOK FOLLOWERS", price:25, image:"images/tiktok.png", category:"social"},
+  {name:"1K TIKTOK FOLLOWERS", price:45, image:"images/tiktok.png", category:"social"},
+  {name:"1K INSTAGRAM LIKES", price:23, image:"images/instagram.png", category:"social"},
+  {name:"1K INSTAGRAM VIEWS", price:8, image:"images/instagram.png", category:"social"},
+  {name:"1K FACEBOOK FOLLOWERS", price:30, image:"images/facebook.png", category:"social"}
 
 ];
 
@@ -84,12 +91,25 @@ function filterProducts(category){
 // ================= ADD TO CART =================
 function addToCart(index){
   const product = products[index];
-  const existing = cart.find(item => item.name === product.name);
+
+  let username = "";
+
+  if(product.category === "social"){
+    username = prompt("Enter username or link:");
+    if(!username){
+      alert("Username/link is required!");
+      return;
+    }
+  }
+
+  const existing = cart.find(item =>
+    item.name === product.name && item.username === username
+  );
 
   if(existing){
     existing.quantity++;
   } else {
-    cart.push({...product, quantity:1});
+    cart.push({...product, quantity:1, username});
   }
 
   updateCart();
@@ -114,6 +134,7 @@ function updateCart(){
         <div class="cart-item" style="display:flex; justify-content:space-between; align-items:center;">
           <div>
             ${item.name}<br>
+            ${item.username ? "User: " + item.username + "<br>" : ""}
             GHC ${item.price} × ${item.quantity}
           </div>
 
