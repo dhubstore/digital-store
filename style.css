@@ -1,111 +1,171 @@
+/* ================= GLOBAL ================= */
 body {
   margin: 0;
-  font-family: Arial;
+  font-family: 'Segoe UI', Arial, sans-serif;
   background: #0f172a;
   color: white;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 header {
   text-align: center;
-  padding: 20px;
-  background: #020617;
+  padding: 25px 15px;
+  background: linear-gradient(135deg, #020617, #020617);
 }
 
-/* NAV */
+header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+header p {
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+/* ================= NAV ================= */
 nav {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 10px;
-  padding: 10px;
+  padding: 15px;
 }
 
 nav button {
-  padding: 8px 15px;
+  padding: 8px 14px;
   border: none;
   background: #1e293b;
   color: white;
-  border-radius: 6px;
+  border-radius: 20px;
   cursor: pointer;
+  font-size: 13px;
+  transition: 0.3s;
 }
 
-/* PRODUCTS */
+nav button:hover {
+  background: #22c55e;
+}
+
+nav button.active {
+  background: #22c55e;
+}
+
+/* ================= PRODUCTS GRID ================= */
 .products {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  padding: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 18px;
+  padding: 15px;
 }
 
+/* ================= PRODUCT CARD ================= */
 .card {
   background: #1e293b;
-  padding: 18px;
-  border-radius: 10px;
+  padding: 15px;
+  border-radius: 16px;
   text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  transition: 0.3s;
 }
 
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* IMAGE FIX */
 .card img {
   width: 100%;
+  height: 140px;
+  object-fit: contain;
+  background: #ffffff;
+  padding: 10px;
   border-radius: 10px;
 }
 
-/* BUTTONS */
-button {
-  background: #22c55e;
+/* TITLE */
+.card h3 {
+  font-size: 15px;
+  margin: 10px 0 5px;
+}
+
+/* PRICE */
+.card p {
+  color: #22c55e;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+/* BUTTON */
+.card button {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
   border: none;
   padding: 10px;
   margin-top: 10px;
   color: white;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
+  font-size: 13px;
+  transition: 0.3s;
 }
 
-/* CART ICON */
+.card button:hover {
+  transform: scale(1.05);
+}
+
+/* ================= CART ICON ================= */
 .cart-icon {
   position: fixed;
   right: 15px;
   top: 15px;
-  background: #22c55e;
-  padding: 10px;
-  border-radius: 8px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  padding: 10px 12px;
+  border-radius: 10px;
   cursor: pointer;
   z-index: 1100;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-/* CART PANEL */
-.cart-box{
+/* ================= CART PANEL ================= */
+.cart-box {
   position: fixed;
   top: 0;
-  right: -320px; /* hidden */
+  right: -320px;
   width: 300px;
   height: 100vh;
   background: #020617;
   padding: 20px;
-  box-sizing: border-box;
   transition: right 0.3s ease;
   z-index: 1000;
   overflow-y: auto;
-  box-shadow: -5px 0 20px rgba(0,0,0,0.4);
+  box-shadow: -5px 0 25px rgba(0,0,0,0.5);
 }
 
-/* OPEN */
-.cart-box.active{
+.cart-box.active {
   right: 0;
 }
 
-/* CART ITEMS */
+/* ================= CART ITEM ================= */
 .cart-item {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #1e293b;
 }
 
-/* CLOSE BUTTON */
+/* CART BUTTONS */
+.cart-item button {
+  margin-left: 5px;
+  padding: 5px 8px;
+  font-size: 12px;
+}
+
+/* ================= CLOSE BUTTON ================= */
 .close-cart {
   background: transparent;
   border: none;
   color: white;
   font-size: 20px;
   cursor: pointer;
-  padding: 5px;
   transition: 0.2s;
 }
 
@@ -113,81 +173,39 @@ button {
   color: #ef4444;
   transform: scale(1.2);
 }
-/* ================= CHECKOUT PAGE ================= */
 
-/* CENTER CONTAINER */
+/* ================= CHECKOUT ================= */
 .checkout-container {
   max-width: 500px;
   margin: auto;
   padding: 20px;
 }
 
-/* TITLE */
 .title {
   text-align: center;
   margin-bottom: 20px;
-  font-size: 28px;
+  font-size: 26px;
 }
 
-/* RECEIPT CARD */
+/* RECEIPT */
 .receipt-card {
   background: #020617;
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
   margin-bottom: 20px;
 }
 
-/* FORM CARD */
-.form-card {
-  background: #1e293b;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-}
-
-/* INPUTS */
-.form-card input,
-.form-card select {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  border-radius: 8px;
-  border: none;
-  outline: none;
-  font-size: 14px;
-}
-
-/* PAYMENT BOX */
-.payment-box {
-  margin-top: 15px;
-  padding: 15px;
-  background: #020617;
-  border-radius: 10px;
-}
-
-/* COPY BUTTON */
-.payment-box button {
-  background: #22c55e;
-  border: none;
-  padding: 6px 10px;
-  margin-left: 10px;
-  border-radius: 6px;
-  color: white;
-  cursor: pointer;
-}
-
-/* ================= CHECKOUT FORM IMPROVEMENT ================= */
-
+/* FORM */
 .form-card {
   background: #020617;
   padding: 20px;
   border-radius: 14px;
-  margin: 20px;
+  margin: 20px 0;
   box-shadow: 0 10px 25px rgba(0,0,0,0.4);
 }
 
-/* Inputs */
+/* INPUTS */
 .form-card input,
 .form-card select {
   width: 100%;
@@ -208,15 +226,15 @@ button {
   box-shadow: 0 0 0 2px rgba(34,197,94,0.2);
 }
 
-/* Section title */
+/* SECTION TITLE */
 .form-card h3 {
   margin-top: 20px;
   margin-bottom: 10px;
-  font-size: 16px;
+  font-size: 15px;
   color: #cbd5f5;
 }
 
-/* Payment box */
+/* PAYMENT BOX */
 .payment-box {
   background: #0f172a;
   padding: 15px;
@@ -225,7 +243,7 @@ button {
   border: 1px solid #1e293b;
 }
 
-/* Copy button */
+/* COPY BUTTON */
 .payment-box button {
   background: #22c55e;
   border: none;
@@ -235,7 +253,7 @@ button {
   cursor: pointer;
 }
 
-/* Order button */
+/* PAY BUTTON */
 .pay-btn {
   width: 100%;
   padding: 14px;
@@ -251,8 +269,9 @@ button {
 
 .pay-btn:hover {
   transform: scale(1.02);
-  }
+}
 
+/* ================= INFO ================= */
 .info-section {
   padding: 20px;
   margin: 20px;
