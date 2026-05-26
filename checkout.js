@@ -97,7 +97,7 @@ function submitOrder(){
 
   // ================= WHATSAPP =================
   window.open(
-    "https://wa.me/233509329683?text=" + encodeURIComponent(message),
+    "https://wa.me/233206421572?text=" + encodeURIComponent(message),
     "_blank"
   );
 
