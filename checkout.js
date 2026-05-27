@@ -40,24 +40,26 @@ function updatePaymentDetails(){
 
   if(method === "tcash"){
     box.innerHTML = `
-      <h4>Telecel Cash (Tcash)</h4>
+      <h4>Telecel Cash (T-Cash)</h4>
       <p>
-        Number: <b id="tcashNumber">0204496069</b>
+        Number: <b id="momoNumber">020 449 6069</b>
         <button onclick="copyNumber()">Copy</button>
       </p>
       <p style="font-size:12px;">Confirm recipient before sending</p>
       <p>Use your reference when sending payment</p>
     `;
   } else {
-    box.innerHTML = `<p>Bank transfer coming soon</p>`;
+    box.innerHTML = `
+      <p>Bank transfer coming soon</p>
+    `;
   }
 }
 
 // ================= COPY =================
 function copyNumber(){
-  const number = document.getElementById("tcashNumber").innerText;
+  const number = document.getElementById("momoNumber").innerText;
   navigator.clipboard.writeText(number);
-  alert("Number copied!");
+  alert("Telecel Cash number copied!");
 }
 
 document.getElementById("paymentMethod").addEventListener("change", updatePaymentDetails);
@@ -76,6 +78,14 @@ function submitOrder(){
     return;
   }
 
+  let paymentMethodText = "";
+
+  if(payment === "tcash"){
+    paymentMethodText = "Telecel Cash (T-Cash)";
+  } else {
+    paymentMethodText = "Bank Transfer";
+  }
+
   let message = `🛍️ *DHub Digital Store*\n`;
   message += `━━━━━━━━━━━━━━━\n`;
   message += `🆔 ${orderId}\n💳 ${reference}\n\n`;
@@ -92,7 +102,8 @@ function submitOrder(){
   });
 
   message += `━━━━━━━━━━━━━━━\n`;
-  message += `💰 Total: GHC ${total}\n\n`;
+  message += `💰 Total: GHC ${total}\n`;
+  message += `💳 Payment: ${paymentMethodText}\n\n`;
   message += `👤 ${name}\n📱 ${phone}\n📧 ${email}`;
 
   // ================= WHATSAPP =================
@@ -107,7 +118,7 @@ function submitOrder(){
     email: email,
     order: orderText,
     total: total,
-    payment: payment,
+    payment: paymentMethodText,
     order_id: orderId
   });
 
