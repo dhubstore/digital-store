@@ -41,12 +41,23 @@ function updatePaymentDetails(){
   if(method === "tcash"){
     box.innerHTML = `
       <h4>Telecel Cash (T-Cash)</h4>
+
+      <p>
+        Name: <b>PATRICK KOFI KUMAH</b>
+      </p>
+
       <p>
         Number: <b id="momoNumber">020 449 6069</b>
         <button onclick="copyNumber()">Copy</button>
       </p>
-      <p style="font-size:12px;">Confirm recipient before sending</p>
-      <p>Use your reference when sending payment</p>
+
+      <p style="font-size:12px;">
+        Confirm recipient before sending
+      </p>
+
+      <p>
+        Use your reference when sending payment
+      </p>
     `;
   } else {
     box.innerHTML = `
