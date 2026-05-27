@@ -38,11 +38,11 @@ function updatePaymentDetails(){
   const method = document.getElementById("paymentMethod").value;
   const box = document.getElementById("paymentDetails");
 
-  if(method === "momo"){
+  if(method === "tcash"){
     box.innerHTML = `
-      <h4>Mobile Money (MoMo)</h4>
+      <h4>Telecel Cash (Tcash)</h4>
       <p>
-        Number: <b id="momoNumber">0241923407</b>
+        Number: <b id="tcashNumber">0204496069</b>
         <button onclick="copyNumber()">Copy</button>
       </p>
       <p style="font-size:12px;">Confirm recipient before sending</p>
@@ -55,7 +55,7 @@ function updatePaymentDetails(){
 
 // ================= COPY =================
 function copyNumber(){
-  const number = document.getElementById("momoNumber").innerText;
+  const number = document.getElementById("tcashNumber").innerText;
   navigator.clipboard.writeText(number);
   alert("Number copied!");
 }
