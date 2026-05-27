@@ -197,9 +197,9 @@ function updatePaymentDetails(){
 
   if(method === "momo"){
     box.innerHTML = `
-      <h4>Mobile Money (MoMo)</h4>
+      <h4>Telecel Cash</h4>
       <p>
-        Number: <b id="momoNumber">0241923407</b>
+        Number: <b id="momoNumber">020 449 6069</b>
         <button onclick="copyNumber()">Copy</button>
       </p>
       <p style="font-size:12px;">Confirm the recipient before sending</p>
@@ -217,7 +217,7 @@ function updatePaymentDetails(){
 function copyNumber(){
   const number = document.getElementById("momoNumber").innerText;
   navigator.clipboard.writeText(number);
-  alert("Number copied!");
+  alert("Telecel Cash number copied!");
 }
 
 // ================= EVENTS =================
