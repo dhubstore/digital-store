@@ -355,7 +355,10 @@ nav button.active {
   z-index:9999;
   cursor:move;
 
-  /* Glow effect */
+  touch-action:none;
+  -webkit-user-select:none;
+  user-select:none;
+
   box-shadow:
     0 0 0 8px rgba(37,211,102,0.25),
     0 0 25px rgba(37,211,102,0.7);
@@ -366,7 +369,6 @@ nav button.active {
   height:40px;
 }
 
-/* Pulse animation */
 .whatsapp-float::before{
   content:"";
   position:absolute;
