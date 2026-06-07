@@ -61,19 +61,22 @@ const products = [
 let cart = [];
 
 // ================= DISPLAY PRODUCTS =================
+
 function displayProducts(list){
   const container = document.getElementById("productList");
   if(!container) return;
 
   container.innerHTML = "";
 
-  list.forEach((p,i)=>{
+  list.forEach((p)=>{
+    const realIndex = products.indexOf(p);
+
     container.innerHTML += `
       <div class="card">
         <img src="${p.image}" onerror="this.src='https://via.placeholder.com/200'">
         <h3>${p.name}</h3>
         <p>GHC ${p.price}</p>
-        <button onclick="addToCart(${i})">Add to Cart</button>
+        <button onclick="addToCart(${realIndex})">Add to Cart</button>
       </div>
     `;
   });
