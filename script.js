@@ -244,26 +244,33 @@ displayProducts(products);
 const whatsappBtn = document.getElementById("whatsappBtn");
 
 let isDragging = false;
-let offsetX, offsetY;
+let offsetX = 0;
+let offsetY = 0;
 
 whatsappBtn.addEventListener("touchstart", (e) => {
   isDragging = true;
-  offsetX = e.touches[0].clientX - whatsappBtn.offsetLeft;
-  offsetY = e.touches[0].clientY - whatsappBtn.offsetTop;
-});
+
+  const touch = e.touches[0];
+
+  offsetX = touch.clientX - whatsappBtn.offsetLeft;
+  offsetY = touch.clientY - whatsappBtn.offsetTop;
+
+  e.preventDefault();
+}, { passive: false });
 
 document.addEventListener("touchmove", (e) => {
   if (!isDragging) return;
 
-  whatsappBtn.style.left =
-    (e.touches[0].clientX - offsetX) + "px";
+  const touch = e.touches[0];
 
-  whatsappBtn.style.top =
-    (e.touches[0].clientY - offsetY) + "px";
+  whatsappBtn.style.left = (touch.clientX - offsetX) + "px";
+  whatsappBtn.style.top = (touch.clientY - offsetY) + "px";
 
   whatsappBtn.style.right = "auto";
   whatsappBtn.style.bottom = "auto";
-});
+
+  e.preventDefault();
+}, { passive: false });
 
 document.addEventListener("touchend", () => {
   isDragging = false;
