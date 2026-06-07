@@ -240,3 +240,31 @@ document.addEventListener("click", function(e){
 
 // ================= INIT =================
 displayProducts(products);
+
+const whatsappBtn = document.getElementById("whatsappBtn");
+
+let isDragging = false;
+let offsetX, offsetY;
+
+whatsappBtn.addEventListener("touchstart", (e) => {
+  isDragging = true;
+  offsetX = e.touches[0].clientX - whatsappBtn.offsetLeft;
+  offsetY = e.touches[0].clientY - whatsappBtn.offsetTop;
+});
+
+document.addEventListener("touchmove", (e) => {
+  if (!isDragging) return;
+
+  whatsappBtn.style.left =
+    (e.touches[0].clientX - offsetX) + "px";
+
+  whatsappBtn.style.top =
+    (e.touches[0].clientY - offsetY) + "px";
+
+  whatsappBtn.style.right = "auto";
+  whatsappBtn.style.bottom = "auto";
+});
+
+document.addEventListener("touchend", () => {
+  isDragging = false;
+});
