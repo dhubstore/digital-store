@@ -289,3 +289,52 @@ nav button.active {
 .info-section a:hover {
   text-decoration: underline;
 }
+
+
+/* HERO BANNER */
+.hero-banner{
+  text-align:center;
+  padding:40px 20px;
+  margin:20px;
+  border-radius:15px;
+  background:linear-gradient(135deg,#22c55e,#16a34a);
+}
+
+.hero-banner h1{
+  margin-bottom:10px;
+}
+
+.hero-banner p{
+  margin:8px 0;
+}
+
+.shop-btn{
+  display:inline-block;
+  margin-top:15px;
+  padding:12px 25px;
+  background:white;
+  color:#16a34a;
+  text-decoration:none;
+  border-radius:8px;
+  font-weight:bold;
+}
+
+/* WHATSAPP SUPPORT */
+.whatsapp-support{
+  margin:20px;
+  padding:20px;
+  text-align:center;
+  background:#020617;
+  border-radius:12px;
+}
+
+.whatsapp-support a{
+  display:inline-block;
+  margin-top:10px;
+  padding:12px 20px;
+  background:#22c55e;
+  color:white;
+  text-decoration:none;
+  border-radius:8px;
+  font-weight:bold;
+}
