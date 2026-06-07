@@ -339,23 +339,52 @@ nav button.active {
   font-weight:bold;
 }
 
+/* WhatsApp Floating Button */
 .whatsapp-float{
   position:fixed;
-  bottom:80px;
+  bottom:90px;
   right:20px;
-  width:65px;
-  height:65px;
-  background:#25D366;
-  color:white;
+  width:70px;
+  height:70px;
   border-radius:50%;
+  background:#25D366;
   display:flex;
-  align-items:center;
   justify-content:center;
-  font-size:32px;
+  align-items:center;
   text-decoration:none;
   z-index:9999;
-  box-shadow:0 4px 15px rgba(0,0,0,.3);
   cursor:move;
-  user-select:none;
+
+  /* Glow effect */
+  box-shadow:
+    0 0 0 8px rgba(37,211,102,0.25),
+    0 0 25px rgba(37,211,102,0.7);
 }
 
+.whatsapp-float img{
+  width:40px;
+  height:40px;
+}
+
+/* Pulse animation */
+.whatsapp-float::before{
+  content:"";
+  position:absolute;
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  background:rgba(37,211,102,0.4);
+  animation:pulse 2s infinite;
+  z-index:-1;
+}
+
+@keyframes pulse{
+  0%{
+    transform:scale(1);
+    opacity:0.8;
+  }
+  100%{
+    transform:scale(1.6);
+    opacity:0;
+  }
+}
