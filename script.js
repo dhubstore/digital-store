@@ -241,6 +241,20 @@ document.addEventListener("click", function(e){
   }
 });
 
+// ================= SEARCH =================
+function searchProducts() {
+  const value = document
+    .getElementById("searchInput")
+    .value
+    .toLowerCase();
+
+  const filtered = products.filter(product =>
+    product.name.toLowerCase().includes(value)
+  );
+
+  displayProducts(filtered);
+}
+
 // ================= INIT =================
 displayProducts(products);
 
