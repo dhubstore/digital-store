@@ -66,15 +66,36 @@
 </div>
 
 <!-- NAV -->
-<nav>
-  <button onclick="filterProducts('all')">All</button>
-  <button onclick="filterProducts('vpn')">VPN</button>
-  <button onclick="filterProducts('accounts')">Accounts</button>
-  <button onclick="filterProducts('subscriptions')">Subscriptions</button>
-  <button onclick="filterProducts('giftcards')">Gift Cards</button>
-  <button onclick="filterProducts('data')">Data</button>
-  <button onclick="filterProducts('social')">Social Boost</button>
-</nav>
+<header class="navbar">
+
+  <div class="logo">
+    <h2>DHub</h2>
+  </div>
+
+  <ul class="nav-links">
+    <li onclick="filterProducts('all')">Home</li>
+    <li onclick="filterProducts('vpn')">VPN</li>
+    <li onclick="filterProducts('accounts')">Accounts</li>
+    <li onclick="filterProducts('subscriptions')">Subscriptions</li>
+
+    <li class="dropdown">
+      More ▾
+      <ul class="dropdown-menu">
+        <li onclick="filterProducts('giftcards')">Gift Cards</li>
+        <li onclick="filterProducts('data')">Data Bundles</li>
+        <li onclick="filterProducts('social')">Social Boost</li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="nav-actions">
+    <button onclick="toggleTheme()" class="theme-btn">🌙</button>
+    <div class="cart-icon" onclick="toggleCart()">
+      🛒 <span id="cartCount">0</span>
+    </div>
+  </div>
+
+</header>
 
 <!-- SEARCH -->
 <div class="search-box">
