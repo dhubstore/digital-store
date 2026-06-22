@@ -9,6 +9,7 @@
 
 <body>
 
+<!-- HEADER -->
 <header>
   <div class="logo-area">
     <h1>DHub Digital Store</h1>
@@ -22,13 +23,10 @@
   </div>
 </header>
 
-<p style="text-align:center; font-size:14px;">
-  
-</p>
+<!-- HERO -->
 <section class="hero-banner">
   <div class="hero-content">
     <h1>Digital Products Delivered Instantly</h1>
-
     <p>
       Buy VPNs, Streaming Accounts, Gift Cards,
       Data Bundles and Social Media Services
@@ -37,19 +35,14 @@
 
     <div class="hero-buttons">
       <a href="#productList" class="shop-btn">Browse Products</a>
-
-      <a href="https://wa.me/233206421572"
-         target="_blank"
-         class="contact-btn">
-         Contact Support
+      <a href="https://wa.me/233206421572" target="_blank" class="contact-btn">
+        Contact Support
       </a>
     </div>
   </div>
 </section>
 
-
-  
-<!-- STATS SECTION -->
+<!-- STATS -->
 <section class="stats">
   <div class="stat-box">
     <h2>1200+</h2>
@@ -69,9 +62,6 @@
 
 <!-- CART ICON -->
 <div class="cart-icon" onclick="toggleCart()">
-  
-<!-- CART ICON -->
-<div class="cart-icon" onclick="toggleCart()">
   🛒 <span id="cartCount">0</span>
 </div>
 
@@ -85,15 +75,7 @@
   <button onclick="filterProducts('data')">Data</button>
   <button onclick="filterProducts('social')">Social Boost</button>
 </nav>
-<div class="search-box">
-  <input
-    type="text"
-    id="searchInput"
-    placeholder="Search products..."
-    onkeyup="searchProducts()"
-  >
-</div>
-  
+
 <!-- SEARCH -->
 <div class="search-box">
   <input
@@ -116,9 +98,7 @@
 </div>
 
 <!-- ORDER COUNTER -->
-<h3 style="text-align:center;">
-  ✅ 1,200+ Orders Delivered
-</h3>
+<h3 style="text-align:center;">✅ 1,200+ Orders Delivered</h3>
 
 <!-- TESTIMONIALS -->
 <div class="testimonials">
@@ -134,14 +114,14 @@
     <b>- Customer</b>
   </div>
 </div>
-  <!-- FAQ -->
-<section class="faq">
 
+<!-- FAQ -->
+<section class="faq">
   <h2>Frequently Asked Questions</h2>
 
   <div class="faq-item">
     <h3>How long does delivery take?</h3>
-    <p>Most orders are delivered instantly or within a few minutes.</p>
+    <p>Most orders are delivered instantly or within minutes.</p>
   </div>
 
   <div class="faq-item">
@@ -151,58 +131,36 @@
 
   <div class="faq-item">
     <h3>Do you offer support?</h3>
-    <p>Yes, our support team is available 24/7.</p>
+    <p>Yes, 24/7 customer support is available.</p>
   </div>
-
 </section>
 
+<!-- WHATSAPP SUPPORT -->
 <div class="whatsapp-support">
   <h2>💬 Need Help?</h2>
-  <p>Contact our support team anytime.</p>
-  <a href="https://wa.me/233206421572?text=Hello%20DHub%20I%20need%20help" target="_blank">
-    Chat on WhatsApp
-  </a>
+  <p>Contact support anytime.</p>
+  <a href="https://wa.me/233206421572" target="_blank">Chat on WhatsApp</a>
 </div>
-  
-  
-<!-- DESCRIPTION + CONTACT -->
-<div class="info-section">
 
+<!-- ABOUT -->
+<div class="info-section">
   <h2>About DHub Digital Store</h2>
   <p>
-    DHub Digital Store provides fast, secure, and reliable digital services including VPNs,
-    accounts, data bundles, and gift cards. We ensure instant delivery and trusted support.
+    We provide fast, secure digital services including VPNs, accounts,
+    data bundles, gift cards, and social media services.
   </p>
 
-  <h3>Contact Support</h3>
+  <h3>Contact</h3>
 
-  <p>
-    📱 WhatsApp:
-    <a href="https://wa.me/233206421572?text=Hello%20DHub%20I%20need%20help" target="_blank">
-      Chat Now
-    </a>
-  </p>
-
-  <p>
-    📧 Email:
-    <a href="mailto:digitalhubghsupport@gmail.com">
-      Send Email
-    </a>
-  </p>
-
-  <p>
-    💬 Telegram:
-    <a href="https://t.me/digitalhubghsupport" target="_blank">
-      @digitalhubghsupport
-    </a>
-  </p>
-
+  <p>📱 WhatsApp: <a href="https://wa.me/233206421572">Chat Now</a></p>
+  <p>📧 Email: <a href="mailto:digitalhubghsupport@gmail.com">Send Email</a></p>
+  <p>💬 Telegram: <a href="https://t.me/digitalhubghsupport">@digitalhubghsupport</a></p>
 </div>
 
-<!-- CART -->
+<!-- CART BOX -->
 <div class="cart-box" id="cartBox">
 
-  <div style="display:flex; justify-content:space-between; align-items:center;">
+  <div style="display:flex; justify-content:space-between;">
     <h2>Your Cart</h2>
     <button class="close-cart" onclick="toggleCart()">✖</button>
   </div>
@@ -210,22 +168,18 @@
   <div id="cartItems"></div>
   <h3 id="total"></h3>
 
-  <!-- CHECKOUT BUTTON -->
   <button onclick="checkout()">Proceed to Checkout</button>
-
 </div>
 
-<a href="https://wa.me/233206421572?text=Hello%20DHub%20I%20need%20help"
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/233206421572"
    class="whatsapp-float"
    id="whatsappBtn"
    target="_blank">
+   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+</a>
 
-   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp">
-
-</a>  
-  
-<!-- IMPORTANT: ONLY THIS SCRIPT -->
+<!-- SCRIPT -->
 <script src="script.js"></script>
 
 </body>
