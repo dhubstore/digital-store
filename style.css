@@ -474,3 +474,26 @@ padding:8px 12px;
 border-radius:20px;
 font-size:13px;
 }
+body.light {
+  background: #f1f5f9;
+  color: black;
+}
+
+body.light .card,
+body.light .cart-box,
+body.light .info-section,
+body.light .faq,
+body.light .hero-banner {
+  background: white;
+  color: black;
+}
+
+.theme-btn{
+  margin-top:10px;
+  padding:8px 12px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  background:#22c55e;
+  color:white;
+}
