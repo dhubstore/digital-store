@@ -504,3 +504,72 @@ body.light .hero-banner {
   background:#020617;
   color:#94a3b8;
 }
+
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 20px;
+  background:#020617;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 5px 20px rgba(0,0,0,0.4);
+}
+
+/* LOGO */
+.logo h2{
+  color:#22c55e;
+  margin:0;
+}
+
+/* LINKS */
+.nav-links{
+  display:flex;
+  list-style:none;
+  gap:20px;
+}
+
+.nav-links li{
+  cursor:pointer;
+  color:white;
+  font-size:14px;
+  position:relative;
+}
+
+.nav-links li:hover{
+  color:#22c55e;
+}
+
+/* DROPDOWN */
+.dropdown-menu{
+  display:none;
+  position:absolute;
+  background:#1e293b;
+  padding:10px;
+  border-radius:8px;
+  top:25px;
+}
+
+.dropdown:hover .dropdown-menu{
+  display:block;
+}
+
+.dropdown-menu li{
+  padding:8px;
+  white-space:nowrap;
+}
+
+/* RIGHT SIDE */
+.nav-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .nav-links{
+    display:none;
+  }
+}
