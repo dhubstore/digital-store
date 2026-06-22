@@ -292,3 +292,6 @@ document.addEventListener("touchmove", (e) => {
 document.addEventListener("touchend", () => {
   isDragging = false;
 });
+function toggleTheme(){
+  document.body.classList.toggle("light");
+}
