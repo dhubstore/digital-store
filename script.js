@@ -5,9 +5,9 @@ const DATA_IMAGE = "images/data-bundle.png";
 const products = [
 
   // ================= VPN =================
-  {name:"EXPRESS VPN 1 MONTH", price:45, image:"images/express-vpn.jpg", category:"vpn"},
+  {name:"EXPRESS VPN 1 MONTH", price:55, image:"images/express-vpn.jpg", category:"vpn"},
   {name:"EXPRESS VPN 3 MONTHS", price:60, image:"images/express-vpn.jpg", category:"vpn"},
-  {name:"EXPRESS VPN 1 YEAR", price:90, image:"images/express-vpn.jpg", category:"vpn"},
+  {name:"EXPRESS VPN 1 YEAR", price:150, image:"images/express-vpn.jpg", category:"vpn"},
 
   {name:"PIA VPN 1 MONTH", price:45, image:"images/pia-vpn.png", category:"vpn"},
   {name:"PIA VPN 3 MONTHS", price:65, image:"images/pia-vpn.png", category:"vpn"},
@@ -27,8 +27,8 @@ const products = [
   {name:"NETFLIX SHARED 1 MONTH", price:35, image:"images/netflix.png", category:"subscriptions"},
   {name:"NETFLIX PERSONAL 1 MONTH", price:70, image:"images/netflix.png", category:"subscriptions"},
   {name:"SPOTIFY PREMIUM 1 MONTH", price:40, image:"images/spotify.png", category:"subscriptions"},
-  {name:"SNAPCHAT PLUS 1 MONTH", price:30, image:"images/snapchat.png", category:"subscriptions"},
-  {name:"SNAPCHAT PLUS 1 YEAR", price:95, image:"images/snapchat.png", category:"subscriptions"},
+  {name:"SNAPCHAT PLUS 1 MONTH", price:45, image:"images/snapchat.png", category:"subscriptions"},
+  {name:"SNAPCHAT PLUS 1 YEAR", price:113, image:"images/snapchat.png", category:"subscriptions"},
 
   // ================= GIFT CARDS =================
   {name:"$2 ITUNES E-CODE", price:32, image:"images/itunes-2.png", category:"giftcards"},
