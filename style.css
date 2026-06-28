@@ -74,28 +74,26 @@ nav button.active {
 }
 
 /* ================= PRODUCTS GRID ================= */
-.products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 18px;
-  padding: 15px;
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    padding:20px;
 }
+
 
 /* ================= PRODUCT CARD ================= */
 .card{
-  background:var(--card);
-  padding:18px;
-  border-radius:20px;
-  text-align:center;
-  box-shadow:var(--shadow);
-  border:1px solid rgba(255,255,255,0.05);
-  transition:all .3s ease;
-  overflow:hidden;
+    background:#111827;
+    border-radius:20px;
+    padding:20px;
+    text-align:center;
+    transition:0.3s;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
 }
 
 .card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 15px 40px rgba(99,102,241,.25);
+    transform:translateY(-8px);
 }
 
 /* IMAGE FIX */
