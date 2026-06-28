@@ -328,10 +328,13 @@ nav button.active {
 
 /* HERO BANNER */
 .hero-banner{
-  text-align:center;
-  padding:70px 20px;
-  margin:20px;
-  border-radius:25px;
+    width:100%;
+    padding:60px 20px;
+    background:linear-gradient(135deg,#3b82f6,#8b5cf6);
+    border-radius:20px;
+    margin:20px auto;
+    text-align:center;
+}
 
 .hero-banner{
   background:
