@@ -680,3 +680,7 @@ body.light .hero-banner {
     transform:translateY(0);
   }
 }
+.header-badges i{
+  color:var(--primary);
+  margin-right:6px;
+}
