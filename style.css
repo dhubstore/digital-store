@@ -723,3 +723,30 @@ html,body{
     background:#070b1f;
     color:#fff;
 }
+@media(max-width:768px){
+
+    .header-badges{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .products{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .card img{
+        height:180px;
+    }
+
+    .hero-banner{
+        margin:10px;
+    }
+}
