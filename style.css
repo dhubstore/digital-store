@@ -367,7 +367,12 @@ nav button.active {
   display:inline-block;
   margin-top:10px;
   padding:12px 20px;
-  background:#22c55e;
+  .whatsapp-support a{
+  background:linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary)
+  );
   color:white;
   text-decoration:none;
   border-radius:8px;
