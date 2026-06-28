@@ -46,7 +46,7 @@ const products = [
 
 
 // ================= APPLE & PREMIUM SUBSCRIPTIONS =================
-{name:"APPLE MUSIC 2 MONTH", price:80, image:"images/apple-music.png.PNG", category:"subscriptions"},
+{name:"APPLE MUSIC 2 MONTH", price:80, image:"images/apple-music.png", category:"subscriptions"},
 {name:"APPLE TV+ 1 MONTH", price:55, image:"images/apple-tv.png", category:"subscriptions"},
 {name:"YOUTUBE PREMIUM 1 MONTH", price:58, image:"images/youtube-premium.png", category:"subscriptions"},
   // ================= DATA =================
