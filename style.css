@@ -622,8 +622,9 @@ body.light .hero-banner {
 
 /* LOGO */
 .logo h2{
-  color:#22c55e;
+  color:var(--primary);
   margin:0;
+  font-weight:700;
 }
 
 /* LINKS */
@@ -641,17 +642,25 @@ body.light .hero-banner {
 }
 
 .nav-links li:hover{
-  color:#22c55e;
+  color:var(--primary);
 }
+
 
 /* DROPDOWN */
 .dropdown-menu{
   display:none;
   position:absolute;
-  background:#1e293b;
+
+  background:var(--card);
+
   padding:10px;
-  border-radius:8px;
-  top:25px;
+  border-radius:12px;
+
+  top:30px;
+
+  border:1px solid rgba(255,255,255,0.05);
+
+  box-shadow:var(--shadow);
 }
 
 .dropdown:hover .dropdown-menu{
