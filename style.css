@@ -1,4 +1,4 @@
-u:root{
+:root{
   --bg:#0B1120;
   --card:#111827;
   --card2:#1F2937;
@@ -18,22 +18,23 @@ body{
   background:var(--bg);
   color:var(--text);
   background-image:
-    radial-gradient(
-      circle at top right,
-      rgba(99,102,241,.15),
-      transparent 40%
-    );
+    radial-gradient(circle at top right, rgba(99,102,241,.15), transparent 40%);
+}
+
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  transition:background .3s ease, color .3s ease, transform .3s ease, box-shadow .3s ease;
 }
 
 /* ================= HEADER ================= */
 header {
   text-align: center;
   padding: 25px 15px;
-  background: linear-gradient(
-  135deg,
-  var(--primary),
-  var(--secondary)
-);
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+}
 
 header h1 {
   margin: 0;
@@ -62,41 +63,34 @@ nav button {
   border-radius: 20px;
   cursor: pointer;
   font-size: 13px;
-  transition: 0.3s;
 }
 
-nav button:hover {
-  background: #22c55e;
-}
-
+nav button:hover,
 nav button.active {
   background: #22c55e;
 }
 
 /* ================= PRODUCTS GRID ================= */
 .products{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
-    padding:20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+  padding:20px;
 }
-
 
 /* ================= PRODUCT CARD ================= */
 .card{
-    background:#111827;
-    border-radius:20px;
-    padding:20px;
-    text-align:center;
-    transition:0.3s;
-    box-shadow:0 10px 30px rgba(0,0,0,.3);
+  background:#111827;
+  border-radius:20px;
+  padding:20px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,.3);
 }
 
 .card:hover{
-    transform:translateY(-8px);
+  transform:translateY(-8px);
 }
 
-/* IMAGE FIX */
 .card img {
   width: 100%;
   height: 140px;
@@ -106,20 +100,16 @@ nav button.active {
   border-radius: 10px;
 }
 
-/* TITLE */
 .card h3 {
   font-size: 15px;
   margin: 10px 0 5px;
 }
 
-/* PRICE */
 .card p {
   color: #22c55e;
   font-weight: bold;
-  margin: 5px 0;
 }
 
-/* BUTTON */
 .card button {
   background: linear-gradient(135deg, #22c55e, #16a34a);
   border: none;
@@ -129,7 +119,6 @@ nav button.active {
   border-radius: 8px;
   cursor: pointer;
   font-size: 13px;
-  transition: 0.3s;
 }
 
 .card button:hover {
@@ -141,12 +130,7 @@ nav button.active {
   position: fixed;
   right: 15px;
   top: 15px;
-  .cart-icon {
-  background: linear-gradient(
-    135deg,
-    var(--primary),
-    var(--secondary)
-  );
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
   padding: 10px 12px;
   border-radius: 10px;
   cursor: pointer;
@@ -173,28 +157,20 @@ nav button.active {
   right: 0;
 }
 
-/* ================= CART ITEM ================= */
+/* CART ITEM */
 .cart-item {
   margin-bottom: 15px;
   padding-bottom: 10px;
   border-bottom: 1px solid #1e293b;
 }
 
-/* CART BUTTONS */
-.cart-item button {
-  margin-left: 5px;
-  padding: 5px 8px;
-  font-size: 12px;
-}
-
-/* ================= CLOSE BUTTON ================= */
+/* CLOSE BUTTON */
 .close-cart {
   background: transparent;
   border: none;
   color: white;
   font-size: 20px;
   cursor: pointer;
-  transition: 0.2s;
 }
 
 .close-cart:hover {
@@ -215,25 +191,15 @@ nav button.active {
   font-size: 26px;
 }
 
-/* RECEIPT */
-.receipt-card {
-  background: #020617;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-  margin-bottom: 20px;
-}
-
-/* FORM */
+.receipt-card,
 .form-card {
   background: #020617;
   padding: 20px;
   border-radius: 14px;
-  margin: 20px 0;
   box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  margin-bottom: 20px;
 }
 
-/* INPUTS */
 .form-card input,
 .form-card select {
   width: 100%;
@@ -244,8 +210,6 @@ nav button.active {
   background: #0f172a;
   color: white;
   font-size: 14px;
-  outline: none;
-  transition: 0.2s;
 }
 
 .form-card input:focus,
@@ -254,7 +218,6 @@ nav button.active {
   box-shadow: 0 0 0 2px rgba(34,197,94,0.2);
 }
 
-/* SECTION TITLE */
 .form-card h3 {
   margin-top: 20px;
   margin-bottom: 10px;
@@ -262,7 +225,7 @@ nav button.active {
   color: #cbd5f5;
 }
 
-/* PAYMENT BOX */
+/* PAYMENT */
 .payment-box {
   background: #0f172a;
   padding: 15px;
@@ -271,7 +234,6 @@ nav button.active {
   border: 1px solid #1e293b;
 }
 
-/* COPY BUTTON */
 .payment-box button {
   background: #22c55e;
   border: none;
@@ -286,18 +248,12 @@ nav button.active {
   width: 100%;
   padding: 14px;
   margin-top: 20px;
-  .pay-btn {
-  background: linear-gradient(
-    135deg,
-    var(--primary),
-    var(--secondary)
-  );
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
   border: none;
   border-radius: 10px;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  transition: 0.2s;
 }
 
 .pay-btn:hover {
@@ -315,7 +271,6 @@ nav button.active {
 
 .info-section a {
   color: #22c55e;
-  font-weight: bold;
   text-decoration: none;
 }
 
@@ -323,40 +278,25 @@ nav button.active {
   text-decoration: underline;
 }
 
-
-/* HERO BANNER */
+/* ================= HERO ================= */
 .hero-banner{
-    width:100%;
-    padding:60px 20px;
-    background:linear-gradient(135deg,#3b82f6,#8b5cf6);
-    border-radius:20px;
-    margin:20px auto;
-    text-align:center;
-}
-
-.hero-banner{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(99,102,241,.2),
-      rgba(139,92,246,.2)
-    );
-
+  background: linear-gradient(135deg, rgba(99,102,241,.2), rgba(139,92,246,.2));
   border:1px solid rgba(255,255,255,.05);
   backdrop-filter:blur(15px);
   padding:70px 20px;
   border-radius:25px;
+  text-align:center;
+  margin:20px;
 }
 
 .hero-banner h1{
-  margin-bottom:15px;
   font-size:42px;
-  font-weight:700;
+  margin-bottom:15px;
 }
 
 .hero-banner p{
-  margin:10px auto;
   max-width:700px;
+  margin:auto;
   color:var(--text2);
   line-height:1.6;
 }
@@ -365,28 +305,14 @@ nav button.active {
   display:inline-block;
   margin-top:15px;
   padding:12px 25px;
-  .shop-btn{
-  display:inline-block;
-  margin-top:15px;
-  padding:12px 25px;
-
-  background:linear-gradient(
-    135deg,
-    var(--primary),
-    var(--secondary)
-  );
-
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
   color:white;
   text-decoration:none;
   border-radius:12px;
   font-weight:bold;
 }
-  text-decoration:none;
-  border-radius:8px;
-  font-weight:bold;
-}
 
-/* WHATSAPP SUPPORT */
+/* WHATSAPP */
 .whatsapp-support{
   margin:20px;
   padding:20px;
@@ -399,19 +325,14 @@ nav button.active {
   display:inline-block;
   margin-top:10px;
   padding:12px 20px;
-  .whatsapp-support a{
-  background:linear-gradient(
-    135deg,
-    var(--primary),
-    var(--secondary)
-  );
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
   color:white;
   text-decoration:none;
   border-radius:8px;
   font-weight:bold;
 }
 
-/* WhatsApp Floating Button */
+/* FLOAT WHATSAPP */
 .whatsapp-float{
   position:fixed;
   bottom:90px;
@@ -423,17 +344,9 @@ nav button.active {
   display:flex;
   justify-content:center;
   align-items:center;
-  text-decoration:none;
   z-index:9999;
   cursor:move;
-
-  touch-action:none;
-  -webkit-user-select:none;
-  user-select:none;
-
-  box-shadow:
-    0 0 0 8px rgba(37,211,102,0.25),
-    0 0 25px rgba(37,211,102,0.7);
+  box-shadow:0 0 0 8px rgba(37,211,102,0.25);
 }
 
 .whatsapp-float img{
@@ -441,27 +354,7 @@ nav button.active {
   height:40px;
 }
 
-.whatsapp-float::before{
-  content:"";
-  position:absolute;
-  width:100%;
-  height:100%;
-  border-radius:50%;
-  background:rgba(37,211,102,0.4);
-  animation:pulse 2s infinite;
-  z-index:-1;
-}
-
-@keyframes pulse{
-  0%{
-    transform:scale(1);
-    opacity:0.8;
-  }
-  100%{
-    transform:scale(1.6);
-    opacity:0;
-  }
-}
+/* SEARCH */
 .search-box{
   padding:20px;
   text-align:center;
@@ -475,123 +368,38 @@ nav button.active {
   border-radius:10px;
   font-size:16px;
 }
+
+/* STATS */
 .stats{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-    gap:20px;
-    padding:20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:20px;
+  padding:20px;
 }
 
 .stat-box{
-    background:#111827;
-    border-radius:18px;
-    padding:20px;
-    text-align:center;
-}
-
+  background:#111827;
+  border-radius:18px;
+  padding:20px;
+  text-align:center;
   border:1px solid rgba(99,102,241,.2);
   box-shadow:var(--shadow);
-
-  transition:all .3s ease;
 }
 
 .stat-box:hover{
   transform:translateY(-8px);
-  box-shadow:0 15px 40px rgba(99,102,241,.25);
 }
 
 .stat-box h2{
   color:var(--primary);
   font-size:32px;
-  margin:0;
 }
 
 .stat-box p{
   color:var(--text2);
-  margin-top:10px;
 }
 
-.search-box{
-padding:20px;
-text-align:center;
-}
-
-.search-box input{
-width:90%;
-max-width:500px;
-padding:15px;
-border:none;
-border-radius:10px;
-font-size:16px;
-}
-
-.contact-btn{
-  display:inline-block;
-  margin-left:10px;
-  padding:12px 25px;
-
-  background:var(--card);
-  color:white;
-
-  text-decoration:none;
-  border-radius:12px;
-
-  border:1px solid rgba(255,255,255,.1);
-}
-
-.faq{
-padding:30px;
-margin:20px;
-background:#020617;
-border-radius:15px;
-}
-
-.faq-item{
-margin-bottom:20px;
-}
-
-.header-badges{
-display:flex;
-justify-content:center;
-gap:15px;
-flex-wrap:wrap;
-margin-top:15px;
-}
-
-.header-badges span{
-background:#1e293b;
-padding:8px 12px;
-border-radius:20px;
-font-size:13px;
-}
-body.light {
-  background: #f1f5f9;
-  color: black;
-}
-
-body.light .card,
-body.light .cart-box,
-body.light .info-section,
-body.light .faq,
-body.light .hero-banner {
-  background: white;
-  color: black;
-}
-
-.theme-btn{
-  margin-top:10px;
-  padding:8px 12px;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-  .theme-btn{
-  background:linear-gradient(
-    135deg,
-    var(--primary),
-    var(--secondary)
-  );
-  color:white;
-}
+/* FOOTER */
 .footer{
   text-align:center;
   padding:30px;
@@ -600,153 +408,40 @@ body.light .hero-banner {
   color:#94a3b8;
 }
 
+/* NAVBAR */
 .navbar{
-    width:100%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 20px;
-    background:#0f172a;
-    position:sticky;
-    top:0;
-    z-index:1000;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 20px;
+  background:#0f172a;
+  position:sticky;
+  top:0;
+  z-index:1000;
 }
 
-/* LOGO */
 .logo h2{
   color:var(--primary);
-  margin:0;
-  font-weight:700;
 }
 
-/* LINKS */
 .nav-links{
   display:flex;
-  list-style:none;
   gap:20px;
+  list-style:none;
 }
 
 .nav-links li{
   cursor:pointer;
-  color:white;
-  font-size:14px;
-  position:relative;
 }
 
 .nav-links li:hover{
   color:var(--primary);
 }
 
-
-/* DROPDOWN */
-.dropdown-menu{
-  display:none;
-  position:absolute;
-
-  background:var(--card);
-
-  padding:10px;
-  border-radius:12px;
-
-  top:30px;
-
-  border:1px solid rgba(255,255,255,0.05);
-
-  box-shadow:var(--shadow);
-}
-
-.dropdown:hover .dropdown-menu{
-  display:block;
-}
-
-.dropdown-menu li{
-  padding:8px;
-  white-space:nowrap;
-}
-
-/* RIGHT SIDE */
-.nav-actions{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
 /* MOBILE */
 @media(max-width:768px){
-  .nav-links{
-    display:none;
-  }
-}
-
-  *{
-  transition:
-    background .3s ease,
-    color .3s ease,
-    transform .3s ease,
-    box-shadow .3s ease;
-}
-
-.card,
-.stat-box,
-.info-section,
-.faq,
-.cart-box{
-  animation:fadeUp .6s ease;
-}
-
-@keyframes fadeUp{
-  from{
-    opacity:0;
-    transform:translateY(20px);
-  }
-
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-.header-badges i{
-  color:var(--primary);
-  margin-right:6px;
-}
-
-  *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html,body{
-    width:100%;
-    overflow-x:hidden;
-    font-family:'Inter',sans-serif;
-    background:#070b1f;
-    color:#fff;
-}
-@media(max-width:768px){
-
-    .header-badges{
-        flex-direction:column;
-        gap:10px;
-    }
-
-    .nav-links{
-        display:none;
-    }
-
-    .products{
-        grid-template-columns:1fr;
-    }
-
-    .stats{
-        grid-template-columns:1fr;
-    }
-
-    .card img{
-        height:180px;
-    }
-
-    .hero-banner{
-        margin:10px;
-    }
+  .nav-links{display:none;}
+  .products{grid-template-columns:1fr;}
+  .stats{grid-template-columns:1fr;}
 }
