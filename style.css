@@ -333,17 +333,18 @@ nav button.active {
   margin:20px;
   border-radius:25px;
 
+.hero-banner{
   background:
     linear-gradient(
       135deg,
-      rgba(99,102,241,.20),
-      rgba(139,92,246,.20)
+      rgba(99,102,241,.2),
+      rgba(139,92,246,.2)
     );
 
   border:1px solid rgba(255,255,255,.05);
   backdrop-filter:blur(15px);
-
-  box-shadow:var(--shadow);
+  padding:70px 20px;
+  border-radius:25px;
 }
 
 .hero-banner h1{
