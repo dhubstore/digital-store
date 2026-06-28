@@ -143,7 +143,12 @@ nav button.active {
   position: fixed;
   right: 15px;
   top: 15px;
-  background: linear-gradient(135deg, #22c55e, #16a34a);
+  .cart-icon {
+  background: linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary)
+  );
   padding: 10px 12px;
   border-radius: 10px;
   cursor: pointer;
