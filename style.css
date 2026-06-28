@@ -29,8 +29,11 @@ body{
 header {
   text-align: center;
   padding: 25px 15px;
-  background: linear-gradient(135deg, #020617, #020617);
-}
+  background: linear-gradient(
+  135deg,
+  var(--primary),
+  var(--secondary)
+);
 
 header h1 {
   margin: 0;
