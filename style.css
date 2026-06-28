@@ -529,7 +529,12 @@ body.light .hero-banner {
   border:none;
   border-radius:8px;
   cursor:pointer;
-  background:#22c55e;
+  .theme-btn{
+  background:linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary)
+  );
   color:white;
 }
 .footer{
