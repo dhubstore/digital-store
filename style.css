@@ -478,19 +478,18 @@ nav button.active {
   font-size:16px;
 }
 .stats{
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
-gap:20px;
-padding:30px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:20px;
+    padding:20px;
 }
 
 .stat-box{
-  background:var(--card);
-  padding:25px;
-  border-radius:20px;
-  width:180px;
-  text-align:center;
+    background:#111827;
+    border-radius:18px;
+    padding:20px;
+    text-align:center;
+}
 
   border:1px solid rgba(99,102,241,.2);
   box-shadow:var(--shadow);
