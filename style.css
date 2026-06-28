@@ -12,11 +12,17 @@
 }
 
 /* ================= GLOBAL ================= */
-body {
-  margin: 0;
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background: #0f172a;
-  color: white;
+body{
+  margin:0;
+  font-family:Inter, 'Segoe UI', sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  background-image:
+    radial-gradient(
+      circle at top right,
+      rgba(99,102,241,.15),
+      transparent 40%
+    );
 }
 
 /* ================= HEADER ================= */
