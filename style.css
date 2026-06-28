@@ -717,3 +717,17 @@ body.light .hero-banner {
   color:var(--primary);
   margin-right:6px;
 }
+
+  *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    overflow-x:hidden;
+    font-family:'Inter',sans-serif;
+    background:#070b1f;
+    color:#fff;
+}
