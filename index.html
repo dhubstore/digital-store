@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DHub Digital Store</title>
-  <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>DHub Digital Store</title>
 
+<!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+<!-- Font Awesome -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<!-- Main CSS -->
 <link rel="stylesheet" href="style.css">
-</head>
- <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -29,28 +29,33 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
     <p>Premium Digital Services & Subscriptions</p>
   </div>
 
- <div class="header-badges">
-  <span>
-    <i class="fa-solid fa-bolt"></i>
-    Fast Delivery
-  </span>
+  <div class="header-badges">
+    <span>
+      <i class="fa-solid fa-bolt"></i>
+      Fast Delivery
+    </span>
 
-  <span>
-    <i class="fa-solid fa-shield-halved"></i>
-    Secure Payments
-  </span>
+    <span>
+      <i class="fa-solid fa-shield-halved"></i>
+      Secure Payments
+    </span>
 
-  <span>
-    <i class="fa-solid fa-headset"></i>
-    24/7 Support
-  </span>
-</div>
-<button onclick="toggleTheme()" class="theme-btn">🌙 Mode</button>
+    <span>
+      <i class="fa-solid fa-headset"></i>
+      24/7 Support
+    </span>
+  </div>
+
+  <button onclick="toggleTheme()" class="theme-btn">
+    🌙 Mode
+  </button>
 </header>
+
 <!-- HERO -->
 <section class="hero-banner">
   <div class="hero-content">
     <h1>Digital Products Delivered Instantly</h1>
+
     <p>
       Buy VPNs, Streaming Accounts, Gift Cards,
       Data Bundles and Social Media Services
@@ -58,8 +63,13 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
     </p>
 
     <div class="hero-buttons">
-      <a href="#productList" class="shop-btn">Browse Products</a>
-      <a href="https://wa.me/233206421572" target="_blank" class="contact-btn">
+      <a href="#productList" class="shop-btn">
+        Browse Products
+      </a>
+
+      <a href="https://wa.me/233206421572"
+         target="_blank"
+         class="contact-btn">
         Contact Support
       </a>
     </div>
@@ -84,11 +94,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
   </div>
 </section>
 
-<!-- CART ICON -->
-<div class="cart-icon" onclick="toggleCart()">
-  🛒 <span id="cartCount">0</span>
-</div>
-
 <!-- NAV -->
 <header class="navbar">
 
@@ -104,19 +109,35 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
     <li class="dropdown">
       More ▾
+
       <ul class="dropdown-menu">
-        <li onclick="filterProducts('giftcards')">Gift Cards</li>
-        <li onclick="filterProducts('data')">Data Bundles</li>
-        <li onclick="filterProducts('social')">Social Boost</li>
+        <li onclick="filterProducts('giftcards')">
+          Gift Cards
+        </li>
+
+        <li onclick="filterProducts('data')">
+          Data Bundles
+        </li>
+
+        <li onclick="filterProducts('social')">
+          Social Boost
+        </li>
       </ul>
     </li>
   </ul>
 
   <div class="nav-actions">
-    <button onclick="toggleTheme()" class="theme-btn">🌙</button>
-    <div class="cart-icon" onclick="toggleCart()">
+
+    <button onclick="toggleTheme()"
+            class="theme-btn">
+      🌙
+    </button>
+
+    <div class="cart-icon"
+         onclick="toggleCart()">
       🛒 <span id="cartCount">0</span>
     </div>
+
   </div>
 
 </header>
@@ -227,11 +248,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 <!-- SCRIPT -->
 <script src="script.js"></script>
 
-</body>
-</html>
+<!-- FOOTER -->
 <footer class="footer">
   <h3>DHub Digital Store</h3>
   <p>Fast • Secure • Trusted Digital Services</p>
-
   <p>© 2026 DHub Digital Store. All Rights Reserved.</p>
 </footer>
+
+</body>
+</html>
