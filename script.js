@@ -29,7 +29,8 @@ const products = [
   {name:"SPOTIFY PREMIUM 1 MONTH", price:40, image:"images/spotify.png", category:"subscriptions"},
   {name:"SNAPCHAT PLUS 1 MONTH", price:45, image:"images/snapchat.png", category:"subscriptions"},
   {name:"SNAPCHAT PLUS 1 YEAR", price:113, image:"images/snapchat.png", category:"subscriptions"},
-
+  {name:"YOUTUBE PREMIUM 1 MONTH", price:58, image:"images/youtube-premium.png", category:"subscriptions"},
+  
   // ================= GIFT CARDS =================
   {name:"$2 ITUNES E-CODE", price:32, image:"images/itunes-2.png", category:"giftcards"},
   {name:"$3 ITUNES E-CODE", price:43, image:"images/itunes-3.png", category:"giftcards"},
@@ -39,16 +40,16 @@ const products = [
   {name:"$15 ITUNES E-CODE", price:215, image:"images/itunes-15.png", category:"giftcards"},
   {name:"$20 ITUNES E-CODE", price:275, image:"images/itunes-20.png", category:"giftcards"},
 // ================= ICLOUD STORAGE =================
-{name:"ICLOUD 50GB STORAGE", price:52, image:"images/icloud.png", category:"icloud"},
-{name:"ICLOUD 200GB STORAGE", price:121.5, image:"images/icloud.png", category:"icloud"},
-{name:"ICLOUD 2TB STORAGE", price:351, image:"images/icloud.png", category:"icloud"},
-{name:"ICLOUD 6TB STORAGE", price:452.5, image:"images/icloud.png", category:"icloud"},
+{name:"ICLOUD 50GB STORAGE", price:45, image:"images/icloud.png", category:"icloud"},
+{name:"ICLOUD 200GB STORAGE", price:110, image:"images/icloud.png", category:"icloud"},
+{name:"ICLOUD 2TB STORAGE", price:340, image:"images/icloud.png", category:"icloud"},
+{name:"ICLOUD 6TB STORAGE", price:420, image:"images/icloud.png", category:"icloud"},
 
 
 // ================= APPLE & PREMIUM SUBSCRIPTIONS =================
 {name:"APPLE MUSIC 2 MONTH", price:80, image:"images/apple-music.png", category:"subscriptions"},
 {name:"APPLE TV+ 1 MONTH", price:55, image:"images/apple-tv.png", category:"subscriptions"},
-{name:"YOUTUBE PREMIUM 1 MONTH", price:58, image:"images/youtube-premium.png", category:"subscriptions"},
+,
   // ================= DATA =================
   {name:"1GB MTN DATA", price:6, image:DATA_IMAGE, category:"data"},
   {name:"2GB MTN DATA", price:10, image:DATA_IMAGE, category:"data"},
