@@ -1,256 +1,249 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ========================= -->
+<!-- TOP HEADER -->
+<!-- ========================= -->
 
-<title>DHub Digital Store</title>
+<header class="top-header">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <div class="logo">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <i class="fa-solid fa-bolt"></i>
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+        <span>DHub</span>
 
-<link rel="stylesheet" href="style.css">
-</head>
+    </div>
 
-<body>
+    <div class="search-area">
 
-<!-- HEADER -->
-<header>
-  <div class="logo-area">
-    <h1>DHub Digital Store</h1>
-    <p>Premium Digital Services & Subscriptions</p>
-  </div>
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search VPNs, Netflix, Apple Music, Gift Cards..."
+            onkeyup="searchProducts()">
 
-  <div class="header-badges">
-    <span>
-      <i class="fa-solid fa-bolt"></i>
-      Fast Delivery
-    </span>
+        <button>
 
-    <span>
-      <i class="fa-solid fa-shield-halved"></i>
-      Secure Payments
-    </span>
+            <i class="fa-solid fa-magnifying-glass"></i>
 
-    <span>
-      <i class="fa-solid fa-headset"></i>
-      24/7 Support
-    </span>
-  </div>
+        </button>
 
-  <button onclick="toggleTheme()" class="theme-btn">
-    🌙 Mode
-  </button>
+    </div>
+
+    <div class="header-right">
+
+        <button class="theme-btn" onclick="toggleTheme()">
+
+            <i class="fa-solid fa-moon"></i>
+
+        </button>
+
+        <div class="cart-icon" onclick="toggleCart()">
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            <span id="cartCount">0</span>
+
+        </div>
+
+    </div>
+
 </header>
 
+<!-- ========================= -->
+<!-- NAVIGATION -->
+<!-- ========================= -->
+
+<nav class="main-nav">
+
+<a onclick="filterProducts('all')">Home</a>
+
+<a onclick="filterProducts('vpn')">VPN</a>
+
+<a onclick="filterProducts('subscriptions')">Streaming</a>
+
+<a onclick="filterProducts('accounts')">Accounts</a>
+
+<a onclick="filterProducts('giftcards')">Gift Cards</a>
+
+<a onclick="filterProducts('data')">Data</a>
+
+<a onclick="filterProducts('social')">Social</a>
+
+</nav>
+
+<!-- ========================= -->
 <!-- HERO -->
-<section class="hero-banner">
-  <div class="hero-content">
-    <h1>Digital Products Delivered Instantly</h1>
+<!-- ========================= -->
 
-    <p>
-      Buy VPNs, Streaming Accounts, Gift Cards,
-      Data Bundles and Social Media Services
-      with fast delivery and trusted support.
-    </p>
+<section class="hero">
 
-    <div class="hero-buttons">
-      <a href="#productList" class="shop-btn">
-        Browse Products
-      </a>
+<div class="hero-left">
 
-      <a href="https://wa.me/233204496069"
-         target="_blank"
-         class="contact-btn">
-        Contact Support
-      </a>
-    </div>
-  </div>
-</section>
+<span class="badge">
 
-<!-- STATS -->
-<section class="stats">
-  <div class="stat-box">
-    <h2>1200+</h2>
-    <p>Orders Delivered</p>
-  </div>
+🔥 Trusted Digital Marketplace
 
-  <div class="stat-box">
-    <h2>24/7</h2>
-    <p>Customer Support</p>
-  </div>
+</span>
 
-  <div class="stat-box">
-    <h2>99%</h2>
-    <p>Customer Satisfaction</p>
-  </div>
-</section>
+<h1>
 
-<!-- NAV -->
-<header class="navbar">
+Premium Digital Products
 
-  <div class="logo">
-    <h2>DHub</h2>
-  </div>
+Delivered Instantly
 
-  <ul class="nav-links">
-    <li onclick="filterProducts('all')">Home</li>
-    <li onclick="filterProducts('vpn')">VPN</li>
-    <li onclick="filterProducts('accounts')">Accounts</li>
-    <li onclick="filterProducts('subscriptions')">Subscriptions</li>
+</h1>
 
-    <li class="dropdown">
-      More ▾
+<p>
 
-      <ul class="dropdown-menu">
-        <li onclick="filterProducts('giftcards')">
-          Gift Cards
-        </li>
+Buy VPNs, Netflix, Apple Music,
 
-        <li onclick="filterProducts('data')">
-          Data Bundles
-        </li>
+Gift Cards, Data Bundles,
 
-        <li onclick="filterProducts('social')">
-          Social Boost
-        </li>
-      </ul>
-    </li>
-  </ul>
+iCloud Storage and more
 
-  <div class="nav-actions">
+with instant delivery.
 
-    <button onclick="toggleTheme()"
-            class="theme-btn">
-      🌙
-    </button>
+</p>
 
-    <div class="cart-icon"
-         onclick="toggleCart()">
-      🛒 <span id="cartCount">0</span>
-    </div>
+<div class="hero-buttons">
 
-  </div>
+<a href="#featuredProducts" class="primary-btn">
 
-</header>
+Shop Now
 
-<!-- SEARCH -->
-<div class="search-box">
-  <input
-    type="text"
-    id="searchInput"
-    placeholder="Search products..."
-    onkeyup="searchProducts()"
-  >
-</div>
-
-<!-- PRODUCTS -->
-<section class="products" id="productList"></section>
-
-<!-- TRUST -->
-<div class="trust">
-  <h2>Why Choose Us?</h2>
-  <p>✔ Fast Delivery</p>
-  <p>✔ Trusted Services</p>
-  <p>✔ Secure Orders</p>
-</div>
-
-<!-- ORDER COUNTER -->
-<h3 style="text-align:center;">✅ 1,200+ Orders Delivered</h3>
-
-<!-- TESTIMONIALS -->
-<div class="testimonials">
-  <h2 style="text-align:center;">Customer Reviews</h2>
-
-  <div class="card">
-    <p>"Got my VPN instantly. Trusted seller!"</p>
-    <b>- Customer</b>
-  </div>
-
-  <div class="card">
-    <p>"Fast delivery and smooth process."</p>
-    <b>- Customer</b>
-  </div>
-</div>
-
-<!-- FAQ -->
-<section class="faq">
-  <h2>Frequently Asked Questions</h2>
-
-  <div class="faq-item">
-    <h3>How long does delivery take?</h3>
-    <p>Most orders are delivered instantly or within minutes.</p>
-  </div>
-
-  <div class="faq-item">
-    <h3>What payment methods do you accept?</h3>
-    <p>Telecel Cash and other supported payment options.</p>
-  </div>
-
-  <div class="faq-item">
-    <h3>Do you offer support?</h3>
-    <p>Yes, 24/7 customer support is available.</p>
-  </div>
-</section>
-
-<!-- WHATSAPP SUPPORT -->
-<div class="whatsapp-support">
-  <h2>💬 Need Help?</h2>
-  <p>Contact support anytime.</p>
-  <a href="https://wa.me/233204496069" target="_blank">Chat on WhatsApp</a>
-</div>
-
-<!-- ABOUT -->
-<div class="info-section">
-  <h2>About DHub Digital Store</h2>
-  <p>
-    We provide fast, secure digital services including VPNs, accounts,
-    data bundles, gift cards, and social media services.
-  </p>
-
-  <h3>Contact</h3>
-
-  <p>📱 WhatsApp: <a href="https://wa.me/233204496069">Chat Now</a></p>
-  <p>📧 Email: <a href="mailto:digitalhubghsupport@gmail.com">Send Email</a></p>
-  <p>💬 Telegram: <a href="https://t.me/digitalhubghsupport">@digitalhubghsupport</a></p>
-</div>
-
-<!-- CART BOX -->
-<div class="cart-box" id="cartBox">
-
-  <div style="display:flex; justify-content:space-between;">
-    <h2>Your Cart</h2>
-    <button class="close-cart" onclick="toggleCart()">✖</button>
-  </div>
-
-  <div id="cartItems"></div>
-  <h3 id="total"></h3>
-
-  <button onclick="checkout()">Proceed to Checkout</button>
-</div>
-
-<!-- WHATSAPP FLOAT -->
-<a href="https://wa.me/233206421572"
-   class="whatsapp-float"
-   id="whatsappBtn"
-   target="_blank">
-   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
 </a>
 
-<!-- SCRIPT -->
-<script src="script.js"></script>
+<a href="https://wa.me/233204496069"
 
-<!-- FOOTER -->
-<footer class="footer">
-  <h3>DHub Digital Store</h3>
-  <p>Fast • Secure • Trusted Digital Services</p>
-  <p>© 2026 DHub Digital Store. All Rights Reserved.</p>
-</footer>
+class="secondary-btn"
 
-</body>
-</html>
+target="_blank">
+
+Contact Support
+
+</a>
+
+</div>
+
+</div>
+
+<div class="hero-right">
+
+<img
+
+src="images/banner.png"
+
+alt="Banner">
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+<!-- POPULAR CATEGORIES -->
+<!-- ========================= -->
+
+<section class="categories">
+
+<h2>
+
+Popular Categories
+
+</h2>
+
+<div class="category-grid">
+
+<div class="category-card"
+
+onclick="filterProducts('vpn')">
+
+<i class="fa-solid fa-shield-halved"></i>
+
+<h3>VPN</h3>
+
+</div>
+
+<div class="category-card"
+
+onclick="filterProducts('subscriptions')">
+
+<i class="fa-solid fa-tv"></i>
+
+<h3>Streaming</h3>
+
+</div>
+
+<div class="category-card"
+
+onclick="filterProducts('giftcards')">
+
+<i class="fa-solid fa-gift"></i>
+
+<h3>Gift Cards</h3>
+
+</div>
+
+<div class="category-card"
+
+onclick="filterProducts('data')">
+
+<i class="fa-solid fa-wifi"></i>
+
+<h3>Data</h3>
+
+</div>
+
+<div class="category-card"
+
+onclick="filterProducts('accounts')">
+
+<i class="fa-solid fa-user"></i>
+
+<h3>Accounts</h3>
+
+</div>
+
+<div class="category-card"
+
+onclick="filterProducts('social')">
+
+<i class="fa-solid fa-chart-line"></i>
+
+<h3>Social</h3>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+<!-- FEATURED PRODUCTS -->
+<!-- ========================= -->
+
+<section class="featured">
+
+<div class="section-title">
+
+<h2>
+
+🔥 Featured Products
+
+</h2>
+
+<a href="#productList">
+
+View All
+
+</a>
+
+</div>
+
+<div
+
+class="products"
+
+id="productList">
+
+</div>
+
+</section>
