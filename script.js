@@ -150,108 +150,52 @@ productList.innerHTML += `
 
 <div class="product-card">
 
-
-<div class="product-image">
-
-
-${product.badge ? 
-`
-<span class="product-badge">
-${product.badge}
-</span>
-`
-:
-""}
-
-
+<div class="image-box">
 
 <img src="${product.image}"
-alt="${product.name}"
 onerror="this.src='images/default.png'">
 
+${product.badge ? `<span class="product-badge">${product.badge}</span>` : ""}
 
 </div>
 
+<div class="product-details">
 
-
-<div class="product-info">
-
-
-<span class="product-category">
+<div class="category">
 
 ${product.category}
 
-</span>
+</div>
 
-
-
-<h3 class="product-title">
+<h3>
 
 ${product.name}
 
 </h3>
 
-
-
 <div class="rating">
 
-★★★★★
-
-<span>
-
-(4.9)
-
-</span>
+★★★★★ <span>(4.9)</span>
 
 </div>
 
-
-
-<div class="product-price">
+<h2>
 
 GHS ${product.price}
 
-</div>
-
-
-
-<div class="product-buttons">
-
-
-<button class="buy-btn"
-onclick="addToCart(${product.id})">
-
-Add To Cart
-
-</button>
-
-
+</h2>
 
 <button
-class="wishlist-btn"
-data-id="${product.id}"
-onclick="toggleWishlist(${product.id})">
+class="buy-btn"
+onclick="addToCart(${product.id})">
 
-♡
+Buy Now
 
 </button>
 
 </div>
 
-
 </div>
-
-
-</div>
-
-
-`;
-
-
-});
-
-
-}
 /* ===========================================
    SEARCH PRODUCTS
 =========================================== */
