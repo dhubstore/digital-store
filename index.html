@@ -155,97 +155,55 @@
 <!-- NAVIGATION -->
 <!-- ===================== -->
 
-<nav class="navbar">
+<header class="navbar">
 
-    <div class="container">
+    <div class="logo">
 
-        <ul>
-
-            <li>
-
-                <a href="#" onclick="filterProducts('all')">
-
-                    Home
-
-                </a>
-
-            </li>
-
-            <li>
-
-                <a href="#" onclick="filterProducts('vpn')">
-
-                    VPN
-
-                </a>
-
-            </li>
-
-            <li>
-
-                <a href="#" onclick="filterProducts('subscriptions')">
-
-                    Streaming
-
-                </a>
-
-            </li>
-
-            <li>
-
-                <a href="#" onclick="filterProducts('accounts')">
-
-                    Accounts
-
-                </a>
-
-            </li>
-
-            <li>
-
-                <a href="#" onclick="filterProducts('giftcards')">
-
-                    Gift Cards
-
-                </a>
-
-            </li>
-
-            <li>
-
-                <a href="#" onclick="filterProducts('data')">
-
-                    Data
-
-                </a>
-
-            </li>
-
-            <li>
-
-                <a href="#" onclick="filterProducts('social')">
-
-                    Social
-
-                </a>
-
-            </li>
-
-            <li>
-
-                <a href="#" onclick="filterProducts('icloud')">
-
-                    iCloud
-
-                </a>
-
-            </li>
-
-        </ul>
+        <h2>DHub</h2>
 
     </div>
 
-</nav>
+    <div class="search-bar">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search products..."
+            onkeyup="searchProducts()">
+
+    </div>
+
+    <nav class="menu">
+
+        <a href="#">Home</a>
+
+        <a href="#categories">Categories</a>
+
+        <a href="#productList">Products</a>
+
+        <a href="#contact">Support</a>
+
+    </nav>
+
+    <div class="nav-icons">
+
+        <button class="theme-btn" onclick="toggleTheme()">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+
+        <div class="cart-btn" onclick="toggleCart()">
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            <span id="cartCount">0</span>
+
+        </div>
+
+    </div>
+
+</header>
 
 <!-- HERO STARTS BELOW -->
     <!-- ========================================= -->
