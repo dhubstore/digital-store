@@ -227,13 +227,14 @@ Add To Cart
 
 
 
-<button class="wishlist-btn">
+<button
+class="wishlist-btn"
+data-id="${product.id}"
+onclick="toggleWishlist(${product.id})">
 
 ♡
 
-
 </button>
-
 
 </div>
 
