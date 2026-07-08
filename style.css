@@ -1663,3 +1663,119 @@ font-weight:bold;
 cursor:pointer;
 
 }
+/* ==========================
+   CATEGORY SECTION
+========================== */
+
+.categories{
+
+padding:70px 20px;
+
+}
+
+.category-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+
+gap:25px;
+
+margin-top:40px;
+
+}
+
+.category-card{
+
+background:#111827;
+
+padding:35px;
+
+border-radius:20px;
+
+text-align:center;
+
+cursor:pointer;
+
+transition:.35s;
+
+border:1px solid rgba(255,255,255,.05);
+
+}
+
+.category-card:hover{
+
+transform:translateY(-10px);
+
+background:linear-gradient(135deg,#4338ca,#7c3aed);
+
+}
+
+.category-card i{
+
+font-size:42px;
+
+margin-bottom:18px;
+
+color:#60a5fa;
+
+}
+
+.category-card h3{
+
+font-size:18px;
+
+}
+/* ==========================
+   LOADER
+========================== */
+
+#loader{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+background:#0B1120;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+z-index:999999;
+
+}
+
+.spinner{
+
+width:70px;
+
+height:70px;
+
+border:7px solid #1e293b;
+
+border-top:7px solid #6366F1;
+
+border-radius:50%;
+
+animation:spin 1s linear infinite;
+
+}
+
+@keyframes spin{
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
