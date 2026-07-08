@@ -1,52 +1,360 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Checkout - DHub Store</title>
+
+<title>DHub Checkout</title>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+
 <link rel="stylesheet" href="style.css">
 
-<!-- EMAILJS -->
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-<script>
-(function(){
-  emailjs.init("rXSSrejIU73iYS-Cv");
-})();
-</script>
 
 </head>
 
+
 <body>
 
-<div class="checkout-container">
 
-  <h1 class="title">Checkout</h1>
+<!-- HEADER -->
 
-  <!-- RECEIPT -->
-  <div id="orderSummary" class="receipt-card"></div>
+<header class="header">
 
-  <!-- FORM -->
-  <div class="form-card">
-    <input type="text" id="custName" placeholder="Full Name">
-    <input type="text" id="custPhone" placeholder="Phone Number">
-    <input type="email" id="custEmail" placeholder="Email">
+<div class="container header-wrapper">
 
-    <h3>Payment Method</h3>
-    <select id="paymentMethod">
-      <option value="tcash">Telecel Cash</option>
-      <option value="bank">Bank (Coming Soon)</option>
-    </select>
 
-    <div id="paymentDetails" class="payment-box"></div>
+<div class="logo">
 
-    <input type="text" id="paymentProof" readonly>
+<i class="fa-solid fa-bolt"></i>
 
-    <button class="pay-btn" onclick="submitOrder()">Complete Order</button>
-  </div>
+<div>
+
+<h2>DHub</h2>
+
+<p>Checkout</p>
 
 </div>
 
+</div>
+
+
+</div>
+
+</header>
+
+
+
+
+
+<section class="checkout-page">
+
+
+<div class="container">
+
+
+
+<div class="section-header">
+
+
+<h2>
+
+Complete Your Order
+
+</h2>
+
+
+<p>
+
+Fill in your details and confirm payment
+
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="checkout-layout">
+
+
+
+<!-- ORDER SUMMARY -->
+
+
+<div class="receipt-card">
+
+
+<h2>
+
+Your Order
+
+</h2>
+
+
+<div id="checkoutItems">
+
+</div>
+
+
+
+<h3>
+
+Total:
+
+<span id="checkoutTotal">
+
+GHS 0
+
+</span>
+
+
+</h3>
+
+
+
+</div>
+
+
+
+
+
+<!-- CUSTOMER FORM -->
+
+
+<div class="form-card">
+
+
+<h2>
+
+Customer Information
+
+</h2>
+
+
+
+<form id="orderForm">
+
+
+
+<input 
+type="text"
+id="name"
+placeholder="Full Name"
+required>
+
+
+
+
+<input
+type="tel"
+id="phone"
+placeholder="Phone Number"
+required>
+
+
+
+
+<input
+type="email"
+id="email"
+placeholder="Email Address"
+required>
+
+
+
+<select id="paymentMethod" required>
+
+
+<option value="">
+
+Select Payment Method
+
+</option>
+
+
+<option>
+
+Telecel Cash
+
+</option>
+
+
+<option>
+
+MTN Mobile Money
+
+</option>
+
+
+<option>
+
+Bank Transfer
+
+</option>
+
+
+</select>
+<!-- ========================================= -->
+<!-- PRODUCT INFORMATION -->
+<!-- ========================================= -->
+
+
+<div id="extraFields">
+
+
+<h3>
+
+Product Information
+
+</h3>
+
+
+<p class="small-text">
+
+For account products, enter the required details below.
+
+</p>
+
+
+
+<input
+type="text"
+id="accountEmail"
+placeholder="Account Email / Username (If Required)">
+
+
+
+<input
+type="password"
+id="accountPassword"
+placeholder="Account Password (If Required)">
+
+
+
+<input
+type="text"
+id="extraNote"
+placeholder="Additional Notes">
+
+
+</div>
+
+
+
+
+
+<!-- ========================================= -->
+<!-- PAYMENT INSTRUCTIONS -->
+<!-- ========================================= -->
+
+
+<div class="payment-box">
+
+
+<h3>
+
+Payment Instructions
+
+</h3>
+
+
+<p>
+
+Send payment to the provided DHub payment number after submitting your order.
+
+</p>
+
+
+<p>
+
+<strong>Payment Reference:</strong>
+
+Use your name or phone number as reference.
+
+</p>
+
+
+</div>
+
+
+
+
+
+<!-- ========================================= -->
+<!-- SUBMIT BUTTON -->
+<!-- ========================================= -->
+
+
+<button 
+type="submit"
+class="checkout-btn">
+
+
+Place Order
+
+
+</button>
+
+
+</form>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<!-- FOOTER -->
+
+
+<footer class="footer">
+
+
+<div class="container">
+
+
+<div class="copyright">
+
+
+© 2026 DHub Digital Store. All Rights Reserved.
+
+
+</div>
+
+
+</div>
+
+
+</footer>
+
+
+
+
+
 <script src="checkout.js"></script>
 
+
 </body>
+
+
 </html>
