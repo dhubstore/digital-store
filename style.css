@@ -1779,20 +1779,4 @@ transform:rotate(360deg);
 }
 
 }
-.animate{
 
-opacity:0;
-
-transform:translateY(50px);
-
-transition:.8s;
-
-}
-
-.animate.show{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
