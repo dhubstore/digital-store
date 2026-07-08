@@ -195,7 +195,13 @@ ${product.name}
 
 <div class="rating">
 
-⭐⭐⭐⭐⭐
+★★★★★
+
+<span>
+
+(4.9)
+
+</span>
 
 </div>
 
