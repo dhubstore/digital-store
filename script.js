@@ -723,3 +723,65 @@ updateCart();
 /* LOAD PRODUCTS */
 
 displayProducts(products);
+/* ===========================================
+   WISHLIST
+=========================================== */
+
+let wishlist =
+JSON.parse(localStorage.getItem("dhubWishlist")) || [];
+
+function toggleWishlist(id){
+
+    const exists =
+    wishlist.find(item => item === id);
+
+    if(exists){
+
+        wishlist =
+        wishlist.filter(item => item !== id);
+
+        showNotification("Removed from wishlist");
+
+    }else{
+
+        wishlist.push(id);
+
+        showNotification("Added to wishlist");
+
+    }
+
+    localStorage.setItem(
+        "dhubWishlist",
+        JSON.stringify(wishlist)
+    );
+
+    refreshWishlist();
+
+}
+
+function refreshWishlist(){
+
+    document
+    .querySelectorAll(".wishlist-btn")
+    .forEach(btn=>{
+
+        const id =
+        Number(btn.dataset.id);
+
+        if(wishlist.includes(id)){
+
+            btn.innerHTML="❤";
+
+            btn.classList.add("active");
+
+        }else{
+
+            btn.innerHTML="♡";
+
+            btn.classList.remove("active");
+
+        }
+
+    });
+
+}
