@@ -864,3 +864,32 @@ loader.remove();
 }
 
 });
+/* ==========================
+   SCROLL ANIMATION
+========================== */
+
+const observer=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("show");
+
+}
+
+});
+
+});
+
+document.querySelectorAll(
+
+".product-card,.category-card,.feature-box,.review-card,.stat-box"
+
+).forEach(el=>{
+
+el.classList.add("animate");
+
+observer.observe(el);
+
+});
