@@ -1,3 +1,18 @@
+/* ===========================================
+   EMAILJS SETUP
+=========================================== */
+
+
+(function(){
+
+    emailjs.init({
+
+        publicKey:"MIBwgH6UI5icqbNJL"
+
+    });
+
+
+})();
 // ================= LOAD CART =================
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -122,7 +137,101 @@ function submitOrder(){
     "https://wa.me/233206421572?text=" + encodeURIComponent(message),
     "_blank"
   );
+/* ===========================================
+   SEND EMAIL RECEIPT
+=========================================== */
 
+
+function sendEmailReceipt(order){
+
+
+let productList = "";
+
+
+
+order.products.forEach(item=>{
+
+
+productList +=
+
+`${item.name}
+Quantity: ${item.quantity}
+Price: GHS ${item.price * item.quantity}
+
+`;
+
+
+});
+
+
+
+
+const templateParams = {
+
+
+customer_name:
+order.customer.name,
+
+
+customer_email:
+order.customer.email,
+
+
+order_id:
+order.id,
+
+
+products:
+productList,
+
+
+payment:
+order.customer.payment,
+
+
+date:
+order.date
+
+
+};
+
+
+
+
+
+emailjs.send(
+
+"service_wcjw9mm",
+
+"template_dq6buyi",
+
+templateParams
+
+)
+
+.then(()=>{
+
+
+console.log(
+"Email sent successfully"
+);
+
+
+})
+
+.catch(error=>{
+
+
+console.log(
+"Email error:",
+error
+);
+
+
+});
+
+
+}
   // ================= EMAILJS =================
   emailjs.send("service_wcjw9mm", "template_dq6buyi", {
     name: name,
