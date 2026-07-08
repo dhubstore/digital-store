@@ -819,3 +819,38 @@ function nextSlide(){
 }
 
 setInterval(nextSlide,5000);
+/* ==========================
+   COUNTDOWN
+========================== */
+
+const endTime =
+new Date().getTime() + 86400000;
+
+setInterval(function(){
+
+const now = new Date().getTime();
+
+const distance = endTime - now;
+
+const hours =
+Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+
+const minutes =
+Math.floor((distance%(1000*60*60))/(1000*60));
+
+const seconds =
+Math.floor((distance%(1000*60))/1000);
+
+const countdown =
+document.getElementById("countdown");
+
+if(countdown){
+
+countdown.innerHTML =
+hours + "h " +
+minutes + "m " +
+seconds + "s";
+
+}
+
+},1000);
