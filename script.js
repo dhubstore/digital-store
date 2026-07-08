@@ -854,3 +854,44 @@ seconds + "s";
 }
 
 },1000);
+/* ==========================
+   COUNTERS
+========================== */
+
+const counters =
+document.querySelectorAll(".counter");
+
+counters.forEach(counter=>{
+
+const update=()=>{
+
+const target=
++counter.dataset.target;
+
+const value=
++counter.innerText;
+
+const speed=
+40;
+
+const increment=
+target/speed;
+
+if(value<target){
+
+counter.innerText=
+Math.ceil(value+increment);
+
+setTimeout(update,40);
+
+}else{
+
+counter.innerText=target;
+
+}
+
+};
+
+update();
+
+});
