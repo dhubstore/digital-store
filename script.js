@@ -1,308 +1,725 @@
-// ================= IMAGE =================
-const DATA_IMAGE = "images/data-bundle.png";
+/* ===========================================
+   DHUB DIGITAL STORE V2
+   SCRIPT.JS
+=========================================== */
 
-// ================= PRODUCTS =================
+
+/* ===============================
+   PRODUCT DATABASE
+================================ */
+
+
 const products = [
 
-  // ================= VPN =================
-  {name:"EXPRESS VPN 1 MONTH", price:55, image:"images/express-vpn.jpg", category:"vpn"},
-  {name:"EXPRESS VPN 3 MONTHS", price:60, image:"images/express-vpn.jpg", category:"vpn"},
-  {name:"EXPRESS VPN 1 YEAR", price:150, image:"images/express-vpn.jpg", category:"vpn"},
+{
+id:1,
+name:"EXPRESS VPN 1 MONTH",
+price:45,
+category:"vpn",
+image:"images/expressvpn.png",
+badge:"Popular"
+},
 
-  {name:"PIA VPN 1 MONTH", price:45, image:"images/pia-vpn.png", category:"vpn"},
-  {name:"PIA VPN 3 MONTHS", price:65, image:"images/pia-vpn.png", category:"vpn"},
-  {name:"PIA VPN 1 YEAR", price:90, image:"images/pia-vpn.png", category:"vpn"},
+{
+id:2,
+name:"NORD VPN 1 MONTH",
+price:45,
+category:"vpn",
+image:"images/nordvpn.png",
+badge:"Hot"
+},
 
-  {name:"NORD VPN 1 MONTH", price:45, image:"images/nord-vpn.png", category:"vpn"},
-  {name:"NORD VPN 1 YEAR", price:90, image:"images/nord-vpn.png", category:"vpn"},
-
-  // ================= ACCOUNTS =================
-  {name:"TEXTNOW ACCOUNT", price:25, image:"images/textnow.png", category:"accounts"},
-  {name:"TEXTFREE ACCOUNT", price:20, image:"images/textfree.png", category:"accounts"},
-  {name:"TEXTPLUS ACCOUNT", price:25, image:"images/textplus.png", category:"accounts"},
-  {name:"USA FACEBOOK ACCOUNT", price:50, image:"images/facebook.png", category:"accounts"},
-  {name:"GMAIL VERIFIED ACCOUNT", price:25, image:"images/gmail.jpg", category:"accounts"},
-
-  // ================= SUBSCRIPTIONS =================
-  {name:"NETFLIX SHARED 1 MONTH", price:35, image:"images/netflix.png", category:"subscriptions"},
-  {name:"NETFLIX PERSONAL 1 MONTH", price:70, image:"images/netflix.png", category:"subscriptions"},
-  {name:"SPOTIFY PREMIUM 1 MONTH", price:40, image:"images/spotify.png", category:"subscriptions"},
-  {name:"SNAPCHAT PLUS 1 MONTH", price:45, image:"images/snapchat.png", category:"subscriptions"},
-  {name:"SNAPCHAT PLUS 1 YEAR", price:113, image:"images/snapchat.png", category:"subscriptions"},
-  {name:"YOUTUBE PREMIUM 1 MONTH", price:58, image:"images/youtube-premium.png", category:"subscriptions"},
-  
-  // ================= GIFT CARDS =================
-  {name:"$2 ITUNES E-CODE", price:32, image:"images/itunes-2.png", category:"giftcards"},
-  {name:"$3 ITUNES E-CODE", price:43, image:"images/itunes-3.png", category:"giftcards"},
-  {name:"$4 ITUNES E-CODE", price:57, image:"images/itunes-4.png", category:"giftcards"},
-  {name:"$5 ITUNES E-CODE", price:70, image:"images/itunes-5.png", category:"giftcards"},
-  {name:"$10 ITUNES E-CODE", price:120, image:"images/itunes-10.png", category:"giftcards"},
-  {name:"$15 ITUNES E-CODE", price:215, image:"images/itunes-15.png", category:"giftcards"},
-  {name:"$20 ITUNES E-CODE", price:275, image:"images/itunes-20.png", category:"giftcards"},
-// ================= ICLOUD STORAGE =================
-{name:"ICLOUD 50GB STORAGE", price:45, image:"images/icloud.png", category:"icloud"},
-{name:"ICLOUD 200GB STORAGE", price:110, image:"images/icloud.png", category:"icloud"},
-{name:"ICLOUD 2TB STORAGE", price:340, image:"images/icloud.png", category:"icloud"},
-{name:"ICLOUD 6TB STORAGE", price:420, image:"images/icloud.png", category:"icloud"},
+{
+id:3,
+name:"PIA VPN 1 MONTH",
+price:45,
+category:"vpn",
+image:"images/piavpn.png",
+badge:""
+},
 
 
-// ================= APPLE & PREMIUM SUBSCRIPTIONS =================
-{name:"APPLE MUSIC 2 MONTH", price:80, image:"images/apple-music.png", category:"subscriptions"},
-{name:"APPLE TV+ 1 MONTH", price:55, image:"images/apple-tv.png", category:"subscriptions"},
-,
-  // ================= DATA =================
-  {name:"1GB MTN DATA", price:6, image:DATA_IMAGE, category:"data"},
-  {name:"2GB MTN DATA", price:10, image:DATA_IMAGE, category:"data"},
-  {name:"3GB MTN DATA", price:15.50, image:DATA_IMAGE, category:"data"},
-  {name:"5GB MTN DATA", price:25, image:DATA_IMAGE, category:"data"},
-  {name:"10GB MTN DATA", price:50, image:DATA_IMAGE, category:"data"},
+{
+id:4,
+name:"NETFLIX SHARED 1 MONTH",
+price:35,
+category:"subscriptions",
+image:"images/netflix.png",
+badge:"Best Seller"
+},
 
-  // ================= SOCIAL BOOST =================
-  {name:"1K TIKTOK LIKES", price:10, image:"images/tiktok.png", category:"social"},
-  {name:"1K TIKTOK VIEWS", price:5, image:"images/tiktok.png", category:"social"},
-  {name:"500 TIKTOK FOLLOWERS", price:25, image:"images/tiktok.png", category:"social"},
-  {name:"1K TIKTOK FOLLOWERS", price:45, image:"images/tiktok.png", category:"social"},
-  {name:"1K INSTAGRAM LIKES", price:23, image:"images/instagram.png", category:"social"},
-  {name:"1K INSTAGRAM VIEWS", price:8, image:"images/instagram.png", category:"social"},
-  {name:"1K FACEBOOK FOLLOWERS", price:30, image:"images/facebook.png", category:"social"}
+
+{
+id:5,
+name:"SPOTIFY PREMIUM 1 MONTH",
+price:40,
+category:"subscriptions",
+image:"images/spotify.png",
+badge:""
+},
+
+
+{
+id:6,
+name:"SNAPCHAT PLUS 1 MONTH",
+price:30,
+category:"subscriptions",
+image:"images/snapchat.png",
+badge:"New"
+},
+
+
+{
+id:7,
+name:"TEXTNOW ACCOUNT",
+price:25,
+category:"accounts",
+image:"images/textnow.png",
+badge:""
+},
+
+
+{
+id:8,
+name:"GMAIL VERIFIED ACCOUNT",
+price:25,
+category:"accounts",
+image:"images/gmail.png",
+badge:""
+},
+
+
+{
+id:9,
+name:"APPLE GIFT CARD",
+price:80,
+category:"giftcards",
+image:"images/applegift.png",
+badge:""
+},
+
+
+{
+id:10,
+name:"MTN 5GB DATA",
+price:25,
+category:"data",
+image:"images/mtn.png",
+badge:""
+},
+
+
+{
+id:11,
+name:"TIKTOK 1K FOLLOWERS",
+price:45,
+category:"social",
+image:"images/tiktok.png",
+badge:"Trending"
+}
 
 ];
 
-// ================= CART =================
-let cart = [];
 
-// ================= DISPLAY PRODUCTS =================
 
-function displayProducts(list){
-  const container = document.getElementById("productList");
-  if(!container) return;
+/* ===============================
+   DISPLAY PRODUCTS
+================================ */
 
-  container.innerHTML = "";
 
-  list.forEach((p)=>{
-    const realIndex = products.indexOf(p);
+const productList =
+document.getElementById("productList");
 
-    container.innerHTML += `
-      <div class="card">
-        <img src="${p.image}" onerror="this.src='https://via.placeholder.com/200'">
-        <h3>${p.name}</h3>
-        <p>GHC ${p.price}</p>
-        <button onclick="addToCart(${realIndex})">Add to Cart</button>
-      </div>
-    `;
-  });
+
+
+function displayProducts(items){
+
+
+if(!productList) return;
+
+
+productList.innerHTML="";
+
+
+
+items.forEach(product=>{
+
+
+productList.innerHTML += `
+
+
+<div class="product-card">
+
+
+<div class="product-image">
+
+
+${product.badge ? 
+`
+<span class="product-badge">
+${product.badge}
+</span>
+`
+:
+""}
+
+
+
+<img src="${product.image}"
+alt="${product.name}"
+onerror="this.src='images/default.png'">
+
+
+</div>
+
+
+
+<div class="product-info">
+
+
+<span class="product-category">
+
+${product.category}
+
+</span>
+
+
+
+<h3 class="product-title">
+
+${product.name}
+
+</h3>
+
+
+
+<div class="rating">
+
+⭐⭐⭐⭐⭐
+
+</div>
+
+
+
+<div class="product-price">
+
+GHS ${product.price}
+
+</div>
+
+
+
+<div class="product-buttons">
+
+
+<button class="buy-btn"
+onclick="addToCart(${product.id})">
+
+Add To Cart
+
+</button>
+
+
+
+<button class="wishlist-btn">
+
+♡
+
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+`;
+
+
+});
+
+
+}
+/* ===========================================
+   SEARCH PRODUCTS
+=========================================== */
+
+
+function searchProducts(){
+
+    const input =
+    document.getElementById("searchInput").value.toLowerCase();
+
+
+    const filtered =
+    products.filter(product =>
+
+        product.name.toLowerCase().includes(input)
+
+    );
+
+
+    displayProducts(filtered);
+
 }
 
-// ================= FILTER =================
+
+
+/* ===========================================
+   CATEGORY FILTER
+=========================================== */
+
+
 function filterProducts(category){
-  if(category === "all"){
-    displayProducts(products);
-  } else {
-    displayProducts(products.filter(p => p.category === category));
-  }
-}
 
-// ================= ADD TO CART =================
-function addToCart(index){
-  const product = products[index];
 
-  let username = "";
+    if(category === "all"){
 
-  if(product.category === "social"){
-    username = prompt("Enter username or link:");
-    if(!username){
-      alert("Username/link is required!");
-      return;
+        displayProducts(products);
+
+        return;
+
     }
-  }
 
-  const existing = cart.find(item =>
-    item.name === product.name && item.username === username
-  );
 
-  if(existing){
-    existing.quantity++;
-  } else {
-    cart.push({...product, quantity:1, username});
-  }
+    const filtered =
+    products.filter(product =>
 
-  updateCart();
+        product.category === category
+
+    );
+
+
+    displayProducts(filtered);
+
+
 }
 
-// ================= UPDATE CART =================
+
+
+
+
+/* ===========================================
+   CART STORAGE
+=========================================== */
+
+
+let cart =
+JSON.parse(localStorage.getItem("dhubCart")) || [];
+
+
+
+
+
+/* ===========================================
+   ADD TO CART
+=========================================== */
+
+
+function addToCart(id){
+
+
+    const product =
+    products.find(item => item.id === id);
+
+
+
+    if(!product) return;
+
+
+
+
+    const existing =
+    cart.find(item => item.id === id);
+
+
+
+    if(existing){
+
+
+        existing.quantity++;
+
+
+    }else{
+
+
+        cart.push({
+
+            ...product,
+
+            quantity:1
+
+        });
+
+
+    }
+
+
+
+    saveCart();
+
+
+    updateCart();
+
+
+    showNotification(
+        product.name + " added to cart"
+    );
+
+
+}
+
+
+
+
+
+/* ===========================================
+   SAVE CART
+=========================================== */
+
+
+function saveCart(){
+
+
+    localStorage.setItem(
+        "dhubCart",
+        JSON.stringify(cart)
+    );
+
+
+}
+
+
+
+
+
+/* ===========================================
+   UPDATE CART
+=========================================== */
+
+
 function updateCart(){
-  const count = document.getElementById("cartCount");
-  const items = document.getElementById("cartItems");
-  const total = document.getElementById("total");
 
-  if(count) count.innerText = cart.reduce((s,i)=>s+i.quantity,0);
 
-  if(items && total){
-    items.innerHTML = "";
-    let sum = 0;
 
-    cart.forEach((item,index)=>{
-      sum += item.price * item.quantity;
+const cartItems =
+document.getElementById("cartItems");
 
-      items.innerHTML += `
-        <div class="cart-item" style="display:flex; justify-content:space-between; align-items:center;">
-          <div>
-            ${item.name}<br>
-            ${item.username ? "User: " + item.username + "<br>" : ""}
-            GHC ${item.price} × ${item.quantity}
-          </div>
+const cartCount =
+document.getElementById("cartCount");
 
-          <div>
-            <button onclick="decreaseQty(${index})">➖</button>
-            <button onclick="increaseQty(${index})">➕</button>
-            <button onclick="removeFromCart(${index})" style="background:red;color:white;">✖</button>
-          </div>
-        </div>
-      `;
-    });
+const total =
+document.getElementById("total");
 
-    total.innerText = "Total: GHC " + sum;
-  }
+
+
+
+if(!cartItems) return;
+
+
+
+
+cartItems.innerHTML="";
+
+
+
+let totalPrice = 0;
+
+let count = 0;
+
+
+
+cart.forEach(item=>{
+
+
+count += item.quantity;
+
+
+
+totalPrice +=
+item.price * item.quantity;
+
+
+
+cartItems.innerHTML += `
+
+
+
+<div class="cart-item">
+
+
+
+<img src="${item.image}"
+onerror="this.src='images/default.png'">
+
+
+
+<div class="cart-info">
+
+
+<h4>
+
+${item.name}
+
+</h4>
+
+
+<p>
+
+GHS ${item.price}
+
+</p>
+
+
+
+<div>
+
+
+<button onclick="changeQuantity(${item.id},-1)">
+-
+</button>
+
+
+
+<span>
+
+${item.quantity}
+
+</span>
+
+
+
+<button onclick="changeQuantity(${item.id},1)">
++
+</button>
+
+
+<button onclick="removeCart(${item.id})">
+
+❌
+
+</button>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+`;
+
+
+
+});
+
+
+
+
+
+cartCount.innerHTML = count;
+
+
+
+total.innerHTML =
+"GHS " + totalPrice;
+
+
+
 }
 
-// ================= QUANTITY =================
-function increaseQty(index){
-  cart[index].quantity++;
-  updateCart();
+
+
+
+
+
+
+/* ===========================================
+   CHANGE QUANTITY
+=========================================== */
+
+
+function changeQuantity(id, amount){
+
+
+const item =
+cart.find(product=>product.id===id);
+
+
+
+if(!item) return;
+
+
+
+item.quantity += amount;
+
+
+
+if(item.quantity <=0){
+
+
+    cart =
+    cart.filter(product=>product.id!==id);
+
+
 }
 
-function decreaseQty(index){
-  cart[index].quantity--;
-  if(cart[index].quantity <= 0){
-    cart.splice(index,1);
-  }
-  updateCart();
+
+
+saveCart();
+
+
+updateCart();
+
+
+
 }
 
-// ================= REMOVE =================
-function removeFromCart(index){
-  cart.splice(index,1);
-  updateCart();
+
+
+
+
+/* ===========================================
+   REMOVE FROM CART
+=========================================== */
+
+
+function removeCart(id){
+
+
+
+cart =
+cart.filter(item=>item.id !== id);
+
+
+
+saveCart();
+
+
+updateCart();
+
+
+
 }
 
-// ================= TOGGLE CART =================
+
+
+
+
+/* ===========================================
+   CART OPEN / CLOSE
+=========================================== */
+
+
 function toggleCart(){
-  const box = document.getElementById("cartBox");
-  if(box){
-    box.classList.toggle("active");
-  }
+
+
+const cartBox =
+document.getElementById("cartBox");
+
+
+
+cartBox.classList.toggle("active");
+
+
 }
 
-// ================= CHECKOUT =================
-function checkout(){
-  if(cart.length === 0){
-    alert("Cart is empty!");
-    return;
-  }
 
-  localStorage.setItem("cart", JSON.stringify(cart));
-  window.location.href = "checkout.html";
+
+
+
+/* LOAD SAVED CART */
+
+updateCart();
+/* ===============================
+   NOTIFICATIONS
+================================ */
+
+.notification{
+
+    position:fixed;
+
+    top:100px;
+
+    right:-350px;
+
+    background:#22c55e;
+
+    color:white;
+
+    padding:15px 25px;
+
+    border-radius:12px;
+
+    display:flex;
+
+    gap:10px;
+
+    align-items:center;
+
+    z-index:99999;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+
+    transition:.4s;
+
 }
 
-// ================= PAYMENT DETAILS =================
-function updatePaymentDetails(){
-  const method = document.getElementById("paymentMethod").value;
-  const box = document.getElementById("paymentDetails");
 
-  if(method === "momo"){
-    box.innerHTML = `
-      <h4>Telecel Cash</h4>
-      <p>
-        Number: <b id="momoNumber">020 449 6069</b>
-        <button onclick="copyNumber()">Copy</button>
-      </p>
-      <p style="font-size:12px;">Confirm the recipient before sending</p>
-      <p>Use your reference when sending payment</p>
-    `;
-  } else {
-    box.innerHTML = `
-      <h4>Bank Transfer</h4>
-      <p>Coming Soon</p>
-    `;
-  }
+.notification.show{
+
+    right:25px;
+
 }
 
-// ================= COPY NUMBER =================
-function copyNumber(){
-  const number = document.getElementById("momoNumber").innerText;
-  navigator.clipboard.writeText(number);
-  alert("Telecel Cash number copied!");
+
+
+/* ===============================
+   LIGHT MODE
+================================ */
+
+
+.light-mode{
+
+    --bg:#f8fafc;
+
+    --bg2:#ffffff;
+
+    --bg3:#e2e8f0;
+
+    --text:#0f172a;
+
+    --muted:#475569;
+
 }
 
-// ================= EVENTS =================
-document.addEventListener("change", function(e){
-  if(e.target.id === "paymentMethod"){
-    updatePaymentDetails();
-  }
-});
 
-document.addEventListener("click", function(e){
-  const cartBox = document.getElementById("cartBox");
-  const cartIcon = document.querySelector(".cart-icon");
+.light-mode .header,
+.light-mode .navbar{
 
-  if(cartBox && cartIcon){
-    if(!cartBox.contains(e.target) && !cartIcon.contains(e.target)){
-      cartBox.classList.remove("active");
-    }
-  }
-});
+    background:white;
 
-// ================= SEARCH =================
-function searchProducts() {
-  const value = document
-    .getElementById("searchInput")
-    .value
-    .toLowerCase();
-
-  const filtered = products.filter(product =>
-    product.name.toLowerCase().includes(value)
-  );
-
-  displayProducts(filtered);
 }
 
-// ================= INIT =================
+
+.light-mode .product-card,
+.light-mode .feature-box,
+.light-mode .stat-card{
+
+    color:#0f172a;
+
+}
+
+/* LOAD PRODUCTS */
+
 displayProducts(products);
-
-const whatsappBtn = document.getElementById("whatsappBtn");
-
-let isDragging = false;
-let offsetX = 0;
-let offsetY = 0;
-
-whatsappBtn.addEventListener("touchstart", (e) => {
-  isDragging = true;
-
-  const touch = e.touches[0];
-
-  offsetX = touch.clientX - whatsappBtn.offsetLeft;
-  offsetY = touch.clientY - whatsappBtn.offsetTop;
-
-  e.preventDefault();
-}, { passive: false });
-
-document.addEventListener("touchmove", (e) => {
-  if (!isDragging) return;
-
-  const touch = e.touches[0];
-
-  whatsappBtn.style.left = (touch.clientX - offsetX) + "px";
-  whatsappBtn.style.top = (touch.clientY - offsetY) + "px";
-
-  whatsappBtn.style.right = "auto";
-  whatsappBtn.style.bottom = "auto";
-
-  e.preventDefault();
-}, { passive: false });
-
-document.addEventListener("touchend", () => {
-  isDragging = false;
-});
-function toggleTheme(){
-  document.body.classList.toggle("light");
-}
