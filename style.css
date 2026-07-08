@@ -1162,3 +1162,118 @@ section{
 }
 
 }
+/* ===========================================
+   CHECKOUT PAGE
+=========================================== */
+
+
+.checkout-page{
+
+    padding:70px 0;
+
+}
+
+
+.checkout-layout{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:30px;
+
+}
+
+
+.receipt-card,
+.form-card{
+
+    background:var(--bg2);
+
+    padding:30px;
+
+    border-radius:20px;
+
+    border:1px solid rgba(255,255,255,.06);
+
+}
+
+
+
+.receipt-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    padding:15px 0;
+
+    border-bottom:1px solid rgba(255,255,255,.05);
+
+}
+
+
+
+.form-card input,
+.form-card select{
+
+    width:100%;
+
+    padding:15px;
+
+    margin:10px 0;
+
+    background:var(--bg3);
+
+    color:white;
+
+    border:none;
+
+    border-radius:12px;
+
+    outline:none;
+
+}
+
+
+.form-card h3{
+
+    margin-top:20px;
+
+}
+
+
+
+.payment-box{
+
+    margin:20px 0;
+
+    padding:20px;
+
+    background:var(--bg3);
+
+    border-radius:15px;
+
+}
+
+
+
+.small-text{
+
+    color:var(--muted);
+
+    font-size:14px;
+
+}
+
+
+
+@media(max-width:768px){
+
+.checkout-layout{
+
+    grid-template-columns:1fr;
+
+}
+
+}
