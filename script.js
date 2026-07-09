@@ -299,6 +299,7 @@ JSON.stringify(cart)
 
 function addToCart(id){
 
+alert("Button clicked");
 
 let product =
 products.find(
