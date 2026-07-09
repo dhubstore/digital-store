@@ -1,21 +1,14 @@
-console.log("DHub JS Working");
-console.log("DHub script loaded");
-
-/* ===========================================
-   DHUB DIGITAL STORE
-   FINAL SCRIPT.JS
-=========================================== */
-
-/* ===========================================
-   DHUB DIGITAL STORE
-   FINAL SCRIPT.JS
-=========================================== */
+/* ==========================================
+   DHUB DIGITAL STORE SCRIPT.JS
+========================================== */
 
 
-/* ===========================================
-   PRODUCTS DATABASE
-=========================================== */
+console.log("DHub Script Loaded");
 
+
+/* ==========================
+ PRODUCTS
+========================== */
 
 const products = [
 
@@ -122,34 +115,25 @@ badge:"Trending"
 
 
 
+/* ==========================
+ DISPLAY PRODUCTS
+========================== */
+
+const productList = document.getElementById("productList");
 
 
-/* ===========================================
-   DISPLAY PRODUCTS
-=========================================== */
-
-
-const productList =
-document.getElementById("productList");
-
-
-
-function displayProducts(items){
-
+function displayProducts(list){
 
 if(!productList) return;
-
 
 
 productList.innerHTML="";
 
 
-
-items.forEach(product=>{
+list.forEach(product=>{
 
 
 productList.innerHTML += `
-
 
 <div class="product-card">
 
@@ -157,75 +141,47 @@ productList.innerHTML += `
 <div class="image-box">
 
 
-<img src="${product.image}"
-alt="${product.name}"
+<img src="${product.image}" 
 onerror="this.src='images/default.png'">
 
 
-
-${product.badge ?
-
+${product.badge ? 
 `
 <span class="product-badge">
-
 ${product.badge}
-
 </span>
 `
-
-:
-
-""
-
-}
-
+:""}
 
 
 </div>
-
-
 
 
 <div class="product-details">
 
 
 <div class="category">
-
 ${product.category}
-
 </div>
 
 
-
-<h3>
-
-${product.name}
-
-</h3>
-
+<h3>${product.name}</h3>
 
 
 <div class="rating">
-
 ★★★★★ <span>(4.9)</span>
-
 </div>
 
 
-
 <h2>
-
 GHS ${product.price}
-
 </h2>
-
 
 
 <div class="product-actions">
 
 
-<button
-class="buy-btn"
+<button class="buy-btn"
 onclick="addToCart(${product.id})">
 
 Buy Now
@@ -233,9 +189,7 @@ Buy Now
 </button>
 
 
-
-<button
-class="wishlist-btn"
+<button class="wishlist-btn"
 data-id="${product.id}"
 onclick="toggleWishlist(${product.id})">
 
@@ -247,64 +201,48 @@ onclick="toggleWishlist(${product.id})">
 </div>
 
 
-
 </div>
 
 
 </div>
-
 
 `;
-
-
 
 });
 
 
-
 refreshWishlist();
-
 
 }
 
 
-
-/* LOAD PRODUCTS */
-
 displayProducts(products);
-/* ===========================================
-   SEARCH PRODUCTS
-=========================================== */
+
+
+
+/* ==========================
+ SEARCH
+========================== */
 
 
 function searchProducts(){
 
+let input=document.getElementById("searchInput");
 
-const input =
-document.getElementById("searchInput");
-
-
-if(!input) return;
+if(!input)return;
 
 
-
-const value =
-input.value.toLowerCase();
+let value=input.value.toLowerCase();
 
 
-
-const filtered =
-products.filter(product =>
+let result=products.filter(product=>
 
 product.name.toLowerCase().includes(value)
 
 );
 
 
-
-displayProducts(filtered);
-
-
+displayProducts(result);
 
 }
 
@@ -312,39 +250,22 @@ displayProducts(filtered);
 
 
 
-/* ===========================================
-   CATEGORY FILTER
-=========================================== */
+/* ==========================
+ CATEGORY FILTER
+========================== */
 
 
 function filterProducts(category){
 
 
+let result=products.filter(product=>
 
-if(category === "all"){
-
-
-displayProducts(products);
-
-
-return;
-
-
-}
-
-
-
-const filtered =
-products.filter(product =>
-
-product.category === category
+product.category===category
 
 );
 
 
-
-displayProducts(filtered);
-
+displayProducts(result);
 
 
 }
@@ -353,68 +274,52 @@ displayProducts(filtered);
 
 
 
-/* ===========================================
-   CART SYSTEM
-=========================================== */
+/* ==========================
+ CART SYSTEM
+========================== */
 
 
-let cart =
-JSON.parse(
+let cart = JSON.parse(
 localStorage.getItem("dhubCart")
 ) || [];
 
 
 
 
-
 function saveCart(){
 
-
 localStorage.setItem(
-
 "dhubCart",
-
 JSON.stringify(cart)
-
 );
-
 
 }
 
 
 
-
-
-/* ADD TO CART */
-
-
 function addToCart(id){
 
 
-console.log("Added product ID:", id);
-const product =
+let product =
 products.find(
-item=>item.id===id
+p=>p.id===id
 );
 
 
-
-if(!product) return;
-
+if(!product)return;
 
 
-const exists =
+
+let exist =
 cart.find(
-item=>item.id===id
+p=>p.id===id
 );
 
 
 
-if(exists){
+if(exist){
 
-
-exists.quantity++;
-
+exist.quantity++;
 
 }else{
 
@@ -431,18 +336,13 @@ quantity:1
 }
 
 
-
 saveCart();
-
 
 updateCart();
 
-
-
 showNotification(
-product.name + " added to cart"
+product.name+" added to cart"
 );
-
 
 
 }
@@ -451,69 +351,46 @@ product.name + " added to cart"
 
 
 
-
-
-/* UPDATE CART */
-
-
 function updateCart(){
 
 
-const cartItems =
-document.getElementById("cartItems");
+let items=document.getElementById("cartItems");
+
+let count=document.getElementById("cartCount");
+
+let total=document.getElementById("total");
 
 
-const cartCount =
-document.getElementById("cartCount");
-
-
-const total =
-document.getElementById("total");
-
-
-
-let count=0;
 
 let totalPrice=0;
 
+let totalItems=0;
 
 
-if(cartItems){
+
+if(items){
 
 
-cartItems.innerHTML="";
-
+items.innerHTML="";
 
 
 cart.forEach(item=>{
 
 
-count += item.quantity;
+totalPrice += item.price * item.quantity;
 
-
-totalPrice +=
-item.price * item.quantity;
-
+totalItems += item.quantity;
 
 
 
-cartItems.innerHTML += `
-
+items.innerHTML += `
 
 <div class="cart-item">
 
-
-<h4>
-
-${item.name}
-
-</h4>
-
+<h4>${item.name}</h4>
 
 <p>
-
 GHS ${item.price}
-
 </p>
 
 
@@ -522,11 +399,7 @@ GHS ${item.price}
 </button>
 
 
-<span>
-
 ${item.quantity}
-
-</span>
 
 
 <button onclick="changeQuantity(${item.id},1)">
@@ -534,11 +407,8 @@ ${item.quantity}
 </button>
 
 
-
 <button onclick="removeCart(${item.id})">
-
 ❌
-
 </button>
 
 
@@ -548,130 +418,86 @@ ${item.quantity}
 `;
 
 
-
 });
 
 
-
 }
 
 
 
-if(cartCount){
-
-cartCount.innerHTML=count;
-
-}
+if(count)
+count.innerHTML=totalItems;
 
 
-
-if(total){
-
-total.innerHTML =
-"GHS " + totalPrice;
-
-}
-
+if(total)
+total.innerHTML="GHS "+totalPrice;
 
 
 }
 
 
 
+function changeQuantity(id,num){
 
 
-/* CHANGE QUANTITY */
-
-
-function changeQuantity(id,amount){
-
-
-
-const item =
+let item =
 cart.find(
-product=>product.id===id
+p=>p.id===id
 );
 
 
-
-if(!item) return;
-
+if(!item)return;
 
 
-item.quantity += amount;
+item.quantity += num;
 
 
+if(item.quantity<=0){
 
-if(item.quantity <=0){
+removeCart(id);
 
-
-cart =
-cart.filter(
-product=>product.id!==id
-);
-
+return;
 
 }
-
 
 
 saveCart();
 
-
 updateCart();
-
-
 
 }
 
 
 
-
-
-/* REMOVE ITEM */
 
 
 function removeCart(id){
 
 
-
 cart =
 cart.filter(
-item=>item.id!==id
+p=>p.id!==id
 );
-
 
 
 saveCart();
 
-
 updateCart();
-
 
 
 }
 
 
-
-
-
-/* OPEN CART */
 
 
 function toggleCart(){
 
 
-const cartBox =
-document.getElementById("cartBox");
+let box=document.getElementById("cartBox");
 
 
-
-if(cartBox){
-
-cartBox.classList.toggle("active");
-
-}
-
+if(box)
+box.classList.toggle("active");
 
 
 }
@@ -680,42 +506,57 @@ cartBox.classList.toggle("active");
 
 
 
-/* ===========================================
-   NOTIFICATION SYSTEM
-=========================================== */
+/* ==========================
+ CHECKOUT
+========================== */
 
 
-function showNotification(message){
+function checkout(){
 
 
+if(cart.length===0){
 
-const note =
-document.createElement("div");
+showNotification(
+"Your cart is empty"
+);
+
+return;
+
+}
 
 
-
-note.className =
-"notification";
+window.location.href="checkout.html";
 
 
-
-note.innerHTML = `
-
-<i class="fa-solid fa-circle-check"></i>
-
-${message}
-
-`;
+}
 
 
 
-document.body.appendChild(note);
+
+/* ==========================
+ NOTIFICATION
+========================== */
+
+
+function showNotification(text){
+
+
+let div=document.createElement("div");
+
+
+div.className="notification";
+
+
+div.innerHTML=text;
+
+
+document.body.appendChild(div);
 
 
 
 setTimeout(()=>{
 
-note.classList.add("show");
+div.classList.add("show");
 
 },100);
 
@@ -723,21 +564,9 @@ note.classList.add("show");
 
 setTimeout(()=>{
 
+div.remove();
 
-note.classList.remove("show");
-
-
-
-setTimeout(()=>{
-
-note.remove();
-
-},300);
-
-
-
-},2500);
-
+},3000);
 
 
 }
@@ -745,45 +574,29 @@ note.remove();
 
 
 
-
-/* LOAD CART */
-
-
-updateCart();
-/* ===========================================
-   WISHLIST SYSTEM
-=========================================== */
+/* ==========================
+ WISHLIST
+========================== */
 
 
 let wishlist =
 JSON.parse(
 localStorage.getItem("dhubWishlist")
-) || [];
+)||[];
+
 
 
 
 function toggleWishlist(id){
 
 
-
-const exists =
-wishlist.includes(id);
-
-
-
-if(exists){
+if(wishlist.includes(id)){
 
 
 wishlist =
 wishlist.filter(
-item=>item!==id
+x=>x!==id
 );
-
-
-showNotification(
-"Removed from wishlist"
-);
-
 
 
 }else{
@@ -792,27 +605,16 @@ showNotification(
 wishlist.push(id);
 
 
-showNotification(
-"Added to wishlist"
-);
-
-
 }
 
 
-
 localStorage.setItem(
-
 "dhubWishlist",
-
 JSON.stringify(wishlist)
-
 );
 
 
-
 refreshWishlist();
-
 
 
 }
@@ -823,34 +625,25 @@ refreshWishlist();
 function refreshWishlist(){
 
 
-document
-.querySelectorAll(".wishlist-btn")
-.forEach(button=>{
+document.querySelectorAll(".wishlist-btn")
+.forEach(btn=>{
 
 
-const id =
-Number(button.dataset.id);
+let id =
+Number(btn.dataset.id);
 
 
 
 if(wishlist.includes(id)){
 
 
-button.innerHTML="❤";
-
-
-button.classList.add("active");
-
+btn.innerHTML="❤";
 
 
 }else{
 
 
-button.innerHTML="♡";
-
-
-button.classList.remove("active");
-
+btn.innerHTML="♡";
 
 
 }
@@ -860,210 +653,98 @@ button.classList.remove("active");
 });
 
 
-
 }
 
 
 
 
-
-/* ===========================================
-   DARK / LIGHT MODE
-=========================================== */
+/* ==========================
+ THEME
+========================== */
 
 
 function toggleTheme(){
-
 
 document.body.classList.toggle(
 "light-mode"
 );
 
-
-
-const mode =
-document.body.classList.contains(
-"light-mode"
-)
-
-? "light"
-
-: "dark";
-
-
-
-localStorage.setItem(
-"dhubTheme",
-mode
-);
-
-
-
-}
-
-
-
-const savedTheme =
-localStorage.getItem(
-"dhubTheme"
-);
-
-
-
-if(savedTheme==="light"){
-
-
-document.body.classList.add(
-"light-mode"
-);
-
-
 }
 
 
 
 
-
-/* ===========================================
-   HERO SLIDER
-=========================================== */
-
-
-const slides =
-document.querySelectorAll(
-".slide"
-);
+/* ==========================
+ HERO SLIDER
+========================== */
 
 
+let slides=document.querySelectorAll(".slide");
 
-let currentSlide=0;
 
+let slideIndex=0;
 
 
 function nextSlide(){
 
 
-if(slides.length===0)
-return;
+if(slides.length<1)return;
 
 
-
-slides[currentSlide]
-.classList.remove(
-"active"
-);
+slides[slideIndex].classList.remove("active");
 
 
-
-currentSlide++;
-
+slideIndex++;
 
 
-if(currentSlide >= slides.length){
+if(slideIndex>=slides.length)
+slideIndex=0;
 
 
-currentSlide=0;
+slides[slideIndex].classList.add("active");
 
 
 }
 
 
-
-slides[currentSlide]
-.classList.add(
-"active"
-);
-
-
-
-}
-
-
-
-setInterval(
-nextSlide,
-5000
-);
+setInterval(nextSlide,5000);
 
 
 
 
 
+/* ==========================
+ COUNTDOWN
+========================== */
 
-/* ===========================================
-   FLASH SALE COUNTDOWN
-=========================================== */
 
-
-const saleEnd =
-new Date().getTime()
-+
-86400000;
-
+let end =
+Date.now()+86400000;
 
 
 setInterval(()=>{
 
 
-const now =
-new Date().getTime();
+let box=document.getElementById("countdown");
+
+
+if(!box)return;
+
+
+let distance=end-Date.now();
 
 
 
-const distance =
-saleEnd-now;
+let h=Math.floor(distance/3600000);
+
+let m=Math.floor(distance%3600000/60000);
+
+let s=Math.floor(distance%60000/1000);
 
 
 
-const countdown =
-document.getElementById(
-"countdown"
-);
-
-
-
-if(countdown){
-
-
-
-const hours =
-Math.floor(
-(distance%(1000*60*60*24))
-/
-(1000*60*60)
-);
-
-
-
-const minutes =
-Math.floor(
-(distance%(1000*60*60))
-/
-(1000*60)
-);
-
-
-
-const seconds =
-Math.floor(
-(distance%(1000))
-/
-1000
-);
-
-
-
-countdown.innerHTML =
-
-hours+"h "
-+
-minutes+"m "
-+
-seconds+"s";
-
-
-
-}
+box.innerHTML=
+`${h}h ${m}m ${s}s`;
 
 
 
@@ -1073,135 +754,6 @@ seconds+"s";
 
 
 
+/* LOAD CART */
 
-/* ===========================================
-   COUNTER ANIMATION
-=========================================== */
-
-
-const counters =
-document.querySelectorAll(
-".counter"
-);
-
-
-
-counters.forEach(counter=>{
-
-
-let target =
-Number(
-counter.dataset.target
-);
-
-
-
-let value=0;
-
-
-
-const timer =
-setInterval(()=>{
-
-
-value +=
-Math.ceil(
-target/50
-);
-
-
-
-if(value>=target){
-
-
-value=target;
-
-
-clearInterval(timer);
-
-
-}
-
-
-
-counter.innerHTML=value;
-
-
-
-},40);
-
-
-
-});
-
-
-
-
-
-
-
-/* ===========================================
-   SCROLL ANIMATION
-=========================================== */
-
-
-const observer =
-new IntersectionObserver(
-entries=>{
-
-
-entries.forEach(entry=>{
-
-
-if(entry.isIntersecting){
-
-
-entry.target.classList.add(
-"show"
-);
-
-
-
-}
-
-
-
-});
-
-
-});
-
-
-
-document
-.querySelectorAll(
-".product-card,.category-card,.stat-box"
-)
-.forEach(element=>{
-
-
-element.classList.add(
-"animate"
-);
-
-
-
-observer.observe(element);
-
-
-
-});
-function checkout(){
-
-    if(cart.length === 0){
-
-        showNotification("Your cart is empty");
-
-        return;
-
-    }
-
-
-    window.location.href="checkout.html";
-
-}
+updateCart();
