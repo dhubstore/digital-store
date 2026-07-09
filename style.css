@@ -1780,3 +1780,27 @@ transform:rotate(360deg);
 
 }
 
+/* ==========================
+   NOTIFICATIONS
+========================== */
+
+.notification{
+    position:fixed;
+    top:25px;
+    right:25px;
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    color:#fff;
+    padding:16px 22px;
+    border-radius:12px;
+    font-weight:600;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+    transform:translateX(400px);
+    opacity:0;
+    transition:.35s;
+    z-index:999999;
+}
+
+.notification.show{
+    transform:translateX(0);
+    opacity:1;
+}
