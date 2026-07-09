@@ -1,309 +1,224 @@
-/* ===========================================
-   EMAILJS SETUP
-=========================================== */
+/* ==========================================
+   DHUB DIGITAL STORE CHECKOUT.JS
+========================================== */
 
+
+/* ==========================
+ EMAILJS
+========================== */
 
 (function(){
 
-    emailjs.init({
+emailjs.init({
 
-        publicKey:"MIBwgH6UI5icqbNJL"
+publicKey:"MIBwgH6UI5icqbNJL"
 
-    });
-
-
-})();
-// ================= LOAD CART =================
-let cart = JSON.parse(localStorage.getItem("dhubCart")) || [];
-
-if(cart.length === 0){
-  alert("Cart is empty");
-  window.location.href = "index.html";
-}
-
-// ================= IDS =================
-const orderId = "DH-" + Math.floor(100000 + Math.random() * 900000);
-const reference = "REF-" + Math.floor(100000 + Math.random() * 900000);
-
-document.getElementById("paymentProof").value = reference;
-
-// ================= RECEIPT =================
-let html = `<div style="background:#020617;padding:15px;border-radius:10px;color:white;">`;
-html += `<h3>🧾 Receipt</h3><hr>`;
-
-let total = 0;
-
-cart.forEach(item=>{
-  const t = item.price * item.quantity;
-  total += t;
-
-  html += `
-    <div style="display:flex; justify-content:space-between;">
-      <span>${item.name} x${item.quantity}</span>
-      <span>GHC ${t}</span>
-    </div>
-  `;
 });
 
-html += `<hr><h3>Total: GHC ${total}</h3></div>`;
-document.getElementById("orderSummary").innerHTML = html;
+})();
 
-// ================= PAYMENT =================
-function updatePaymentDetails(){
-  const method = document.getElementById("paymentMethod").value;
-  const box = document.getElementById("paymentDetails");
 
-  if(method === "tcash"){
-    box.innerHTML = `
-      <h4>Telecel Cash (T-Cash)</h4>
 
-      <p>
-        Name: <b>PATRICK KOFI KUMAH</b>
-      </p>
+/* ==========================
+ LOAD CART
+========================== */
 
-      <p>
-        Number: <b id="momoNumber">020 449 6069</b>
-        <button onclick="copyNumber()">Copy</button>
-      </p>
 
-      <p style="font-size:12px;">
-        Confirm recipient before sending
-      </p>
+let cart = JSON.parse(
+localStorage.getItem("dhubCart")
+) || [];
 
-      <p>
-        Use your reference when sending payment
-      </p>
-    `;
-  } else {
-    box.innerHTML = `
-      <p>Bank transfer coming soon</p>
-    `;
-  }
+
+
+if(cart.length === 0){
+
+showMessage("Your cart is empty");
+
+
+setTimeout(()=>{
+
+window.location.href="index.html";
+
+},1500);
+
+
 }
 
-// ================= COPY =================
-function copyNumber(){
-  const number = document.getElementById("momoNumber").innerText;
-  navigator.clipboard.writeText(number);
-  alert("Telecel Cash number copied!");
+
+
+
+/* ==========================
+ ORDER DETAILS
+========================== */
+
+
+const orderId =
+"DH-" + Math.floor(100000 + Math.random()*900000);
+
+
+const reference =
+"REF-" + Math.floor(100000 + Math.random()*900000);
+
+
+
+const proof =
+document.getElementById("paymentProof");
+
+
+if(proof){
+
+proof.value = reference;
+
 }
 
-document.getElementById("paymentMethod").addEventListener("change", updatePaymentDetails);
-updatePaymentDetails();
-
-// ================= SUBMIT ORDER =================
-function submitOrder(){
-  const name = document.getElementById("custName").value;
-  const phone = document.getElementById("custPhone").value;
-  const email = document.getElementById("custEmail").value;
-  const payment = document.getElementById("paymentMethod").value;
-  const proof = document.getElementById("paymentProof").value;
-
-  if(!name || !phone || !email || !proof){
-    alert("Fill all fields");
-    return;
-  }
-
-  let paymentMethodText = "";
-
-  if(payment === "tcash"){
-    paymentMethodText = "Telecel Cash (T-Cash)";
-  } else {
-    paymentMethodText = "Bank Transfer";
-  }
-
-  let message = `🛍️ *DHub Digital Store*\n`;
-  message += `━━━━━━━━━━━━━━━\n`;
-  message += `🆔 ${orderId}\n💳 ${reference}\n\n`;
-
-  let total = 0;
-  let orderText = "";
-
-  cart.forEach((item,i)=>{
-    const t = item.price * item.quantity;
-    total += t;
-
-    message += `${i+1}. ${item.name} x${item.quantity} = GHC ${t}\n`;
-    orderText += `${item.name} x${item.quantity} = GHC ${t}\n`;
-  });
-
-  message += `━━━━━━━━━━━━━━━\n`;
-  message += `💰 Total: GHC ${total}\n`;
-  message += `💳 Payment: ${paymentMethodText}\n\n`;
-  message += `👤 ${name}\n📱 ${phone}\n📧 ${email}`;
-
-  // ================= WHATSAPP =================
-  window.open(
-    "https://wa.me/233206421572?text=" + encodeURIComponent(message),
-    "_blank"
-  );
-/* ===========================================
-   SEND EMAIL RECEIPT
-=========================================== */
 
 
-function sendEmailReceipt(order){
+/* ==========================
+ DISPLAY ORDER
+========================== */
 
 
-let productList = "";
+function loadOrder(){
+
+
+let box =
+document.getElementById("orderSummary");
+
+
+if(!box)return;
 
 
 
-order.products.forEach(item=>{
+let total=0;
 
 
-productList +=
 
-`${item.name}
-Quantity: ${item.quantity}
-Price: GHS ${item.price * item.quantity}
+let html=`
+
+
+<div style="background:#020617;padding:20px;border-radius:15px;">
+
+
+<h3>
+🧾 Order Summary
+</h3>
+
+
+<hr>
 
 `;
 
 
-});
+
+cart.forEach(item=>{
+
+
+let price =
+item.price * item.quantity;
+
+
+total += price;
 
 
 
-
-const templateParams = {
-
-
-customer_name:
-order.customer.name,
+html += `
 
 
-customer_email:
-order.customer.email,
+<div style="display:flex;justify-content:space-between;margin:10px 0;">
 
 
-order_id:
-order.id,
+<span>
+${item.name} x${item.quantity}
+</span>
 
 
-products:
-productList,
+<b>
+GHS ${price}
+</b>
 
 
-payment:
-order.customer.payment,
+</div>
 
 
-date:
-order.date
+`;
 
-
-};
-
-
-
-
-
-emailjs.send(
-
-"service_wcjw9mm",
-
-"template_dq6buyi",
-
-templateParams
-
-)
-
-.then(()=>{
-
-
-console.log(
-"Email sent successfully"
-);
-
-
-})
-
-.catch(error=>{
-
-
-console.log(
-"Email error:",
-error
-);
 
 
 });
 
 
-}
-  // ================= EMAILJS =================
-  emailjs.send("service_wcjw9mm", "template_dq6buyi", {
-    name: name,
-    email: email,
-    order: orderText,
-    total: total,
-    payment: paymentMethodText,
-    order_id: orderId
-  });
 
-  // ================= SUCCESS =================
-  alert("Order sent successfully!");
+html += `
 
-  localStorage.removeItem("cart");
+
+<hr>
+
+
+<h3>
+Total: GHS ${total}
+</h3>
+
+
+</div>
+
+
+`;
+
+
+
+box.innerHTML=html;
+
+
+
 }
-/* ===========================================
-   PAYMENT DETAILS
-=========================================== */
+
+
+loadOrder();
+
+
+
+
+
+/* ==========================
+ PAYMENT DETAILS
+========================== */
 
 
 function updatePaymentDetails(){
 
 
-const method =
-
-document.getElementById(
-"paymentMethod"
-);
+let method =
+document.getElementById("paymentMethod");
 
 
-
-const box =
-
-document.getElementById(
-"paymentDetails"
-);
+let box =
+document.getElementById("paymentDetails");
 
 
 
-if(!method || !box) return;
+if(!method || !box)return;
 
 
 
 
-if(method.value === "tcash"){
+if(method.value==="tcash"){
 
 
 
-box.innerHTML = `
+box.innerHTML=`
 
 
 <h4>
-
 Telecel Cash (T-Cash)
-
 </h4>
 
 
-
 <p>
-
 Name:
-
 <b>
-
 PATRICK KOFI KUMAH
-
 </b>
-
 </p>
-
-
 
 
 <p>
@@ -311,17 +226,12 @@ PATRICK KOFI KUMAH
 Number:
 
 <b id="momoNumber">
-
 0204496069
-
 </b>
 
 
-
 <button onclick="copyNumber()">
-
 Copy
-
 </button>
 
 
@@ -329,17 +239,11 @@ Copy
 
 
 
-
 <p>
-
-Use this reference:
-
+Reference:
 <b>
-
 ${reference}
-
 </b>
-
 </p>
 
 
@@ -350,15 +254,11 @@ ${reference}
 }else{
 
 
-box.innerHTML = `
-
+box.innerHTML=`
 
 <p>
-
 Bank transfer coming soon.
-
 </p>
-
 
 `;
 
@@ -372,25 +272,11 @@ Bank transfer coming soon.
 
 
 
-
-
-const paymentSelect =
-
-document.getElementById(
-"paymentMethod"
-);
-
-
-
-if(paymentSelect){
-
-
-paymentSelect.addEventListener(
-
+document
+.getElementById("paymentMethod")
+.addEventListener(
 "change",
-
 updatePaymentDetails
-
 );
 
 
@@ -398,27 +284,19 @@ updatePaymentDetails
 updatePaymentDetails();
 
 
-}
 
 
 
-
-
-
-/* ===========================================
-   COPY PAYMENT NUMBER
-=========================================== */
+/* ==========================
+ COPY NUMBER
+========================== */
 
 
 function copyNumber(){
 
 
-
-const number =
-
-document.getElementById(
-"momoNumber"
-);
+let number =
+document.getElementById("momoNumber");
 
 
 
@@ -426,11 +304,8 @@ if(number){
 
 
 navigator.clipboard.writeText(
-
 number.innerText
-
 );
-
 
 
 showMessage(
@@ -441,62 +316,43 @@ showMessage(
 }
 
 
+
 }
 
 
 
 
 
-
-
-
-/* ===========================================
-   SUBMIT ORDER
-=========================================== */
+/* ==========================
+ SUBMIT ORDER
+========================== */
 
 
 function submitOrder(){
 
 
-
-const name =
-
-document.getElementById(
-"custName"
-).value;
+let name =
+document.getElementById("custName").value;
 
 
-
-const phone =
-
-document.getElementById(
-"custPhone"
-).value;
+let phone =
+document.getElementById("custPhone").value;
 
 
+let email =
+document.getElementById("custEmail").value;
 
-const email =
 
-document.getElementById(
-"custEmail"
-).value;
+let payment =
+document.getElementById("paymentMethod").value;
 
 
 
-const payment =
-
-document.getElementById(
-"paymentMethod"
-).value;
-
-
-
-
-if(!name || !phone || !email){
+if(!name || !phone || !email || !payment){
 
 
 showMessage(
-"Please fill all fields"
+"Please complete all fields"
 );
 
 
@@ -507,56 +363,37 @@ return;
 
 
 
+let total=0;
 
-
-let total = 0;
-
-let productsText = "";
+let products="";
 
 
 
 cart.forEach((item,index)=>{
 
 
-
 let itemTotal =
-
 item.price * item.quantity;
-
 
 
 total += itemTotal;
 
 
 
-productsText +=
-
+products +=
 `${index+1}. ${item.name} x${item.quantity} = GHS ${itemTotal}\n`;
-
 
 
 });
 
 
 
-
-
-
 let paymentName =
-
 payment==="tcash"
-
 ?
-
 "Telecel Cash"
-
 :
-
 "Bank Transfer";
-
-
-
-
 
 
 
@@ -565,7 +402,7 @@ let message = `
 
 🛒 DHUB DIGITAL STORE
 
-━━━━━━━━━━━━
+━━━━━━━━━━━━━━
 
 Order ID:
 ${orderId}
@@ -577,18 +414,16 @@ ${reference}
 
 Products:
 
-${productsText}
+${products}
 
 
-━━━━━━━━━━━━
+━━━━━━━━━━━━━━
 
 Total:
-
 GHS ${total}
 
 
 Payment:
-
 ${paymentName}
 
 
@@ -596,14 +431,10 @@ Customer:
 
 ${name}
 
-
 Phone:
-
 ${phone}
 
-
 Email:
-
 ${email}
 
 `;
@@ -612,16 +443,12 @@ ${email}
 
 
 
-
 /* WHATSAPP */
-
 
 window.open(
 
 "https://wa.me/233204496069?text="
-
 +
-
 encodeURIComponent(message),
 
 "_blank"
@@ -632,152 +459,7 @@ encodeURIComponent(message),
 
 
 
-
-
-
-/* EMAIL RECEIPT */
-
-
-sendEmailReceipt({
-
-id:orderId,
-
-products:cart,
-
-customer:{
-
-name:name,
-
-email:email,
-
-payment:paymentName
-
-},
-
-date:new Date().toLocaleString()
-
-});
-
-
-
-
-
-
-
-showMessage(
-
-"Order sent successfully"
-
-);
-
-
-
-
-
-localStorage.removeItem(
-
-"dhubCart"
-
-);
-
-
-
-cart=[];
-
-
-
-}
-
-
-
-
-
-
-
-
-/* ===========================================
-   SEND EMAIL RECEIPT
-=========================================== */
-
-
-function sendEmailReceipt(order){
-
-
-
-let productList="";
-
-
-
-order.products.forEach(item=>{
-
-
-productList +=
-
-`
-
-${item.name}
-
-Quantity:
-${item.quantity}
-
-Price:
-GHS ${item.price * item.quantity}
-
-
-`;
-
-
-
-});
-
-
-
-
-
-const params = {
-
-
-customer_name:
-
-order.customer.name,
-
-
-
-customer_email:
-
-order.customer.email,
-
-
-
-order_id:
-
-order.id,
-
-
-
-products:
-
-productList,
-
-
-
-payment:
-
-order.customer.payment,
-
-
-
-date:
-
-order.date
-
-
-};
-
-
-
-
-
+/* EMAIL */
 
 emailjs.send(
 
@@ -785,33 +467,50 @@ emailjs.send(
 
 "template_dq6buyi",
 
-params
-
-)
-
-.then(()=>{
+{
 
 
-console.log(
+customer_name:name,
 
-"Receipt sent"
+customer_email:email,
 
-);
+order_id:orderId,
+
+products:products,
+
+payment:paymentName,
+
+total:total
 
 
-})
-
-.catch(error=>{
-
-
-console.log(
-
-error
+}
 
 );
 
 
-});
+
+
+
+showMessage(
+"Order sent successfully"
+);
+
+
+
+
+localStorage.removeItem(
+"dhubCart"
+);
+
+
+
+setTimeout(()=>{
+
+
+window.location.href="index.html";
+
+
+},2000);
 
 
 
@@ -823,26 +522,18 @@ error
 
 
 
-/* ===========================================
-   MESSAGE SYSTEM
-=========================================== */
+/* ==========================
+ MESSAGE
+========================== */
 
 
 function showMessage(text){
 
 
-
-let box =
-
-document.createElement(
-"div"
-);
+let box=document.createElement("div");
 
 
-
-box.className =
-"notification";
-
+box.className="notification";
 
 
 box.innerHTML=text;
@@ -853,26 +544,17 @@ document.body.appendChild(box);
 
 
 
-
 setTimeout(()=>{
 
-
-box.classList.add(
-"show"
-);
-
+box.classList.add("show");
 
 },100);
 
 
 
-
-
 setTimeout(()=>{
 
-
 box.remove();
-
 
 },3000);
 
