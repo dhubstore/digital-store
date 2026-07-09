@@ -383,7 +383,7 @@ JSON.stringify(cart)
 function addToCart(id){
 
 
-
+console.log("Added product ID:", id);
 const product =
 products.find(
 item=>item.id===id
