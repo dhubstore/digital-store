@@ -1804,3 +1804,14 @@ transform:rotate(360deg);
     transform:translateX(0);
     opacity:1;
 }
+.product-actions{
+    margin-top:15px;
+}
+
+.buy-btn{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+}
