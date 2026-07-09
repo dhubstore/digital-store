@@ -1183,3 +1183,17 @@ observer.observe(element);
 
 
 });
+function checkout(){
+
+    if(cart.length === 0){
+
+        showNotification("Your cart is empty");
+
+        return;
+
+    }
+
+
+    window.location.href="checkout.html";
+
+}
