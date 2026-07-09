@@ -299,53 +299,33 @@ JSON.stringify(cart)
 
 function addToCart(id){
 
-alert("Button clicked");
+    alert("Button clicked");
 
-let product =
-products.find(
-p=>p.id===id
-);
+    let product = products.find(p => p.id === id);
 
+    if(!product){
+        alert("Product not found");
+        return;
+    }
 
-if(!product)return;
+    let exist = cart.find(p => p.id === id);
 
+    if(exist){
+        exist.quantity++;
+    }else{
+        cart.push({
+            ...product,
+            quantity:1
+        });
+    }
 
+    alert("Product added to cart");
 
-let exist =
-cart.find(
-p=>p.id===id
-);
+    saveCart();
 
+    updateCart();
 
-
-if(exist){
-
-exist.quantity++;
-
-}else{
-
-
-cart.push({
-
-...product,
-
-quantity:1
-
-});
-
-
-}
-
-
-saveCart();
-
-updateCart();
-
-showNotification(
-product.name+" added to cart"
-);
-
-
+    alert("Cart updated");
 }
 
 
