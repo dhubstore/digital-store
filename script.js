@@ -184,7 +184,7 @@ GHS ${product.price}
 <button class="buy-btn"
 onclick="addToCart(${product.id})">
 
-Buy Now
+<i class="fa-solid fa-cart-plus"></i> Add to Cart
 
 </button>
 
