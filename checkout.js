@@ -14,7 +14,7 @@
 
 })();
 // ================= LOAD CART =================
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let cart = JSON.parse(localStorage.getItem("dhubCart")) || [];
 
 if(cart.length === 0){
   alert("Cart is empty");
