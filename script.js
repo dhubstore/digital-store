@@ -296,10 +296,9 @@ JSON.stringify(cart)
 }
 
 
-
 function addToCart(id){
 
-    alert("Button clicked");
+    alert("Button clicked ID: " + id);
 
     let product = products.find(p => p.id === id);
 
@@ -308,24 +307,39 @@ function addToCart(id){
         return;
     }
 
+    alert("Found: " + product.name);
+
     let exist = cart.find(p => p.id === id);
 
     if(exist){
+
         exist.quantity++;
+
     }else{
+
         cart.push({
             ...product,
             quantity:1
         });
+
     }
 
-    alert("Product added to cart");
 
-    saveCart();
+    alert("Cart length: " + cart.length);
+
+
+    localStorage.setItem(
+        "dhubCart",
+        JSON.stringify(cart)
+    );
+
+
+    alert("Saved");
+
 
     updateCart();
 
-    alert("Cart updated");
+
 }
 
 
