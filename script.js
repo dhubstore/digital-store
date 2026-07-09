@@ -1,3 +1,4 @@
+console.log("DHub JS Working");
 console.log("DHub script loaded");
 
 /* ===========================================
