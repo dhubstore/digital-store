@@ -1,54 +1,93 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 
 <head>
 
+
 <meta charset="UTF-8">
 
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
 
 <title>DHub Checkout</title>
 
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+
+
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+
 
 
 <link rel="stylesheet" href="style.css">
 
 
+
 </head>
+
+
+
 
 
 <body>
 
 
+
+
+
 <!-- HEADER -->
 
-<header class="header">
 
-<div class="container header-wrapper">
+<header class="navbar">
 
 
 <div class="logo">
 
+
 <i class="fa-solid fa-bolt"></i>
+
 
 <div>
 
-<h2>DHub</h2>
 
-<p>Checkout</p>
+<h2>
+
+DHub
+
+</h2>
+
+
+<p>
+
+Checkout
+
+</p>
+
 
 </div>
 
+
 </div>
 
 
-</div>
 
 </header>
+
+
+
 
 
 
@@ -58,6 +97,8 @@
 
 
 <div class="container">
+
+
 
 
 
@@ -73,7 +114,7 @@ Complete Your Order
 
 <p>
 
-Fill in your details and confirm payment
+Fill in your information and confirm payment
 
 </p>
 
@@ -84,7 +125,12 @@ Fill in your details and confirm payment
 
 
 
+
 <div class="checkout-layout">
+
+
+
+
 
 
 
@@ -101,29 +147,17 @@ Your Order
 </h2>
 
 
-<div id="checkoutItems">
-
-</div>
 
 
-
-<h3>
-
-Total:
-
-<span id="checkoutTotal">
-
-GHS 0
-
-</span>
-
-
-</h3>
-
+<div id="orderSummary">
 
 
 </div>
 
+
+
+
+</div>
 
 
 
@@ -134,6 +168,7 @@ GHS 0
 <div class="form-card">
 
 
+
 <h2>
 
 Customer Information
@@ -142,37 +177,63 @@ Customer Information
 
 
 
+
+
 <form id="orderForm">
 
 
 
-<input 
+
+
+<input
+
 type="text"
-id="name"
+
+id="custName"
+
 placeholder="Full Name"
+
 required>
 
 
 
 
+
+
 <input
+
 type="tel"
-id="phone"
+
+id="custPhone"
+
 placeholder="Phone Number"
+
 required>
+
+
 
 
 
 
 <input
+
 type="email"
-id="email"
+
+id="custEmail"
+
 placeholder="Email Address"
+
 required>
+
+
+
+
+
 
 
 
 <select id="paymentMethod" required>
+
 
 
 <option value="">
@@ -182,34 +243,82 @@ Select Payment Method
 </option>
 
 
-<option>
-
-Telecel Cash
-
-</option>
 
 
-<option>
+<option value="tcash">
 
-MTN Mobile Money
+Telecel Cash (T-Cash)
 
 </option>
 
 
-<option>
+
+
+<option value="bank">
 
 Bank Transfer
 
 </option>
 
 
+
+
 </select>
-<!-- ========================================= -->
+
+
+
+
+
+
+
+
+<!-- PAYMENT REFERENCE -->
+
+
+<div class="payment-box">
+
+
+
+<h3>
+
+Payment Reference
+
+</h3>
+
+
+
+<input
+
+type="text"
+
+id="paymentProof"
+
+readonly>
+
+
+
+<p>
+
+Use this reference when making payment.
+
+</p>
+
+
+
+</div>
+
+
+
+
+
+
+
+
 <!-- PRODUCT INFORMATION -->
-<!-- ========================================= -->
 
 
 <div id="extraFields">
+
 
 
 <h3>
@@ -219,69 +328,50 @@ Product Information
 </h3>
 
 
+
 <p class="small-text">
 
-For account products, enter the required details below.
+For account products, provide required details.
 
 </p>
 
 
 
+
 <input
+
 type="text"
+
 id="accountEmail"
-placeholder="Account Email / Username (If Required)">
+
+placeholder="Account Email / Username (Optional)">
+
+
 
 
 
 <input
+
 type="password"
+
 id="accountPassword"
-placeholder="Account Password (If Required)">
+
+placeholder="Account Password (Optional)">
+
+
 
 
 
 <input
+
 type="text"
+
 id="extraNote"
+
 placeholder="Additional Notes">
 
 
-</div>
 
-
-
-
-
-<!-- ========================================= -->
-<!-- PAYMENT INSTRUCTIONS -->
-<!-- ========================================= -->
-
-
-<div class="payment-box">
-
-
-<h3>
-
-Payment Instructions
-
-</h3>
-
-
-<p>
-
-Send payment to the provided DHub payment number after submitting your order.
-
-</p>
-
-
-<p>
-
-<strong>Payment Reference:</strong>
-
-Use your name or phone number as reference.
-
-</p>
 
 
 </div>
@@ -290,13 +380,29 @@ Use your name or phone number as reference.
 
 
 
-<!-- ========================================= -->
-<!-- SUBMIT BUTTON -->
-<!-- ========================================= -->
 
 
-<button 
+
+<!-- PAYMENT DETAILS -->
+
+
+<div class="payment-box" id="paymentDetails">
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<button
+
 type="submit"
+
 class="checkout-btn">
 
 
@@ -306,10 +412,20 @@ Place Order
 </button>
 
 
+
+
+
+
 </form>
 
 
+
+
 </div>
+
+
+
+
 
 
 </div>
@@ -319,6 +435,9 @@ Place Order
 
 
 </section>
+
+
+
 
 
 
@@ -351,9 +470,51 @@ Place Order
 
 
 
+
+
+
+<!-- EMAILJS -->
+
+
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
+
+
 <script src="checkout.js"></script>
+
+
+
+
+
+<script>
+
+
+document
+
+.getElementById("orderForm")
+
+.addEventListener(
+
+"submit",
+
+function(e){
+
+
+e.preventDefault();
+
+
+submitOrder();
+
+
+}
+
+);
+
+
+</script>
+
+
+
 
 
 </body>
