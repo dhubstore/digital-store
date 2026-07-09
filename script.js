@@ -1,3 +1,10 @@
+console.log("DHub script loaded");
+
+/* ===========================================
+   DHUB DIGITAL STORE
+   FINAL SCRIPT.JS
+=========================================== */
+
 /* ===========================================
    DHUB DIGITAL STORE
    FINAL SCRIPT.JS
