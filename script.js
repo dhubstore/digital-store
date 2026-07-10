@@ -1,193 +1,120 @@
 /* ==========================================
-   DHUB DIGITAL STORE SCRIPT.JS
+   DHUB DIGITAL STORE
 ========================================== */
 
-
-console.log("DHub Script Loaded");
-
+console.log("DHub Loaded");
 
 /* ==========================
- PRODUCTS
+PRODUCTS
 ========================== */
+
+const DATA_IMAGE = "images/data-bundle.png";
 
 const products = [
 
-{
-id:1,
-name:"EXPRESS VPN 1 MONTH",
-price:45,
-category:"vpn",
-image:"images/expressvpn.png",
-badge:"Popular"
-},
+/* VPN */
 
-{
-id:2,
-name:"NORD VPN 1 MONTH",
-price:45,
-category:"vpn",
-image:"images/nordvpn.png",
-badge:"Hot"
-},
+{id:1,name:"EXPRESS VPN 1 MONTH",price:45,image:"images/express-vpn.jpg",category:"vpn"},
+{id:2,name:"EXPRESS VPN 3 MONTHS",price:60,image:"images/express-vpn.jpg",category:"vpn"},
+{id:3,name:"EXPRESS VPN 1 YEAR",price:90,image:"images/express-vpn.jpg",category:"vpn"},
 
-{
-id:3,
-name:"PIA VPN 1 MONTH",
-price:45,
-category:"vpn",
-image:"images/piavpn.png",
-badge:""
-},
+{id:4,name:"PIA VPN 1 MONTH",price:45,image:"images/pia-vpn.png",category:"vpn"},
+{id:5,name:"PIA VPN 3 MONTHS",price:65,image:"images/pia-vpn.png",category:"vpn"},
+{id:6,name:"PIA VPN 1 YEAR",price:90,image:"images/pia-vpn.png",category:"vpn"},
 
-{
-id:4,
-name:"NETFLIX SHARED 1 MONTH",
-price:35,
-category:"subscriptions",
-image:"images/netflix.png",
-badge:"Best Seller"
-},
+{id:7,name:"NORD VPN 1 MONTH",price:45,image:"images/nord-vpn.png",category:"vpn"},
+{id:8,name:"NORD VPN 1 YEAR",price:90,image:"images/nord-vpn.png",category:"vpn"},
 
-{
-id:5,
-name:"SPOTIFY PREMIUM 1 MONTH",
-price:40,
-category:"subscriptions",
-image:"images/spotify.png",
-badge:""
-},
+/* Accounts */
 
-{
-id:6,
-name:"SNAPCHAT PLUS 1 MONTH",
-price:30,
-category:"subscriptions",
-image:"images/snapchat.png",
-badge:"New"
-},
+{id:9,name:"TEXTNOW ACCOUNT",price:25,image:"images/textnow.png",category:"accounts"},
+{id:10,name:"TEXTFREE ACCOUNT",price:20,image:"images/textfree.png",category:"accounts"},
+{id:11,name:"TEXTPLUS ACCOUNT",price:25,image:"images/textplus.png",category:"accounts"},
+{id:12,name:"USA FACEBOOK ACCOUNT",price:50,image:"images/facebook.png",category:"accounts"},
+{id:13,name:"GMAIL VERIFIED ACCOUNT",price:25,image:"images/gmail.jpg",category:"accounts"},
 
-{
-id:7,
-name:"TEXTNOW ACCOUNT",
-price:25,
-category:"accounts",
-image:"images/textnow.png",
-badge:""
-},
+/* Subscription */
 
-{
-id:8,
-name:"GMAIL VERIFIED ACCOUNT",
-price:25,
-category:"accounts",
-image:"images/gmail.png",
-badge:""
-},
+{id:14,name:"NETFLIX SHARED 1 MONTH",price:35,image:"images/netflix.png",category:"subscriptions"},
+{id:15,name:"NETFLIX PERSONAL 1 MONTH",price:70,image:"images/netflix.png",category:"subscriptions"},
+{id:16,name:"SPOTIFY PREMIUM 1 MONTH",price:40,image:"images/spotify.png",category:"subscriptions"},
+{id:17,name:"SNAPCHAT PLUS 1 MONTH",price:30,image:"images/snapchat.png",category:"subscriptions"},
+{id:18,name:"SNAPCHAT PLUS 1 YEAR",price:95,image:"images/snapchat.png",category:"subscriptions"},
 
-{
-id:9,
-name:"APPLE GIFT CARD",
-price:80,
-category:"giftcards",
-image:"images/applegift.png",
-badge:""
-},
+/* Giftcards */
 
-{
-id:10,
-name:"MTN 5GB DATA",
-price:25,
-category:"data",
-image:"images/mtn.png",
-badge:""
-},
+{id:19,name:"$2 ITUNES E-CODE",price:32,image:"images/itunes-2.png",category:"giftcards"},
+{id:20,name:"$3 ITUNES E-CODE",price:43,image:"images/itunes-3.png",category:"giftcards"},
+{id:21,name:"$4 ITUNES E-CODE",price:57,image:"images/itunes-4.png",category:"giftcards"},
+{id:22,name:"$5 ITUNES E-CODE",price:70,image:"images/itunes-5.png",category:"giftcards"},
+{id:23,name:"$10 ITUNES E-CODE",price:120,image:"images/itunes-10.png",category:"giftcards"},
+{id:24,name:"$15 ITUNES E-CODE",price:215,image:"images/itunes-15.png",category:"giftcards"},
+{id:25,name:"$20 ITUNES E-CODE",price:275,image:"images/itunes-20.png",category:"giftcards"},
 
-{
-id:11,
-name:"TIKTOK 1K FOLLOWERS",
-price:45,
-category:"social",
-image:"images/tiktok.png",
-badge:"Trending"
-}
+/* Data */
+
+{id:26,name:"1GB MTN DATA",price:6,image:DATA_IMAGE,category:"data"},
+{id:27,name:"2GB MTN DATA",price:10,image:DATA_IMAGE,category:"data"},
+{id:28,name:"3GB MTN DATA",price:15.5,image:DATA_IMAGE,category:"data"},
+{id:29,name:"5GB MTN DATA",price:25,image:DATA_IMAGE,category:"data"},
+{id:30,name:"10GB MTN DATA",price:50,image:DATA_IMAGE,category:"data"},
+
+/* Social */
+
+{id:31,name:"1K TIKTOK LIKES",price:10,image:"images/tiktok.png",category:"social"},
+{id:32,name:"1K TIKTOK VIEWS",price:5,image:"images/tiktok.png",category:"social"},
+{id:33,name:"500 TIKTOK FOLLOWERS",price:25,image:"images/tiktok.png",category:"social"},
+{id:34,name:"1K TIKTOK FOLLOWERS",price:45,image:"images/tiktok.png",category:"social"},
+{id:35,name:"1K INSTAGRAM LIKES",price:23,image:"images/instagram.png",category:"social"},
+{id:36,name:"1K INSTAGRAM VIEWS",price:8,image:"images/instagram.png",category:"social"},
+{id:37,name:"1K FACEBOOK FOLLOWERS",price:30,image:"images/facebook.png",category:"social"}
 
 ];
 
-
-
 /* ==========================
- DISPLAY PRODUCTS
+DISPLAY PRODUCTS
 ========================== */
 
 const productList = document.getElementById("productList");
-
 
 function displayProducts(list){
 
 if(!productList) return;
 
-
 productList.innerHTML="";
 
-
 list.forEach(product=>{
-
 
 productList.innerHTML += `
 
 <div class="product-card">
 
-
 <div class="image-box">
-
-
-<img src="${product.image}" 
-onerror="this.src='images/default.png'">
-
-
-${product.badge ? 
-`
-<span class="product-badge">
-${product.badge}
-</span>
-`
-:""}
-
-
+<img src="${product.image}" onerror="this.src='images/default.png'">
 </div>
-
 
 <div class="product-details">
 
-
-<div class="category">
-${product.category}
-</div>
-
+<span class="category">${product.category}</span>
 
 <h3>${product.name}</h3>
-
 
 <div class="rating">
 ★★★★★ <span>(4.9)</span>
 </div>
 
-
-<h2>
-GHS ${product.price}
-</h2>
-
+<h2>GHS ${product.price}</h2>
 
 <div class="product-actions">
-
 
 <button class="buy-btn"
 onclick="addToCart(${product.id})">
 
-<i class="fa-solid fa-cart-plus"></i> Add to Cart
+<i class="fa-solid fa-cart-plus"></i>
+
+Add to Cart
 
 </button>
-
 
 <button class="wishlist-btn"
 data-id="${product.id}"
@@ -197,12 +124,9 @@ onclick="toggleWishlist(${product.id})">
 
 </button>
 
-
 </div>
 
-
 </div>
-
 
 </div>
 
@@ -210,553 +134,467 @@ onclick="toggleWishlist(${product.id})">
 
 });
 
-
 refreshWishlist();
 
 }
 
-
 displayProducts(products);
 
-
-
 /* ==========================
- SEARCH
+SEARCH
 ========================== */
-
 
 function searchProducts(){
 
-let input=document.getElementById("searchInput");
+const input=document.getElementById("searchInput");
 
-if(!input)return;
+if(!input) return;
 
+const keyword=input.value.toLowerCase();
 
-let value=input.value.toLowerCase();
+displayProducts(
 
+products.filter(product=>
 
-let result=products.filter(product=>
+product.name.toLowerCase().includes(keyword)
 
-product.name.toLowerCase().includes(value)
+)
 
 );
 
-
-displayProducts(result);
-
 }
 
-
-
-
-
 /* ==========================
- CATEGORY FILTER
+CATEGORY FILTER
 ========================== */
-
 
 function filterProducts(category){
 
+displayProducts(
 
-let result=products.filter(product=>
+products.filter(product=>
 
 product.category===category
 
+)
+
 );
 
-
-displayProducts(result);
-
-
 }
-
-
-
-
-
 /* ==========================
- CART SYSTEM
+CART SYSTEM
 ========================== */
 
-
-let cart;
-
-try {
-    cart = JSON.parse(localStorage.getItem("dhubCart")) || [];
-} catch (e) {
-    cart = [];
-    localStorage.removeItem("dhubCart");
-}
-
-console.log(cart);
-alert("Cart is an " + (Array.isArray(cart) ? "Array" : typeof cart));
-
-
-
+let cart = JSON.parse(localStorage.getItem("dhubCart")) || [];
 
 function saveCart(){
-
-localStorage.setItem(
-"dhubCart",
-JSON.stringify(cart)
-);
-
+    localStorage.setItem("dhubCart", JSON.stringify(cart));
 }
-
 
 function addToCart(id){
 
-    alert("Button clicked ID: " + id);
-
-    let product = products.find(p => p.id === id);
+    const product = products.find(p => p.id === id);
 
     if(!product){
-        alert("Product not found");
+        showNotification("Product not found");
         return;
     }
 
-    alert("Found: " + product.name);
+    let username = "";
 
-    let exist = cart.find(p => p.id === id);
+    // Ask for username only for social products
+    if(product.category === "social"){
 
-    if(exist){
+        username = prompt("Enter your username or profile link:");
 
-        exist.quantity++;
+        if(username === null) return;
+
+        username = username.trim();
+
+        if(username === ""){
+            showNotification("Username is required");
+            return;
+        }
+
+    }
+
+    const existing = cart.find(item =>
+        item.id === id &&
+        item.username === username
+    );
+
+    if(existing){
+
+        existing.quantity++;
 
     }else{
 
         cart.push({
             ...product,
-            quantity:1
+            quantity:1,
+            username:username
         });
 
     }
 
-
-    alert("Cart length: " + cart.length);
-
-
-    localStorage.setItem(
-        "dhubCart",
-        JSON.stringify(cart)
-    );
-
-
-    alert("Saved");
-
+    saveCart();
 
     updateCart();
 
+    showNotification(product.name + " added to cart");
 
 }
-
-
-
-
 
 function updateCart(){
 
+    const cartItems = document.getElementById("cartItems");
+    const cartCount = document.getElementById("cartCount");
+    const total = document.getElementById("total");
 
-let items=document.getElementById("cartItems");
+    if(cartItems){
 
-let count=document.getElementById("cartCount");
+        cartItems.innerHTML="";
 
-let total=document.getElementById("total");
+        let grandTotal = 0;
+        let totalItems = 0;
 
+        cart.forEach(item=>{
 
+            grandTotal += item.price * item.quantity;
+            totalItems += item.quantity;
 
-let totalPrice=0;
-
-let totalItems=0;
-
-
-
-if(items){
-
-
-items.innerHTML="";
-
-
-cart.forEach(item=>{
-
-
-totalPrice += item.price * item.quantity;
-
-totalItems += item.quantity;
-
-
-
-items.innerHTML += `
+            cartItems.innerHTML += `
 
 <div class="cart-item">
 
-<h4>${item.name}</h4>
+<div>
 
-<p>
-GHS ${item.price}
-</p>
+<strong>${item.name}</strong>
 
+${item.username ? `<br><small>${item.username}</small>` : ""}
 
-<button onclick="changeQuantity(${item.id},-1)">
--
-</button>
+<br>
 
-
-${item.quantity}
-
-
-<button onclick="changeQuantity(${item.id},1)">
-+
-</button>
-
-
-<button onclick="removeCart(${item.id})">
-❌
-</button>
-
+GHS ${item.price} × ${item.quantity}
 
 </div>
 
+<div>
+
+<button onclick="changeQuantity(${item.id},-1)">−</button>
+
+<button onclick="changeQuantity(${item.id},1)">+</button>
+
+<button onclick="removeCart(${item.id})">❌</button>
+
+</div>
+
+</div>
 
 `;
 
+        });
 
-});
+        if(total)
+            total.innerHTML = "GHS " + grandTotal;
 
+        if(cartCount)
+            cartCount.innerHTML = totalItems;
 
-}
+    }else{
 
+        let totalItems = cart.reduce((sum,item)=>sum+item.quantity,0);
 
+        if(cartCount)
+            cartCount.innerHTML = totalItems;
 
-if(count)
-count.innerHTML=totalItems;
-
-
-if(total)
-total.innerHTML="GHS "+totalPrice;
-
-
-}
-
-
-
-function changeQuantity(id,num){
-
-
-let item =
-cart.find(
-p=>p.id===id
-);
-
-
-if(!item)return;
-
-
-item.quantity += num;
-
-
-if(item.quantity<=0){
-
-removeCart(id);
-
-return;
+    }
 
 }
 
+function changeQuantity(id,amount){
 
-saveCart();
+    const item = cart.find(i=>i.id===id);
 
-updateCart();
+    if(!item) return;
+
+    item.quantity += amount;
+
+    if(item.quantity <= 0){
+
+        removeCart(id);
+
+        return;
+
+    }
+
+    saveCart();
+
+    updateCart();
 
 }
-
-
-
-
 
 function removeCart(id){
 
+    cart = cart.filter(item=>item.id!==id);
 
-cart =
-cart.filter(
-p=>p.id!==id
-);
+    saveCart();
 
-
-saveCart();
-
-updateCart();
-
+    updateCart();
 
 }
 
+function clearCart(){
 
+    cart=[];
 
+    saveCart();
+
+    updateCart();
+
+}
 
 function toggleCart(){
 
+    const box=document.getElementById("cartBox");
 
-let box=document.getElementById("cartBox");
+    if(box){
 
+        box.classList.toggle("active");
 
-if(box)
-box.classList.toggle("active");
-
+    }
 
 }
-
-
-
-
-
-/* ==========================
- CHECKOUT
-========================== */
-
 
 function checkout(){
 
+    if(cart.length===0){
 
-if(cart.length===0){
+        showNotification("Your cart is empty");
 
-showNotification(
-"Your cart is empty"
-);
+        return;
 
-return;
+    }
 
-}
+    saveCart();
 
-
-window.location.href="checkout.html";
-
+    window.location.href="checkout.html";
 
 }
 
+/* Load cart immediately */
 
+updateCart();
+/* ==========================
+NOTIFICATIONS
+========================== */
+
+function showNotification(message){
+
+    const old=document.querySelector(".notification");
+
+    if(old) old.remove();
+
+    const box=document.createElement("div");
+
+    box.className="notification";
+
+    box.innerHTML=message;
+
+    document.body.appendChild(box);
+
+    setTimeout(()=>{
+        box.classList.add("show");
+    },100);
+
+    setTimeout(()=>{
+        box.classList.remove("show");
+
+        setTimeout(()=>{
+            box.remove();
+        },300);
+
+    },2500);
+
+}
 
 
 /* ==========================
- NOTIFICATION
+WISHLIST
 ========================== */
 
-
-function showNotification(text){
-
-
-let div=document.createElement("div");
-
-
-div.className="notification";
-
-
-div.innerHTML=text;
-
-
-document.body.appendChild(div);
-
-
-
-setTimeout(()=>{
-
-div.classList.add("show");
-
-},100);
-
-
-
-setTimeout(()=>{
-
-div.remove();
-
-},3000);
-
-
-}
-
-
-
-
-/* ==========================
- WISHLIST
-========================== */
-
-
-let wishlist =
-JSON.parse(
+let wishlist=JSON.parse(
 localStorage.getItem("dhubWishlist")
 )||[];
 
 
-
-
 function toggleWishlist(id){
 
+    if(wishlist.includes(id)){
 
-if(wishlist.includes(id)){
+        wishlist=wishlist.filter(item=>item!==id);
 
+        showNotification("Removed from wishlist");
 
-wishlist =
-wishlist.filter(
-x=>x!==id
-);
+    }else{
 
+        wishlist.push(id);
 
-}else{
+        showNotification("Added to wishlist");
 
+    }
 
-wishlist.push(id);
+    localStorage.setItem(
+        "dhubWishlist",
+        JSON.stringify(wishlist)
+    );
 
-
-}
-
-
-localStorage.setItem(
-"dhubWishlist",
-JSON.stringify(wishlist)
-);
-
-
-refreshWishlist();
-
+    refreshWishlist();
 
 }
-
-
 
 
 function refreshWishlist(){
 
+    document.querySelectorAll(".wishlist-btn")
+    .forEach(btn=>{
 
-document.querySelectorAll(".wishlist-btn")
-.forEach(btn=>{
+        const id=Number(btn.dataset.id);
 
+        btn.innerHTML=
+        wishlist.includes(id)
+        ? "❤"
+        : "♡";
 
-let id =
-Number(btn.dataset.id);
-
-
-
-if(wishlist.includes(id)){
-
-
-btn.innerHTML="❤";
-
-
-}else{
-
-
-btn.innerHTML="♡";
-
+    });
 
 }
 
 
+/* ==========================
+THEME
+========================== */
+
+function toggleTheme(){
+
+    document.body.classList.toggle("light-mode");
+
+    localStorage.setItem(
+        "theme",
+        document.body.classList.contains("light-mode")
+        ? "light"
+        : "dark"
+    );
+
+}
+
+if(localStorage.getItem("theme")==="light"){
+
+    document.body.classList.add("light-mode");
+
+}
+/* ==========================
+HERO SLIDER
+========================== */
+
+let slideIndex = 0;
+const slides = document.querySelectorAll(".slide");
+
+function nextSlide(){
+
+    if(slides.length===0) return;
+
+    slides[slideIndex].classList.remove("active");
+
+    slideIndex++;
+
+    if(slideIndex>=slides.length){
+        slideIndex=0;
+    }
+
+    slides[slideIndex].classList.add("active");
+
+}
+
+if(slides.length>0){
+    setInterval(nextSlide,5000);
+}
+
+
+/* ==========================
+COUNTDOWN TIMER
+========================== */
+
+const endTime = Date.now() + (24*60*60*1000);
+
+function updateCountdown(){
+
+    const countdown=document.getElementById("countdown");
+
+    if(!countdown) return;
+
+    let distance=endTime-Date.now();
+
+    if(distance<0){
+        countdown.innerHTML="Sale Ended";
+        return;
+    }
+
+    const h=Math.floor(distance/1000/60/60);
+    const m=Math.floor((distance/1000/60)%60);
+    const s=Math.floor((distance/1000)%60);
+
+    countdown.innerHTML=
+    `${h}h ${m}m ${s}s`;
+
+}
+
+setInterval(updateCountdown,1000);
+updateCountdown();
+
+
+/* ==========================
+MOBILE MENU
+========================== */
+
+function toggleMenu(){
+
+    const menu=document.getElementById("mobileMenu");
+
+    if(menu){
+        menu.classList.toggle("active");
+    }
+
+}
+
+
+/* ==========================
+CLICK OUTSIDE CART
+========================== */
+
+document.addEventListener("click",function(e){
+
+    const cart=document.getElementById("cartBox");
+    const button=document.querySelector(".cart-btn");
+
+    if(!cart || !button) return;
+
+    if(
+        !cart.contains(e.target) &&
+        !button.contains(e.target)
+    ){
+        cart.classList.remove("active");
+    }
 
 });
 
 
-}
-
-
-
-
 /* ==========================
- THEME
+INITIALIZE
 ========================== */
 
-
-function toggleTheme(){
-
-document.body.classList.toggle(
-"light-mode"
-);
-
-}
-
-
-
-
-/* ==========================
- HERO SLIDER
-========================== */
-
-
-let slides=document.querySelectorAll(".slide");
-
-
-let slideIndex=0;
-
-
-function nextSlide(){
-
-
-if(slides.length<1)return;
-
-
-slides[slideIndex].classList.remove("active");
-
-
-slideIndex++;
-
-
-if(slideIndex>=slides.length)
-slideIndex=0;
-
-
-slides[slideIndex].classList.add("active");
-
-
-}
-
-
-setInterval(nextSlide,5000);
-
-
-
-
-
-/* ==========================
- COUNTDOWN
-========================== */
-
-
-let end =
-Date.now()+86400000;
-
-
-setInterval(()=>{
-
-
-let box=document.getElementById("countdown");
-
-
-if(!box)return;
-
-
-let distance=end-Date.now();
-
-
-
-let h=Math.floor(distance/3600000);
-
-let m=Math.floor(distance%3600000/60000);
-
-let s=Math.floor(distance%60000/1000);
-
-
-
-box.innerHTML=
-`${h}h ${m}m ${s}s`;
-
-
-
-},1000);
-
-
-
-
-
-/* LOAD CART */
-
+displayProducts(products);
 updateCart();
+refreshWishlist();
+
+console.log("DHub Digital Store Ready ✅");
