@@ -279,9 +279,17 @@ displayProducts(result);
 ========================== */
 
 
-let cart = JSON.parse(
-localStorage.getItem("dhubCart")
-) || [];
+let cart;
+
+try {
+    cart = JSON.parse(localStorage.getItem("dhubCart")) || [];
+} catch (e) {
+    cart = [];
+    localStorage.removeItem("dhubCart");
+}
+
+console.log(cart);
+alert("Cart is an " + (Array.isArray(cart) ? "Array" : typeof cart));
 
 
 
