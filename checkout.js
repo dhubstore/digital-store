@@ -1,11 +1,10 @@
 /* ==========================================
-   DHUB DIGITAL STORE CHECKOUT.JS
+   DHUB DIGITAL STORE CHECKOUT
 ========================================== */
 
-
-/* ==========================
- EMAILJS
-========================== */
+// ==========================
+// EMAILJS
+// ==========================
 
 (function(){
 
@@ -17,23 +16,15 @@ publicKey:"MIBwgH6UI5icqbNJL"
 
 })();
 
+// ==========================
+// LOAD CART
+// ==========================
 
+let cart = JSON.parse(localStorage.getItem("dhubCart")) || [];
 
-/* ==========================
- LOAD CART
-========================== */
-
-
-let cart = JSON.parse(
-localStorage.getItem("dhubCart")
-) || [];
-
-
-
-if(cart.length === 0){
+if(cart.length===0){
 
 showMessage("Your cart is empty");
-
 
 setTimeout(()=>{
 
@@ -41,394 +32,249 @@ window.location.href="index.html";
 
 },1500);
 
-
 }
 
-
-
-
-/* ==========================
- ORDER DETAILS
-========================== */
-
+// ==========================
+// ORDER ID
+// ==========================
 
 const orderId =
-"DH-" + Math.floor(100000 + Math.random()*900000);
-
+"DH-"+Math.floor(100000+Math.random()*900000);
 
 const reference =
-"REF-" + Math.floor(100000 + Math.random()*900000);
+"REF-"+Math.floor(100000+Math.random()*900000);
 
+// ==========================
+// PAYMENT REFERENCE
+// ==========================
 
-
-const proof =
-document.getElementById("paymentProof");
-
+const proof=document.getElementById("paymentProof");
 
 if(proof){
 
-proof.value = reference;
+proof.value=reference;
 
 }
 
-
-
-/* ==========================
- DISPLAY ORDER
-========================== */
-
+// ==========================
+// LOAD ORDER SUMMARY
+// ==========================
 
 function loadOrder(){
 
+const summary=document.getElementById("orderSummary");
 
-let box =
-document.getElementById("orderSummary");
-
-
-if(!box)return;
-
-
+if(!summary) return;
 
 let total=0;
 
-
-
 let html=`
-
-
-<div style="background:#020617;padding:20px;border-radius:15px;">
-
-
-<h3>
-🧾 Order Summary
-</h3>
-
-
+<div class="receipt-card-inner">
+<h3>🧾 Order Summary</h3>
 <hr>
-
 `;
-
-
 
 cart.forEach(item=>{
 
+const price=item.price*item.quantity;
 
-let price =
-item.price * item.quantity;
+total+=price;
 
+html+=`
 
-total += price;
+<div class="order-item">
 
+<span>${item.name} × ${item.quantity}</span>
 
-
-html += `
-
-
-<div style="display:flex;justify-content:space-between;margin:10px 0;">
-
-
-<span>
-${item.name} x${item.quantity}
-</span>
-
-
-<b>
-GHS ${price}
-</b>
-
+<b>GHS ${price.toFixed(2)}</b>
 
 </div>
 
-
 `;
 
+if(item.username){
 
+html+=`
+<div class="small-text">
+Username: ${item.username}
+</div>
+`;
+
+}
 
 });
 
-
-
-html += `
-
+html+=`
 
 <hr>
 
-
-<h3>
-Total: GHS ${total}
-</h3>
-
+<h3>Total: GHS ${total.toFixed(2)}</h3>
 
 </div>
 
-
 `;
 
-
-
-box.innerHTML=html;
-
-
+summary.innerHTML=html;
 
 }
 
-
 loadOrder();
-
-
-
-
-
-/* ==========================
- PAYMENT DETAILS
-========================== */
-
+// ==========================
+// PAYMENT DETAILS
+// ==========================
 
 function updatePaymentDetails(){
 
+const method=document.getElementById("paymentMethod");
+const box=document.getElementById("paymentDetails");
 
-let method =
-document.getElementById("paymentMethod");
-
-
-let box =
-document.getElementById("paymentDetails");
-
-
-
-if(!method || !box)return;
-
-
-
+if(!method || !box) return;
 
 if(method.value==="tcash"){
 
-
-
 box.innerHTML=`
 
+<h3>Telecel Cash (T-Cash)</h3>
 
-<h4>
-Telecel Cash (T-Cash)
-</h4>
-
+<p><b>Name:</b> PATRICK KOFI KUMAH</p>
 
 <p>
-Name:
-<b>
-PATRICK KOFI KUMAH
-</b>
-</p>
+<b>Number:</b>
 
+<span id="momoNumber">0204496069</span>
 
-<p>
-
-Number:
-
-<b id="momoNumber">
-0204496069
-</b>
-
-
-<button onclick="copyNumber()">
+<button type="button" onclick="copyNumber()">
 Copy
 </button>
 
-
 </p>
 
+<p><b>Reference:</b> ${reference}</p>
 
-
-<p>
-Reference:
-<b>
-${reference}
-</b>
+<p class="small-text">
+Use the reference above when sending payment.
 </p>
-
 
 `;
 
-
-
-}else{
-
+}else if(method.value==="bank"){
 
 box.innerHTML=`
 
-<p>
-Bank transfer coming soon.
-</p>
+<h3>Bank Transfer</h3>
+
+<p>Bank payment will be available soon.</p>
 
 `;
 
+}else{
 
+box.innerHTML="";
 
 }
 
-
 }
 
+const paymentSelect=document.getElementById("paymentMethod");
 
+if(paymentSelect){
 
-
-document
-.getElementById("paymentMethod")
-.addEventListener(
-"change",
-updatePaymentDetails
-);
-
-
+paymentSelect.addEventListener("change",updatePaymentDetails);
 
 updatePaymentDetails();
 
+}
 
-
-
-
-/* ==========================
- COPY NUMBER
-========================== */
-
+// ==========================
+// COPY NUMBER
+// ==========================
 
 function copyNumber(){
 
+const number=document.getElementById("momoNumber");
 
-let number =
-document.getElementById("momoNumber");
+if(!number) return;
 
+navigator.clipboard.writeText(number.innerText);
 
-
-if(number){
-
-
-navigator.clipboard.writeText(
-number.innerText
-);
-
-
-showMessage(
-"Number copied"
-);
-
+showMessage("Number copied successfully.");
 
 }
 
+// ==========================
+// CALCULATE TOTAL
+// ==========================
 
-
-}
-
-
-
-
-
-/* ==========================
- SUBMIT ORDER
-========================== */
-
-
-function submitOrder(){
-
-
-let name =
-document.getElementById("custName").value;
-
-
-let phone =
-document.getElementById("custPhone").value;
-
-
-let email =
-document.getElementById("custEmail").value;
-
-
-let payment =
-document.getElementById("paymentMethod").value;
-
-
-
-if(!name || !phone || !email || !payment){
-
-
-showMessage(
-"Please complete all fields"
-);
-
-
-return;
-
-
-}
-
-
+function getTotal(){
 
 let total=0;
 
-let products="";
+cart.forEach(item=>{
 
-
-
-cart.forEach((item,index)=>{
-
-
-let itemTotal =
-item.price * item.quantity;
-
-
-total += itemTotal;
-
-
-
-products +=
-`${index+1}. ${item.name} x${item.quantity} = GHS ${itemTotal}\n`;
-
+total += item.price * item.quantity;
 
 });
 
+return total;
 
+}
+// ==========================
+// SUBMIT ORDER
+// ==========================
 
-let paymentName =
+function submitOrder(){
+
+const name=document.getElementById("custName").value.trim();
+const phone=document.getElementById("custPhone").value.trim();
+const email=document.getElementById("custEmail").value.trim();
+const payment=document.getElementById("paymentMethod").value;
+
+const accountEmail=document.getElementById("accountEmail").value.trim();
+const accountPassword=document.getElementById("accountPassword").value.trim();
+const extraNote=document.getElementById("extraNote").value.trim();
+
+if(!name || !phone || !email || !payment){
+
+showMessage("Please complete all required fields.");
+
+return;
+
+}
+
+let productsText="";
+
+cart.forEach((item,index)=>{
+
+productsText += `${index+1}. ${item.name} x${item.quantity} - GHS ${item.price * item.quantity}\n`;
+
+if(item.username){
+
+productsText += `Username: ${item.username}\n`;
+
+}
+
+});
+
+const total=getTotal();
+
+const paymentName=
 payment==="tcash"
-?
-"Telecel Cash"
-:
-"Bank Transfer";
+?"Telecel Cash"
+:"Bank Transfer";
 
-
-
-
-let message = `
+const whatsappMessage=`
 
 🛒 DHUB DIGITAL STORE
 
 ━━━━━━━━━━━━━━
 
-Order ID:
-${orderId}
+Order ID: ${orderId}
 
-
-Reference:
-${reference}
-
-
-Products:
-
-${products}
-
+Reference: ${reference}
 
 ━━━━━━━━━━━━━━
 
-Total:
-GHS ${total}
-
-
-Payment:
-${paymentName}
-
-
 Customer:
-
 ${name}
 
 Phone:
@@ -437,29 +283,35 @@ ${phone}
 Email:
 ${email}
 
+━━━━━━━━━━━━━━
+
+Products:
+
+${productsText}
+
+━━━━━━━━━━━━━━
+
+Total:
+GHS ${total}
+
+Payment:
+${paymentName}
+
+Account Email:
+${accountEmail || "N/A"}
+
+Account Password:
+${accountPassword || "N/A"}
+
+Note:
+${extraNote || "None"}
+
 `;
 
-
-
-
-
-/* WHATSAPP */
-
 window.open(
-
-"https://wa.me/233204496069?text="
-+
-encodeURIComponent(message),
-
+"https://wa.me/233204496069?text="+encodeURIComponent(whatsappMessage),
 "_blank"
-
 );
-
-
-
-
-
-/* EMAIL */
 
 emailjs.send(
 
@@ -469,80 +321,53 @@ emailjs.send(
 
 {
 
-
 customer_name:name,
 
 customer_email:email,
 
 order_id:orderId,
 
-products:products,
+products:productsText,
 
 payment:paymentName,
 
-total:total
+total:total,
 
+reference:reference
 
 }
 
 );
 
+localStorage.removeItem("dhubCart");
 
-
-
-
-showMessage(
-"Order sent successfully"
-);
-
-
-
-
-localStorage.removeItem(
-"dhubCart"
-);
-
-
+showMessage("Order placed successfully.");
 
 setTimeout(()=>{
 
-
 window.location.href="index.html";
-
 
 },2000);
 
-
-
 }
 
-
-
-
-
-
-
-/* ==========================
- MESSAGE
-========================== */
-
+// ==========================
+// NOTIFICATION
+// ==========================
 
 function showMessage(text){
 
+const old=document.querySelector(".notification");
 
-let box=document.createElement("div");
+if(old) old.remove();
 
+const box=document.createElement("div");
 
 box.className="notification";
 
-
 box.innerHTML=text;
 
-
-
 document.body.appendChild(box);
-
-
 
 setTimeout(()=>{
 
@@ -550,14 +375,16 @@ box.classList.add("show");
 
 },100);
 
+setTimeout(()=>{
 
+box.classList.remove("show");
 
 setTimeout(()=>{
 
 box.remove();
 
-},3000);
+},300);
 
-
+},2500);
 
 }
