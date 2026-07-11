@@ -1,523 +1,348 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 
 <head>
 
-
 <meta charset="UTF-8">
 
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>DHub Checkout</title>
 
-
+<link rel="stylesheet"
+href="style.css">
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-
-
 <link rel="preconnect"
 href="https://fonts.googleapis.com">
 
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
 
-
-<link rel="stylesheet"
-href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-
-
-
-<link rel="stylesheet" href="style.css">
-
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
 
 </head>
 
-
-
-
-
 <body>
 
-
-
-
-
-<!-- HEADER -->
-
+<!-- ==========================
+NAVBAR
+========================== -->
 
 <header class="navbar">
 
-
 <div class="logo">
 
-
-<i class="fa-solid fa-bolt"></i>
-
-
-<div>
-
-
-<h2>
-
-DHub
-
-</h2>
-
-
-<p>
-
-Checkout
-
-</p>
-
+<h2>DHub</h2>
 
 </div>
 
+<div class="nav-icons">
+
+<a href="index.html" class="shop-btn">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+Continue Shopping
+
+</a>
 
 </div>
-
-
 
 </header>
 
-
-
-
-
-
-
+<!-- ==========================
+CHECKOUT PAGE
+========================== -->
 
 <section class="checkout-page">
 
-
 <div class="container">
-
-
-
-
 
 <div class="section-header">
 
-
-<h2>
-
-Complete Your Order
-
-</h2>
-
+<h2>Checkout</h2>
 
 <p>
-
-Fill in your information and confirm payment
-
+Complete your order below.
 </p>
-
 
 </div>
 
-
-
-
-
-
 <div class="checkout-layout">
-
-
-
-
-
-
-
-<!-- ORDER SUMMARY -->
-
+  <div class="checkout-layout">
+    <!-- ==========================
+ORDER SUMMARY
+========================== -->
 
 <div class="receipt-card">
 
-
 <h2>
+
+<i class="fa-solid fa-cart-shopping"></i>
 
 Your Order
 
 </h2>
 
-
-
-
 <div id="orderSummary">
 
+<!-- Products will be loaded by checkout.js -->
 
 </div>
 
+<div class="receipt-total">
 
+<h3>
 
+Total
+
+</h3>
+
+<h2 id="orderTotal">
+
+GHS 0.00
+
+</h2>
 
 </div>
 
+<div class="receipt-info">
 
+<p>
 
+<i class="fa-solid fa-circle-check"></i>
 
-<!-- CUSTOMER FORM -->
+Instant Digital Delivery
 
+</p>
+
+<p>
+
+<i class="fa-solid fa-lock"></i>
+
+100% Secure Checkout
+
+</p>
+
+<p>
+
+<i class="fa-solid fa-headset"></i>
+
+24/7 Customer Support
+
+</p>
+
+</div>
+
+</div>
+<!-- ==========================
+CUSTOMER INFORMATION
+========================== -->
 
 <div class="form-card">
 
-
-
 <h2>
+
+<i class="fa-solid fa-user"></i>
 
 Customer Information
 
 </h2>
 
-
-
-
-
 <form id="orderForm">
 
-
-
-
-
 <input
-
 type="text"
-
 id="custName"
-
 placeholder="Full Name"
-
 required>
 
-
-
-
-
-
 <input
-
 type="tel"
-
 id="custPhone"
-
 placeholder="Phone Number"
-
 required>
-
-
-
-
-
 
 <input
-
 type="email"
-
 id="custEmail"
-
 placeholder="Email Address"
-
 required>
 
-
-
-
-
-
-
-
-<select id="paymentMethod" required>
-
-
+<select
+id="paymentMethod"
+required>
 
 <option value="">
-
 Select Payment Method
-
 </option>
-
-
-
 
 <option value="tcash">
-
 Telecel Cash (T-Cash)
-
 </option>
-
-
-
 
 <option value="bank">
-
 Bank Transfer
-
 </option>
-
-
-
 
 </select>
 
-
-
-
-
-
-
-
-<!-- PAYMENT REFERENCE -->
-
+<div id="paymentDetails"></div>
 
 <div class="payment-box">
 
-
-
-<h3>
-
-Payment Reference
-
-</h3>
-
-
+<h3>Payment Reference</h3>
 
 <input
-
 type="text"
-
 id="paymentProof"
-
 readonly>
-
-
-
-<p>
-
-Use this reference when making payment.
-
-</p>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-<!-- PRODUCT INFORMATION -->
-
-
-<div id="extraFields">
-
-
-
-<h3>
-
-Product Information
-
-</h3>
-
-
 
 <p class="small-text">
 
-For account products, provide required details.
+Use this reference when making your payment.
 
 </p>
 
+</div>
+<!-- ==========================
+ACCOUNT DETAILS
+========================== -->
 
+<div id="extraFields">
 
+<h3>
+
+<i class="fa-solid fa-user-lock"></i>
+
+Account Details (Optional)
+
+</h3>
+
+<p class="small-text">
+
+If you're ordering an account or subscription that requires login details, enter them below.
+
+</p>
 
 <input
-
 type="text"
-
 id="accountEmail"
-
-placeholder="Account Email / Username (Optional)">
-
-
-
-
+placeholder="Account Email / Username">
 
 <input
-
 type="password"
-
 id="accountPassword"
+placeholder="Account Password">
 
-placeholder="Account Password (Optional)">
-
-
-
-
-
-<input
-
-type="text"
-
+<textarea
 id="extraNote"
-
-placeholder="Additional Notes">
-
-
-
-
+rows="4"
+placeholder="Additional Notes (Optional)"></textarea>
 
 </div>
 
-
-
-
-
-
-
-
-<!-- PAYMENT DETAILS -->
-
-
-<div class="payment-box" id="paymentDetails">
-
-
-
-</div>
-
-
-
-
-
-
-
+<br>
 
 <button
-
 type="submit"
-
 class="checkout-btn">
 
+<i class="fa-solid fa-paper-plane"></i>
 
 Place Order
 
-
 </button>
-
-
-
-
-
 
 </form>
 
-
-
-
+</div>
 </div>
 
-
-
-
-
-
 </div>
-
-
-</div>
-
 
 </section>
 
-
-
-
-
-
-
-
-<!-- FOOTER -->
-
+<!-- ==========================
+FOOTER
+========================== -->
 
 <footer class="footer">
 
+<div class="container footer-grid">
 
-<div class="container">
+<div>
 
+<h2>DHub Digital Store</h2>
+
+<p>
+Your trusted digital marketplace.
+</p>
+
+</div>
+
+<div>
+
+<h3>Support</h3>
+
+<p>WhatsApp</p>
+
+<p>Telegram</p>
+
+<p>Email</p>
+
+</div>
+
+<div>
+
+<h3>Secure Payments</h3>
+
+<p>Telecel Cash</p>
+
+<p>Fast Delivery</p>
+
+<p>Instant Support</p>
+
+</div>
+
+</div>
 
 <div class="copyright">
 
-
 © 2026 DHub Digital Store. All Rights Reserved.
 
-
 </div>
-
-
-</div>
-
 
 </footer>
 
-
-
-
-
-
-
-
 <!-- EMAILJS -->
-
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-
+<!-- CHECKOUT SCRIPT -->
 
 <script src="checkout.js"></script>
 
-
-
-
-
 <script>
 
-
 document
-
 .getElementById("orderForm")
-
-.addEventListener(
-
-"submit",
-
-function(e){
-
+.addEventListener("submit", function(e){
 
 e.preventDefault();
 
-
 submitOrder();
 
-
-}
-
-);
-
+});
 
 </script>
 
-
-
-
-
 </body>
-
 
 </html>
