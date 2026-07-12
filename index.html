@@ -56,55 +56,43 @@
 
 <header class="navbar">
 
+<button class="menu-btn" onclick="toggleMenu()">
+    <i class="fa-solid fa-bars"></i>
+</button>
+
 <div class="logo">
-<h2>DHub</h2>
+    <h2>DHub</h2>
 </div>
 
 <div class="search-bar">
+    <i class="fa-solid fa-magnifying-glass"></i>
 
-<i class="fa-solid fa-magnifying-glass"></i>
-
-<input
-type="text"
-id="searchInput"
-placeholder="Search products..."
-onkeyup="searchProducts()">
-
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Search products..."
+        onkeyup="searchProducts()">
 </div>
-
-<button class="menu-btn" onclick="toggleMenu()">
-
-☰
-
-</button>
 
 <nav class="menu" id="mobileMenu">
 
-<a href="#">Home</a>
-
-<a href="#categories">Categories</a>
-
-<a href="#products">Products</a>
-
-<a href="#contact">Support</a>
+    <a href="#">Home</a>
+    <a href="#categories">Categories</a>
+    <a href="#products">Products</a>
+    <a href="#contact">Support</a>
 
 </nav>
 
 <div class="nav-icons">
 
-<button class="theme-btn" onclick="toggleTheme()">
+    <button class="theme-btn" onclick="toggleTheme()">
+        <i class="fa-solid fa-moon"></i>
+    </button>
 
-<i class="fa-solid fa-moon"></i>
-
-</button>
-
-<div class="cart-btn" onclick="toggleCart()">
-
-<i class="fa-solid fa-cart-shopping"></i>
-
-<span id="cartCount">0</span>
-
-</div>
+    <div class="cart-btn" onclick="toggleCart()">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span id="cartCount">0</span>
+    </div>
 
 </div>
 
