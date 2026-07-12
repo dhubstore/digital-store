@@ -2,389 +2,418 @@
    DHUB DIGITAL STORE CHECKOUT
 ========================================== */
 
-// ==========================
-// EMAILJS
-// ==========================
+/* ==========================
+EMAILJS
+========================== */
 
-(function(){
+(function () {
 
-emailjs.init({
-
-publicKey:"MIBwgH6UI5icqbNJL"
-
-});
+    emailjs.init({
+        publicKey: "MIBwgH6UI5icqbNJL"
+    });
 
 })();
 
-// ==========================
-// LOAD CART
-// ==========================
+/* ==========================
+LOAD CART
+========================== */
 
 let cart = JSON.parse(localStorage.getItem("dhubCart")) || [];
 
-if(cart.length===0){
+if (cart.length === 0) {
 
-showMessage("Your cart is empty");
+    alert("Your cart is empty.");
 
-setTimeout(()=>{
-
-window.location.href="index.html";
-
-},1500);
+    window.location.href = "index.html";
 
 }
 
-// ==========================
-// ORDER ID
-// ==========================
+/* ==========================
+ORDER ID
+========================== */
 
 const orderId =
-"DH-"+Math.floor(100000+Math.random()*900000);
+"DH-" + Math.floor(100000 + Math.random() * 900000);
 
-const reference =
-"REF-"+Math.floor(100000+Math.random()*900000);
+const paymentReference =
+"REF-" + Math.floor(100000 + Math.random() * 900000);
 
-// ==========================
-// PAYMENT REFERENCE
-// ==========================
+/* ==========================
+SHOW PAYMENT REFERENCE
+========================== */
 
-const proof=document.getElementById("paymentProof");
+const paymentProof =
+document.getElementById("paymentProof");
 
-if(proof){
+if(paymentProof){
 
-proof.value=reference;
+    paymentProof.value = paymentReference;
 
 }
 
-// ==========================
-// LOAD ORDER SUMMARY
-// ==========================
+/* ==========================
+ORDER SUMMARY
+========================== */
 
 function loadOrder(){
 
-const summary=document.getElementById("orderSummary");
+    const box =
+    document.getElementById("orderSummary");
 
-if(!summary) return;
+    if(!box) return;
 
-let total=0;
+    let total = 0;
 
-let html=`
-<div class="receipt-card-inner">
-<h3>🧾 Order Summary</h3>
-<hr>
-`;
+    let html = "";
 
-cart.forEach(item=>{
+    cart.forEach(item=>{
 
-const price=item.price*item.quantity;
+        const subtotal =
+        item.price * item.quantity;
 
-total+=price;
+        total += subtotal;
 
-html+=`
+        html += `
 
-<div class="order-item">
+        <div class="order-item">
 
-<span>${item.name} × ${item.quantity}</span>
+            <div>
 
-<b>GHS ${price.toFixed(2)}</b>
+                <strong>${item.name}</strong>
 
-</div>
+                <br>
 
-`;
+                Qty: ${item.quantity}
 
-if(item.username){
+                ${item.username ? `<br><small>${item.username}</small>` : ""}
 
-html+=`
-<div class="small-text">
-Username: ${item.username}
-</div>
-`;
+            </div>
 
-}
+            <strong>
 
-});
+                GHS ${subtotal}
 
-html+=`
+            </strong>
 
-<hr>
+        </div>
 
-<h3>Total: GHS ${total.toFixed(2)}</h3>
+        `;
 
-</div>
+    });
 
-`;
+    html += `
 
-summary.innerHTML=html;
+    <hr>
+
+    <h3>Total: GHS ${total}</h3>
+
+    `;
+
+    box.innerHTML = html;
 
 }
 
 loadOrder();
-// ==========================
-// PAYMENT DETAILS
-// ==========================
+/* ==========================
+PAYMENT DETAILS
+========================== */
 
 function updatePaymentDetails(){
 
-const method=document.getElementById("paymentMethod");
-const box=document.getElementById("paymentDetails");
+    const method = document.getElementById("paymentMethod");
+    const box = document.getElementById("paymentDetails");
 
-if(!method || !box) return;
+    if(!method || !box) return;
 
-if(method.value==="tcash"){
+    if(method.value === "tcash"){
 
-box.innerHTML=`
+        box.innerHTML = `
 
-<h3>Telecel Cash (T-Cash)</h3>
+        <div class="payment-card">
 
-<p><b>Name:</b> PATRICK KOFI KUMAH</p>
+            <h3>Telecel Cash (T-Cash)</h3>
 
-<p>
-<b>Number:</b>
+            <p><strong>Name:</strong> PATRICK KOFI KUMAH</p>
 
-<span id="momoNumber">0204496069</span>
+            <p>
+                <strong>Number:</strong>
+                <span id="momoNumber">0204496069</span>
 
-<button type="button" onclick="copyNumber()">
-Copy
-</button>
+                <button type="button"
+                        onclick="copyNumber()">
 
-</p>
+                    Copy
 
-<p><b>Reference:</b> ${reference}</p>
+                </button>
 
-<p class="small-text">
-Use the reference above when sending payment.
-</p>
+            </p>
 
-`;
+            <p>
 
-}else if(method.value==="bank"){
+                <strong>Reference:</strong>
 
-box.innerHTML=`
+                ${paymentReference}
 
-<h3>Bank Transfer</h3>
+            </p>
 
-<p>Bank payment will be available soon.</p>
+            <small>
+                Send the exact amount and use the reference above.
+            </small>
 
-`;
+        </div>
 
-}else{
+        `;
 
-box.innerHTML="";
+    }else if(method.value === "bank"){
+
+        box.innerHTML = `
+
+        <div class="payment-card">
+
+            <h3>Bank Transfer</h3>
+
+            <p>Coming Soon.</p>
+
+        </div>
+
+        `;
+
+    }else{
+
+        box.innerHTML = "";
+
+    }
 
 }
 
-}
 
-const paymentSelect=document.getElementById("paymentMethod");
-
-if(paymentSelect){
-
-paymentSelect.addEventListener("change",updatePaymentDetails);
-
-updatePaymentDetails();
-
-}
-
-// ==========================
-// COPY NUMBER
-// ==========================
+/* ==========================
+COPY NUMBER
+========================== */
 
 function copyNumber(){
 
-const number=document.getElementById("momoNumber");
+    const number = document.getElementById("momoNumber");
 
-if(!number) return;
+    if(!number) return;
 
-navigator.clipboard.writeText(number.innerText);
+    navigator.clipboard.writeText(number.innerText);
 
-showMessage("Number copied successfully.");
-
-}
-
-// ==========================
-// CALCULATE TOTAL
-// ==========================
-
-function getTotal(){
-
-let total=0;
-
-cart.forEach(item=>{
-
-total += item.price * item.quantity;
-
-});
-
-return total;
+    showNotification("Number copied successfully.");
 
 }
-// ==========================
-// SUBMIT ORDER
-// ==========================
+
+
+/* ==========================
+PAYMENT CHANGE
+========================== */
+
+const paymentMethod =
+document.getElementById("paymentMethod");
+
+if(paymentMethod){
+
+    paymentMethod.addEventListener(
+        "change",
+        updatePaymentDetails
+    );
+
+    updatePaymentDetails();
+
+}
+/* ==========================
+SUBMIT ORDER
+========================== */
 
 function submitOrder(){
 
-const name=document.getElementById("custName").value.trim();
-const phone=document.getElementById("custPhone").value.trim();
-const email=document.getElementById("custEmail").value.trim();
-const payment=document.getElementById("paymentMethod").value;
+    const name = document.getElementById("custName").value.trim();
+    const phone = document.getElementById("custPhone").value.trim();
+    const email = document.getElementById("custEmail").value.trim();
+    const payment = document.getElementById("paymentMethod").value;
 
-const accountEmail=document.getElementById("accountEmail").value.trim();
-const accountPassword=document.getElementById("accountPassword").value.trim();
-const extraNote=document.getElementById("extraNote").value.trim();
+    const accountEmail =
+        document.getElementById("accountEmail")?.value || "";
 
-if(!name || !phone || !email || !payment){
+    const accountPassword =
+        document.getElementById("accountPassword")?.value || "";
 
-showMessage("Please complete all required fields.");
+    const extraNote =
+        document.getElementById("extraNote")?.value || "";
 
-return;
+    if(!name || !phone || !email || !payment){
 
-}
+        showNotification("Please fill in all required fields.");
+        return;
 
-let productsText="";
+    }
 
-cart.forEach((item,index)=>{
+    let total = 0;
+    let products = "";
 
-productsText += `${index+1}. ${item.name} x${item.quantity} - GHS ${item.price * item.quantity}\n`;
+    cart.forEach((item,index)=>{
 
-if(item.username){
+        const subtotal = item.price * item.quantity;
 
-productsText += `Username: ${item.username}\n`;
+        total += subtotal;
 
-}
-
-});
-
-const total=getTotal();
-
-const paymentName=
-payment==="tcash"
-?"Telecel Cash"
-:"Bank Transfer";
-
-const whatsappMessage=`
-
-🛒 DHUB DIGITAL STORE
-
-━━━━━━━━━━━━━━
-
-Order ID: ${orderId}
-
-Reference: ${reference}
-
-━━━━━━━━━━━━━━
-
-Customer:
-${name}
-
-Phone:
-${phone}
-
-Email:
-${email}
-
-━━━━━━━━━━━━━━
-
-Products:
-
-${productsText}
-
-━━━━━━━━━━━━━━
-
-Total:
-GHS ${total}
-
-Payment:
-${paymentName}
-
-Account Email:
-${accountEmail || "N/A"}
-
-Account Password:
-${accountPassword || "N/A"}
-
-Note:
-${extraNote || "None"}
+        products +=
+`${index+1}. ${item.name}
+Qty: ${item.quantity}
+Price: GHS ${subtotal}
+${item.username ? "Username: " + item.username : ""}
 
 `;
 
-window.open(
-"https://wa.me/233204496069?text="+encodeURIComponent(whatsappMessage),
-"_blank"
-);
+    });
 
-emailjs.send(
+    const paymentName =
+        payment === "tcash"
+        ? "Telecel Cash"
+        : "Bank Transfer";
 
-"service_wcjw9mm",
+    const whatsappMessage = `
 
-"template_dq6buyi",
+🛒 *DHUB DIGITAL STORE*
 
-{
+━━━━━━━━━━━━━━
 
-customer_name:name,
+*Order ID:*
+${orderId}
 
-customer_email:email,
+*Reference:*
+${paymentReference}
 
-order_id:orderId,
+━━━━━━━━━━━━━━
 
-products:productsText,
+${products}
 
-payment:paymentName,
+━━━━━━━━━━━━━━
 
-total:total,
+*Total:*
+GHS ${total}
 
-reference:reference
+*Payment Method:*
+${paymentName}
+
+━━━━━━━━━━━━━━
+
+*Customer*
+
+Name: ${name}
+
+Phone: ${phone}
+
+Email: ${email}
+
+Account: ${accountEmail}
+
+Password: ${accountPassword}
+
+Extra Note:
+${extraNote}
+
+`;
+
+    window.open(
+
+        "https://wa.me/233204496069?text=" +
+        encodeURIComponent(whatsappMessage),
+
+        "_blank"
+
+    );
+
+    emailjs.send(
+
+        "service_wcjw9mm",
+
+        "template_dq6buyi",
+
+        {
+
+            customer_name: name,
+            customer_email: email,
+            customer_phone: phone,
+            order_id: orderId,
+            products: products,
+            total: total,
+            payment: paymentName,
+            reference: paymentReference
+
+        }
+
+    );
+
+    showNotification("Order sent successfully.");
+
+    localStorage.removeItem("dhubCart");
+
+    setTimeout(()=>{
+
+        window.location.href="index.html";
+
+    },2000);
 
 }
 
-);
 
-localStorage.removeItem("dhubCart");
+/* ==========================
+NOTIFICATIONS
+========================== */
 
-showMessage("Order placed successfully.");
+function showNotification(message){
 
-setTimeout(()=>{
+    const old =
+    document.querySelector(".notification");
 
-window.location.href="index.html";
+    if(old) old.remove();
 
-},2000);
+    const box =
+    document.createElement("div");
+
+    box.className = "notification";
+
+    box.innerHTML = message;
+
+    document.body.appendChild(box);
+
+    setTimeout(()=>{
+
+        box.classList.add("show");
+
+    },100);
+
+    setTimeout(()=>{
+
+        box.classList.remove("show");
+
+        setTimeout(()=>{
+
+            box.remove();
+
+        },300);
+
+    },3000);
 
 }
 
-// ==========================
-// NOTIFICATION
-// ==========================
 
-function showMessage(text){
+/* ==========================
+FORM SUBMIT
+========================== */
 
-const old=document.querySelector(".notification");
+const form =
+document.getElementById("orderForm");
 
-if(old) old.remove();
+if(form){
 
-const box=document.createElement("div");
+    form.addEventListener("submit",function(e){
 
-box.className="notification";
+        e.preventDefault();
 
-box.innerHTML=text;
+        submitOrder();
 
-document.body.appendChild(box);
-
-setTimeout(()=>{
-
-box.classList.add("show");
-
-},100);
-
-setTimeout(()=>{
-
-box.classList.remove("show");
-
-setTimeout(()=>{
-
-box.remove();
-
-},300);
-
-},2500);
+    });
 
 }
