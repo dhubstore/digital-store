@@ -2097,3 +2097,81 @@ transform:rotate(360deg);
 }
 
 }
+/* ==========================================
+   MTC GAME MOBILE HEADER
+========================================== */
+
+.menu-btn{
+    display:none;
+}
+
+@media (max-width:768px){
+
+.top-bar{
+    display:none;
+}
+
+.navbar{
+    display:grid;
+    grid-template-columns:45px 1fr auto;
+    align-items:center;
+    padding:12px 15px;
+    gap:12px;
+}
+
+.menu-btn{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:none;
+    color:#fff;
+    font-size:26px;
+    border:none;
+    cursor:pointer;
+}
+
+.logo{
+    justify-content:flex-start;
+}
+
+.logo h2{
+    font-size:22px;
+}
+
+.search-bar{
+    display:none;
+}
+
+.nav-icons{
+    gap:10px;
+}
+
+.theme-btn{
+    display:none;
+}
+
+.menu{
+    position:fixed;
+    top:0;
+    left:-280px;
+    width:260px;
+    height:100vh;
+    background:#111827;
+    display:flex;
+    flex-direction:column;
+    padding:90px 25px;
+    transition:.3s;
+    z-index:99999;
+}
+
+.menu.active{
+    left:0;
+}
+
+.menu a{
+    padding:16px 0;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    font-size:17px;
+}
+
+}
