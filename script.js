@@ -598,14 +598,18 @@ updateCountdown();
 MOBILE MENU
 ========================== */
 
-function toggleMenu(){
+/* ==========================
+MOBILE SIDEBAR
+========================== */
 
-    const menu = document.getElementById("mobileMenu");
+function toggleMenu() {
+    document.getElementById("mobileMenu").classList.add("active");
+    document.querySelector(".menu-overlay").classList.add("active");
+}
 
-    if(menu){
-        menu.classList.toggle("active");
-    }
-
+function closeMenu() {
+    document.getElementById("mobileMenu").classList.remove("active");
+    document.querySelector(".menu-overlay").classList.remove("active");
 }
 
 
@@ -641,6 +645,3 @@ updateCart();
 refreshWishlist();
 
 console.log("✅ DHub Digital Store Ready");
-function toggleMenu(){
-    document.getElementById("mobileMenu").classList.toggle("active");
-}
