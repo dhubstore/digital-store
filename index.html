@@ -60,26 +60,25 @@
     <i class="fa-solid fa-bars"></i>
 </button>
 
-<div class="logo">
-    <h2>DHub</h2>
-</div>
+<div class="menu-overlay" onclick="closeMenu()"></div>
 
-<div class="search-bar">
-    <i class="fa-solid fa-magnifying-glass"></i>
+<nav class="mobile-sidebar" id="mobileMenu">
 
-    <input
-        type="text"
-        id="searchInput"
-        placeholder="Search products..."
-        onkeyup="searchProducts()">
-</div>
+    <div class="sidebar-header">
+        <h2>DHub</h2>
+        <button onclick="closeMenu()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
 
-<nav class="menu" id="mobileMenu">
-
-    <a href="#">Home</a>
-    <a href="#categories">Categories</a>
-    <a href="#products">Products</a>
-    <a href="#contact">Support</a>
+    <a href="#">Popular</a>
+    <a href="#">Gaming Cards</a>
+    <a href="#">Gift Cards</a>
+    <a href="#">Subscriptions</a>
+    <a href="#">VPN</a>
+    <a href="#">Streaming</a>
+    <a href="#">Social Boost</a>
+    <a href="#">Data Bundles</a>
 
 </nav>
 
