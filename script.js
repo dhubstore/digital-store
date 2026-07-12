@@ -641,3 +641,6 @@ updateCart();
 refreshWishlist();
 
 console.log("✅ DHub Digital Store Ready");
+function toggleMenu(){
+    document.getElementById("mobileMenu").classList.toggle("active");
+}
