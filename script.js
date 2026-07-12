@@ -36,9 +36,9 @@ const products = [
 /* ================= SUBSCRIPTIONS ================= */
 
 {id:14,name:"NETFLIX SHARED 1 MONTH",price:35,image:"images/netflix.png",category:"subscriptions"},
-{id:15,name:"NETFLIX PERSONAL 1 MONTH",price:70,image:"images/netflix.png",category:"subscriptions"},
+{id:15,name:"NETFLIX PERSONAL 1 MONTH",price:65,image:"images/netflix.png",category:"subscriptions"},
 {id:16,name:"SPOTIFY PREMIUM 1 MONTH",price:40,image:"images/spotify.png",category:"subscriptions"},
-{id:17,name:"SNAPCHAT PLUS 1 MONTH",price:30,image:"images/snapchat.png",category:"subscriptions"},
+{id:17,name:"SNAPCHAT PLUS 1 MONTH",price:40,image:"images/snapchat.png",category:"subscriptions"},
 {id:18,name:"SNAPCHAT PLUS 1 YEAR",price:95,image:"images/snapchat.png",category:"subscriptions"},
 
 /* ================= GIFT CARDS ================= */
