@@ -340,12 +340,14 @@ section{
 =========================================== */
 
 .navbar{
-    background:#0f172a;
-    border-top:1px solid rgba(255,255,255,.05);
-    border-bottom:1px solid rgba(255,255,255,.05);
     position:sticky;
-    top:88px;
-    z-index:999;
+    top:0;
+    z-index:1000;
+    background:#0f172a;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 20px;
 }
 
 .navbar .container{
@@ -2208,11 +2210,20 @@ transform:rotate(360deg);
     left:0;
 }
 
+.menu-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    z-index:999998;
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+}
+
 .menu-overlay.active{
     opacity:1;
     visibility:visible;
 }
-
 .sidebar-header{
     display:flex;
     justify-content:space-between;
@@ -2291,19 +2302,7 @@ transform:rotate(360deg);
     visibility:visible;
 }
 
-.mobile-sidebar{
-    position:fixed;
-    top:0;
-    left:-300px;
-    width:280px;
-    height:100%;
-    background:#111827;
-    transition:.35s ease;
-    z-index:9999;
-    overflow-y:auto;
-    padding-top:20px;
-    box-shadow:5px 0 25px rgba(0,0,0,.4);
-}
+
 
 .mobile-sidebar.active{
     left:0;
