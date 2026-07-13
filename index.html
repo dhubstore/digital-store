@@ -56,20 +56,24 @@
 
 <header class="navbar">
 
-<button class="menu-btn" onclick="toggleMenu()">
-    <i class="fa-solid fa-bars"></i>
-</button>
+    <button class="menu-btn" onclick="toggleMenu()">
+        <i class="fa-solid fa-bars"></i>
+    </button>
 
-<div class="menu-overlay" onclick="closeMenu()"></div>
-
-<nav class="mobile-sidebar" id="mobileMenu">
-
-    <div class="sidebar-header">
+    <div class="logo">
         <h2>DHub</h2>
-        <button onclick="closeMenu()">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
     </div>
+
+    <div class="nav-icons">
+
+        <div class="cart-btn" onclick="toggleCart()">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="cartCount">0</span>
+        </div>
+
+    </div>
+
+</header>
 
     <a href="#" onclick="closeMenu()">Popular</a>
 <a href="#" onclick="closeMenu()">Gaming Cards</a>
