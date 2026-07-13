@@ -75,32 +75,51 @@
 
 </header>
 
-    <a href="#" onclick="closeMenu()">Popular</a>
-<a href="#" onclick="closeMenu()">Gaming Cards</a>
-<a href="#" onclick="closeMenu()">Gift Cards</a>
-<a href="#" onclick="closeMenu()">Subscriptions</a>
-<a href="#" onclick="closeMenu()">VPN</a>
-<a href="#" onclick="closeMenu()">Streaming</a>
-<a href="#" onclick="closeMenu()">Social Boost</a>
-<a href="#" onclick="closeMenu()">Data Bundles</a>
+<!-- NAVBAR -->
 
-</nav>
+<!-- NAVBAR -->
 
-<div class="nav-icons">
+<header class="navbar">
 
-    <button class="theme-btn" onclick="toggleTheme()">
-        <i class="fa-solid fa-moon"></i>
+    <button class="menu-btn" onclick="toggleMenu()">
+        <i class="fa-solid fa-bars"></i>
     </button>
 
-    <div class="cart-btn" onclick="toggleCart()">
-        <i class="fa-solid fa-cart-shopping"></i>
-        <span id="cartCount">0</span>
+    <div class="logo">
+        <h2>DHub</h2>
     </div>
 
-</div>
+    <div class="nav-icons">
+        <div class="cart-btn" onclick="toggleCart()">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="cartCount">0</span>
+        </div>
+    </div>
 
 </header>
 
+<div class="menu-overlay" onclick="closeMenu()"></div>
+
+<nav class="mobile-sidebar" id="mobileMenu">
+
+    <div class="sidebar-header">
+        <h2>DHub</h2>
+
+        <button onclick="closeMenu()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+    <a href="#" onclick="closeMenu()">Popular</a>
+    <a href="#" onclick="closeMenu()">Gaming Cards</a>
+    <a href="#" onclick="closeMenu()">Gift Cards</a>
+    <a href="#" onclick="closeMenu()">Subscriptions</a>
+    <a href="#" onclick="closeMenu()">VPN</a>
+    <a href="#" onclick="closeMenu()">Streaming</a>
+    <a href="#" onclick="closeMenu()">Social Boost</a>
+    <a href="#" onclick="closeMenu()">Data Bundles</a>
+
+</nav>
 <!-- HERO -->
 
 <section class="hero-slider">
