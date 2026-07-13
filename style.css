@@ -2407,3 +2407,66 @@ transform:rotate(360deg);
     }
 
 }
+/* ==========================
+   MTC GAME MOBILE HEADER
+========================== */
+
+@media (max-width:768px){
+
+    .top-bar{
+        display:none;
+    }
+
+    .navbar{
+        position:sticky;
+        top:0;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        padding:15px 18px;
+        background:#111827;
+        z-index:99999;
+    }
+
+    .menu-btn{
+        display:block;
+        background:none;
+        border:none;
+        color:#fff;
+        font-size:26px;
+    }
+
+    .logo{
+        flex:1;
+        text-align:center;
+    }
+
+    .logo h2{
+        color:#fff;
+        font-size:22px;
+        font-weight:700;
+    }
+
+    .nav-icons{
+        display:flex;
+        align-items:center;
+    }
+
+    .theme-btn{
+        display:none;
+    }
+
+    .cart-btn{
+        width:auto;
+        height:auto;
+        background:none;
+        color:#fff;
+        font-size:24px;
+    }
+
+    .search-bar,
+    .menu{
+        display:none;
+    }
+
+}
