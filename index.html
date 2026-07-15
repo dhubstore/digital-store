@@ -57,48 +57,99 @@
 
 </div>
 
-<!-- NAVBAR -->
+<!-- ================= MOBILE + DESKTOP HEADER ================= -->
 
 <header class="navbar">
 
+    <!-- Left -->
     <button class="menu-btn" onclick="toggleMenu()">
         <i class="fa-solid fa-bars"></i>
     </button>
 
+    <!-- Logo -->
     <div class="logo">
         <h2>DHub</h2>
     </div>
 
+    <!-- Desktop Search -->
+    <div class="search-bar desktop-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search products..."
+            onkeyup="searchProducts()">
+    </div>
+
+    <!-- Right -->
     <div class="nav-icons">
+
+        <button class="theme-btn" onclick="toggleTheme()">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+
         <div class="cart-btn" onclick="toggleCart()">
             <i class="fa-solid fa-cart-shopping"></i>
             <span id="cartCount">0</span>
         </div>
+
     </div>
 
 </header>
 
+<!-- Mobile Search -->
+
+<div class="mobile-search">
+
+    <i class="fa-solid fa-magnifying-glass"></i>
+
+    <input
+        type="text"
+        placeholder="Search products..."
+        onkeyup="searchProducts()"
+        id="mobileSearch">
+
+</div>
+
+<!-- Overlay -->
+
 <div class="menu-overlay" onclick="closeMenu()"></div>
+
+<!-- Sidebar -->
 
 <nav class="mobile-sidebar" id="mobileMenu">
 
-   
+    <div class="sidebar-header">
+
+        <h2>DHub</h2>
+
         <button onclick="closeMenu()">
+
             <i class="fa-solid fa-xmark"></i>
+
         </button>
+
     </div>
 
-    <a href="#" onclick="closeMenu()">Popular</a>
-    <a href="#" onclick="closeMenu()">Gaming Cards</a>
-    <a href="#" onclick="closeMenu()">Gift Cards</a>
-    <a href="#" onclick="closeMenu()">Subscriptions</a>
-    <a href="#" onclick="closeMenu()">VPN</a>
-    <a href="#" onclick="closeMenu()">Streaming</a>
-    <a href="#" onclick="closeMenu()">Social Boost</a>
-    <a href="#" onclick="closeMenu()">Data Bundles</a>
+    <a href="#" onclick="displayProducts(products);closeMenu();return false;">Popular</a>
+
+    <a href="#" onclick="filterProducts('giftcards');closeMenu();return false;">Gaming Cards</a>
+
+    <a href="#" onclick="filterProducts('giftcards');closeMenu();return false;">Gift Cards</a>
+
+    <a href="#" onclick="filterProducts('subscriptions');closeMenu();return false;">Subscriptions</a>
+
+    <a href="#" onclick="filterProducts('vpn');closeMenu();return false;">VPN</a>
+
+    <a href="#" onclick="filterProducts('subscriptions');closeMenu();return false;">Streaming</a>
+
+    <a href="#" onclick="filterProducts('social');closeMenu();return false;">Social Boost</a>
+
+    <a href="#" onclick="filterProducts('data');closeMenu();return false;">Data Bundles</a>
 
 </nav>
-<!-- HERO -->
+
 
 
 <!-- HERO -->
