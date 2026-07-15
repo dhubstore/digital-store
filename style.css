@@ -2099,176 +2099,185 @@ transform:rotate(360deg);
 }
 
 }
-/* ==========================================
-   MTC GAME MOBILE HEADER
-========================================== */
+/*=========================================
+MTC GAME MOBILE DESIGN
+=========================================*/
 
-.menu-btn{
+.desktop-search{
+    flex:1;
+    max-width:500px;
+    margin:0 30px;
+}
+
+.mobile-search{
     display:none;
 }
 
 @media (max-width:768px){
 
+/* Hide desktop search */
+.desktop-search{
+    display:none;
+}
+
+/* Hide top bar */
 .top-bar{
     display:none;
 }
 
+/* Header */
 .navbar{
-    display:grid;
-    grid-template-columns:45px 1fr auto;
-    align-items:center;
-    padding:12px 15px;
-    gap:12px;
-}
-
-.menu-btn{
+    position:sticky;
+    top:0;
+    height:60px;
     display:flex;
-    justify-content:center;
     align-items:center;
-    background:none;
-    color:#fff;
-    font-size:26px;
-    border:none;
-    cursor:pointer;
+    justify-content:space-between;
+    padding:0 15px;
+    background:#111827;
+    z-index:10000;
 }
 
+/* Logo */
 .logo{
-    justify-content:flex-start;
+    flex:1;
+    text-align:center;
 }
 
 .logo h2{
+    color:#fff;
     font-size:22px;
+    margin:0;
 }
 
-.search-bar{
-    display:none;
-}
-
-.nav-icons{
-    gap:10px;
-}
-
-.theme-btn{
-    display:none;
-}
-
-.menu{
-    position:fixed;
-    top:0;
-    left:-280px;
-    width:260px;
-    height:100vh;
-    background:#111827;
-    display:flex;
-    flex-direction:column;
-    padding:90px 25px;
-    transition:.3s;
-    z-index:99999;
-}
-
-.menu.active{
-    left:0;
-}
-
-.menu a{
-    padding:16px 0;
-    border-bottom:1px solid rgba(255,255,255,.08);
-    font-size:17px;
-}
-
-}
-/* MOBILE SIDEBAR */
-
+/* Hamburger */
 .menu-btn{
-    display:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:42px;
+    height:42px;
+    border:none;
+    background:none;
+    color:#fff;
+    font-size:25px;
+    cursor:pointer;
 }
 
+/* Cart */
+.cart-btn{
+    width:42px;
+    height:42px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+}
+
+.cart-btn span{
+    position:absolute;
+    top:3px;
+    right:0;
+}
+
+/* Search */
+.mobile-search{
+    display:flex;
+    align-items:center;
+    background:#1f2937;
+    margin:12px;
+    border-radius:12px;
+    padding:12px 15px;
+}
+
+.mobile-search i{
+    color:#999;
+}
+
+.mobile-search input{
+    flex:1;
+    border:none;
+    outline:none;
+    background:none;
+    color:#fff;
+    margin-left:10px;
+    font-size:15px;
+}
+
+/* Overlay */
 .menu-overlay{
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,.55);
+    background:rgba(0,0,0,.6);
     opacity:0;
     visibility:hidden;
     transition:.3s;
     z-index:9998;
 }
 
+.menu-overlay.active{
+    opacity:1;
+    visibility:visible;
+}
+
+/* Sidebar */
 .mobile-sidebar{
     position:fixed;
     top:0;
     left:-300px;
     width:280px;
-    height:100%;
+    height:100vh;
     background:#111827;
-    transition:.35s;
+    transition:.35s ease;
     z-index:9999;
-    padding:20px;
     overflow-y:auto;
+    box-shadow:5px 0 20px rgba(0,0,0,.5);
 }
 
 .mobile-sidebar.active{
     left:0;
 }
 
-.menu-overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.6);
-    z-index:999998;
-    opacity:0;
-    visibility:hidden;
-    transition:.3s;
-}
-
-.menu-overlay.active{
-    opacity:1;
-    visibility:visible;
-}
+/* Header inside sidebar */
 .sidebar-header{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:30px;
+    padding:20px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.sidebar-header h2{
+    color:#fff;
 }
 
 .sidebar-header button{
     background:none;
+    border:none;
     color:#fff;
     font-size:24px;
 }
 
+/* Sidebar links */
 .mobile-sidebar a{
     display:block;
     color:#fff;
-    padding:16px 0;
-    border-bottom:1px solid rgba(255,255,255,.08);
+    padding:18px 20px;
+    text-decoration:none;
+    border-bottom:1px solid rgba(255,255,255,.05);
     font-weight:600;
+    transition:.3s;
 }
 
 .mobile-sidebar a:hover{
-    color:#6366f1;
+    background:#2563eb;
+    padding-left:28px;
 }
 
-@media (min-width:769px){
-    .mobile-sidebar,
-    .menu-overlay,
-    .menu-btn{
-        display:none;
-    }
+/* Prevent scrolling when menu is open */
+body.menu-open{
+    overflow:hidden;
 }
-
-@media (max-width:768px){
-
-    .menu-btn{
-        display:block;
-        background:none;
-        color:#fff;
-        font-size:28px;
-    }
-
-    .menu{
-        display:none;
-    }
 
 }
 /* ===================================
