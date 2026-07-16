@@ -3312,3 +3312,38 @@ font-size:20px;
 }
 
 }
+/*=============================
+HOME PRODUCT SECTIONS
+==============================*/
+
+.home-products{
+
+padding:40px 0;
+
+}
+
+.product-section{
+
+margin-bottom:45px;
+
+}
+
+.slider-row{
+
+display:flex;
+
+overflow-x:auto;
+
+gap:18px;
+
+padding-bottom:12px;
+
+scroll-behavior:smooth;
+
+}
+
+.slider-row::-webkit-scrollbar{
+
+display:none;
+
+}
