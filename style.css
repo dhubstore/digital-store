@@ -2637,3 +2637,10 @@ MTC GAME PRODUCT GRID
 }
 
 }
+@media (max-width:768px){
+
+.mobile-categories{
+    display:none !important;
+}
+
+}
