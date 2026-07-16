@@ -593,42 +593,44 @@ function updateCountdown(){
 setInterval(updateCountdown,1000);
 updateCountdown();
 
-
-/* ==========================
-MOBILE MENU
-========================== */
-
 /* ==========================
 MOBILE SIDEBAR
 ========================== */
-function toggleMenu() {
-    document.getElementById("mobileMenu").classList.add("active");
-    document.querySelector(".menu-overlay").classList.add("active");
+
+const mobileMenu = document.getElementById("mobileMenu");
+const menuOverlay = document.querySelector(".menu-overlay");
+
+function toggleMenu(){
+
+    mobileMenu.classList.add("active");
+    menuOverlay.classList.add("active");
+    document.body.classList.add("menu-open");
+
 }
 
-function closeMenu() {
-    document.getElementById("mobileMenu").classList.remove("active");
-    document.querySelector(".menu-overlay").classList.remove("active");
+function closeMenu(){
+
+    mobileMenu.classList.remove("active");
+    menuOverlay.classList.remove("active");
+    document.body.classList.remove("menu-open");
+
 }
-
-
 
 /* ==========================
-CLICK OUTSIDE CART
+CLICK OUTSIDE MENU
 ========================== */
 
-document.addEventListener("click",function(e){
-
-    const cartBox = document.getElementById("cartBox");
-    const cartButton = document.querySelector(".cart-btn");
-
-    if(!cartBox || !cartButton) return;
+document.addEventListener("click", function(e){
 
     if(
-        !cartBox.contains(e.target) &&
-        !cartButton.contains(e.target)
+        mobileMenu &&
+        mobileMenu.classList.contains("active") &&
+        !mobileMenu.contains(e.target) &&
+        !e.target.closest(".menu-btn")
     ){
-        cartBox.classList.remove("active");
+
+        closeMenu();
+
     }
 
 });
