@@ -95,67 +95,69 @@ function displayProducts(list){
 
     if(!productList) return;
 
-    productList.innerHTML = "";
+   productList.innerHTML += `
 
-    list.forEach(product => {
+<div class="product-card">
 
-        productList.innerHTML += `
+    <div class="product-image">
 
-        <div class="product-card">
+        <span class="badge">
+            Instant Delivery
+        </span>
 
-            <div class="image-box">
+        <img src="${product.image}"
+             onerror="this.src='images/default.png'">
 
-                <img src="${product.image}"
-                     onerror="this.src='images/default.png'">
+        <button
+            class="wishlist-btn"
+            data-id="${product.id}"
+            onclick="toggleWishlist(${product.id})">
 
-            </div>
+            ♡
 
-            <div class="product-details">
+        </button>
 
-                <span class="category">${product.category}</span>
+    </div>
 
-                <h3>${product.name}</h3>
+    <div class="product-details">
 
-                <div class="rating">
-                    ★★★★★ <span>(4.9)</span>
-                </div>
+        <small class="category">
 
-                <h2>GHS ${product.price}</h2>
+            ${product.category.toUpperCase()}
 
-                <div class="product-actions">
+        </small>
 
-                    <button class="buy-btn"
-                            onclick="addToCart(${product.id})">
+        <h3>${product.name}</h3>
 
-                        <i class="fa-solid fa-cart-plus"></i>
-                        Add to Cart
+        <div class="rating">
 
-                    </button>
-
-                    <button
-                        class="wishlist-btn"
-                        data-id="${product.id}"
-                        onclick="toggleWishlist(${product.id})">
-
-                        ♡
-
-                    </button>
-
-                </div>
-
-            </div>
+            ★★★★★
+            <span>4.9</span>
 
         </div>
 
-        `;
+        <div class="price">
 
-    });
+            GHS ${product.price}
 
-    refreshWishlist();
+        </div>
 
-}
+        <button
+            class="buy-btn"
+            onclick="addToCart(${product.id})">
 
+            <i class="fa-solid fa-cart-shopping"></i>
 
+            Add to Cart
+
+        </button>
+
+    </div>
+
+</div>
+
+`;
+       
 /* ==========================
 SEARCH
 ========================== */
