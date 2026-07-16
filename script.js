@@ -660,15 +660,16 @@ function loadBestSellerSlider(){
 
     slider.innerHTML = "";
 
-    // First 10 products
-    products.slice(0,10).forEach(product=>{
+    // Duplicate products for infinite scrolling
+    const sliderProducts = [...products.slice(0,10), ...products.slice(0,10)];
+
+    sliderProducts.forEach(product=>{
 
         slider.innerHTML += `
 
         <div class="slider-card">
 
-            <img src="${product.image}"
-                 onerror="this.src='images/default.png'">
+            <img src="${product.image}" onerror="this.src='images/default.png'">
 
             <h4>${product.name}</h4>
 
@@ -687,6 +688,9 @@ function loadBestSellerSlider(){
     });
 
 }
+
+loadBestSellerSlider();
+
 
 loadBestSellerSlider();
    
