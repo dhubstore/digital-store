@@ -648,6 +648,48 @@ updateCart();
 
 refreshWishlist();
 
+/* ==========================
+BEST SELLERS SLIDER
+========================== */
+
+function loadBestSellerSlider(){
+
+    const slider = document.getElementById("bestSellerSlider");
+
+    if(!slider) return;
+
+    slider.innerHTML = "";
+
+    // First 10 products
+    products.slice(0,10).forEach(product=>{
+
+        slider.innerHTML += `
+
+        <div class="slider-card">
+
+            <img src="${product.image}"
+                 onerror="this.src='images/default.png'">
+
+            <h4>${product.name}</h4>
+
+            <span>GHS ${product.price}</span>
+
+            <button onclick="addToCart(${product.id})">
+
+                Add to Cart
+
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+loadBestSellerSlider();
+   
 console.log("✅ DHub Digital Store Ready");
 /* ==========================
 BEST SELLERS
