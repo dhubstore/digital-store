@@ -684,3 +684,58 @@ if(bestSellerSlider){
     });
 
 }
+/*=========================
+HOME SLIDERS
+==========================*/
+
+function createSlider(id, list){
+
+    const row = document.getElementById(id);
+
+    if(!row) return;
+
+    row.innerHTML="";
+
+    list.forEach(product=>{
+
+        row.innerHTML += `
+
+        <div class="best-card">
+
+            <img src="${product.image}" onerror="this.src='images/default.png'">
+
+            <h3>${product.name}</h3>
+
+            <p>GHS ${product.price}</p>
+
+            <button onclick="addToCart(${product.id})">
+
+                Add to Cart
+
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+createSlider("bestSellerRow",products.slice(0,8));
+
+createSlider("vpnRow",
+
+products.filter(p=>p.category==="vpn"));
+
+createSlider("streamRow",
+
+products.filter(p=>p.category==="subscriptions"));
+
+createSlider("giftRow",
+
+products.filter(p=>p.category==="giftcards"));
+
+createSlider("dataRow",
+
+products.filter(p=>p.category==="data"));
