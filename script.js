@@ -1026,6 +1026,18 @@ function createSlider(id, list){
 
 }
 
+function quickView(id){
+
+const product=products.find(p=>p.id===id);
+
+if(!product) return;
+
+showNotification(product.name+" selected.");
+
+addToCart(id);
+
+}
+
 createSlider("bestSellerRow",products.slice(0,8));
 
 createSlider("vpnRow",
