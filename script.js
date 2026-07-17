@@ -853,6 +853,44 @@ if(bestSellerSlider){
     });
 
 }
+
+/*==============================
+QUICK ACTIONS
+==============================*/
+
+function scrollToTop(){
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+}
+
+function focusSearch(){
+
+    const desktop = document.getElementById("searchInput");
+    const mobile = document.getElementById("mobileSearch");
+
+    if(window.innerWidth <= 768){
+
+        if(mobile){
+            mobile.focus();
+        }
+
+    }else{
+
+        if(desktop){
+            desktop.focus();
+        }
+
+    }
+
+}
+
 /*=========================
 HOME SLIDERS
 ==========================*/
