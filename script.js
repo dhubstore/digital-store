@@ -90,73 +90,96 @@ DISPLAY PRODUCTS
 ========================== */
 
 const productList = document.getElementById("productList");
-
+ 
 function displayProducts(list){
 
     if(!productList) return;
 
-   productList.innerHTML += `
+    productList.innerHTML = "";
 
-<div class="product-card">
+    list.forEach(product=>{
 
-    <div class="product-image">
+        productList.innerHTML += `
 
-        <span class="badge">
-            Instant Delivery
-        </span>
+        <div class="product-card">
 
-        <img src="${product.image}"
-             onerror="this.src='images/default.png'">
+            <div class="product-badge">
+                ⭐ BEST SELLER
+            </div>
 
-        <button
-            class="wishlist-btn"
-            data-id="${product.id}"
-            onclick="toggleWishlist(${product.id})">
+            <div class="image-box">
 
-            ♡
+                <img src="${product.image}"
+                onerror="this.src='images/default.png'">
 
-        </button>
+            </div>
 
-    </div>
+            <div class="product-details">
 
-    <div class="product-details">
+                <span class="category">
 
-        <small class="category">
+                    ${product.category.toUpperCase()}
 
-            ${product.category.toUpperCase()}
+                </span>
 
-        </small>
+                <h3>${product.name}</h3>
 
-        <h3>${product.name}</h3>
+                <div class="rating">
 
-        <div class="rating">
+                    ⭐⭐⭐⭐⭐
+                    <span>(4.9)</span>
 
-            ★★★★★
-            <span>4.9</span>
+                </div>
+
+                <div class="delivery">
+
+                    ⚡ Instant Delivery
+
+                </div>
+
+                <h2>
+
+                    GHS ${product.price}
+
+                </h2>
+
+                <div class="product-actions">
+
+                    <button class="buy-btn"
+
+                    onclick="addToCart(${product.id})">
+
+                        <i class="fa-solid fa-cart-plus"></i>
+
+                        Add to Cart
+
+                    </button>
+
+                    <button
+
+                    class="wishlist-btn"
+
+                    data-id="${product.id}"
+
+                    onclick="toggleWishlist(${product.id})">
+
+                        ♡
+
+                    </button>
+
+                </div>
+
+            </div>
 
         </div>
 
-        <div class="price">
+        `;
 
-            GHS ${product.price}
+    });
 
-        </div>
+    refreshWishlist();
 
-        <button
-            class="buy-btn"
-            onclick="addToCart(${product.id})">
-
-            <i class="fa-solid fa-cart-shopping"></i>
-
-            Add to Cart
-
-        </button>
-
-    </div>
-
-</div>
-
-`;
+}
        
 /* ==========================
 SEARCH
@@ -691,9 +714,6 @@ function loadBestSellerSlider(){
 
 loadBestSellerSlider();
 
-
-loadBestSellerSlider();
-
    /* ==========================
 AUTO SCROLL
 ========================== */
@@ -720,7 +740,68 @@ if(slider){
 
     autoScroll();
 
+}   
+
+loadBestSellerSlider();
+
+/* ==========================
+PROMO AUTO SLIDER
+========================== */
+
+const promoTrack = document.getElementById("promoTrack");
+
+if(promoTrack){
+
+    // Duplicate cards for infinite effect
+    promoTrack.innerHTML += promoTrack.innerHTML;
+
+    let promoSpeed = 0.8;
+
+    function promoAutoSlide(){
+
+       if(!pausePromo){
+
+    promoTrack.scrollLeft += promoSpeed;
+
 }
+
+        if(promoTrack.scrollLeft >= promoTrack.scrollWidth / 2){
+
+            promoTrack.scrollLeft = 0;
+
+        }
+
+        requestAnimationFrame(promoAutoSlide);
+
+    }
+
+    promoAutoSlide();
+
+}
+   let pausePromo = false;
+
+promoTrack?.addEventListener("mouseenter", () => {
+
+    pausePromo = true;
+
+});
+
+promoTrack?.addEventListener("mouseleave", () => {
+
+    pausePromo = false;
+
+});
+promoTrack?.addEventListener("touchstart", () => {
+
+    pausePromo = true;
+
+});
+
+promoTrack?.addEventListener("touchend", () => {
+
+    pausePromo = false;
+
+});
    
 console.log("✅ DHub Digital Store Ready");
 /* ==========================
