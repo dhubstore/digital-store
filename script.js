@@ -885,6 +885,22 @@ showHero(index);
 
 setInterval(nextHero,5000);
 
+/*=========================
+CATEGORY SLIDERS
+=========================*/
+
+createSlider("bestSellerSlider", products.slice(0,8));
+
+createSlider("vpnSlider", products.filter(p=>p.category==="vpn"));
+
+createSlider("streamSlider", products.filter(p=>p.category==="subscriptions"));
+
+createSlider("giftSlider", products.filter(p=>p.category==="giftcards"));
+
+createSlider("dataSlider", products.filter(p=>p.category==="data"));
+
+createSlider("socialSlider", products.filter(p=>p.category==="social"));
+
 console.log("✅ DHub Digital Store Ready");
 /* ==========================
 BEST SELLERS
