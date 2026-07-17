@@ -693,6 +693,34 @@ loadBestSellerSlider();
 
 
 loadBestSellerSlider();
+
+   /* ==========================
+AUTO SCROLL
+========================== */
+
+const slider = document.getElementById("bestSellerSlider");
+
+if(slider){
+
+    let speed = 1;
+
+    function autoScroll(){
+
+        slider.scrollLeft += speed;
+
+        if(slider.scrollLeft >= slider.scrollWidth/2){
+
+            slider.scrollLeft = 0;
+
+        }
+
+        requestAnimationFrame(autoScroll);
+
+    }
+
+    autoScroll();
+
+}
    
 console.log("✅ DHub Digital Store Ready");
 /* ==========================
