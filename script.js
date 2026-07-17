@@ -802,7 +802,17 @@ promoTrack?.addEventListener("touchend", () => {
     pausePromo = false;
 
 });
-   
+
+/* ==========================
+MORE HOME SLIDERS
+========================== */
+
+createSlider("trendingRow", products.slice(4,12));
+
+createSlider("newArrivalRow", products.slice(12,20));
+
+createSlider("topDealRow", products.slice(20,30));
+
 console.log("✅ DHub Digital Store Ready");
 /* ==========================
 BEST SELLERS
