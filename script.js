@@ -90,96 +90,109 @@ DISPLAY PRODUCTS
 ========================== */
 
 const productList = document.getElementById("productList");
- 
-function displayProducts(list){
+ function displayProducts(list){
 
     if(!productList) return;
 
-    productList.innerHTML = "";
+    productList.innerHTML="";
 
     list.forEach(product=>{
 
-        productList.innerHTML += `
+        productList.innerHTML +=`
 
-        <div class="product-card">
+<div class="product-card">
 
-            <div class="product-badge">
-                ⭐ BEST SELLER
-            </div>
+<div class="discount-badge">
 
-            <div class="image-box">
+-20%
 
-                <img src="${product.image}"
-                onerror="this.src='images/default.png'">
+</div>
 
-            </div>
+<div class="delivery-badge">
 
-            <div class="product-details">
+⚡ Instant
 
-                <span class="category">
+</div>
 
-                    ${product.category.toUpperCase()}
+<div class="image-box">
 
-                </span>
+<img src="${product.image}" onerror="this.src='images/default.png'">
 
-                <h3>${product.name}</h3>
+</div>
 
-                <div class="rating">
+<div class="product-details">
 
-                    ⭐⭐⭐⭐⭐
-                    <span>(4.9)</span>
+<span class="category">
 
-                </div>
+${product.category.toUpperCase()}
 
-                <div class="delivery">
+</span>
 
-                    ⚡ Instant Delivery
+<h3>
 
-                </div>
+${product.name}
 
-                <h2>
+</h3>
 
-                    GHS ${product.price}
+<div class="rating">
 
-                </h2>
+★★★★★
 
-                <div class="product-actions">
+<span>(4.9)</span>
 
-                    <button class="buy-btn"
+</div>
 
-                    onclick="addToCart(${product.id})">
+<div class="price-row">
 
-                        <i class="fa-solid fa-cart-plus"></i>
+<h2>
 
-                        Add to Cart
+GHS ${product.price}
 
-                    </button>
+</h2>
 
-                    <button
+<del>
 
-                    class="wishlist-btn"
+GHS ${(product.price*1.25).toFixed(2)}
 
-                    data-id="${product.id}"
+</del>
 
-                    onclick="toggleWishlist(${product.id})">
+</div>
 
-                        ♡
+<div class="buttons">
 
-                    </button>
+<button class="buy-btn"
 
-                </div>
+onclick="addToCart(${product.id})">
 
-            </div>
+<i class="fas fa-cart-plus"></i>
 
-        </div>
+Add
 
-        `;
+</button>
+
+<button class="view-btn"
+
+onclick="quickView(${product.id})">
+
+View
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
 
     });
 
     refreshWishlist();
 
 }
+
+
        
 /* ==========================
 SEARCH
