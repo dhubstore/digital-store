@@ -817,6 +817,74 @@ createSlider("newArrivalRow", products.slice(12,20));
 
 createSlider("topDealRow", products.slice(20,30));
 
+/*==========================
+HERO SLIDER
+==========================*/
+
+const heroSlides = document.querySelectorAll(".hero-slide");
+
+const heroDots = document.querySelectorAll(".hero-dots span");
+
+let heroIndex = 0;
+
+function showHero(i){
+
+heroSlides.forEach(slide=>slide.classList.remove("active"));
+
+heroDots.forEach(dot=>dot.classList.remove("active"));
+
+heroSlides[i].classList.add("active");
+
+heroDots[i].classList.add("active");
+
+}
+
+function nextHero(){
+
+heroIndex++;
+
+if(heroIndex>=heroSlides.length){
+
+heroIndex=0;
+
+}
+
+showHero(heroIndex);
+
+}
+
+function prevHero(){
+
+heroIndex--;
+
+if(heroIndex<0){
+
+heroIndex=heroSlides.length-1;
+
+}
+
+showHero(heroIndex);
+
+}
+
+document.querySelector(".hero-next").onclick=nextHero;
+
+document.querySelector(".hero-prev").onclick=prevHero;
+
+heroDots.forEach((dot,index)=>{
+
+dot.onclick=()=>{
+
+heroIndex=index;
+
+showHero(index);
+
+}
+
+});
+
+setInterval(nextHero,5000);
+
 console.log("✅ DHub Digital Store Ready");
 /* ==========================
 BEST SELLERS
