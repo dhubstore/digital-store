@@ -4998,3 +4998,85 @@ font-size:13px;
 }
 
 }
+.hero-right img{
+
+width:100%;
+
+max-width:650px;
+
+object-fit:contain;
+
+transition:.5s;
+
+}
+
+.hero-slide.active img{
+
+animation:bannerZoom .8s;
+
+}
+
+@keyframes bannerZoom{
+
+from{
+
+opacity:0;
+
+transform:scale(.9);
+
+}
+
+to{
+
+opacity:1;
+
+transform:scale(1);
+
+}
+
+}
+@media(max-width:768px){
+
+.hero-slide{
+
+padding:22px;
+
+}
+
+.hero-left{
+
+text-align:center;
+
+}
+
+.hero-right{
+
+margin-top:18px;
+
+}
+
+.hero-right img{
+
+max-width:270px;
+
+}
+
+.offer-tag{
+
+font-size:11px;
+
+}
+
+.hero-left h1{
+
+font-size:28px;
+
+}
+
+.hero-left p{
+
+font-size:14px;
+
+}
+
+}
