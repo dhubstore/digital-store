@@ -692,6 +692,10 @@ function loadBestSellerSlider(){
 
         <div class="slider-card">
 
+    <div class="deal-ribbon">
+        SAVE 20%
+    </div>
+
             <img src="${product.image}" onerror="this.src='images/default.png'">
 
             <h4>${product.name}</h4>
