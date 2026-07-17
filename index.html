@@ -628,24 +628,98 @@
   
 <!-- PRODUCTS -->
 
-<section class="featured-products" id="products">
+<section id="products">
 
-<div class="container">
+<div class="home-section">
 
-<div class="section-header">
+<div class="section-title">
 
-<section class="product-slider">
+<h2>🔥 Best Sellers</h2>
 
-    <div class="section-header">
-        <h2>🔥 Best Sellers</h2>
-    </div>
+<a href="#" onclick="displayProducts(products);return false;">See All</a>
 
-    <div class="slider-row" id="bestSellerSlider">
+</div>
 
-    </div>
+<div class="slider-row" id="bestSellerSlider"></div>
 
-</section>    
+</div>
 
+<div class="home-section">
+
+<div class="section-title">
+
+<h2>🛡 VPN Services</h2>
+
+<a href="#" onclick="filterProducts('vpn');return false;">See All</a>
+
+</div>
+
+<div class="slider-row" id="vpnSlider"></div>
+
+</div>
+
+<div class="home-section">
+
+<div class="section-title">
+
+<h2>📺 Streaming</h2>
+
+<a href="#" onclick="filterProducts('subscriptions');return false;">See All</a>
+
+</div>
+
+<div class="slider-row" id="streamSlider"></div>
+
+</div>
+
+<div class="home-section">
+
+<div class="section-title">
+
+<h2>🎁 Gift Cards</h2>
+
+<a href="#" onclick="filterProducts('giftcards');return false;">See All</a>
+
+</div>
+
+<div class="slider-row" id="giftSlider"></div>
+
+</div>
+
+<div class="home-section">
+
+<div class="section-title">
+
+<h2>📶 Data Bundles</h2>
+
+<a href="#" onclick="filterProducts('data');return false;">See All</a>
+
+</div>
+
+<div class="slider-row" id="dataSlider"></div>
+
+</div>
+
+<div class="home-section">
+
+<div class="section-title">
+
+<h2>📈 Social Boost</h2>
+
+<a href="#" onclick="filterProducts('social');return false;">See All</a>
+
+</div>
+
+<div class="slider-row" id="socialSlider"></div>
+
+</div>
+
+<!-- Hidden product grid for search/filter -->
+
+<div id="productList" class="products"></div>
+
+</section>
+    
 <!-- ================= HOME SECTIONS ================= -->
 
 <section class="home-products">
