@@ -2942,6 +2942,103 @@ height:110px;
 }
 
 }
+
+/* ================= PROMO SLIDER ================= */
+
+.promo-slider{
+    overflow:hidden;
+    margin:35px auto;
+}
+
+.promo-track{
+    display:flex;
+    gap:20px;
+    overflow-x:auto;
+    scroll-behavior:smooth;
+    scrollbar-width:none;
+    padding:10px;
+}
+
+.promo-track::-webkit-scrollbar{
+    display:none;
+}
+
+.promo-card{
+    min-width:520px;
+    border-radius:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:30px;
+    color:#fff;
+    flex-shrink:0;
+}
+
+.promo-card img{
+    width:180px;
+    height:180px;
+    object-fit:contain;
+}
+
+.promo-text h2{
+    font-size:32px;
+    margin:10px 0;
+}
+
+.promo-text p{
+    opacity:.9;
+    margin-bottom:20px;
+}
+
+.promo-text button{
+    background:#fff;
+    color:#111827;
+    border:none;
+    padding:12px 22px;
+    border-radius:10px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.netflix{
+    background:linear-gradient(135deg,#e50914,#8b0000);
+}
+
+.spotify{
+    background:linear-gradient(135deg,#1DB954,#116530);
+}
+
+.vpn{
+    background:linear-gradient(135deg,#4f46e5,#312e81);
+}
+
+.snapchat{
+    background:linear-gradient(135deg,#FFD600,#FFB300);
+    color:#111;
+}
+
+.data{
+    background:linear-gradient(135deg,#009688,#00695c);
+}
+
+@media(max-width:768px){
+
+    .promo-card{
+        min-width:92%;
+        padding:20px;
+    }
+
+    .promo-card img{
+        width:120px;
+        height:120px;
+    }
+
+    .promo-text h2{
+        font-size:22px;
+    }
+
+}
+
 /*=========================
 PROMO SLIDER
 =========================*/
