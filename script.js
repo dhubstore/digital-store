@@ -914,6 +914,68 @@ createSlider("dataSlider", products.filter(p=>p.category==="data"));
 
 createSlider("socialSlider", products.filter(p=>p.category==="social"));
 
+/*=========================
+TOP SELLERS
+=========================*/
+
+const topSlider=document.getElementById("topSellerSlider");
+
+if(topSlider){
+
+products.slice(0,10).forEach(product=>{
+
+topSlider.innerHTML+=`
+
+<div class="top-card">
+
+<img src="${product.image}" onerror="this.src='images/default.png'">
+
+<div class="info">
+
+<h3>${product.name}</h3>
+
+<h4>GHS ${product.price}</h4>
+
+<button onclick="addToCart(${product.id})">
+
+Add to Cart
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+document.getElementById("topNext")?.addEventListener("click",()=>{
+
+topSlider.scrollBy({
+
+left:300,
+
+behavior:"smooth"
+
+});
+
+});
+
+document.getElementById("topPrev")?.addEventListener("click",()=>{
+
+topSlider.scrollBy({
+
+left:-300,
+
+behavior:"smooth"
+
+});
+
+});
+
 console.log("✅ DHub Digital Store Ready");
 /* ==========================
 BEST SELLERS
