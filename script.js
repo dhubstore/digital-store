@@ -989,6 +989,48 @@ function focusSearch(){
 }
 
 /*=========================
+TODAY'S DEALS COUNTDOWN
+=========================*/
+
+const dealEnd = new Date();
+
+dealEnd.setHours(dealEnd.getHours() + 12);
+
+function updateDealCountdown() {
+
+    const now = new Date();
+
+    const distance = dealEnd - now;
+
+    if (distance <= 0) return;
+
+    const h = Math.floor(distance / 1000 / 60 / 60);
+
+    const m = Math.floor((distance / 1000 / 60) % 60);
+
+    const s = Math.floor((distance / 1000) % 60);
+
+    const timer = document.getElementById("dealCountdown");
+
+    if (timer) {
+
+        timer.innerHTML =
+
+            `${String(h).padStart(2,"0")}:` +
+
+            `${String(m).padStart(2,"0")}:` +
+
+            `${String(s).padStart(2,"0")}`;
+
+    }
+
+}
+
+setInterval(updateDealCountdown,1000);
+
+updateDealCountdown();
+
+/*=========================
 HOME SLIDERS
 ==========================*/
 
