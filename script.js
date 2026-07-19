@@ -668,6 +668,43 @@ function updateCountdown(){
 setInterval(updateCountdown,1000);
 updateCountdown();
 
+/*=========================
+FLASH DEAL TIMER
+=========================*/
+
+const flashEnd = Date.now() + (4 * 60 * 60 * 1000);
+
+function updateFlashTimer(){
+
+    const timer = document.getElementById("flashTimer");
+
+    if(!timer) return;
+
+    const distance = flashEnd - Date.now();
+
+    if(distance <= 0){
+
+        timer.innerHTML = "Expired";
+
+        return;
+
+    }
+
+    const h = Math.floor(distance / 1000 / 60 / 60);
+
+    const m = Math.floor((distance / 1000 / 60) % 60);
+
+    const s = Math.floor((distance / 1000) % 60);
+
+    timer.innerHTML =
+        `${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
+
+}
+
+setInterval(updateFlashTimer,1000);
+
+updateFlashTimer();
+
 /* ==========================
 MOBILE SIDEBAR
 ========================== */
