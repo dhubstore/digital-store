@@ -217,279 +217,77 @@
 
 
 <!-- HERO -->
-<section class="hero-banner">
-<section class="hero-banner">
+<section class="hero-v2">
 
-<section class="brands-section">
+    <div class="hero-slide active">
 
-    <div class="section-title">
+        <img src="images/banner-netflix.jpg" alt="Netflix">
 
-        <h2>Popular Brands</h2>
+        <div class="hero-overlay">
 
-        <a href="#">View All</a>
+            <h1>Netflix Premium</h1>
 
-    </div>
+            <p>Starting from GHS 35</p>
 
-    <div class="brand-grid">
+            <button onclick="filterProducts('subscriptions')">
+                Shop Now
+            </button>
 
-        <div class="brand-card" onclick="filterProducts('subscriptions')">
-            <img src="images/netflix-logo.png">
-            <span>Netflix</span>
-        </div>
-
-        <div class="brand-card" onclick="filterProducts('subscriptions')">
-            <img src="images/spotify-logo.png">
-            <span>Spotify</span>
-        </div>
-
-        <div class="brand-card" onclick="filterProducts('vpn')">
-            <img src="images/express-logo.png">
-            <span>ExpressVPN</span>
-        </div>
-
-        <div class="brand-card" onclick="filterProducts('vpn')">
-            <img src="images/nord-logo.png">
-            <span>NordVPN</span>
-        </div>
-
-        <div class="brand-card" onclick="filterProducts('subscriptions')">
-            <img src="images/snapchat-logo.png">
-            <span>Snapchat+</span>
-        </div>
-
-        <div class="brand-card" onclick="filterProducts('data')">
-            <img src="images/mtn-logo.png">
-            <span>MTN Data</span>
-        </div>
-
-        <div class="brand-card" onclick="filterProducts('giftcards')">
-            <img src="images/apple-logo.png">
-            <span>iTunes</span>
-        </div>
-
-        <div class="brand-card" onclick="filterProducts('accounts')">
-            <img src="images/gmail-logo.png">
-            <span>Gmail</span>
         </div>
 
     </div>
 
-</section>
-    
-<div class="hero-slide active">
+    <div class="hero-slide">
 
-    <div class="hero-left">
+        <img src="images/banner-vpn.jpg" alt="VPN">
 
-        <span class="offer-tag">🔥 LIMITED OFFER</span>
+        <div class="hero-overlay">
 
-        <h1>NETFLIX<br>PREMIUM</h1>
+            <h1>Premium VPN Deals</h1>
 
-        <p>Starting from only <strong>GHS 35</strong></p>
+            <p>Fast • Secure • Affordable</p>
 
-        <a href="#" onclick="filterProducts('subscriptions')" class="shop-btn">
-            Buy Now
-        </a>
+            <button onclick="filterProducts('vpn')">
+                Explore
+            </button>
 
-    </div>
-
-    <div class="hero-right">
-
-        <img src="images/banner-netflix.png">
-
-    </div>
-
-</div>
-
-
-<div class="hero-slide">
-
-    <div class="hero-left">
-
-        <span class="offer-tag">⚡ VPN SALE</span>
-
-        <h1>EXPLORE THE INTERNET<br>SECURELY</h1>
-
-        <p>ExpressVPN • NordVPN • PIA VPN</p>
-
-        <a href="#" onclick="filterProducts('vpn')" class="shop-btn">
-            Shop VPN
-        </a>
-
-    </div>
-
-    <div class="hero-right">
-
-        <img src="images/banner-vpn.png">
-
-    </div>
-
-</div>
-
-
-<div class="hero-slide">
-
-    <div class="hero-left">
-
-        <span class="offer-tag">🎁 GIFT CARDS</span>
-
-        <h1>APPLE & iTUNES<br>GIFT CARDS</h1>
-
-        <p>Instant Digital Delivery</p>
-
-        <a href="#" onclick="filterProducts('giftcards')" class="shop-btn">
-            Shop Now
-        </a>
-
-    </div>
-
-    <div class="hero-right">
-
-        <img src="images/banner-giftcards.png">
-
-    </div>
-
-</div>
-
-
-<div class="hero-slide">
-
-    <div class="hero-left">
-
-        <span class="offer-tag">📶 FAST DATA</span>
-
-        <h1>MTN DATA<br>BUNDLES</h1>
-
-        <p>Affordable internet packages.</p>
-
-        <a href="#" onclick="filterProducts('data')" class="shop-btn">
-            Buy Data
-        </a>
-
-    </div>
-
-    <div class="hero-right">
-
-        <img src="images/banner-data.png">
-
-    </div>
-
-</div>
-
-<div class="hero-slide">
-
-<div class="hero-left">
-
-<span class="offer-tag">🎁 GIFT CARDS</span>
-
-<h1>APPLE • GOOGLE<br>GIFT CARDS</h1>
-
-<p>Fast Delivery Guaranteed</p>
-
-<a href="#products" class="shop-btn">SHOP NOW</a>
-
-</div>
-
-<div class="hero-right">
-
-<img src="images/banner-giftcards.png">
-
-</div>
-
-</div>
-
-</div>
-
-<button class="hero-prev">
-❮
-</button>
-
-<button class="hero-next">
-❯
-</button>
-
-<div class="hero-dots">
-
-<span class="active"></span>
-
-<span></span>
-
-<span></span>
-
-</div>
-
-</section>
-
-
-<!-- ================= PROMO SLIDER ================= -->
-
-<section class="promo-slider">
-
-    <div class="promo-track" id="promoTrack">
-
-        <div class="promo-card netflix">
-            <div class="promo-text">
-                <span>FROM GHS 35</span>
-                <h2>Netflix Premium</h2>
-                <p>Instant Delivery</p>
-                <button onclick="filterProducts('subscriptions')">
-                    Buy Now
-                </button>
-            </div>
-            <img src="images/netflix.png" alt="">
         </div>
 
-        <div class="promo-card spotify">
-            <div class="promo-text">
-                <span>Premium Music</span>
-                <h2>Spotify Premium</h2>
-                <p>No Ads • High Quality</p>
-                <button onclick="filterProducts('subscriptions')">
-                    Shop
-                </button>
-            </div>
-            <img src="images/spotify.png" alt="">
+    </div>
+
+    <div class="hero-slide">
+
+        <img src="images/banner-data.jpg" alt="Data">
+
+        <div class="hero-overlay">
+
+            <h1>MTN Data Bundles</h1>
+
+            <p>Instant Delivery</p>
+
+            <button onclick="filterProducts('data')">
+                Buy Now
+            </button>
+
         </div>
 
-        <div class="promo-card vpn">
-            <div class="promo-text">
-                <span>Fast & Secure</span>
-                <h2>Express VPN</h2>
-                <p>1 Month • 3 Months • 1 Year</p>
-                <button onclick="filterProducts('vpn')">
-                    Buy Now
-                </button>
-            </div>
-            <img src="images/express-vpn.jpg" alt="">
-        </div>
+    </div>
 
-        <div class="promo-card snapchat">
-            <div class="promo-text">
-                <span>Most Popular</span>
-                <h2>Snapchat+</h2>
-                <p>Delivered Within Minutes</p>
-                <button onclick="filterProducts('subscriptions')">
-                    Buy Now
-                </button>
-            </div>
-            <img src="images/snapchat.png" alt="">
-        </div>
+    <button class="hero-prev">&#10094;</button>
 
-        <div class="promo-card data">
-            <div class="promo-text">
-                <span>Affordable</span>
-                <h2>MTN Data Bundles</h2>
-                <p>1GB - 10GB</p>
-                <button onclick="filterProducts('data')">
-                    Buy Now
-                </button>
-            </div>
-            <img src="images/data-bundle.png" alt="">
-        </div>
+    <button class="hero-next">&#10095;</button>
+
+    <div class="hero-dots">
+
+        <span class="dot active"></span>
+
+        <span class="dot"></span>
+
+        <span class="dot"></span>
 
     </div>
 
 </section>
-
 <!-- ================= BRANDS ================= -->
 
 <section class="brands">
