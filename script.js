@@ -571,33 +571,70 @@ if(localStorage.getItem("theme") === "light"){
 }
 
 
-/* ==========================
-HERO SLIDER
-========================== */
+/*=========================
+HERO V2 SLIDER
+=========================*/
 
-let slideIndex = 0;
-const slides = document.querySelectorAll(".slide");
+let heroIndex = 0;
 
-function nextSlide(){
+const heroSlides = document.querySelectorAll(".hero-slide");
+const heroDots = document.querySelectorAll(".dot");
 
-    if(slides.length === 0) return;
+function showHero(index){
 
-    slides[slideIndex].classList.remove("active");
+    heroSlides.forEach(slide=>slide.classList.remove("active"));
+    heroDots.forEach(dot=>dot.classList.remove("active"));
 
-    slideIndex++;
+    heroSlides[index].classList.add("active");
+    heroDots[index].classList.add("active");
 
-    if(slideIndex >= slides.length){
-        slideIndex = 0;
+}
+
+function nextHero(){
+
+    heroIndex++;
+
+    if(heroIndex >= heroSlides.length){
+
+        heroIndex = 0;
+
     }
 
-    slides[slideIndex].classList.add("active");
+    showHero(heroIndex);
 
 }
 
-if(slides.length > 0){
-    setInterval(nextSlide,5000);
+function prevHero(){
+
+    heroIndex--;
+
+    if(heroIndex < 0){
+
+        heroIndex = heroSlides.length-1;
+
+    }
+
+    showHero(heroIndex);
+
 }
 
+document.querySelector(".hero-next")?.addEventListener("click",nextHero);
+
+document.querySelector(".hero-prev")?.addEventListener("click",prevHero);
+
+heroDots.forEach((dot,index)=>{
+
+    dot.addEventListener("click",()=>{
+
+        heroIndex=index;
+
+        showHero(heroIndex);
+
+    });
+
+});
+
+setInterval(nextHero,5000);
 
 /* ==========================
 COUNTDOWN
