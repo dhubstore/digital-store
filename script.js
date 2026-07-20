@@ -1700,6 +1700,18 @@ function closeQuickView(){
 
 }
 
+document
+.getElementById("quickViewOverlay")
+?.addEventListener("click",function(e){
+
+    if(e.target === this){
+
+        closeQuickView();
+
+    }
+
+});
+
 createSlider("bestSellerRow",products.slice(0,8));
 
 createSlider("vpnRow",
