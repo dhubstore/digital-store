@@ -571,97 +571,81 @@ const productList = document.getElementById("productList");
 
 <div class="product-card">
 
-<div class="discount-badge">
+    <div class="badge">${product.badge || ""}</div>
 
--20%
+    <button
+        class="wishlist-btn"
+        data-id="${product.id}"
+        onclick="toggleWishlist(${product.id})">
 
-</div>
+        ♡
 
-<div class="delivery-badge">
+    </button>
 
-⚡ Instant
+    <div class="image-box">
 
-</div>
+        <img src="${product.image}"
+             onerror="this.src='images/default.png'">
 
-<div class="image-box">
+    </div>
 
-<img src="${product.image}" onerror="this.src='images/default.png'">
+    <div class="delivery">
 
-</div>
+        ⚡ ${product.delivery || "Instant Delivery"}
 
-<div class="product-details">
+    </div>
 
-<span class="category">
+    <div class="rating">
 
-${product.category.toUpperCase()}
+        ⭐ ${product.rating || 4.9}
 
-</span>
+        <span>(${product.reviews || 100})</span>
 
-<h3>
+    </div>
 
-${product.name}
+    <h3>${product.name}</h3>
 
-</h3>
+    <p class="product-desc">
 
-<div class="rating">
+        ${product.description || "Premium digital product."}
 
-★★★★★
+    </p>
 
-<span>(4.9)</span>
+    <div class="price-box">
 
-</div>
+        <span class="new-price">
 
-<div class="price-row">
+            GHS ${product.price}
 
-<h2>
+        </span>
 
-GHS ${product.price}
+        ${product.oldPrice
+            ? `<span class="old-price">GHS ${product.oldPrice}</span>`
+            : ""}
 
-</h2>
+    </div>
 
-<del>
+    <div class="product-buttons">
 
-GHS ${(product.price*1.25).toFixed(2)}
+        <button
+            class="buy-btn"
+            onclick="addToCart(${product.id})">
 
-</del>
+            🛒 Add to Cart
 
-</div>
+        </button>
 
-<div class="buttons">
+        <button
+            class="view-btn"
+            onclick="quickView(${product.id})">
 
-<button class="buy-btn"
+            👁 View
 
-onclick="addToCart(${product.id})">
+        </button>
 
-<i class="fas fa-cart-plus"></i>
-
-Add
-
-</button>
-
-<button class="view-btn"
-
-onclick="quickView(${product.id})">
-
-View
-
-</button>
+    </div>
 
 </div>
-
-</div>
-
-</div>
-
-`;
-
-    });
-
-    refreshWishlist();
-
-}
-
-
        
 /* ==========================
 SEARCH
@@ -1702,3 +1686,12 @@ products.filter(p=>p.category==="giftcards"));
 createSlider("dataRow",
 
 products.filter(p=>p.category==="data"));
+function quickView(id){
+
+    const product = products.find(p => p.id === id);
+
+    if(!product) return;
+
+    showNotification(product.name + " details coming in Version 2.0");
+
+}
