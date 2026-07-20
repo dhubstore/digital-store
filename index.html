@@ -122,15 +122,23 @@
 </header>
 
     <!-- Desktop Search -->
-    <div class="search-bar desktop-search">
+   <div class="search-container">
+
+    <div class="search-bar">
+
         <i class="fa-solid fa-magnifying-glass"></i>
 
         <input
             type="text"
             id="searchInput"
-            placeholder="Search products..."
+            placeholder="Search VPN, Netflix, Spotify..."
             onkeyup="searchProducts()">
+
     </div>
+
+    <div id="searchSuggestions" class="search-suggestions"></div>
+
+</div>
 
     <!-- Right -->
    <div class="nav-icons">
@@ -168,16 +176,25 @@
 </header>
 
 <!-- Mobile Search -->
+<div class="search-container">
 
-<div class="mobile-search">
+    <div class="search-container">
 
-    <i class="fa-solid fa-magnifying-glass"></i>
+        <div class="search-bar">
 
-    <input
-        type="text"
-        placeholder="Search products..."
-        onkeyup="searchProducts()"
-        id="mobileSearch">
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search VPN, Netflix, Spotify..."
+                onkeyup="searchProducts()">
+
+        </div>
+
+        <div id="searchSuggestions" class="search-suggestions"></div>
+
+    </div>
 
 </div>
 
