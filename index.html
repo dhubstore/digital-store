@@ -1262,27 +1262,59 @@ Chat on WhatsApp
 
 <div class="cart-box" id="cartBox">
 
-<div class="cart-header">
+    <div class="cart-header">
 
-<h2>Your Cart</h2>
+        <h2>
+            <i class="fa-solid fa-cart-shopping"></i>
+            Shopping Cart
+        </h2>
 
-<button onclick="toggleCart()">✕</button>
+        <button onclick="toggleCart()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
 
-</div>
+    </div>
 
-<div id="cartItems"></div>
+    <div id="cartItems" class="cart-items"></div>
 
-<div class="cart-footer">
+    <div class="cart-summary">
 
-<h3>Total: <span id="total">GHS 0.00</span></h3>
+        <div class="summary-row">
 
-<button class="checkout-btn" onclick="checkout()">
+            <span>Subtotal</span>
 
-Proceed to Checkout
+            <span id="total">GHS 0.00</span>
 
-</button>
+        </div>
 
-</div>
+        <div class="summary-row">
+
+            <span>Delivery</span>
+
+            <span class="free">Instant</span>
+
+        </div>
+
+        <input
+            type="text"
+            placeholder="Coupon Code"
+            class="coupon-box">
+
+        <button class="apply-coupon">
+
+            Apply Coupon
+
+        </button>
+
+        <button
+            class="checkout-btn"
+            onclick="checkout()">
+
+            Proceed to Checkout
+
+        </button>
+
+    </div>
 
 </div>
 
