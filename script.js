@@ -650,24 +650,139 @@ const productList = document.getElementById("productList");
 /* ==========================
 SEARCH
 ========================== */
-
 function searchProducts(){
 
-    const input = document.getElementById("searchInput");
+    const desktop=document.getElementById("searchInput");
+    const mobile=document.getElementById("mobileSearch");
 
-    if(!input) return;
+    const keyword=(desktop?.value || mobile?.value || "")
+        .toLowerCase()
+        .trim();
 
-    const keyword = input.value.toLowerCase();
+    if(desktop && mobile){
+
+        if(document.activeElement===desktop){
+
+            mobile.value=desktop.value;
+
+        }else{
+
+            desktop.value=mobile.value;
+
+        }
+
+    }
+
+    const results=products.filter(product=>
+
+        product.name.toLowerCase().includes(keyword)
+
+    );
+
+    displayProducts(results);
+
+    showSuggestions(results.slice(0,5));
+
+}
+function showSuggestions(list){
+
+    const box=document.getElementById("searchSuggestions");
+
+    if(!box) return;
+
+    if(list.length===0){
+
+        box.style.display="none";
+
+        return;
+
+    }
+
+    box.innerHTML="";
+
+    list.forEach(product=>{
+
+        box.innerHTML+=`
+
+        <div class="search-item"
+
+             onclick="selectSuggestion('${product.name}')">
+
+             ${product.name}
+
+        </div>
+
+        `;
+
+    });
+
+    box.style.display="block";
+
+}
+function selectSuggestion(name){
+
+    document.getElementById("searchInput").value=name;
+
+    const mobile=document.getElementById("mobileSearch");
+
+    if(mobile) mobile.value=name;
+
+    document.getElementById("searchSuggestions").style.display="none";
 
     displayProducts(
 
-        products.filter(product =>
-
-            product.name.toLowerCase().includes(keyword)
-
-        )
+        products.filter(product=>product.name===name)
 
     );
+
+}
+function applyFilters(){
+
+    let filtered=[...products];
+
+    const category=document.getElementById("categoryFilter").value;
+
+    const sort=document.getElementById("sortFilter").value;
+
+    if(category!=="all"){
+
+        filtered=filtered.filter(product=>
+
+            product.category===category
+
+        );
+
+    }
+
+    switch(sort){
+
+        case "low":
+
+            filtered.sort((a,b)=>a.price-b.price);
+
+            break;
+
+        case "high":
+
+            filtered.sort((a,b)=>b.price-a.price);
+
+            break;
+
+        case "az":
+
+            filtered.sort((a,b)=>a.name.localeCompare(b.name));
+
+            break;
+
+        case "za":
+
+            filtered.sort((a,b)=>b.name.localeCompare(a.name));
+
+            break;
+
+    }
+
+    displayProducts(filtered);
 
 }
 
