@@ -1755,6 +1755,53 @@ setInterval(updateDealCountdown,1000);
 updateDealCountdown();
 
 /*=========================
+TRENDING PRODUCTS
+=========================*/
+
+function loadTrendingProducts(){
+
+    const container=document.getElementById("trendingProducts");
+
+    if(!container) return;
+
+    container.innerHTML="";
+
+    const trending=products.slice(0,5);
+
+    trending.forEach(product=>{
+
+        container.innerHTML+=`
+
+        <div class="product-card">
+
+            <div class="image-box">
+
+                <img src="${product.image}"
+                onerror="this.src='images/default.png'">
+
+            </div>
+
+            <h3>${product.name}</h3>
+
+            <h4>GHS ${product.price}</h4>
+
+            <button
+            class="buy-btn"
+            onclick="addToCart(${product.id})">
+
+            Add to Cart
+
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+/*=========================
 HOME SLIDERS
 ==========================*/
 
@@ -1873,3 +1920,4 @@ function quickView(id){
     showNotification(product.name + " details coming in Version 2.0");
 
 }
+loadTrendingProducts();
