@@ -1659,13 +1659,44 @@ function createSlider(id, list){
 
 function quickView(id){
 
-const product=products.find(p=>p.id===id);
+    const product = products.find(p => p.id === id);
 
-if(!product) return;
+    if(!product) return;
 
-showNotification(product.name+" selected.");
+    document.getElementById("quickImage").src = product.image;
 
-addToCart(id);
+    document.getElementById("quickCategory").innerHTML = product.category;
+
+    document.getElementById("quickName").innerHTML = product.name;
+
+    document.getElementById("quickRating").innerHTML =
+        product.rating || "4.9";
+
+    document.getElementById("quickPrice").innerHTML =
+        "GHS " + product.price;
+
+    document.getElementById("quickDescription").innerHTML =
+        product.description || "Premium digital product.";
+
+    document.getElementById("quickAddCart").onclick = function(){
+
+        addToCart(product.id);
+
+        closeQuickView();
+
+    };
+
+    document
+        .getElementById("quickViewOverlay")
+        .classList.add("active");
+
+}
+
+function closeQuickView(){
+
+    document
+        .getElementById("quickViewOverlay")
+        .classList.remove("active");
 
 }
 
