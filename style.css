@@ -435,6 +435,60 @@ font-size:22px;
 }
 
 }
+@media(max-width:768px){
+
+.categories{
+
+padding:40px 15px;
+
+}
+
+.section-title h2{
+
+font-size:28px;
+
+}
+
+.category-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+gap:15px;
+
+}
+
+.category-card{
+
+padding:20px 12px;
+
+}
+
+.category-icon{
+
+width:55px;
+
+height:55px;
+
+font-size:24px;
+
+margin-bottom:15px;
+
+}
+
+.category-card h3{
+
+font-size:15px;
+
+}
+
+.category-card span{
+
+font-size:12px;
+
+}
+
+}
+
 /*=========================
 HERO SLIDER
 =========================*/
@@ -580,5 +634,122 @@ display:none;
 bottom:15px;
 
 }
+
+}
+/*=========================
+SECTION TITLE
+=========================*/
+
+.section-title{
+
+text-align:center;
+
+margin-bottom:40px;
+
+}
+
+.section-title h2{
+
+font-size:38px;
+
+font-weight:800;
+
+margin-bottom:10px;
+
+}
+
+.section-title p{
+
+color:#9ca3af;
+
+font-size:17px;
+
+}
+
+/*=========================
+CATEGORIES
+=========================*/
+
+.categories{
+
+padding:70px 0;
+
+}
+
+.category-grid{
+
+display:grid;
+
+grid-template-columns:repeat(6,1fr);
+
+gap:22px;
+
+}
+
+.category-card{
+
+background:#111827;
+
+border:1px solid rgba(255,255,255,.06);
+
+border-radius:20px;
+
+padding:30px 20px;
+
+text-align:center;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.category-card:hover{
+
+transform:translateY(-8px);
+
+border-color:#1d8fff;
+
+box-shadow:0 15px 40px rgba(29,143,255,.18);
+
+}
+
+.category-icon{
+
+width:70px;
+
+height:70px;
+
+margin:auto;
+
+margin-bottom:20px;
+
+border-radius:18px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+background:linear-gradient(135deg,#2563eb,#0ea5e9);
+
+font-size:30px;
+
+}
+
+.category-card h3{
+
+font-size:18px;
+
+margin-bottom:8px;
+
+}
+
+.category-card span{
+
+color:#9ca3af;
+
+font-size:14px;
 
 }
