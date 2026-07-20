@@ -902,35 +902,55 @@ function updateCart(){
             grandTotal += item.price * item.quantity;
             totalItems += item.quantity;
 
-            cartItems.innerHTML += `
+cartItems.innerHTML += `
 
-            <div class="cart-item">
+<div class="cart-item">
 
-                <div class="cart-info">
+    <img src="${item.image}"
+         class="cart-image"
+         onerror="this.src='images/default.png'">
 
-                    <strong>${item.name}</strong>
+    <div class="cart-details">
 
-                    ${item.username ? `<br><small>${item.username}</small>` : ""}
+        <h4>${item.name}</h4>
 
-                    <br>
+        <small>
 
-                    GHS ${item.price} × ${item.quantity}
+            GHS ${item.price}
 
-                </div>
+        </small>
 
-                <div class="cart-buttons">
+        ${item.username
+            ? `<p>${item.username}</p>`
+            : ""}
 
-                    <button onclick="changeQuantity(${item.id},-1)">−</button>
+        <div class="cart-controls">
 
-                    <button onclick="changeQuantity(${item.id},1)">+</button>
+            <button onclick="changeQuantity(${item.id},-1)">
+                −
+            </button>
 
-                    <button onclick="removeCart(${item.id})">❌</button>
+            <span>${item.quantity}</span>
 
-                </div>
+            <button onclick="changeQuantity(${item.id},1)">
+                +
+            </button>
 
-            </div>
+        </div>
 
-            `;
+    </div>
+
+    <button
+        class="remove-item"
+        onclick="removeCart(${item.id})">
+
+        <i class="fa-solid fa-trash"></i>
+
+    </button>
+
+</div>
+
+`;
 
         });
 
