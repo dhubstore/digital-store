@@ -14,63 +14,532 @@ const products = [
 
 /* ================= VPN ================= */
 
-{id:1,name:"EXPRESS VPN 1 MONTH",price:45,image:"images/express-vpn.jpg",category:"vpn"},
-{id:2,name:"EXPRESS VPN 3 MONTHS",price:60,image:"images/express-vpn.jpg",category:"vpn"},
-{id:3,name:"EXPRESS VPN 1 YEAR",price:90,image:"images/express-vpn.jpg",category:"vpn"},
+{
+id:1,
+name:"EXPRESS VPN 1 MONTH",
+price:45,
+oldPrice:60,
+rating:4.9,
+reviews:248,
+badge:"POPULAR",
+delivery:"Instant Delivery",
+description:"Premium ExpressVPN subscription with fast activation and secure browsing.",
+image:"images/express-vpn.jpg",
+category:"vpn"
+},
 
-{id:4,name:"PIA VPN 1 MONTH",price:45,image:"images/pia-vpn.png",category:"vpn"},
-{id:5,name:"PIA VPN 3 MONTHS",price:65,image:"images/pia-vpn.png",category:"vpn"},
-{id:6,name:"PIA VPN 1 YEAR",price:90,image:"images/pia-vpn.png",category:"vpn"},
+{
+id:2,
+name:"EXPRESS VPN 3 MONTHS",
+price:60,
+oldPrice:80,
+rating:4.9,
+reviews:176,
+badge:"SAVE 25%",
+delivery:"Instant Delivery",
+description:"3-month ExpressVPN subscription with instant activation.",
+image:"images/express-vpn.jpg",
+category:"vpn"
+},
 
-{id:7,name:"NORD VPN 1 MONTH",price:45,image:"images/nord-vpn.png",category:"vpn"},
-{id:8,name:"NORD VPN 1 YEAR",price:90,image:"images/nord-vpn.png",category:"vpn"},
+{
+id:3,
+name:"EXPRESS VPN 1 YEAR",
+price:90,
+oldPrice:120,
+rating:5.0,
+reviews:325,
+badge:"BEST VALUE",
+delivery:"Instant Delivery",
+description:"1-year ExpressVPN subscription for maximum savings and privacy.",
+image:"images/express-vpn.jpg",
+category:"vpn"
+},
+
+{
+id:4,
+name:"PIA VPN 1 MONTH",
+price:45,
+oldPrice:55,
+rating:4.8,
+reviews:193,
+badge:"POPULAR",
+delivery:"Instant Delivery",
+description:"Private Internet Access VPN subscription with instant activation.",
+image:"images/pia-vpn.png",
+category:"vpn"
+},
+
+{
+id:5,
+name:"PIA VPN 3 MONTHS",
+price:65,
+oldPrice:80,
+rating:4.8,
+reviews:142,
+badge:"SAVE 20%",
+delivery:"Instant Delivery",
+description:"3-month PIA VPN subscription with secure private browsing.",
+image:"images/pia-vpn.png",
+category:"vpn"
+},
+
+{
+id:6,
+name:"PIA VPN 1 YEAR",
+price:90,
+oldPrice:120,
+rating:4.9,
+reviews:286,
+badge:"BEST SELLER",
+delivery:"Instant Delivery",
+description:"1-year PIA VPN subscription with premium security and privacy.",
+image:"images/pia-vpn.png",
+category:"vpn"
+},
+
+{
+id:7,
+name:"NORD VPN 1 MONTH",
+price:45,
+oldPrice:60,
+rating:4.9,
+reviews:214,
+badge:"TRENDING",
+delivery:"Instant Delivery",
+description:"Premium NordVPN subscription with secure and private browsing.",
+image:"images/nord-vpn.png",
+category:"vpn"
+},
+
+{
+id:8,
+name:"NORD VPN 1 YEAR",
+price:90,
+oldPrice:120,
+rating:5.0,
+reviews:351,
+badge:"TOP RATED",
+delivery:"Instant Delivery",
+description:"1-year NordVPN subscription with premium online protection.",
+image:"images/nord-vpn.png",
+category:"vpn"
+},
 
 /* ================= ACCOUNTS ================= */
 
-{id:9,name:"TEXTNOW ACCOUNT",price:25,image:"images/textnow.png",category:"accounts"},
-{id:10,name:"TEXTFREE ACCOUNT",price:20,image:"images/textfree.png",category:"accounts"},
-{id:11,name:"TEXTPLUS ACCOUNT",price:25,image:"images/textplus.png",category:"accounts"},
-{id:12,name:"USA FACEBOOK ACCOUNT",price:50,image:"images/facebook.png",category:"accounts"},
-{id:13,name:"GMAIL VERIFIED ACCOUNT",price:25,image:"images/gmail.jpg",category:"accounts"},
+{
+id:9,
+name:"TEXTNOW ACCOUNT",
+price:25,
+oldPrice:35,
+rating:4.8,
+reviews:134,
+badge:"HOT",
+delivery:"5–15 Minutes",
+description:"Verified TextNow account ready for instant use.",
+image:"images/textnow.png",
+category:"accounts"
+},
 
+{
+id:10,
+name:"TEXTFREE ACCOUNT",
+price:20,
+oldPrice:30,
+rating:4.8,
+reviews:112,
+badge:"POPULAR",
+delivery:"5–15 Minutes",
+description:"Premium TextFree account delivered quickly.",
+image:"images/textfree.png",
+category:"accounts"
+},
+
+{
+id:11,
+name:"TEXTPLUS ACCOUNT",
+price:25,
+oldPrice:35,
+rating:4.7,
+reviews:98,
+badge:"RECOMMENDED",
+delivery:"5–15 Minutes",
+description:"Ready-to-use TextPlus account with fast delivery.",
+image:"images/textplus.png",
+category:"accounts"
+},
+
+{
+id:12,
+name:"USA FACEBOOK ACCOUNT",
+price:50,
+oldPrice:70,
+rating:4.9,
+reviews:187,
+badge:"BEST SELLER",
+delivery:"5–15 Minutes",
+description:"USA-based Facebook account with instant delivery.",
+image:"images/facebook.png",
+category:"accounts"
+},
+
+{
+id:13,
+name:"GMAIL VERIFIED ACCOUNT",
+price:25,
+oldPrice:35,
+rating:4.9,
+reviews:261,
+badge:"TOP RATED",
+delivery:"5–15 Minutes",
+description:"Verified Gmail account ready for personal or business use.",
+image:"images/gmail.jpg",
+category:"accounts"
+},
 /* ================= SUBSCRIPTIONS ================= */
 
-{id:14,name:"NETFLIX SHARED 1 MONTH",price:35,image:"images/netflix.png",category:"subscriptions"},
-{id:15,name:"NETFLIX PERSONAL 1 MONTH",price:65,image:"images/netflix.png",category:"subscriptions"},
-{id:16,name:"SPOTIFY PREMIUM 1 MONTH",price:40,image:"images/spotify.png",category:"subscriptions"},
-{id:17,name:"SNAPCHAT PLUS 1 MONTH",price:40,image:"images/snapchat.png",category:"subscriptions"},
-{id:18,name:"SNAPCHAT PLUS 1 YEAR",price:95,image:"images/snapchat.png",category:"subscriptions"},
+{
+id:14,
+name:"NETFLIX SHARED 1 MONTH",
+price:35,
+oldPrice:50,
+rating:4.9,
+reviews:286,
+badge:"BEST SELLER",
+delivery:"Instant Activation",
+description:"Premium shared Netflix subscription with instant activation.",
+image:"images/netflix.png",
+category:"subscriptions"
+},
 
+{
+id:15,
+name:"NETFLIX PERSONAL 1 MONTH",
+price:65,
+oldPrice:80,
+rating:5.0,
+reviews:198,
+badge:"PREMIUM",
+delivery:"Instant Activation",
+description:"Personal Netflix subscription with full access and instant activation.",
+image:"images/netflix.png",
+category:"subscriptions"
+},
+
+{
+id:16,
+name:"SPOTIFY PREMIUM 1 MONTH",
+price:40,
+oldPrice:55,
+rating:4.9,
+reviews:243,
+badge:"POPULAR",
+delivery:"Instant Activation",
+description:"Spotify Premium subscription with ad-free music and offline downloads.",
+image:"images/spotify.png",
+category:"subscriptions"
+},
+
+{
+id:17,
+name:"SNAPCHAT PLUS 1 MONTH",
+price:40,
+oldPrice:55,
+rating:4.9,
+reviews:315,
+badge:"TRENDING",
+delivery:"Instant Activation",
+description:"Snapchat+ subscription with exclusive premium features.",
+image:"images/snapchat.png",
+category:"subscriptions"
+},
+
+{
+id:18,
+name:"SNAPCHAT PLUS 1 YEAR",
+price:95,
+oldPrice:120,
+rating:5.0,
+reviews:172,
+badge:"BEST VALUE",
+delivery:"Instant Activation",
+description:"1-year Snapchat+ subscription with premium features and maximum savings.",
+image:"images/snapchat.png",
+category:"subscriptions"
+},
 /* ================= GIFT CARDS ================= */
 
-{id:19,name:"$2 ITUNES E-CODE",price:32,image:"images/itunes-2.png",category:"giftcards"},
-{id:20,name:"$3 ITUNES E-CODE",price:43,image:"images/itunes-3.png",category:"giftcards"},
-{id:21,name:"$4 ITUNES E-CODE",price:57,image:"images/itunes-4.png",category:"giftcards"},
-{id:22,name:"$5 ITUNES E-CODE",price:70,image:"images/itunes-5.png",category:"giftcards"},
-{id:23,name:"$10 ITUNES E-CODE",price:120,image:"images/itunes-10.png",category:"giftcards"},
-{id:24,name:"$15 ITUNES E-CODE",price:215,image:"images/itunes-15.png",category:"giftcards"},
-{id:25,name:"$20 ITUNES E-CODE",price:275,image:"images/itunes-20.png",category:"giftcards"},
+{
+id:19,
+name:"$2 ITUNES E-CODE",
+price:32,
+oldPrice:40,
+rating:4.9,
+reviews:118,
+badge:"POPULAR",
+delivery:"Digital Code",
+description:"$2 Apple iTunes gift card delivered instantly via digital code.",
+image:"images/itunes-2.png",
+category:"giftcards"
+},
 
-/* ================= DATA ================= */
+{
+id:20,
+name:"$3 ITUNES E-CODE",
+price:43,
+oldPrice:50,
+rating:4.9,
+reviews:104,
+badge:"HOT",
+delivery:"Digital Code",
+description:"$3 Apple iTunes gift card with instant digital delivery.",
+image:"images/itunes-3.png",
+category:"giftcards"
+},
 
-{id:26,name:"1GB MTN DATA",price:6,image:DATA_IMAGE,category:"data"},
-{id:27,name:"2GB MTN DATA",price:10,image:DATA_IMAGE,category:"data"},
-{id:28,name:"3GB MTN DATA",price:15.50,image:DATA_IMAGE,category:"data"},
-{id:29,name:"5GB MTN DATA",price:25,image:DATA_IMAGE,category:"data"},
-{id:30,name:"10GB MTN DATA",price:50,image:DATA_IMAGE,category:"data"},
+{
+id:21,
+name:"$4 ITUNES E-CODE",
+price:57,
+oldPrice:65,
+rating:4.9,
+reviews:96,
+badge:"RECOMMENDED",
+delivery:"Digital Code",
+description:"$4 Apple iTunes gift card delivered as a secure digital code.",
+image:"images/itunes-4.png",
+category:"giftcards"
+},
+
+{
+id:22,
+name:"$5 ITUNES E-CODE",
+price:70,
+oldPrice:80,
+rating:5.0,
+reviews:185,
+badge:"BEST SELLER",
+delivery:"Digital Code",
+description:"$5 Apple iTunes gift card with instant code delivery.",
+image:"images/itunes-5.png",
+category:"giftcards"
+},
+
+{
+id:23,
+name:"$10 ITUNES E-CODE",
+price:120,
+oldPrice:140,
+rating:5.0,
+reviews:241,
+badge:"TOP RATED",
+delivery:"Digital Code",
+description:"$10 Apple iTunes gift card delivered instantly after purchase.",
+image:"images/itunes-10.png",
+category:"giftcards"
+},
+
+{
+id:24,
+name:"$15 ITUNES E-CODE",
+price:215,
+oldPrice:240,
+rating:4.9,
+reviews:88,
+badge:"LIMITED OFFER",
+delivery:"Digital Code",
+description:"$15 Apple iTunes gift card with secure and instant digital delivery.",
+image:"images/itunes-15.png",
+category:"giftcards"
+},
+
+{
+id:25,
+name:"$20 ITUNES E-CODE",
+price:275,
+oldPrice:300,
+rating:5.0,
+reviews:153,
+badge:"BEST VALUE",
+delivery:"Digital Code",
+description:"$20 Apple iTunes gift card delivered instantly as a redeemable code.",
+image:"images/itunes-20.png",
+category:"giftcards"
+},
+ /* ================= DATA ================= */
+
+{
+id:26,
+name:"1GB MTN DATA",
+price:6,
+oldPrice:8,
+rating:4.9,
+reviews:412,
+badge:"FAST DELIVERY",
+delivery:"1–5 Minutes",
+description:"1GB MTN data bundle delivered directly to your number within minutes.",
+image:DATA_IMAGE,
+category:"data"
+},
+
+{
+id:27,
+name:"2GB MTN DATA",
+price:10,
+oldPrice:12,
+rating:4.9,
+reviews:365,
+badge:"POPULAR",
+delivery:"1–5 Minutes",
+description:"2GB MTN data bundle with fast and reliable delivery.",
+image:DATA_IMAGE,
+category:"data"
+},
+
+{
+id:28,
+name:"3GB MTN DATA",
+price:15.50,
+oldPrice:18,
+rating:4.9,
+reviews:298,
+badge:"BEST SELLER",
+delivery:"1–5 Minutes",
+description:"3GB MTN data bundle delivered instantly after purchase.",
+image:DATA_IMAGE,
+category:"data"
+},
+
+{
+id:29,
+name:"5GB MTN DATA",
+price:25,
+oldPrice:30,
+rating:5.0,
+reviews:527,
+badge:"TOP RATED",
+delivery:"1–5 Minutes",
+description:"5GB MTN data bundle with quick and secure activation.",
+image:DATA_IMAGE,
+category:"data"
+},
+
+{
+id:30,
+name:"10GB MTN DATA",
+price:50,
+oldPrice:60,
+rating:5.0,
+reviews:241,
+badge:"BEST VALUE",
+delivery:"1–5 Minutes",
+description:"10GB MTN data bundle for uninterrupted browsing and streaming.",
+image:DATA_IMAGE,
+category:"data"
+},
 
 /* ================= SOCIAL ================= */
 
-{id:31,name:"1K TIKTOK LIKES",price:10,image:"images/tiktok.png",category:"social"},
-{id:32,name:"1K TIKTOK VIEWS",price:5,image:"images/tiktok.png",category:"social"},
-{id:33,name:"500 TIKTOK FOLLOWERS",price:25,image:"images/tiktok.png",category:"social"},
-{id:34,name:"1K TIKTOK FOLLOWERS",price:45,image:"images/tiktok.png",category:"social"},
-{id:35,name:"1K INSTAGRAM LIKES",price:23,image:"images/instagram.png",category:"social"},
-{id:36,name:"1K INSTAGRAM VIEWS",price:8,image:"images/instagram.png",category:"social"},
-{id:37,name:"1K FACEBOOK FOLLOWERS",price:30,image:"images/facebook.png",category:"social"}
+{
+id:31,
+name:"1K TIKTOK LIKES",
+price:10,
+oldPrice:15,
+rating:4.8,
+reviews:189,
+badge:"TRENDING",
+delivery:"Starts Within 24 Hours",
+description:"1,000 high-quality TikTok likes to boost your engagement.",
+image:"images/tiktok.png",
+category:"social"
+},
 
-];
+{
+id:32,
+name:"1K TIKTOK VIEWS",
+price:5,
+oldPrice:8,
+rating:4.8,
+reviews:274,
+badge:"POPULAR",
+delivery:"Starts Within 24 Hours",
+description:"1,000 TikTok video views delivered gradually for a natural appearance.",
+image:"images/tiktok.png",
+category:"social"
+},
 
+{
+id:33,
+name:"500 TIKTOK FOLLOWERS",
+price:25,
+oldPrice:35,
+rating:4.9,
+reviews:143,
+badge:"HOT",
+delivery:"Starts Within 24 Hours",
+description:"500 real-looking TikTok followers to grow your profile.",
+image:"images/tiktok.png",
+category:"social"
+},
+
+{
+id:34,
+name:"1K TIKTOK FOLLOWERS",
+price:45,
+oldPrice:60,
+rating:5.0,
+reviews:217,
+badge:"BEST SELLER",
+delivery:"Starts Within 24 Hours",
+description:"1,000 TikTok followers with fast and reliable delivery.",
+image:"images/tiktok.png",
+category:"social"
+},
+
+{
+id:35,
+name:"1K INSTAGRAM LIKES",
+price:23,
+oldPrice:30,
+rating:4.9,
+reviews:201,
+badge:"POPULAR",
+delivery:"Starts Within 24 Hours",
+description:"1,000 Instagram likes to increase engagement on your posts.",
+image:"images/instagram.png",
+category:"social"
+},
+
+{
+id:36,
+name:"1K INSTAGRAM VIEWS",
+price:8,
+oldPrice:12,
+rating:4.8,
+reviews:162,
+badge:"RECOMMENDED",
+delivery:"Starts Within 24 Hours",
+description:"1,000 Instagram video views with gradual delivery.",
+image:"images/instagram.png",
+category:"social"
+},
+
+{
+id:37,
+name:"1K FACEBOOK FOLLOWERS",
+price:30,
+oldPrice:40,
+rating:4.9,
+reviews:118,
+badge:"TOP RATED",
+delivery:"Starts Within 24 Hours",
+description:"1,000 Facebook followers delivered safely to help grow your page.",
+image:"images/facebook.png",
+category:"social"
+}
+
+];  
 /* ==========================
 LOCAL STORAGE
 ========================== */
