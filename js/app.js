@@ -73,3 +73,59 @@ current=0;
 showSlide(current);
 
 },5000);
+
+function loadBestSellers(){
+
+const container=document.getElementById("bestSellerProducts");
+
+if(!container) return;
+
+container.innerHTML="";
+
+products.forEach(product=>{
+
+container.innerHTML+=`
+
+<div class="product-card">
+
+<div class="product-image">
+
+<span class="discount-badge">HOT</span>
+
+<img src="${product.image}" alt="${product.name}">
+
+</div>
+
+<div class="product-info">
+
+<div class="product-category">${product.category}</div>
+
+<h3 class="product-title">${product.name}</h3>
+
+<div class="product-rating">★★★★★</div>
+
+<div class="product-price">GHS ${product.price}</div>
+
+<div class="product-buttons">
+
+<button class="cart-button">
+Add to Cart
+</button>
+
+<button class="wishlist-button">
+❤
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+loadBestSellers();
