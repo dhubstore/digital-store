@@ -387,7 +387,42 @@ placeholder="Search products...">
     </div>
 
 </div>
-    
+<!--================ QUICK VIEW ================-->
+
+<div class="modal-overlay" id="modalOverlay">
+
+    <div class="quick-view">
+
+        <button class="close-modal" onclick="closeQuickView()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="quick-image">
+            <img id="quickImage" src="" alt="">
+        </div>
+
+        <div class="quick-details">
+
+            <span id="quickCategory"></span>
+
+            <h2 id="quickTitle"></h2>
+
+            <div class="quick-price" id="quickPrice"></div>
+
+            <p>
+                Instant delivery after payment confirmation.
+                Secure purchase with 24/7 support.
+            </p>
+
+            <button id="quickAddCart" class="checkout-btn">
+                Add To Cart
+            </button>
+
+        </div>
+
+    </div>
+
+</div>    
 </body>
 
 </html>
