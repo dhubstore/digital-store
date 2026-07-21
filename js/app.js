@@ -462,3 +462,20 @@ toast.classList.remove("show");
 },2500);
 
 }
+let time = 4 * 60 * 60;
+
+setInterval(() => {
+
+const h = Math.floor(time / 3600);
+
+const m = Math.floor((time % 3600) / 60);
+
+const s = time % 60;
+
+document.getElementById("hours").textContent = String(h).padStart(2, "0");
+document.getElementById("minutes").textContent = String(m).padStart(2, "0");
+document.getElementById("seconds").textContent = String(s).padStart(2, "0");
+
+if (time > 0) time--;
+
+}, 1000);
