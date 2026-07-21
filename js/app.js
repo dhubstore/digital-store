@@ -127,15 +127,20 @@ GHS ${product.price}
 <div class="product-buttons">
 
 <button class="cart-button"
-
 onclick="addToCart(${product.id})">
 
-Add to Cart
+Add To Cart
+
+</button>
+
+<button class="view-button"
+onclick="openQuickView(${product.id})">
+
+<i class="fa-solid fa-eye"></i>
 
 </button>
 
 </div>
-
 </div>
 
 </div>
