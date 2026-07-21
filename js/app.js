@@ -94,26 +94,44 @@ container.innerHTML+=`
 
 <img src="${product.image}" alt="${product.name}">
 
+<button class="wishlist-button">❤</button>
+
 </div>
 
 <div class="product-info">
 
-<div class="product-category">${product.category}</div>
+<div class="product-category">
 
-<h3 class="product-title">${product.name}</h3>
+${product.category}
 
-<div class="product-rating">★★★★★</div>
+</div>
 
-<div class="product-price">GHS ${product.price}</div>
+<h3 class="product-title">
+
+${product.name}
+
+</h3>
+
+<div class="product-rating">
+
+★★★★★
+
+</div>
+
+<div class="product-price">
+
+GHS ${product.price}
+
+</div>
 
 <div class="product-buttons">
 
-<button class="cart-button">
-Add to Cart
-</button>
+<button class="cart-button"
 
-<button class="wishlist-button">
-❤
+onclick="addToCart(${product.id})">
+
+Add to Cart
+
 </button>
 
 </div>
