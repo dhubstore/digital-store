@@ -1,0 +1,310 @@
+/* ==========================
+   RESET
+========================== */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Inter,sans-serif;
+background:#0b1120;
+color:#fff;
+}
+
+/* ==========================
+   HEADER
+========================== */
+
+.checkout-header{
+background:#111827;
+padding:20px 8%;
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo{
+font-size:24px;
+font-weight:700;
+color:#fff;
+text-decoration:none;
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo i{
+color:#2563eb;
+}
+
+/* ==========================
+   LAYOUT
+========================== */
+
+.checkout-container{
+max-width:1400px;
+margin:40px auto;
+padding:0 20px;
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:30px;
+align-items:start;
+}
+
+/* ==========================
+   CARDS
+========================== */
+
+.customer-card,
+.summary-card{
+background:#111827;
+border-radius:18px;
+padding:30px;
+border:1px solid rgba(255,255,255,.08);
+}
+
+.customer-card h2,
+.summary-card h2{
+margin-bottom:25px;
+font-size:28px;
+}
+
+/* ==========================
+   FORM
+========================== */
+
+.form-group{
+margin-bottom:20px;
+}
+
+.form-group label{
+display:block;
+margin-bottom:8px;
+font-size:14px;
+font-weight:600;
+}
+
+.form-group input,
+.form-group textarea{
+width:100%;
+padding:15px;
+border:none;
+border-radius:10px;
+background:#1f2937;
+color:white;
+font-size:15px;
+outline:none;
+}
+
+.form-group textarea{
+height:120px;
+resize:none;
+}
+
+/* ==========================
+   PAYMENT
+========================== */
+
+.payment-list{
+display:grid;
+gap:12px;
+margin:25px 0;
+}
+
+.payment-list label{
+background:#1f2937;
+padding:16px;
+border-radius:10px;
+cursor:pointer;
+display:flex;
+align-items:center;
+gap:10px;
+transition:.3s;
+}
+
+.payment-list label:hover{
+background:#2563eb;
+}
+
+/* ==========================
+   COUPON
+========================== */
+
+.coupon-box{
+display:flex;
+gap:10px;
+margin:25px 0;
+}
+
+.coupon-box input{
+flex:1;
+padding:15px;
+background:#1f2937;
+border:none;
+border-radius:10px;
+color:white;
+}
+
+.coupon-box button{
+padding:15px 25px;
+border:none;
+border-radius:10px;
+background:#2563eb;
+color:white;
+cursor:pointer;
+font-weight:600;
+}
+
+/* ==========================
+   TERMS
+========================== */
+
+.terms{
+display:flex;
+align-items:center;
+gap:10px;
+margin:20px 0;
+font-size:14px;
+}
+
+/* ==========================
+   PLACE ORDER
+========================== */
+
+.place-order{
+width:100%;
+height:55px;
+border:none;
+border-radius:12px;
+background:#2563eb;
+color:white;
+font-size:18px;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
+}
+
+.place-order:hover{
+background:#1d4ed8;
+}
+
+/* ==========================
+   ORDER SUMMARY
+========================== */
+
+#checkoutItems{
+margin-bottom:25px;
+}
+
+.checkout-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 0;
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.checkout-item img{
+width:60px;
+height:60px;
+object-fit:contain;
+background:#1f2937;
+border-radius:10px;
+padding:8px;
+}
+
+.checkout-item-left{
+display:flex;
+gap:15px;
+align-items:center;
+}
+
+.summary-row{
+display:flex;
+justify-content:space-between;
+padding:15px 0;
+font-size:16px;
+}
+
+.total{
+border-top:1px solid rgba(255,255,255,.08);
+margin-top:15px;
+padding-top:20px;
+font-size:22px;
+font-weight:700;
+color:#3b82f6;
+}
+
+/* ==========================
+   STICKY SUMMARY
+========================== */
+
+.summary-card{
+position:sticky;
+top:30px;
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media(max-width:900px){
+
+.checkout-container{
+
+grid-template-columns:1fr;
+
+}
+
+.summary-card{
+
+position:static;
+
+}
+
+}
+
+@media(max-width:600px){
+
+.checkout-header{
+
+padding:18px;
+
+}
+
+.customer-card,
+.summary-card{
+
+padding:20px;
+
+}
+
+.customer-card h2,
+.summary-card h2{
+
+font-size:22px;
+
+}
+
+.coupon-box{
+
+flex-direction:column;
+
+}
+
+.coupon-box button{
+
+width:100%;
+
+}
+
+.place-order{
+
+height:50px;
+
+font-size:16px;
+
+}
+
+}
