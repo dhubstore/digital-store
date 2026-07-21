@@ -213,3 +213,16 @@ renderSection("vpnProducts","vpn");
 renderSection("giftCardProducts","giftcards");
 
 renderSection("dataProducts","data");
+function scrollProducts(id, amount){
+
+const container=document.getElementById(id);
+
+container.scrollBy({
+
+left:amount,
+
+behavior:"smooth"
+
+});
+
+}
