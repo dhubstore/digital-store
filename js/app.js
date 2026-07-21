@@ -479,3 +479,18 @@ document.getElementById("seconds").textContent = String(s).padStart(2, "0");
 if (time > 0) time--;
 
 }, 1000);
+window.addEventListener("load",()=>{
+
+setTimeout(()=>{
+
+document.getElementById("loader").style.opacity="0";
+
+setTimeout(()=>{
+
+document.getElementById("loader").remove();
+
+},500);
+
+},800);
+
+});
