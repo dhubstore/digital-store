@@ -265,9 +265,10 @@ qty:1
 
 saveCart();
 
+showToast(product.name + " added to cart");
+
 updateCart();
 
-openCart();
 
 }
 
@@ -444,5 +445,20 @@ document.getElementById("modalOverlay").classList.add("active");
 function closeQuickView(){
 
 document.getElementById("modalOverlay").classList.remove("active");
+
+}
+function showToast(message){
+
+const toast=document.getElementById("toast");
+
+toast.textContent=message;
+
+toast.classList.add("show");
+
+setTimeout(()=>{
+
+toast.classList.remove("show");
+
+},2500);
 
 }
