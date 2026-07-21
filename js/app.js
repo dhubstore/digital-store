@@ -494,3 +494,24 @@ document.getElementById("loader").remove();
 },800);
 
 });
+const scrollBtn=document.getElementById("scrollTop");
+
+window.addEventListener("scroll",()=>{
+
+scrollBtn.style.display=
+
+window.scrollY>300 ? "block":"none";
+
+});
+
+scrollBtn.onclick=()=>{
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+};
