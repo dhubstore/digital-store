@@ -9,6 +9,22 @@ let discount = 0;
 let total = 0;
 
 // ==========================
+// COUPONS
+// ==========================
+
+const coupons = {
+
+    DHUB10: 10,
+
+    FIRST20: 20,
+
+    STUDENT15: 15
+
+};
+
+let couponApplied = false;
+
+// ==========================
 // LOAD ORDER SUMMARY
 // ==========================
 
