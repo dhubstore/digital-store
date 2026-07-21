@@ -94,7 +94,13 @@ container.innerHTML+=`
 
 <img src="${product.image}" alt="${product.name}">
 
-<button class="wishlist-button">❤</button>
+<button class="wishlist-button"
+
+onclick="toggleWishlist(${product.id},this)">
+
+<i class="fa-regular fa-heart"></i>
+
+</button>
 
 </div>
 
