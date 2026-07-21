@@ -392,3 +392,58 @@ document.getElementById("cartOverlay").classList.remove("active");
 }
 
 document.getElementById("cartOverlay").onclick=closeCart;
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+function toggleWishlist(id, button){
+
+if(wishlist.includes(id)){
+
+wishlist = wishlist.filter(item=>item!==id);
+
+button.innerHTML='<i class="fa-regular fa-heart"></i>';
+
+showToast("Removed from wishlist");
+
+}else{
+
+wishlist.push(id);
+
+button.innerHTML='<i class="fa-solid fa-heart"></i>';
+
+showToast("Added to wishlist");
+
+}
+
+localStorage.setItem("wishlist",JSON.stringify(wishlist));
+
+}
+
+function openQuickView(id){
+
+const product = products.find(p=>p.id===id);
+
+document.getElementById("quickImage").src=product.image;
+
+document.getElementById("quickCategory").textContent=product.category;
+
+document.getElementById("quickTitle").textContent=product.name;
+
+document.getElementById("quickPrice").textContent="GHS "+product.price;
+
+document.getElementById("quickAddCart").onclick=()=>{
+
+addToCart(product.id);
+
+closeQuickView();
+
+};
+
+document.getElementById("modalOverlay").classList.add("active");
+
+}
+
+function closeQuickView(){
+
+document.getElementById("modalOverlay").classList.remove("active");
+
+}
