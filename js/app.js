@@ -226,3 +226,158 @@ behavior:"smooth"
 });
 
 }
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+updateCart();
+
+function addToCart(id){
+
+const product = products.find(p=>p.id===id);
+
+const existing = cart.find(item=>item.id===id);
+
+if(existing){
+
+existing.qty++;
+
+}else{
+
+cart.push({
+
+...product,
+
+qty:1
+
+});
+
+}
+
+saveCart();
+
+updateCart();
+
+openCart();
+
+}
+
+function saveCart(){
+
+localStorage.setItem("cart",JSON.stringify(cart));
+
+}
+
+function updateCart(){
+
+document.querySelector(".cart-count").textContent=
+
+cart.reduce((a,b)=>a+b.qty,0);
+
+const cartItems=document.getElementById("cartItems");
+
+const total=document.getElementById("cartTotal");
+
+cartItems.innerHTML="";
+
+let grand=0;
+
+cart.forEach(item=>{
+
+grand+=item.price*item.qty;
+
+cartItems.innerHTML+=`
+
+<div class="cart-item">
+
+<img src="${item.image}">
+
+<div class="cart-info">
+
+<h4>${item.name}</h4>
+
+<div class="cart-price">
+
+GHS ${item.price}
+
+</div>
+
+<div class="qty">
+
+<button onclick="changeQty(${item.id},-1)">−</button>
+
+<span>${item.qty}</span>
+
+<button onclick="changeQty(${item.id},1)">+</button>
+
+</div>
+
+<button class="remove-btn"
+
+onclick="removeItem(${item.id})">
+
+Remove
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+if(cart.length===0){
+
+cartItems.innerHTML="<p>Your cart is empty.</p>";
+
+}
+
+total.textContent="GHS "+grand.toFixed(2);
+
+}
+
+function changeQty(id,value){
+
+const item=cart.find(i=>i.id===id);
+
+item.qty+=value;
+
+if(item.qty<=0){
+
+cart=cart.filter(i=>i.id!==id);
+
+}
+
+saveCart();
+
+updateCart();
+
+}
+
+function removeItem(id){
+
+cart=cart.filter(i=>i.id!==id);
+
+saveCart();
+
+updateCart();
+
+}
+
+function openCart(){
+
+document.getElementById("cartSidebar").classList.add("active");
+
+document.getElementById("cartOverlay").classList.add("active");
+
+}
+
+function closeCart(){
+
+document.getElementById("cartSidebar").classList.remove("active");
+
+document.getElementById("cartOverlay").classList.remove("active");
+
+}
+
+document.getElementById("cartOverlay").onclick=closeCart;
