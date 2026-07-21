@@ -392,7 +392,6 @@ document.getElementById("cartOverlay").classList.remove("active");
 }
 
 document.getElementById("cartOverlay").onclick=closeCart;
-let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 
 function toggleWishlist(id, button){
 
