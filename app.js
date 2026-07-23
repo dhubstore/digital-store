@@ -220,7 +220,7 @@ function removeItem(id){
 }
 document.addEventListener("DOMContentLoaded",()=>{
 
-    loadProducts();
+    displayProducts(products);
 
     updateCart();
 
@@ -255,5 +255,96 @@ function closeShoppingCart() {
 
     cartSidebar.classList.remove("active");
     cartOverlay.classList.remove("active");
+
+}
+
+// =============================
+// LIVE SEARCH
+// =============================
+
+function searchProducts(){
+
+const keyword=document
+.getElementById("searchInput")
+.value
+.toLowerCase();
+
+const filtered=products.filter(product=>
+
+product.name.toLowerCase().includes(keyword)||
+
+product.category.toLowerCase().includes(keyword)
+
+);
+
+displayProducts(filtered);
+
+}
+
+function displayProducts(productList){
+
+const container=document.getElementById("productsGrid");
+
+container.innerHTML="";
+
+productList.forEach(product=>{
+
+container.innerHTML+=`
+
+<div class="product-card">
+
+<div class="product-image">
+
+<img src="${product.image}">
+
+</div>
+
+<div class="product-info">
+
+<div class="product-category">
+
+${product.category}
+
+</div>
+
+<h3 class="product-title">
+
+${product.name}
+
+</h3>
+
+<div class="product-price">
+
+GHS ${product.price}
+
+</div>
+
+<div class="product-buttons">
+
+<button class="add-cart"
+
+onclick="addToCart(${product.id})">
+
+<i class="fa-solid fa-cart-plus"></i>
+
+Add
+
+</button>
+
+<button class="buy-now">
+
+Buy
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+});
 
 }
