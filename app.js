@@ -116,7 +116,7 @@ function addToCart(id){
     }
 
     saveCart();
-
+showToast(product.name+" added to cart");
 }
 function saveCart(){
 
@@ -352,5 +352,20 @@ Buy
 `;
 
 });
+
+}
+function showToast(message){
+
+const toast=document.getElementById("toast");
+
+toast.textContent=message;
+
+toast.classList.add("show");
+
+setTimeout(()=>{
+
+toast.classList.remove("show");
+
+},2500);
 
 }
