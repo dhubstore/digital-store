@@ -58,10 +58,9 @@ GHS ${product.price}
 
 <div class="product-buttons">
 
-<button class="add-cart">
-
-Add to Cart
-
+<button class="add-cart" onclick="addToCart(${product.id})">
+    <i class="fa-solid fa-cart-plus"></i>
+    Add to Cart
 </button>
 
 <button class="buy-now">
