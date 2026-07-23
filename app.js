@@ -83,3 +83,33 @@ Buy Now
 }
 
 document.addEventListener("DOMContentLoaded",loadProducts);
+// =========================
+// CART OPEN / CLOSE
+// =========================
+
+const cartSidebar = document.getElementById("cartSidebar");
+const cartOverlay = document.getElementById("cartOverlay");
+const cartButton = document.getElementById("cartBtn");
+const closeCart = document.getElementById("closeCart");
+
+if (cartButton) {
+    cartButton.onclick = () => {
+        cartSidebar.classList.add("active");
+        cartOverlay.classList.add("active");
+    };
+}
+
+if (closeCart) {
+    closeCart.onclick = closeShoppingCart;
+}
+
+if (cartOverlay) {
+    cartOverlay.onclick = closeShoppingCart;
+}
+
+function closeShoppingCart() {
+
+    cartSidebar.classList.remove("active");
+    cartOverlay.classList.remove("active");
+
+}
