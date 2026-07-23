@@ -1,233 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
+    <title>DHub Digital Store</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Buy VPNs, Streaming Accounts, Gift Cards, Data Bundles and Digital Products.">
 
-<title>DHub Digital Store</title>
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<meta name="description"
-content="Buy VPNs, Netflix, Spotify, Data Bundles and Digital Products">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
-<link rel="stylesheet"
-href="style.css">
-
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- ======================
-TOP BAR
-====================== -->
+<!-- ================= TOP BAR ================= -->
 
 <div class="top-bar">
 
-<div class="container">
+    <div class="container">
 
-<div class="top-left">
+        <div class="top-left">
 
-<span>
+            <span><i class="fa-solid fa-bolt"></i> Instant Delivery</span>
 
-<i class="fa-solid fa-bolt"></i>
+            <span><i class="fa-solid fa-shield-halved"></i> Trusted Marketplace</span>
 
-Instant Delivery
+        </div>
 
-</span>
+        <div class="top-right">
 
-<span>
+            <a href="#">
+                <i class="fa-brands fa-whatsapp"></i>
+                WhatsApp
+            </a>
 
-<i class="fa-solid fa-shield-halved"></i>
+            <a href="#">
+                <i class="fa-brands fa-telegram"></i>
+                Telegram
+            </a>
 
-Trusted Marketplace
+        </div>
 
-</span>
-
-</div>
-
-<div class="top-right">
-
-<a href="#">
-
-<i class="fa-brands fa-whatsapp"></i>
-
-WhatsApp
-
-</a>
-
-<a href="#">
-
-<i class="fa-brands fa-telegram"></i>
-
-Telegram
-
-</a>
+    </div>
 
 </div>
 
-</div>
+<!-- ================= HEADER ================= -->
 
-</div>
+<header class="header">
 
-<!-- ======================
-HEADER
-====================== -->
+    <div class="container">
 
-<header>
+        <div class="logo">
 
-<div class="container header">
+            <i class="fa-solid fa-bolt"></i>
 
-<div class="logo">
+            <span>DHub</span>
 
-<i class="fa-solid fa-bolt"></i>
+        </div>
 
-<span>DHub</span>
+        <div class="search-box">
 
-</div>
+            <i class="fa-solid fa-magnifying-glass"></i>
 
-<div class="search-box">
+            <input
+            type="text"
+            placeholder="Search products..."
+            id="searchInput">
 
-<i class="fa-solid fa-magnifying-glass"></i>
+        </div>
 
-<input
-type="text"
-id="searchInput"
-placeholder="Search products...">
+        <div class="header-actions">
 
-</div>
+            <button>
 
-<div class="header-icons">
+                <i class="fa-regular fa-heart"></i>
 
-<button id="wishlistBtn">
+            </button>
 
-<i class="fa-regular fa-heart"></i>
+            <button>
 
-</button>
+                <i class="fa-solid fa-cart-shopping"></i>
 
-<button id="cartBtn">
+                <span id="cartCount">0</span>
 
-<i class="fa-solid fa-cart-shopping"></i>
+            </button>
 
-<span id="cartCount">0</span>
+            <button class="menu-btn">
 
-</button>
+                <i class="fa-solid fa-bars"></i>
 
-<button id="menuBtn">
+            </button>
 
-<i class="fa-solid fa-bars"></i>
+        </div>
 
-</button>
-
-</div>
-
-</div>
+    </div>
 
 </header>
 
-<!-- ======================
-MOBILE MENU
-====================== -->
+<!-- HERO WILL GO HERE -->
 
-<nav class="mobile-menu" id="mobileMenu">
+<!-- CATEGORIES -->
 
-<a href="#">Home</a>
+<!-- FLASH DEALS -->
 
-<a href="#products">Products</a>
+<!-- PRODUCTS -->
 
-<a href="#">Categories</a>
-
-<a href="#">Support</a>
-
-<a href="#">Contact</a>
-
-</nav>
-
-<!-- ======================
-HERO
-====================== -->
-
-<section class="hero">
-
-<div class="hero-slider">
-
-<div class="slide active">
-
-<img src="images/netflix.png">
-
-<div class="hero-content">
-
-<h1>Netflix Premium</h1>
-
-<p>Instant activation at affordable prices.</p>
-
-<a href="#products" class="btn">
-
-Shop Now
-
-</a>
-
-</div>
-
-</div>
-
-<div class="slide">
-
-<img src="images/spotify.png">
-
-<div class="hero-content">
-
-<h1>Spotify Premium</h1>
-
-<p>Enjoy unlimited music without ads.</p>
-
-<a href="#products" class="btn">
-
-Buy Now
-
-</a>
-
-</div>
-
-</div>
-
-<div class="slide">
-
-<img src="images/express-vpn.jpg">
-
-<div class="hero-content">
-
-<h1>Premium VPNs</h1>
-
-<p>Fast, secure and private browsing.</p>
-
-<a href="#products" class="btn">
-
-View VPNs
-
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- More sections will be added in the next steps -->
+<!-- FOOTER -->
 
 <script src="products.js"></script>
+
 <script src="app.js"></script>
 
 </body>
