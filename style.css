@@ -1,1 +1,371 @@
+/* ===============================
+   DHUB DIGITAL STORE V2
+================================== */
 
+/* RESET */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:#0f172a;
+    color:#fff;
+}
+
+/* VARIABLES */
+
+:root{
+
+    --primary:#2563eb;
+    --primary-hover:#1d4ed8;
+
+    --dark:#0f172a;
+
+    --card:#1e293b;
+
+    --border:#334155;
+
+    --text:#ffffff;
+
+    --muted:#94a3b8;
+
+    --success:#22c55e;
+
+    --danger:#ef4444;
+
+}
+
+/* CONTAINER */
+
+.container{
+
+    width:min(1400px,92%);
+
+    margin:auto;
+
+}
+
+/* ===============================
+TOP BAR
+================================== */
+
+.top-bar{
+
+    background:#08111f;
+
+    border-bottom:1px solid var(--border);
+
+    font-size:14px;
+
+}
+
+.top-bar .container{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    height:42px;
+
+}
+
+.top-left,
+.top-right{
+
+    display:flex;
+
+    gap:20px;
+
+    align-items:center;
+
+}
+
+.top-left span{
+
+    display:flex;
+
+    gap:8px;
+
+    align-items:center;
+
+    color:#cbd5e1;
+
+}
+
+.top-right a{
+
+    color:#fff;
+
+    text-decoration:none;
+
+    display:flex;
+
+    gap:8px;
+
+    align-items:center;
+
+    transition:.3s;
+
+}
+
+.top-right a:hover{
+
+    color:var(--primary);
+
+}
+
+/* ===============================
+HEADER
+================================== */
+
+.header{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    background:#111827;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.header .container{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:25px;
+
+    height:80px;
+
+}
+
+/* LOGO */
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:28px;
+
+    font-weight:800;
+
+    color:#fff;
+
+}
+
+.logo i{
+
+    color:var(--primary);
+
+}
+
+/* SEARCH */
+
+.search-box{
+
+    flex:1;
+
+    max-width:700px;
+
+    display:flex;
+
+    align-items:center;
+
+    background:#1e293b;
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    overflow:hidden;
+
+}
+
+.search-box i{
+
+    padding:0 18px;
+
+    color:#94a3b8;
+
+}
+
+.search-box input{
+
+    flex:1;
+
+    height:54px;
+
+    border:none;
+
+    outline:none;
+
+    background:none;
+
+    color:#fff;
+
+    font-size:15px;
+
+}
+
+.search-box input::placeholder{
+
+    color:#94a3b8;
+
+}
+
+/* HEADER BUTTONS */
+
+.header-actions{
+
+    display:flex;
+
+    gap:12px;
+
+}
+
+.header-actions button{
+
+    width:52px;
+
+    height:52px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#1e293b;
+
+    color:#fff;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    position:relative;
+
+    font-size:18px;
+
+}
+
+.header-actions button:hover{
+
+    background:var(--primary);
+
+}
+
+/* CART COUNT */
+
+#cartCount{
+
+    position:absolute;
+
+    top:-6px;
+
+    right:-6px;
+
+    width:22px;
+
+    height:22px;
+
+    border-radius:50%;
+
+    background:#ef4444;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+
+/* ===============================
+BUTTON
+================================== */
+
+.btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:14px 24px;
+
+    border-radius:12px;
+
+    background:var(--primary);
+
+    color:#fff;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.btn:hover{
+
+    background:var(--primary-hover);
+
+}
+
+/* ===============================
+RESPONSIVE
+================================== */
+
+@media(max-width:900px){
+
+.top-bar{
+
+display:none;
+
+}
+
+.search-box{
+
+display:none;
+
+}
+
+.header .container{
+
+height:70px;
+
+}
+
+.logo{
+
+font-size:24px;
+
+}
+
+}
