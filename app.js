@@ -1,20 +1,26 @@
 // ============================
 // CATEGORY CLICK
 // ============================
+document.querySelectorAll(".category-card")
 
-document.querySelectorAll(".category-card").forEach(card=>{
+.forEach(card=>{
 
-card.addEventListener("click",()=>{
+card.onclick=()=>{
 
 const category=card.dataset.category;
 
-console.log("Selected:",category);
+const filtered=products.filter(product=>
 
-// Products filtering will be connected later.
+product.category.toLowerCase()==category.toLowerCase()
+
+);
+
+displayProducts(filtered);
+
+}
 
 });
 
-});
 
 function loadProducts(){
 
