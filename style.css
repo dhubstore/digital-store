@@ -1490,3 +1490,54 @@ opacity:1;
 transform:translateY(0);
 
 }
+.slide{
+
+display:none;
+
+animation:fade .5s ease;
+
+}
+
+.slide.active{
+
+display:block;
+
+}
+
+.slide-info{
+
+margin-top:20px;
+
+text-align:center;
+
+}
+
+.slide-info h2{
+
+font-size:30px;
+
+margin-bottom:10px;
+
+}
+
+.slide-info p{
+
+color:#94a3b8;
+
+}
+
+.hero-prev,
+.hero-next{
+
+transition:.3s;
+
+}
+
+.hero-prev:hover,
+.hero-next:hover{
+
+transform:translateY(-50%) scale(1.08);
+
+background:#1d4ed8;
+
+}
