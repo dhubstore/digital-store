@@ -5,14 +5,13 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>Checkout | DHub Digital Store</title>
+<title>DHub Checkout</title>
 
 <link rel="stylesheet" href="checkout.css">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
@@ -20,26 +19,15 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <div class="checkout-container">
 
-<h1>Checkout</h1>
+<h1>Secure Checkout</h1>
 
 <div id="orderSummary"></div>
 
-<form id="checkoutForm">
+<input type="text" id="name" placeholder="Full Name">
 
-<input type="text"
-id="name"
-placeholder="Full Name"
-required>
+<input type="email" id="email" placeholder="Email Address">
 
-<input type="email"
-id="email"
-placeholder="Email Address"
-required>
-
-<input type="tel"
-id="phone"
-placeholder="Phone Number"
-required>
+<input type="tel" id="phone" placeholder="Phone Number">
 
 <select id="payment">
 
@@ -51,18 +39,25 @@ required>
 
 </select>
 
-<textarea
-id="note"
-placeholder="Additional Note (Optional)">
-</textarea>
+<input type="text" id="coupon" placeholder="Coupon Code">
 
-<button type="submit">
+<button onclick="applyCoupon()">
+
+Apply Coupon
+
+</button>
+
+<h2 id="grandTotal">
+
+Total: GHS 0
+
+</h2>
+
+<button id="placeOrder">
 
 Place Order
 
 </button>
-
-</form>
 
 </div>
 
