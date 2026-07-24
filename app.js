@@ -440,3 +440,153 @@ showSlide(index);
 };
 
 });
+// ======================
+// COMPLETE CART
+// ======================
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function saveCart(){
+
+    localStorage.setItem("cart",JSON.stringify(cart));
+
+    updateCart();
+
+}
+
+function addToCart(id){
+
+    const product=products.find(p=>p.id===id);
+
+    if(!product) return;
+
+    const existing=cart.find(i=>i.id===id);
+
+    if(existing){
+
+        existing.qty++;
+
+    }else{
+
+        cart.push({
+
+            ...product,
+
+            qty:1
+
+        });
+
+    }
+
+    saveCart();
+
+    showToast(product.name+" added to cart");
+
+}
+
+function updateCart(){
+
+    const cartItems=document.getElementById("cartItems");
+
+    const total=document.getElementById("cartTotal");
+
+    const count=document.getElementById("cartCount");
+
+    if(!cartItems) return;
+
+    cartItems.innerHTML="";
+
+    let grandTotal=0;
+
+    let items=0;
+
+    if(cart.length===0){
+
+        cartItems.innerHTML="<p class='empty-cart'>Your cart is empty.</p>";
+
+    }
+
+    cart.forEach(item=>{
+
+        grandTotal+=item.price*item.qty;
+
+        items+=item.qty;
+
+        cartItems.innerHTML+=`
+
+        <div class="cart-item">
+
+            <img src="${item.image}">
+
+            <div>
+
+                <h4>${item.name}</h4>
+
+                <p>GHS ${item.price}</p>
+
+                <div class="qty">
+
+                    <button onclick="changeQty(${item.id},-1)">−</button>
+
+                    <span>${item.qty}</span>
+
+                    <button onclick="changeQty(${item.id},1)">+</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+    total.innerHTML="GHS "+grandTotal;
+
+    count.innerHTML=items;
+
+}
+
+function changeQty(id,value){
+
+    const item=cart.find(i=>i.id===id);
+
+    if(!item) return;
+
+    item.qty+=value;
+
+    if(item.qty<=0){
+
+        cart=cart.filter(i=>i.id!==id);
+
+    }
+
+    saveCart();
+
+}
+
+updateCart();
+// ======================
+// CHECKOUT BUTTON
+// ======================
+
+const checkout=document.getElementById("checkoutBtn");
+
+if(checkout){
+
+checkout.onclick=()=>{
+
+if(cart.length===0){
+
+showToast("Your cart is empty");
+
+return;
+
+}
+
+window.location.href="checkout.html";
+
+};
+
+}
