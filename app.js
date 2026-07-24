@@ -590,3 +590,21 @@ window.location.href="checkout.html";
 };
 
 }
+function buyNow(id){
+
+    const product = products.find(p => p.id === id);
+
+    if(!product){
+        return;
+    }
+
+    localStorage.setItem("cart", JSON.stringify([
+        {
+            ...product,
+            qty: 1
+        }
+    ]));
+
+    window.location.href = "checkout.html";
+
+}
