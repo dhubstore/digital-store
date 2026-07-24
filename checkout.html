@@ -1,1 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Checkout | DHub Digital Store</title>
+
+<link rel="stylesheet" href="checkout.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="checkout-container">
+
+<h1>Checkout</h1>
+
+<div id="orderSummary"></div>
+
+<form id="checkoutForm">
+
+<input type="text"
+id="name"
+placeholder="Full Name"
+required>
+
+<input type="email"
+id="email"
+placeholder="Email Address"
+required>
+
+<input type="tel"
+id="phone"
+placeholder="Phone Number"
+required>
+
+<select id="payment">
+
+<option>MTN MoMo</option>
+
+<option>Telecel Cash</option>
+
+<option>AirtelTigo Money</option>
+
+</select>
+
+<textarea
+id="note"
+placeholder="Additional Note (Optional)">
+</textarea>
+
+<button type="submit">
+
+Place Order
+
+</button>
+
+</form>
+
+</div>
+
+<script src="checkout.js"></script>
+
+</body>
+
+</html>
