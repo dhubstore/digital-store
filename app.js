@@ -444,7 +444,6 @@ showSlide(index);
 // COMPLETE CART
 // ======================
 
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 function saveCart(){
 
