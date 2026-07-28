@@ -214,10 +214,8 @@ Add
 
 </button>
 
-<button class="buy-now">
-
-Buy
-
+<button class="buy-now" onclick="buyNow(${product.id})">
+    Buy Now
 </button>
 
 </div>
