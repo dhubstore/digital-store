@@ -93,29 +93,15 @@ Buy Now
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-
-
-    saveCart();
-showToast(product.name+" added to cart");
-}
-
-
-}
-
-    cartTotal.textContent = "GHS " + total;
-
-    cartCount.textContent = count;
-
-}
-
 function removeItem(id){
 
-    cart = cart.filter(item=>item.id!==id);
+    cart = cart.filter(item => item.id !== id);
 
     saveCart();
 
 }
-document.addEventListener("DOMContentLoaded",()=>{
+
+document.addEventListener("DOMContentLoaded", () => {
 
     displayProducts(products);
 
@@ -123,7 +109,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 });
 
-document.addEventListener("DOMContentLoaded",loadProducts);
+document.addEventListener("DOMContentLoaded", loadProducts);
 // =========================
 // CART OPEN / CLOSE
 // =========================
@@ -370,9 +356,7 @@ function addToCart(id){
 
     saveCart();
 
-    showToast(product.name+" added to cart");
-
-}
+  
 
 function updateCart(){
 
