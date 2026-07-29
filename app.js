@@ -375,100 +375,107 @@ if (checkoutBtn) {
 // HERO SLIDER + CART + INIT
 // ===============================
 
-// ---------------------
+// ================================
 // HERO SLIDER
-// ---------------------
+// ================================
 
-let currentSlide = 0;
-
-const slides = document.querySelectorAll(".slide");
+const slides = document.querySelector(".slides");
+const slide = document.querySelectorAll(".slide");
 const dots = document.querySelectorAll(".dot");
 
-function showSlide(index) {
+let currentSlide = 0;
+let totalSlides = slide.length;
 
-    if (slides.length === 0) return;
+function updateSlider() {
 
-    slides.forEach(slide => slide.classList.remove("active"));
+    slides.style.transform =
+        `translateX(-${currentSlide * 100}%)`;
+
     dots.forEach(dot => dot.classList.remove("active"));
 
-    slides[index].classList.add("active");
-
-    if (dots[index]) {
-        dots[index].classList.add("active");
+    if (dots[currentSlide]) {
+        dots[currentSlide].classList.add("active");
     }
 
 }
 
 function nextSlide() {
 
-    if (slides.length === 0) return;
-
     currentSlide++;
 
-    if (currentSlide >= slides.length) {
-
+    if (currentSlide >= totalSlides) {
         currentSlide = 0;
-
     }
 
-    showSlide(currentSlide);
+    updateSlider();
 
 }
 
-function previousSlide() {
+let autoSlide = setInterval(nextSlide, 5000);
 
-    if (slides.length === 0) return;
-
-    currentSlide--;
-
-    if (currentSlide < 0) {
-
-        currentSlide = slides.length - 1;
-
-    }
-
-    showSlide(currentSlide);
-
-}
-
-// Hero buttons
-
-const heroNext = document.querySelector(".hero-next");
-const heroPrev = document.querySelector(".hero-prev");
-
-if (heroNext) {
-
-    heroNext.addEventListener("click", nextSlide);
-
-}
-
-if (heroPrev) {
-
-    heroPrev.addEventListener("click", previousSlide);
-
-}
-
+// ------------------
 // Dots
+// ------------------
 
-dots.forEach((dot, index) => {
+dots.forEach((dot,index)=>{
 
-    dot.addEventListener("click", () => {
+    dot.onclick=()=>{
 
-        currentSlide = index;
+        currentSlide=index;
 
-        showSlide(index);
+        updateSlider();
 
-    });
+        clearInterval(autoSlide);
+
+        autoSlide=setInterval(nextSlide,5000);
+
+    }
 
 });
 
-// Auto Slide
+// ------------------
+// Swipe Support
+// ------------------
 
-if (slides.length > 0) {
+let startX=0;
 
-    setInterval(nextSlide, 5000);
+let endX=0;
 
-}
+slides.addEventListener("touchstart",(e)=>{
+
+    startX=e.touches[0].clientX;
+
+});
+
+slides.addEventListener("touchend",(e)=>{
+
+    endX=e.changedTouches[0].clientX;
+
+    if(startX-endX>50){
+
+        nextSlide();
+
+    }
+
+    if(endX-startX>50){
+
+        currentSlide--;
+
+        if(currentSlide<0){
+
+            currentSlide=totalSlides-1;
+
+        }
+
+        updateSlider();
+
+    }
+
+});
+
+// Start
+
+updateSlider();
 
 // ---------------------
 // CART OPEN/CLOSE
