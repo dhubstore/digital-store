@@ -1907,3 +1907,185 @@ font-weight:600;
     transform:translateY(-50%);
     color:#777;
 }
+/* ==========================================
+   MOBILE MTC-STYLE DESIGN
+========================================== */
+
+@media (max-width:768px){
+
+body{
+    margin:0;
+    background:#072a57;
+    overflow-x:hidden;
+}
+
+/* HEADER */
+
+.header{
+    background:#072a57;
+    padding:12px 15px;
+}
+
+.header .container{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:800;
+    color:#2fa4ff;
+}
+
+/* SEARCH */
+
+.search-box{
+    order:3;
+    width:100%;
+    position:relative;
+}
+
+.search-box input{
+    width:100%;
+    height:56px;
+    border:none;
+    border-radius:16px;
+    padding:0 20px 0 50px;
+    font-size:18px;
+    background:#fff;
+}
+
+.search-box i{
+    position:absolute;
+    left:18px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#666;
+    font-size:20px;
+}
+
+/* ICONS */
+
+.header-actions{
+    display:flex;
+    gap:15px;
+}
+
+.header-actions button{
+    background:none;
+    border:none;
+    color:#fff;
+    font-size:24px;
+}
+
+/* HIDE DESKTOP NAV */
+
+.main-nav{
+    display:none;
+}
+
+/* HERO */
+
+.hero{
+    padding:0;
+}
+
+.hero-content{
+    display:block;
+}
+
+.hero-text{
+    display:none;
+}
+
+.hero-slider{
+    width:100%;
+    height:240px;
+    border-radius:0;
+    margin-top:15px;
+}
+
+.slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.hero-prev,
+.hero-next{
+    display:none;
+}
+
+.hero-dots{
+    bottom:12px;
+}
+
+/* CATEGORIES */
+
+.categories{
+    padding:20px 15px;
+}
+
+.categories-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.category-card{
+    padding:15px 10px;
+}
+
+.category-card h3{
+    font-size:13px;
+}
+
+.category-card p{
+    display:none;
+}
+
+/* PRODUCTS */
+
+.products{
+    padding:20px 15px;
+}
+
+.products-grid{
+    grid-template-columns:1fr;
+    gap:20px;
+}
+
+.product-card{
+    width:100%;
+}
+
+.product-buttons{
+    flex-direction:column;
+    gap:10px;
+}
+
+.product-buttons button{
+    width:100%;
+}
+
+/* CART */
+
+.cart-sidebar{
+    width:100%;
+    right:-100%;
+}
+
+.cart-sidebar.active{
+    right:0;
+}
+
+/* TOP BAR */
+
+.top-bar{
+    display:none;
+}
+
+}
