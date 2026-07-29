@@ -58,60 +58,44 @@
 </div>
 
 <!-- ================= HEADER ================= -->
+<header class="mtc-header">
 
-<header class="header">
+    <div class="logo">
+        DHub
+    </div>
 
-    <div class="container">
+    <div class="search-box">
 
-        <div class="logo">
+        <i class="fa-solid fa-magnifying-glass"></i>
 
-            <i class="fa-solid fa-bolt"></i>
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search for VPNs, Netflix, Spotify..."
+            onkeyup="searchProducts()"
+        >
 
-            <span>DHub</span>
+    </div>
 
-        </div>
+    <div class="header-icons">
 
-        <div class="search-box">
+        <button>
+            <i class="fa-regular fa-heart"></i>
+        </button>
 
-            <i class="fa-solid fa-magnifying-glass"></i>
+        <button id="cartBtn">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="cartCount">0</span>
+        </button>
 
-           <input
-           type="text"
-           id="searchInput"
-           placeholder="Search VPN, Netflix, Spotify..."
-           onkeyup="searchProducts()">
-
-          <div id="searchResults"></div>
-            
-        </div>
-
-        <div class="header-actions">
-
-            <button>
-
-                <i class="fa-regular fa-heart"></i>
-
-            </button>
-
-           <button id="cartBtn" onclick="openCart()">
-
-           <i class="fa-solid fa-cart-shopping"></i>
-
-           <span id="cartCount">0</span>
-
-           </button>
-
-            <button class="menu-btn">
-
-                <i class="fa-solid fa-bars"></i>
-
-            </button>
-
-        </div>
+        <button class="menu-btn">
+            <i class="fa-solid fa-bars"></i>
+        </button>
 
     </div>
 
 </header>
+
 
 <!-- HERO WILL GO HERE -->
 <!-- ================= HERO ================= -->
