@@ -526,15 +526,11 @@ if (cartOverlay) {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    displayProducts(products);
+    displayProducts();
 
     updateCart();
 
-    if (slides.length > 0) {
-
-        showSlide(0);
-
-    }
+    updateSlider();
 
 });
 
