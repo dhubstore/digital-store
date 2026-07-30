@@ -385,65 +385,12 @@ let autoSlide = setInterval(nextSlide, 5000);
 // Dots
 // ------------------
 
-dots.forEach((dot,index)=>{
-
-    dot.onclick=()=>{
-
-        currentSlide=index;
-
-        updateSlider();
-
-        clearInterval(autoSlide);
-
-        autoSlide=setInterval(nextSlide,5000);
-
-    }
-
-});
 
 // ------------------
 // Swipe Support
 // ------------------
 
-let startX=0;
 
-let endX=0;
-
-slides.addEventListener("touchstart",(e)=>{
-
-    startX=e.touches[0].clientX;
-
-});
-
-slides.addEventListener("touchend",(e)=>{
-
-    endX=e.changedTouches[0].clientX;
-
-    if(startX-endX>50){
-
-        nextSlide();
-
-    }
-
-    if(endX-startX>50){
-
-        currentSlide--;
-
-        if(currentSlide<0){
-
-            currentSlide=totalSlides-1;
-
-        }
-
-        updateSlider();
-
-    }
-
-});
-
-// Start
-
-updateSlider();
 
 // ---------------------
 // CART OPEN/CLOSE
@@ -498,7 +445,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateCart();
 
-    updateSlider();
+   
 
 });
 
