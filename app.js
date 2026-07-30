@@ -378,7 +378,6 @@ if (checkoutBtn) {
 // ================================
 // HERO SLIDER
 // ================================
-
 const slides = document.querySelector(".slides");
 const slide = document.querySelectorAll(".slide");
 const dots = document.querySelectorAll(".dot");
@@ -386,28 +385,81 @@ const dots = document.querySelectorAll(".dot");
 let currentSlide = 0;
 let totalSlides = slide.length;
 
-function updateSlider() {
+if(slides){
 
-    slides.style.transform =
-        `translateX(-${currentSlide * 100}%)`;
+function updateSlider(){
 
-    dots.forEach(dot => dot.classList.remove("active"));
+slides.style.transform=`translateX(-${currentSlide*100}%)`;
 
-    if (dots[currentSlide]) {
-        dots[currentSlide].classList.add("active");
-    }
+dots.forEach(dot=>dot.classList.remove("active"));
+
+if(dots[currentSlide]){
+dots[currentSlide].classList.add("active");
+}
 
 }
 
-function nextSlide() {
+function nextSlide(){
 
-    currentSlide++;
+currentSlide++;
 
-    if (currentSlide >= totalSlides) {
-        currentSlide = 0;
-    }
+if(currentSlide>=totalSlides){
+currentSlide=0;
+}
 
-    updateSlider();
+updateSlider();
+
+}
+
+let autoSlide=setInterval(nextSlide,5000);
+
+dots.forEach((dot,index)=>{
+
+dot.onclick=()=>{
+
+currentSlide=index;
+
+updateSlider();
+
+};
+
+});
+
+let startX=0;
+
+slides.addEventListener("touchstart",(e)=>{
+
+startX=e.touches[0].clientX;
+
+});
+
+slides.addEventListener("touchend",(e)=>{
+
+let endX=e.changedTouches[0].clientX;
+
+if(startX-endX>50){
+
+nextSlide();
+
+}
+
+if(endX-startX>50){
+
+currentSlide--;
+
+if(currentSlide<0){
+
+currentSlide=totalSlides-1;
+
+}
+
+updateSlider();
+
+}
+
+});
+
+updateSlider();
 
 }
 
