@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!slides || slideItems.length === 0) return;
 
     let current = 0;
-    const total = slideItems.length;
 
     function showSlide(index){
 
@@ -15,9 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         dots.forEach(dot => dot.classList.remove("active"));
 
-        if(dots[index]){
-            dots[index].classList.add("active");
-        }
+        dots[index].classList.add("active");
 
     }
 
@@ -25,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         current++;
 
-        if(current >= total){
+        if(current >= slideItems.length){
             current = 0;
         }
 
@@ -33,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-    let autoSlide = setInterval(nextSlide, 5000);
+    setInterval(nextSlide,4000);
 
     dots.forEach((dot,index)=>{
 
@@ -43,17 +40,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             showSlide(current);
 
-            clearInterval(autoSlide);
-
-            autoSlide=setInterval(nextSlide,5000);
-
         });
 
     });
 
-    // Swipe support
-
-    let startX = 0;
+    let startX=0;
 
     slides.addEventListener("touchstart",(e)=>{
 
@@ -76,7 +67,9 @@ document.addEventListener("DOMContentLoaded", () => {
             current--;
 
             if(current<0){
-                current=total-1;
+
+                current=slideItems.length-1;
+
             }
 
             showSlide(current);
