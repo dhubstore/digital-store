@@ -379,7 +379,7 @@ if (checkoutBtn) {
 // HERO SLIDER
 // ================================
 
-let autoSlide = setInterval(nextSlide, 5000);
+
 
 // ------------------
 // Dots
