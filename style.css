@@ -129,17 +129,4 @@ button{background:var(--card);border:none;color:#fff;border-radius:12px;padding:
 .categories-grid,.products-grid{grid-template-columns:repeat(2,1fr)}
 .cart-sidebar{width:100%}
 }
-.cart-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
 
-#closeCart{
-    background:none;
-    border:none;
-    color:#fff;
-    font-size:24px;
-    cursor:pointer;
-    z-index:1000;
-}
