@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function showSlide(index){
 
-        slides.style.transform = `translateX(-${index * 100}%)`;
+     slides.style.transform = `translate3d(-${index * 100}%, 0, 0)`;   
 
         dots.forEach(dot => dot.classList.remove("active"));
 
