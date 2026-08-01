@@ -6,7 +6,7 @@
 // ---------------------
 // STATE
 // ---------------------
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
 
 // ---------------------
 // PRODUCT DISPLAY
@@ -168,32 +168,6 @@ function showToast(message) {
 // ADD TO CART
 // ---------------------
 
-function addToCart(id) {
-
-    const product = products.find(p => p.id === id);
-
-    if (!product) return;
-
-    const existing = cart.find(item => item.id === id);
-
-    if (existing) {
-
-        existing.qty++;
-
-    } else {
-
-        cart.push({
-            ...product,
-            qty: 1
-        });
-
-    }
-
-    saveCart();
-
-    showToast(product.name + " added to cart");
-
-}
 
 // ---------------------
 // BUY NOW
@@ -334,41 +308,8 @@ function changeQty(id, value) {
 
 }
 
-// ---------------------
-// REMOVE ITEM
-// ---------------------
 
-function removeItem(id) {
 
-    cart = cart.filter(item => item.id !== id);
-
-    saveCart();
-
-}
-
-// ---------------------
-// CHECKOUT
-// ---------------------
-
-const checkoutBtn = document.getElementById("checkoutBtn");
-
-if (checkoutBtn) {
-
-    checkoutBtn.addEventListener("click", () => {
-
-        if (cart.length === 0) {
-
-            showToast("Your cart is empty");
-
-            return;
-
-        }
-
-        window.location.href = "checkout.html";
-
-    });
-
-}
 // ===============================
 // PART 3
 // HERO SLIDER + CART + INIT
