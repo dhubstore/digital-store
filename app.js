@@ -6,7 +6,7 @@
 // ---------------------
 // STATE
 // ---------------------
-
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 // ---------------------
 // PRODUCT DISPLAY
