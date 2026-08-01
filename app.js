@@ -159,14 +159,7 @@ function showToast(message) {
     }, 2500);
 
 }
-// ===============================
-// PART 2
-// SHOPPING CART
-// ===============================
 
-// ---------------------
-// ADD TO CART
-// ---------------------
 
 
 // ---------------------
@@ -190,140 +183,10 @@ function buyNow(id) {
 
 }
 
-// ---------------------
-// SAVE CART
-// ---------------------
-
-function saveCart() {
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-
-    updateCart();
-
-}
-
-// ---------------------
-// UPDATE CART
-// ---------------------
-
-function updateCart() {
-
-    const cartItems = document.getElementById("cartItems");
-    const cartTotal = document.getElementById("cartTotal");
-    const cartCount = document.getElementById("cartCount");
-
-    if (!cartItems) return;
-
-    cartItems.innerHTML = "";
-
-    let total = 0;
-    let count = 0;
-
-    if (cart.length === 0) {
-
-        cartItems.innerHTML = `
-            <p class="empty-cart">
-                Your cart is empty.
-            </p>
-        `;
-
-    } else {
-
-        cart.forEach(item => {
-
-            total += item.price * item.qty;
-            count += item.qty;
-
-            cartItems.innerHTML += `
-
-            <div class="cart-item">
-
-                <img src="${item.image}" alt="${item.name}">
-
-                <div class="cart-details">
-
-                    <h4>${item.name}</h4>
-
-                    <p>GHS ${item.price}</p>
-
-                    <div class="cart-controls">
-
-                        <button onclick="changeQty(${item.id},-1)">−</button>
-
-                        <span>${item.qty}</span>
-
-                        <button onclick="changeQty(${item.id},1)">+</button>
-
-                        <button onclick="removeItem(${item.id})">
-
-                            <i class="fa-solid fa-trash"></i>
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            `;
-
-        });
-
-    }
-
-    if (cartTotal) {
-
-        cartTotal.textContent = "GHS " + total;
-
-    }
-
-    if (cartCount) {
-
-        cartCount.textContent = count;
-
-    }
-
-}
-
-// ---------------------
-// CHANGE QUANTITY
-// ---------------------
-
-function changeQty(id, value) {
-
-    const item = cart.find(i => i.id === id);
-
-    if (!item) return;
-
-    item.qty += value;
-
-    if (item.qty <= 0) {
-
-        cart = cart.filter(i => i.id !== id);
-
-    }
-
-    saveCart();
-
-}
 
 
 
-// ===============================
-// PART 3
-// HERO SLIDER + CART + INIT
-// ===============================
 
-// ================================
-// HERO SLIDER
-// ================================
-
-
-
-// ------------------
-// Dots
-// ------------------
 
 
 // ------------------
@@ -336,44 +199,6 @@ function changeQty(id, value) {
 // CART OPEN/CLOSE
 // ---------------------
 
-const cartSidebar = document.getElementById("cartSidebar");
-const cartOverlay = document.getElementById("cartOverlay");
-const cartBtn = document.getElementById("cartBtn");
-const closeCartBtn = document.getElementById("closeCart");
-
-function openCart() {
-
-    if (cartSidebar) cartSidebar.classList.add("active");
-
-    if (cartOverlay) cartOverlay.classList.add("active");
-
-}
-
-function closeCart() {
-
-    if (cartSidebar) cartSidebar.classList.remove("active");
-
-    if (cartOverlay) cartOverlay.classList.remove("active");
-
-}
-
-if (cartBtn) {
-
-    cartBtn.addEventListener("click", openCart);
-
-}
-
-if (closeCartBtn) {
-
-    closeCartBtn.addEventListener("click", closeCart);
-
-}
-
-if (cartOverlay) {
-
-    cartOverlay.addEventListener("click", closeCart);
-
-}
 
 // ---------------------
 // WEBSITE STARTUP
@@ -382,10 +207,6 @@ if (cartOverlay) {
 document.addEventListener("DOMContentLoaded", () => {
 
     displayProducts();
-
-    updateCart();
-
-   
 
 });
 
